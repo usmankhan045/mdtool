@@ -28,30 +28,27 @@ const THEMES: Record<ThemeId, string> = {
     .pdf-container .hljs { background: #f6f8fa; }
   `,
   academic: `
-    .pdf-container { font-family: 'Georgia', serif; font-size: 12pt; line-height: 1.8; color: #000; padding: 48px; }
+    .pdf-container { font-family: Georgia, serif; font-size: 12pt; line-height: 1.8; color: #000; padding: 40px; }
     .pdf-container h1 { font-size: 18pt; text-align: center; margin-bottom: 8px; }
-    .pdf-container h2 { font-size: 14pt; margin-top: 24px; }
-    .pdf-container h3 { font-size: 12pt; margin-top: 16px; }
+    .pdf-container h2 { font-size: 14pt; margin-top: 20px; }
     .pdf-container code { font-family: 'Courier New', monospace; font-size: 10pt; background: #f5f5f5; padding: 1px 4px; }
-    .pdf-container pre { background: #f5f5f5; border: 1px solid #ddd; padding: 12px; font-size: 10pt; }
+    .pdf-container pre { background: #f5f5f5; padding: 12px; border: 1px solid #ddd; }
     .pdf-container pre code { background: transparent; padding: 0; }
-    .pdf-container table { border-collapse: collapse; width: 100%; font-size: 11pt; }
-    .pdf-container th, .pdf-container td { border: 1px solid #000; padding: 4px 8px; }
-    .pdf-container th { font-weight: bold; text-align: center; }
-    .pdf-container blockquote { border-left: 3px solid #000; margin-left: 24px; padding-left: 12px; font-style: italic; }
-    .pdf-container p { text-align: justify; }
+    .pdf-container table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    .pdf-container th, .pdf-container td { border: 1px solid #333; padding: 8px; text-align: left; }
+    .pdf-container th { background: #f0f0f0; }
+    .pdf-container blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #555; margin-left: 0; }
   `,
   minimal: `
-    .pdf-container { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #333; padding: 40px; }
-    .pdf-container h1 { font-size: 28px; font-weight: 700; color: #111; margin-top: 32px; }
-    .pdf-container h2 { font-size: 22px; font-weight: 600; color: #222; margin-top: 24px; }
-    .pdf-container h3 { font-size: 18px; font-weight: 600; color: #333; }
-    .pdf-container code { font-family: 'Fira Code', monospace; font-size: 13px; background: #f4f4f4; padding: 2px 6px; border-radius: 4px; }
+    .pdf-container { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; line-height: 1.7; color: #333; padding: 28px; }
+    .pdf-container h1 { font-size: 1.8em; font-weight: 600; margin-top: 20px; }
+    .pdf-container h2 { font-size: 1.4em; font-weight: 600; }
+    .pdf-container code { font-family: 'SFMono-Regular', monospace; font-size: 85%; background: #f5f5f5; padding: 0.2em 0.4em; border-radius: 3px; }
     .pdf-container pre { background: #f8f8f8; padding: 20px; border-radius: 8px; }
     .pdf-container pre code { background: transparent; padding: 0; }
-    .pdf-container table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    .pdf-container th { border-bottom: 2px solid #333; padding: 8px; text-align: left; }
-    .pdf-container td { border-bottom: 1px solid #e0e0e0; padding: 8px; }
+    .pdf-container table { border-collapse: collapse; width: 100%; }
+    .pdf-container th, .pdf-container td { border-bottom: 2px solid #333; padding: 8px; text-align: left; }
+    .pdf-container th { background: #f0e0e0; }
     .pdf-container blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #666; margin-left: 0; }
   `,
   dark: `
@@ -71,6 +68,19 @@ const THEMES: Record<ThemeId, string> = {
   `,
 };
 
+// Highlight.js GitHub theme CSS — inlined so we don't need a network request
+// This avoids the race condition where html2canvas captures before the
+// external <link> stylesheet has finished loading.
+const HLJS_GITHUB_CSS = `
+.hljs{color:#24292e;background:#f6f8fa}.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-variable.language_{color:#d73a49}.hljs-title,.hljs-title.class_,.hljs-title.class_.inherited__,.hljs-title.function_{color:#6f42c1}.hljs-attr,.hljs-attribute,.hljs-literal,.hljs-meta,.hljs-number,.hljs-operator,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-variable{color:#005cc5}.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#032f62}.hljs-built_in,.hljs-symbol{color:#e36209}.hljs-code,.hljs-comment,.hljs-formula{color:#6a737d}.hljs-name,.hljs-quote,.hljs-selector-pseudo,.hljs-selector-tag{color:#22863a}.hljs-subst{color:#24292e}.hljs-section{color:#005cc5;font-weight:700}.hljs-bullet{color:#735c0f}.hljs-emphasis{color:#24292e;font-style:italic}.hljs-strong{color:#24292e;font-weight:700}.hljs-addition{color:#22863a;background:#f0fff4}.hljs-deletion{color:#b31d28;background:#ffeef0}
+`;
+
+// Highlight.js Dark theme CSS — inlined for dark theme
+const HLJS_DARK_CSS = `
+.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-class .hljs-title,.hljs-title.class_{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}
+`;
+
+
 export async function generatePdf(
   htmlContent: string,
   options: PdfOptions
@@ -83,22 +93,28 @@ export async function generatePdf(
   styleEl.textContent = THEMES[options.theme];
   document.head.appendChild(styleEl);
 
-  // Inject highlight.js CSS for light themes
-  let hljsLink: HTMLLinkElement | null = null;
-  if (options.theme !== 'dark') {
-    hljsLink = document.createElement('link');
-    hljsLink.rel = 'stylesheet';
-    hljsLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css';
-    hljsLink.id = 'pdf-hljs-style';
-    document.head.appendChild(hljsLink);
-  }
+  // Inject highlight.js CSS — inlined to avoid race conditions with external stylesheets.
+  // Previously a <link> to cdnjs was appended but html2canvas would capture the element
+  // BEFORE the network request for the stylesheet completed, producing an empty/unstyled PDF.
+  const hljsStyle = document.createElement('style');
+  hljsStyle.id = 'pdf-hljs-style';
+  hljsStyle.textContent = options.theme === 'dark' ? HLJS_DARK_CSS : HLJS_GITHUB_CSS;
+  document.head.appendChild(hljsStyle);
 
-  // Content element — no wrapping html/body tags (browsers strip them from innerHTML)
+  // Create the content element but do NOT append it to the document with
+  // offscreen positioning. html2pdf.js v0.14+ uses deepCloneBasic() to clone
+  // the source element and renders the CLONE inside its own overlay container
+  // (position:absolute; left:0; top:0). If the source element carries an inline
+  // style like `left:-9999px`, that style is copied to the clone, which then
+  // renders 9999px off to the left inside the overlay — outside html2canvas's
+  // capture area — producing a completely blank PDF.
+  //
+  // Fix: pass a plain element with no offscreen positioning. html2pdf.js creates
+  // its own hidden overlay (opacity:0) so the user never sees the content flash.
   const element = document.createElement('div');
   element.className = 'pdf-container';
   element.innerHTML = htmlContent;
-  element.style.cssText = 'position:absolute;left:-9999px;top:0;width:794px;background:white;';
-  document.body.appendChild(element);
+  element.style.width = '794px';
 
   const config = {
     margin: [15, 15, 15, 15] as [number, number, number, number],
@@ -109,7 +125,6 @@ export async function generatePdf(
       useCORS: true,
       letterRendering: true,
       logging: false,
-      width: 794,
     },
     jsPDF: {
       unit: 'mm',
@@ -122,8 +137,7 @@ export async function generatePdf(
   try {
     await html2pdf().set(config).from(element).save();
   } finally {
-    document.body.removeChild(element);
     document.head.removeChild(styleEl);
-    if (hljsLink) document.head.removeChild(hljsLink);
+    document.head.removeChild(hljsStyle);
   }
 }
