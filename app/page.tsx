@@ -1,65 +1,96 @@
-import Image from "next/image";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'DevMark — Free Developer Tools',
+  description: 'Free online developer tools. Convert Markdown to PDF, Markdown to HTML, and more. Fast, client-side, no login required.',
+  alternates: { canonical: 'https://devmark.tools' },
+};
+
+const TOOLS = [
+  {
+    href: '/markdown-to-pdf',
+    icon: '📄',
+    title: 'Markdown to PDF',
+    description: 'Convert .md files to beautifully formatted PDFs. Supports code highlighting, tables, Mermaid diagrams, and 4 themes.',
+    badge: 'Most Popular',
+  },
+  {
+    href: '/markdown-to-html',
+    icon: '🌐',
+    title: 'Markdown to HTML',
+    description: 'Convert Markdown to clean, ready-to-use HTML. Perfect for embedding in websites or email templates.',
+    badge: null,
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen bg-gray-50">
+      {/* Hero */}
+      <section className="bg-white border-b border-gray-200 px-4 py-16 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Free Developer Tools
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-gray-600 mb-8">
+            Fast, client-side tools for developers. No login, no watermarks, no file uploads — everything runs in your browser.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/markdown-to-pdf"
+            className="inline-block px-8 py-3.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors text-lg"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Try Markdown to PDF →
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Tools Grid */}
+      <section className="max-w-4xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">All Tools</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {TOOLS.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="group bg-white rounded-2xl border border-gray-200 p-6 hover:border-blue-400 hover:shadow-md transition-all"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <span className="text-3xl">{tool.icon}</span>
+                {tool.badge && (
+                  <span className="text-xs font-medium bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full">
+                    {tool.badge}
+                  </span>
+                )}
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                {tool.title}
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{tool.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Why DevMark */}
+      <section className="bg-white border-t border-gray-100 px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Why DevMark?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            {[
+              { icon: '🔒', title: 'Private by Default', desc: 'Files never leave your device. All processing is 100% client-side.' },
+              { icon: '⚡', title: 'Instant Results', desc: 'No server round-trips. Conversion happens in milliseconds in your browser.' },
+              { icon: '🆓', title: 'Free Forever', desc: 'No paywalls, no watermarks, no signup required. Just use it.' },
+            ].map((item) => (
+              <div key={item.title} className="p-6 rounded-xl bg-gray-50">
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <h3 className="font-semibold text-gray-800 mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
