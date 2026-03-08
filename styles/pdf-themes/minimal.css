@@ -1,0 +1,11 @@
+body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; line-height: 1.7; color: #333; max-width: 720px; margin: 0 auto; padding: 40px; }
+h1 { font-size: 28px; font-weight: 700; color: #111; margin-top: 32px; }
+h2 { font-size: 22px; font-weight: 600; color: #222; margin-top: 24px; }
+h3 { font-size: 18px; font-weight: 600; color: #333; }
+code { font-family: 'Fira Code', monospace; font-size: 13px; background: #f4f4f4; padding: 2px 6px; border-radius: 4px; }
+pre { background: #f8f8f8; padding: 20px; border-radius: 8px; }
+pre code { background: transparent; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+th { border-bottom: 2px solid #333; padding: 8px; text-align: left; }
+td { border-bottom: 1px solid #e0e0e0; padding: 8px; }
+blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #666; margin-left: 0; }
