@@ -1,0 +1,215 @@
+---
+title: "Why Markdown Tables Break in PDF Exports (And How to Fix It)"
+description: "Markdown tables are one of the most common causes of broken PDF exports. Learn why they fail, what correct output looks like, and how to fix every common table rendering problem."
+datePublished: "2026-03-08"
+dateModified: "2026-03-08"
+tags: ["markdown", "pdf", "tables", "github-flavored-markdown", "developer-tools"]
+---
+
+## The Markdown Table PDF Problem
+
+You've written a clean comparison table in Markdown. It looks perfect in your editor. You click "Export to PDF" — and it comes out as a column of raw pipe characters. Or the borders vanish and all the text runs together. Or the table renders correctly in the preview but collapses in the actual PDF file.
+
+Markdown tables breaking in PDF exports is one of the most reported issues with online converters. This guide explains exactly why it happens, what broken output looks like versus correct output, and how to fix every common scenario.
+
+---
+
+## Why Markdown Tables Break in PDF
+
+There are three distinct reasons, and most broken converters hit at least two of them.
+
+### Reason 1: The Parser Doesn't Support GFM
+
+The Markdown spec doesn't define table syntax. Tables are a GitHub Flavored Markdown (GFM) extension — the `| Col | Col |` pipe syntax only works if the parser has GFM mode enabled. Parsers that implement only CommonMark (the base spec) will ignore the pipe characters entirely and render your table as a paragraph of `|` characters.
+
+**Broken output:**
+
+```
+| Feature | DevMark | Others | | --- | --- | --- | | Tables | Yes | No |
+```
+
+**Correct output:** An actual bordered table with headers.
+
+If you see your table rendered as a raw text block, the parser doesn't support GFM tables. Switch to a converter that explicitly enables GFM.
+
+### Reason 2: CSS Is Stripped During PDF Rendering
+
+Even if the parser renders the table correctly into HTML, the table still needs CSS to look like a table. Without `border-collapse: collapse`, `border`, and `padding` on `<th>` and `<td>` elements, the output is unstyled — cells butt up against each other with no visible separation.
+
+Many server-side PDF generators use libraries that ignore or strip CSS. The HTML structure is correct, but there's no visual formatting. You get rows and columns of text with no borders, no background on headers, and no alignment.
+
+**Broken output:** Text in columns but no visible grid.
+
+**Correct output:** Clean grid with bordered cells, bold headers, and proper padding.
+
+### Reason 3: The Rendering Pipeline Has a CSS Race Condition
+
+Some converters inject CSS as a `<link>` tag and immediately capture the page before the stylesheet has loaded. The HTML renders with the table structure but the stylesheet hasn't applied yet — so again you get unformatted output. This is particularly common in tools that use external CDN-hosted stylesheets.
+
+---
+
+## Markdown Table Syntax Reference
+
+Before fixing rendering issues, it helps to confirm your table syntax is correct. GFM tables follow this structure:
+
+```markdown
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Cell     | Cell     | Cell     |
+| Cell     | Cell     | Cell     |
+```
+
+**Column alignment** is set in the separator row:
+
+```markdown
+| Left-aligned | Center-aligned | Right-aligned |
+|:-------------|:--------------:|-------------:|
+| text         |     text       |          text |
+```
+
+- `:---` — left-aligned (default)
+- `:---:` — centered
+- `---:` — right-aligned
+
+**Rules:**
+- The header row and separator row are required. You can't skip the header.
+- At least three hyphens per column in the separator row (`---` minimum).
+- Leading and trailing pipes are optional but recommended for clarity.
+- Cells don't need to be padded to the same width — `| a | b |` is valid.
+
+---
+
+## Broken vs. Correct: Side-by-Side Examples
+
+### Example 1: Simple Feature Comparison Table
+
+**Your Markdown:**
+
+```markdown
+| Tool        | Free | Code Highlighting | Mermaid |
+|-------------|------|------------------|---------|
+| DevMark     | Yes  | Yes              | Yes     |
+| Dillinger   | Yes  | Partial          | No      |
+| CloudConvert| No   | Partial          | No      |
+```
+
+**Broken PDF output (no GFM support):**
+
+```
+| Tool | Free | Code Highlighting | Mermaid | |---| --- | --- | --- | | DevMark | Yes | Yes | Yes | ...
+```
+
+**Broken PDF output (CSS stripped):**
+Columns of unstyled text with no borders, no header background, and no visual separation.
+
+**Correct PDF output:**
+A bordered table with a gray header row, padded cells, and alternating row backgrounds — exactly what you'd see on GitHub.
+
+### Example 2: Wide Table with Many Columns
+
+Wide tables are the hardest case. A 7-column table in A4 format (794px wide) will overflow the right margin if cells have long content.
+
+**Recommendation:** Keep column count to 5 or fewer for A4 PDFs. For wider tables, either split into two tables or shorten column headers and content.
+
+---
+
+## How DevMark Handles Markdown Table to PDF Correctly
+
+DevMark avoids all three failure modes:
+
+1. **GFM enabled by default** — The `marked` parser runs with `gfm: true`, so pipe tables are parsed correctly.
+
+2. **Inline CSS, no race conditions** — Theme styles are injected as `<style>` tags in `<head>` before the PDF capture step. There's no external stylesheet request that could arrive late.
+
+3. **Full CSS fidelity** — Because conversion uses `html2canvas` to capture the rendered page, what you see in the preview is exactly what you get in the PDF. `border-collapse`, `padding`, `background-color`, and `font-weight` all apply.
+
+The result is that a table like this:
+
+```markdown
+| Language   | Paradigm     | Typing   | Year |
+|------------|--------------|----------|------|
+| TypeScript | Multi-paradigm| Static  | 2012 |
+| Python     | Multi-paradigm| Dynamic | 1991 |
+| Rust       | Systems      | Static   | 2010 |
+| Go         | Concurrent   | Static   | 2009 |
+```
+
+Renders with bordered cells, a bold header row with a light background, and alternating row shading — matching the GitHub table style if you use the GitHub theme.
+
+---
+
+## Try It: Paste a Table and Download the PDF
+
+Test your Markdown table below. The preview updates in real time so you can confirm it looks right before downloading:
+
+<EmbeddedTool />
+
+---
+
+## Common Table Problems and Fixes
+
+**Problem: Table renders as raw text with pipe characters**
+
+Fix: Your converter doesn't support GFM. Switch to DevMark, which has GFM enabled by default.
+
+**Problem: Table renders in the preview but collapses in the PDF**
+
+Fix: This is the CSS race condition problem. The converter captures the page before styles load. DevMark inlines all CSS to avoid this.
+
+**Problem: Table columns are unequal widths**
+
+Fix: This is normal behavior — GFM tables don't require equal column widths. If you want consistent column widths, set explicit widths in a `<style>` block above the table (DevMark's Markdown parser allows inline HTML).
+
+**Problem: Table overflows the right margin in the PDF**
+
+Fix: Reduce the number of columns, shorten column content, or use abbreviations in header names. Alternatively, add a manual page break before the table by inserting `<div style="page-break-before: always;"></div>` on the line above it.
+
+**Problem: Header row has no visual distinction from body rows**
+
+Fix: Choose the GitHub or Academic theme. The Minimal theme uses a reduced style that omits the header background color by design.
+
+**Problem: Markdown table with code in cells**
+
+Inline code in table cells (e.g., `` | `const x = 1` | ``) renders with a gray background and monospace font in the cell. This works correctly in DevMark. Just make sure the backtick pairs are balanced.
+
+---
+
+## Comparing Table Rendering Across Tools
+
+| Converter | GFM Tables | Cell Borders | Header Styling | No Upload |
+|-----------|-----------|--------------|----------------|-----------|
+| **DevMark** | ✅ | ✅ | ✅ | ✅ |
+| Dillinger | ✅ | Partial | Partial | ✅ |
+| markdowntopdf.com | Partial | ❌ | ❌ | ❌ |
+| CloudConvert | Partial | Partial | Partial | ❌ |
+| Pandoc | ✅ | ✅ | ✅ | N/A |
+
+For a full side-by-side comparison including code blocks and Mermaid support, see [Best Markdown to PDF Converter in 2026](/blog/best-markdown-to-pdf-converter).
+
+---
+
+## Frequently Asked Questions
+
+**Q: Does DevMark support every GFM table alignment option?**
+
+Yes — left (`:---`), center (`:---:`), and right (`---:`) alignment are all supported. The alignment is reflected in both the preview and the PDF.
+
+**Q: Can I have merged cells (colspan/rowspan) in Markdown tables?**
+
+No — GFM table syntax doesn't support cell merging. Merged cells require raw HTML (`<table>` with `colspan`/`rowspan` attributes). DevMark's Markdown parser allows inline HTML, so you can use a raw `<table>` tag for complex layouts.
+
+**Q: My table has a column with very long text. How do I prevent overflow?**
+
+Long unbroken strings (like URLs or hashes) can overflow cells. Wrap them in backticks (inline code) or shorten them with an ellipsis. You can also insert a zero-width space (`&ZeroWidthSpace;`) to allow the browser to break the line at that point.
+
+**Q: Will the PDF table print correctly on paper?**
+
+Yes — DevMark's theme CSS uses `border-collapse: collapse` and explicit `border` declarations that are print-safe. The light gray backgrounds on headers and alternating rows use colors that print visibly on monochrome printers.
+
+**Q: Can I add a caption to a Markdown table?**
+
+GFM doesn't have a table caption syntax. Add a line of bold or italic text directly above or below the table as a caption: `*Table 1: Feature comparison*`.
+
+**Q: What's the maximum number of rows a table can have?**
+
+There's no hard limit. DevMark has handled tables with hundreds of rows. For very large tables, the PDF will span multiple pages automatically — the page break logic handles table splitting.
