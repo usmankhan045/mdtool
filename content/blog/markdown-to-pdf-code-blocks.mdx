@@ -34,7 +34,9 @@ async function fetchUser(id) {
 
 A **broken PDF converter** will output something like this in the PDF:
 
-> async function fetchUser(id) { const response = await fetch(`/api/users/${id}`); if (!response.ok) throw new Error("User not found"); return response.json(); }
+```text
+async function fetchUser(id) { const response = await fetch("/api/users/" + id); if (!response.ok) throw new Error("User not found"); return response.json(); }
+```
 
 No line breaks. No monospace. No background. Just a wall of text that's impossible to read.
 

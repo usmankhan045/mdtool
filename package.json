@@ -13,7 +13,6 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "html2pdf.js": "^0.14.0",
-    "lightningcss-darwin-x64": "^1.32.0",
     "marked": "^17.0.4",
     "mermaid": "^11.12.3",
     "next": "16.1.6",
