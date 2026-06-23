@@ -22,7 +22,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 font-bold text-white text-lg mb-3">
             <span className="text-blue-400">&lt;/&gt;</span>
-            <span>DevMark</span>
+            <span>MDTool</span>
           </div>
           <p className="text-sm text-gray-500 leading-relaxed">
             Free developer tools for Markdown, PDF conversion, and more.
@@ -60,7 +60,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gray-800 px-4 py-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-gray-600">
-        <span>© {new Date().getFullYear()} DevMark. Free to use, forever.</span>
+        <span>© {new Date().getFullYear()} MDTool. Free to use, forever.</span>
         <span>No login required · No watermarks · Files never uploaded</span>
       </div>
     </footer>

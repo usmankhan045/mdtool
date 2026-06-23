@@ -8,7 +8,7 @@ import DownloadButton from './DownloadButton';
 import { parseMarkdown, countWords } from '@/lib/markdown';
 import { ThemeId } from '@/lib/pdf';
 
-const SAMPLE_MARKDOWN = `# Welcome to DevMark
+const SAMPLE_MARKDOWN = `# Welcome to MDTool
 
 ## Code Highlighting Example
 
@@ -21,7 +21,7 @@ const convert = async (markdown) => {
 
 ## Table Example
 
-| Feature | DevMark | Others |
+| Feature | MDTool | Others |
 |---------|---------|--------|
 | Code highlighting | ✅ | ❌ |
 | Mermaid diagrams | ✅ | ❌ |

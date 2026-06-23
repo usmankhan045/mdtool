@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Convert Markdown to PDF instantly in your browser. Supports GFM, syntax-highlighted code, tables, images, and Mermaid diagrams. Free, no signup.',
   keywords: ['markdown to pdf', 'md to pdf', 'convert markdown to pdf', 'markdown pdf converter', 'github readme to pdf'],
   openGraph: {
-    title: 'Free Markdown to PDF Converter — DevMark',
+    title: 'Free Markdown to PDF Converter — MDTool',
     description: 'Convert Markdown to PDF instantly. Supports code highlighting, tables, Mermaid diagrams. 100% free, no login.',
     url: 'https://www.mdtool.dev/markdown-to-pdf',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
@@ -24,14 +24,14 @@ const FAQ_ITEMS = [
     q: 'Can I convert GitHub Flavored Markdown (GFM) to PDF?',
     a: (
       <>
-        Yes. DevMark fully supports{' '}
+        Yes. MDTool fully supports{' '}
         <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
           GitHub Flavored Markdown
         </a>{' '}
         including tables, task lists, strikethrough, fenced code blocks with syntax highlighting, and autolinks.
       </>
     ),
-    text: 'Yes. DevMark fully supports GitHub Flavored Markdown including tables, task lists, strikethrough, fenced code blocks with syntax highlighting, and autolinks.',
+    text: 'Yes. MDTool fully supports GitHub Flavored Markdown including tables, task lists, strikethrough, fenced code blocks with syntax highlighting, and autolinks.',
   },
   {
     q: 'Does the converted PDF support syntax highlighting in code blocks?',
@@ -71,8 +71,8 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What PDF themes are available?',
-    a: 'DevMark offers four themes: GitHub (developer-friendly), Academic (for papers and reports), Minimal (clean and modern), and Dark (dark background).',
-    text: 'DevMark offers four themes: GitHub (developer-friendly), Academic (for papers and reports), Minimal (clean and modern), and Dark (dark background).',
+    a: 'MDTool offers four themes: GitHub (developer-friendly), Academic (for papers and reports), Minimal (clean and modern), and Dark (dark background).',
+    text: 'MDTool offers four themes: GitHub (developer-friendly), Academic (for papers and reports), Minimal (clean and modern), and Dark (dark background).',
   },
   {
     q: 'Can I convert a .md file with images?',

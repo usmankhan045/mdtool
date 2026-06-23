@@ -6,7 +6,7 @@ dateModified: "2026-06-24"
 tags: ["markdown", "pdf", "code-blocks", "developer-tools", "syntax-highlighting"]
 image: "/blog/markdown-to-pdf-code-blocks.jpg"
 imageAlt: "Blurred close-up of syntax-highlighted code on a dark screen"
-author: "DevMark Editorial Team"
+author: "MDTool Editorial Team"
 ---
 
 ## Why Code Blocks Are the Hardest Part of Markdown to PDF Conversion
@@ -54,7 +54,7 @@ A **correct PDF converter** preserves:
 Here's the full JavaScript snippet we'll use to test PDF output throughout this guide:
 
 ```javascript
-// DevMark API example — fetch and convert Markdown to PDF
+// MDTool API example — fetch and convert Markdown to PDF
 async function convertMarkdownToPDF(markdownContent) {
   // Parse Markdown into an HTML string
   const { marked } = await import("marked");
@@ -142,11 +142,11 @@ Fix: Use spaces, not tabs. Some PDF renderers collapse tab characters. Replace t
 **Problem: Code block background is white/invisible in the PDF**
 Fix: Use a theme other than "Minimal." The Minimal theme intentionally strips backgrounds for cleaner prose documents. Switch to GitHub or Default.
 
-## How DevMark Handles Code Blocks Differently
+## How MDTool Handles Code Blocks Differently
 
 Most online Markdown-to-PDF converters run on the server: they accept your Markdown, process it with a headless browser or a PDF library, and return a file. The problem is CSS support in these pipelines is inconsistent — especially for code blocks.
 
-DevMark takes a different approach. The entire conversion runs **client-side in your browser** using `html2pdf.js` with `html2canvas`. This means:
+MDTool takes a different approach. The entire conversion runs **client-side in your browser** using `html2pdf.js` with `html2canvas`. This means:
 
 1. **Full CSS fidelity** — the PDF is a snapshot of what you actually see in the preview
 2. **No data sent to a server** — your code stays on your machine
@@ -158,7 +158,7 @@ For GitHub READMEs specifically, check out our guide on [converting GitHub READM
 
 ## Frequently Asked Questions
 
-**Q: Does DevMark support syntax highlighting for all programming languages?**
+**Q: Does MDTool support syntax highlighting for all programming languages?**
 
 It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses [`marked`](https://marked.js.org/) with [`highlight.js`](https://highlightjs.org/) for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved — only color tokens are skipped.
 
@@ -178,7 +178,7 @@ Use four backticks to open and close the fenced block instead of three. This all
 
 There's no server-side limit because conversion happens in your browser. The practical limit is your device's RAM — most modern machines handle Markdown files up to several megabytes without issue.
 
-**Q: Can I use DevMark for confidential code?**
+**Q: Can I use MDTool for confidential code?**
 
 Yes. Because conversion is entirely client-side, your code is never transmitted to any server. You can use it for proprietary or sensitive code with confidence.
 

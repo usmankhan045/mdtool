@@ -18,7 +18,7 @@ export default function StructuredData({ type, name, url, description, datePubli
     organization: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'DevMark',
+      name: 'MDTool',
       url: baseUrl,
       logo: `${baseUrl}/logo.png`,
     },
@@ -35,7 +35,7 @@ export default function StructuredData({ type, name, url, description, datePubli
     tool: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: name || 'DevMark — Developer Tools',
+      name: name || 'MDTool — Developer Tools',
       url: `${baseUrl}${url || ''}`,
       description: description || 'Free online developer tools — Markdown to PDF converter and more.',
       applicationCategory: 'DeveloperApplication',
@@ -63,10 +63,10 @@ export default function StructuredData({ type, name, url, description, datePubli
       image: image ? `${baseUrl}${image}` : `${baseUrl}/og-image.png`,
       datePublished,
       dateModified: dateModified || datePublished,
-      author: { '@type': 'Person', name: author || 'DevMark Editorial Team', url: baseUrl },
+      author: { '@type': 'Person', name: author || 'MDTool Editorial Team', url: baseUrl },
       publisher: {
         '@type': 'Organization',
-        name: 'DevMark',
+        name: 'MDTool',
         logo: { '@type': 'ImageObject', url: `${baseUrl}/logo.png`, width: 512, height: 512 },
       },
     },

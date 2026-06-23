@@ -20,7 +20,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <span className="text-blue-300">&lt;/&gt;</span>
-          <span>DevMark</span>
+          <span>MDTool</span>
           <span className="text-xs font-normal text-blue-300 bg-blue-900 px-2 py-0.5 rounded-full">tools</span>
         </Link>
 

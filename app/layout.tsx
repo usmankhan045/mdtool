@@ -11,17 +11,17 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mdtool.dev'),
-  title: { default: 'DevMark — Free Developer Tools', template: '%s | DevMark' },
+  title: { default: 'MDTool — Free Developer Tools', template: '%s | MDTool' },
   description: 'Free online developer tools. Convert Markdown to PDF, Markdown to HTML, and more. Fast, client-side, no login required.',
   keywords: ['markdown to pdf', 'developer tools', 'md to pdf', 'markdown converter'],
-  authors: [{ name: 'DevMark' }],
-  creator: 'DevMark',
+  authors: [{ name: 'MDTool' }],
+  creator: 'MDTool',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.mdtool.dev',
-    siteName: 'DevMark',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DevMark — Free Developer Tools' }],
+    siteName: 'MDTool',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MDTool — Free Developer Tools' }],
   },
   twitter: {
     card: 'summary_large_image',
