@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getBlogPost, getAllBlogPosts } from '@/lib/blog';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import StructuredData from '@/components/seo/StructuredData';
@@ -25,6 +26,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: post.datePublished,
       modifiedTime: post.dateModified,
+      images: [{ url: post.image, width: 1200, height: 800, alt: post.imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [post.image],
     },
   };
 }
@@ -56,6 +64,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         description={post.description}
         datePublished={post.datePublished}
         dateModified={post.dateModified}
+        image={post.image}
+        author={post.author}
       />
 
       <main className="max-w-3xl mx-auto px-4 py-12">
@@ -65,10 +75,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <time dateTime={post.datePublished}>{post.datePublished}</time>
             <span>·</span>
             <span>{post.readingTime}</span>
+            <span>·</span>
+            <span>By {post.author}</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
           <p className="text-xl text-gray-600">{post.description}</p>
         </header>
+
+        {/* Hero Image */}
+        <div className="relative w-full aspect-[3/2] rounded-xl overflow-hidden mb-8">
+          <Image
+            src={post.image}
+            alt={post.imageAlt}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="object-cover"
+          />
+        </div>
 
         {/* Ad Slot — Top of article */}
         <AdSlot slotId="blog-top" format="horizontal" />

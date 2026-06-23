@@ -1,14 +1,17 @@
 ---
-title: "GitHub README to PDF: The Complete Developer Guide"
-description: "Learn how to convert any GitHub README to PDF while preserving code blocks, badges, tables, and Mermaid diagrams. Step-by-step guide for developers — no server uploads, no signup."
+title: "GitHub README to PDF: Developer Guide"
+description: "Learn how to convert any GitHub README to PDF while preserving code blocks, badges, tables, and diagrams. A step-by-step guide for developers, no signup."
 datePublished: "2026-03-08"
-dateModified: "2026-03-08"
+dateModified: "2026-06-24"
 tags: ["github", "readme", "pdf", "markdown", "developer-tools"]
+image: "/blog/github-readme-to-pdf.jpg"
+imageAlt: "GitHub repository page open in a browser on a laptop"
+author: "DevMark Editorial Team"
 ---
 
 ## Converting a GitHub README to PDF
 
-GitHub READMEs are written in GitHub Flavored Markdown (GFM) — a superset of standard Markdown that adds tables, task lists, fenced code blocks, strikethrough, and autolinks. Most PDF converters choke on at least one of these extensions. Badges disappear. Tables collapse into a single column. Mermaid diagrams appear as raw text. Code blocks lose their formatting.
+GitHub READMEs are written in [GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/) — a superset of standard Markdown that adds tables, task lists, fenced code blocks, strikethrough, and autolinks. Most PDF converters choke on at least one of these extensions. Badges disappear. Tables collapse into a single column. Mermaid diagrams appear as raw text. Code blocks lose their formatting.
 
 This guide walks through exactly how to convert a GitHub README to PDF without losing any of it.
 
@@ -18,7 +21,7 @@ This guide walks through exactly how to convert a GitHub README to PDF without l
 
 A typical README contains several elements that generic Markdown parsers struggle with:
 
-**Badge images** — Lines like `![Build](https://img.shields.io/github/actions/workflow/status/...)` fetch images from external URLs. Server-side converters often block external requests; browser-based tools load them normally.
+**Badge images** — Lines like `![Build](https://img.shields.io/github/actions/workflow/status/...)` fetch images from [shields.io](https://shields.io/) and similar external URLs. Server-side converters often block external requests; browser-based tools load them normally.
 
 **Fenced code blocks with language tags** — GitHub renders these with syntax highlighting. A PDF converter needs to do the same, not just preserve the raw text.
 
@@ -158,7 +161,7 @@ DevMark converts your README entirely in the browser using `html2pdf.js`. When y
 | CloudConvert | Partial | Partial | ❌ | ❌ | Limited |
 | markdowntopdf.com | Partial | ❌ | ❌ | ❌ | ✅ |
 
-For a deeper comparison, see our [best Markdown to PDF converters guide](/blog/best-markdown-to-pdf-converter).
+For a deeper comparison, see our [best Markdown to PDF converters guide](/blog/best-markdown-to-pdf-converter), or check the [full Markdown syntax cheatsheet](/blog/markdown-cheatsheet) for every element a README might use.
 
 ---
 
