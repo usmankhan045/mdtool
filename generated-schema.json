@@ -1,0 +1,56 @@
+{
+  "organization_schema_add_sitewide": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DevMark",
+    "url": "https://www.mdtool.dev",
+    "logo": "https://www.mdtool.dev/logo.png",
+    "sameAs": [
+      "[GitHub URL]",
+      "[Twitter/X URL]",
+      "[LinkedIn URL]"
+    ]
+  },
+  "breadcrumb_schema_add_to_markdown_to_pdf_page": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.mdtool.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Markdown to PDF Converter",
+        "item": "https://www.mdtool.dev/markdown-to-pdf"
+      }
+    ]
+  },
+  "webapplication_schema_tightened_description": {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Markdown to PDF Converter",
+    "url": "https://www.mdtool.dev/markdown-to-pdf",
+    "description": "Convert Markdown to PDF instantly in your browser. Supports GitHub Flavored Markdown, code blocks with syntax highlighting, tables, images, and Mermaid diagrams.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Markdown to PDF conversion",
+      "GitHub Flavored Markdown support",
+      "Code syntax highlighting",
+      "Mermaid diagram support",
+      "Multiple PDF themes",
+      "Client-side processing — files never uploaded"
+    ],
+    "image": "[Screenshot URL of the converter UI]"
+  }
+}

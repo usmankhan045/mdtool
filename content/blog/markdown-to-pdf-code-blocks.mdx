@@ -1,0 +1,182 @@
+---
+title: "Markdown to PDF Code Blocks: Why They Break and How to Fix It"
+description: "Discover why code blocks break in most Markdown to PDF converters and learn the exact steps to get syntax-highlighted, perfectly formatted code in your PDFs."
+datePublished: "2026-03-08"
+dateModified: "2026-03-08"
+tags: ["markdown", "pdf", "code-blocks", "developer-tools", "syntax-highlighting"]
+---
+
+## Why Code Blocks Are the Hardest Part of Markdown to PDF Conversion
+
+If you've ever tried to convert a Markdown file with code blocks into a PDF, you've almost certainly run into at least one of these problems:
+
+- Monospace font not used — code renders in the same proportional font as body text
+- No syntax highlighting — everything is plain black text
+- Lines overflow the page and get cut off
+- Indentation is lost, making code unreadable
+- Background color disappears, so code blocks look identical to normal paragraphs
+
+These aren't random bugs. They happen because most tools take a shortcut: they parse Markdown into HTML, then dump it into a PDF renderer that ignores CSS entirely. Code blocks depend heavily on CSS (`font-family: monospace`, `white-space: pre`, `overflow-x: auto`, background colors) — and when CSS is stripped out, code becomes unreadable.
+
+## What Broken Code Blocks Look Like
+
+Here's a concrete example. Take this simple JavaScript function in a Markdown file:
+
+````markdown
+```javascript
+async function fetchUser(id) {
+  const response = await fetch(`/api/users/${id}`);
+  if (!response.ok) throw new Error("User not found");
+  return response.json();
+}
+```
+````
+
+A **broken PDF converter** will output something like this in the PDF:
+
+> async function fetchUser(id) { const response = await fetch(`/api/users/${id}`); if (!response.ok) throw new Error("User not found"); return response.json(); }
+
+No line breaks. No monospace. No background. Just a wall of text that's impossible to read.
+
+A **correct PDF converter** preserves:
+- The monospace font (`Courier`, `Fira Code`, or similar)
+- Each line on its own line with proper indentation
+- A light gray or dark background that visually separates code from prose
+- Syntax-colored tokens (keywords, strings, functions) if it supports highlighting
+
+## The Real Code Example
+
+Here's the full JavaScript snippet we'll use to test PDF output throughout this guide:
+
+```javascript
+// DevMark API example — fetch and convert Markdown to PDF
+async function convertMarkdownToPDF(markdownContent) {
+  // Parse Markdown into an HTML string
+  const { marked } = await import("marked");
+  const htmlContent = marked.parse(markdownContent);
+
+  // Wrap in a styled document for proper PDF rendering
+  const styledHTML = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body { font-family: Georgia, serif; line-height: 1.6; }
+          pre  { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+          code { font-family: 'Courier New', monospace; font-size: 0.9em; }
+        </style>
+      </head>
+      <body>${htmlContent}</body>
+    </html>
+  `;
+
+  // Use html2pdf.js (browser only — never run server-side)
+  const html2pdf = (await import("html2pdf.js")).default;
+  return html2pdf()
+    .set({ margin: 10, filename: "output.pdf", html2canvas: { scale: 2 } })
+    .from(styledHTML)
+    .save();
+}
+```
+
+Notice the three things that make this work: the `<pre>` element gets a background and padding, `code` gets a monospace font, and `html2pdf.js` is imported dynamically so it only ever runs in the browser — never on the server where `window` is undefined.
+
+## Step-by-Step: Convert Markdown with Code Blocks to PDF
+
+### Step 1 — Paste Your Markdown
+
+Open the converter below (or at [/markdown-to-pdf](/markdown-to-pdf)) and paste your Markdown. Your code blocks should be fenced with triple backticks and include a language identifier:
+
+````text
+```javascript
+// your code here
+```
+````
+
+Language identifiers like `javascript`, `python`, `bash`, `typescript`, and `json` enable syntax highlighting. Without one, the converter still preserves formatting — but coloring is skipped.
+
+### Step 2 — Check the Live Preview
+
+The preview panel renders your Markdown in real time. Before downloading, verify that:
+
+- Code blocks have a distinct background
+- Indentation is preserved (4-space indents should look like 4 spaces, not 1)
+- Long lines wrap correctly or have a horizontal scrollbar hint
+
+If the preview looks right, the PDF will match — the converter uses the same rendered HTML for both.
+
+### Step 3 — Choose a Theme (Optional)
+
+Light themes (GitHub, Default) work best for printed PDFs because they use dark text on a white or light-gray code background — exactly what you'd expect on paper. Dark themes look great on screen but can waste toner and reduce readability when physically printed.
+
+### Step 4 — Download the PDF
+
+Click **Download PDF**. The conversion happens entirely in your browser using `html2pdf.js` — your Markdown never leaves your machine, and no server processes it.
+
+<Callout type="success">
+  **Tip:** For technical documentation, use the GitHub theme. It matches the code block style developers already recognize from GitHub READMEs.
+</Callout>
+
+## Try It Right Here
+
+You can convert Markdown with code blocks to PDF directly below — no signup required:
+
+<EmbeddedTool />
+
+## Common Problems and Fixes
+
+**Problem: Code lines are cut off at the right edge of the page**
+Fix: Make sure your code lines are under ~80–90 characters. The converter wraps very long lines, but it can't reformat code logic. Break long lines manually before converting.
+
+**Problem: Syntax highlighting doesn't appear**
+Fix: Add a language tag after the opening triple backtick. ` ```js ` instead of just ` ``` `.
+
+**Problem: Indentation collapses to a single space**
+Fix: Use spaces, not tabs. Some PDF renderers collapse tab characters. Replace tabs with 2 or 4 spaces.
+
+**Problem: Code block background is white/invisible in the PDF**
+Fix: Use a theme other than "Minimal." The Minimal theme intentionally strips backgrounds for cleaner prose documents. Switch to GitHub or Default.
+
+## How DevMark Handles Code Blocks Differently
+
+Most online Markdown-to-PDF converters run on the server: they accept your Markdown, process it with a headless browser or a PDF library, and return a file. The problem is CSS support in these pipelines is inconsistent — especially for code blocks.
+
+DevMark takes a different approach. The entire conversion runs **client-side in your browser** using `html2pdf.js` with `html2canvas`. This means:
+
+1. **Full CSS fidelity** — the PDF is a snapshot of what you actually see in the preview
+2. **No data sent to a server** — your code stays on your machine
+3. **Consistent output** — what you see is exactly what you get
+
+This is especially important for code blocks, which rely on CSS properties (`white-space: pre`, `font-family: monospace`, `background-color`) that server-side PDF generators often discard.
+
+For GitHub READMEs specifically, check out our guide on [converting GitHub READMEs to PDF](/blog/github-readme-to-pdf) — it covers badge handling and image-heavy READMEs alongside code blocks.
+
+## Frequently Asked Questions
+
+**Q: Does DevMark support syntax highlighting for all programming languages?**
+
+It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses `marked` with `highlight.js` for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved — only color tokens are skipped.
+
+**Q: Will the code block look the same in the PDF as in the preview?**
+
+Yes. The PDF is generated from the same rendered HTML you see in the preview panel. There's no second render step that could lose styles.
+
+**Q: Can I convert a file with hundreds of lines of code?**
+
+Yes, with a caveat: very long files (10,000+ lines) can slow down the browser-side conversion because `html2canvas` captures the entire rendered page as an image. For large files, consider splitting them into sections or reducing the canvas scale in the settings.
+
+**Q: My code has backticks inside the code block. How do I escape them?**
+
+Use four backticks to open and close the fenced block instead of three. This allows triple backticks inside the block without escaping.
+
+**Q: Is there a file size limit?**
+
+There's no server-side limit because conversion happens in your browser. The practical limit is your device's RAM — most modern machines handle Markdown files up to several megabytes without issue.
+
+**Q: Can I use DevMark for confidential code?**
+
+Yes. Because conversion is entirely client-side, your code is never transmitted to any server. You can use it for proprietary or sensitive code with confidence.
+
+---
+
+Ready to convert? Head to the [Markdown to PDF converter](/markdown-to-pdf) and paste your code-heavy Markdown — your code blocks will render exactly as intended.
