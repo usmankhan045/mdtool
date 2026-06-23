@@ -8,6 +8,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const toolPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/markdown-to-pdf`, lastModified: new Date(), changeFrequency: 'monthly', priority: 1.0 },
     { url: `${baseUrl}/markdown-to-html`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/markdown-to-word`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/html-to-markdown`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/word-to-markdown`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
   ];
 

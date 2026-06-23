@@ -22,6 +22,27 @@ const TOOLS = [
     description: 'Convert Markdown to clean, ready-to-use HTML. Perfect for embedding in websites or email templates.',
     badge: null,
   },
+  {
+    href: '/markdown-to-word',
+    icon: '📝',
+    title: 'Markdown to Word',
+    description: 'Convert Markdown to a real, editable .docx file. Opens in Word, Google Docs, and LibreOffice.',
+    badge: null,
+  },
+  {
+    href: '/html-to-markdown',
+    icon: '🔄',
+    title: 'HTML to Markdown',
+    description: 'Convert HTML to clean Markdown. Supports tables, code blocks, and GitHub Flavored Markdown.',
+    badge: null,
+  },
+  {
+    href: '/word-to-markdown',
+    icon: '📋',
+    title: 'Word to Markdown',
+    description: 'Convert .docx Word documents to clean Markdown. Headings, tables, and lists convert automatically.',
+    badge: null,
+  },
 ];
 
 export default function HomePage() {
