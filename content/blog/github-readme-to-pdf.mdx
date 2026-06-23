@@ -6,7 +6,7 @@ dateModified: "2026-06-24"
 tags: ["github", "readme", "pdf", "markdown", "developer-tools"]
 image: "/blog/github-readme-to-pdf.jpg"
 imageAlt: "GitHub repository page open in a browser on a laptop"
-author: "DevMark Editorial Team"
+author: "MDTool Editorial Team"
 ---
 
 ## Converting a GitHub README to PDF
@@ -45,13 +45,13 @@ Alternatively, you can download the raw file directly:
 curl -o README.md https://raw.githubusercontent.com/user/repo/main/README.md
 ```
 
-### Step 2 — Paste Into DevMark
+### Step 2 — Paste Into MDTool
 
 Open the converter below (or at [/markdown-to-pdf](/markdown-to-pdf)) and paste your README. The live preview on the right renders immediately — you'll see headings, tables, code blocks, and badges appear in real time.
 
 ### Step 3 — Check Badges and External Images
 
-Badges (`shields.io`, `github.com/actions/...`) are standard `<img>` tags in the rendered HTML. Because DevMark runs in your browser, those images load normally from their external URLs — the same way they load on GitHub. You should see them in the preview.
+Badges (`shields.io`, `github.com/actions/...`) are standard `<img>` tags in the rendered HTML. Because MDTool runs in your browser, those images load normally from their external URLs — the same way they load on GitHub. You should see them in the preview.
 
 If a badge doesn't appear, it's usually because:
 - The image URL requires authentication (private repo badges)
@@ -61,14 +61,14 @@ In those cases, either remove the badge row before converting or replace the URL
 
 ### Step 4 — Select a Theme
 
-The **GitHub** theme in DevMark mirrors GitHub's own rendering style: `system-ui` font family, `#24292e` text color, blue links, light-gray code backgrounds, and bordered tables. If you want the PDF to look as close to GitHub's rendered view as possible, use the GitHub theme.
+The **GitHub** theme in MDTool mirrors GitHub's own rendering style: `system-ui` font family, `#24292e` text color, blue links, light-gray code backgrounds, and bordered tables. If you want the PDF to look as close to GitHub's rendered view as possible, use the GitHub theme.
 
 ### Step 5 — Download the PDF
 
 Click **Download PDF**. The entire conversion runs in your browser — your README content is never uploaded to any server.
 
 <Callout type="info">
-  For READMEs with Mermaid diagrams, DevMark renders the diagram SVGs before capturing the PDF. The flowchart, sequence diagram, or ER diagram you see in the preview will appear correctly in the PDF output.
+  For READMEs with Mermaid diagrams, MDTool renders the diagram SVGs before capturing the PDF. The flowchart, sequence diagram, or ER diagram you see in the preview will appear correctly in the PDF output.
 </Callout>
 
 ---
@@ -77,7 +77,7 @@ Click **Download PDF**. The entire conversion runs in your browser — your READ
 
 ### Code Blocks
 
-GitHub READMEs frequently include multi-language code blocks. DevMark uses `highlight.js` with GFM mode, supporting JavaScript, TypeScript, Python, Bash, Go, Rust, SQL, JSON, YAML, HTML, CSS, and more.
+GitHub READMEs frequently include multi-language code blocks. MDTool uses `highlight.js` with GFM mode, supporting JavaScript, TypeScript, Python, Bash, Go, Rust, SQL, JSON, YAML, HTML, CSS, and more.
 
 A block like this:
 
@@ -110,7 +110,7 @@ Will appear as a properly bordered, styled table in the PDF — not as a pipe-de
 
 ### Mermaid Diagrams
 
-Project architecture diagrams in READMEs are often written in Mermaid. DevMark initializes the Mermaid renderer in the browser before the PDF export step, so:
+Project architecture diagrams in READMEs are often written in Mermaid. MDTool initializes the Mermaid renderer in the browser before the PDF export step, so:
 
 ````markdown
 ```mermaid
@@ -132,7 +132,7 @@ Renders as an actual diagram in the PDF, not as a code block with raw Mermaid sy
 - [ ] Deploy to production
 ```
 
-DevMark's GFM parser renders these as ☑ and ☐ characters in the PDF, preserving the visual meaning of your task list.
+MDTool's GFM parser renders these as ☑ and ☐ characters in the PDF, preserving the visual meaning of your task list.
 
 ---
 
@@ -148,7 +148,7 @@ Paste your README below and download the PDF in seconds:
 
 Private repositories often have READMEs containing internal architecture decisions, credentials in example snippets, or unreleased feature documentation. When you use a server-side converter, that content passes through someone else's infrastructure.
 
-DevMark converts your README entirely in the browser using `html2pdf.js`. When you click Download, the PDF is assembled from the rendered HTML on your machine. Open the browser's Network tab while converting — you'll see zero requests carrying your Markdown content outbound. Your README stays on your device.
+MDTool converts your README entirely in the browser using `html2pdf.js`. When you click Download, the PDF is assembled from the rendered HTML on your machine. Open the browser's Network tab while converting — you'll see zero requests carrying your Markdown content outbound. Your README stays on your device.
 
 ---
 
@@ -156,7 +156,7 @@ DevMark converts your README entirely in the browser using `html2pdf.js`. When y
 
 | Tool | GFM Tables | Code Highlighting | Mermaid | No Upload | Free |
 |------|-----------|------------------|---------|-----------|------|
-| **DevMark** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **MDTool** | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Dillinger | ✅ | Partial | ❌ | ✅ | ✅ |
 | CloudConvert | Partial | Partial | ❌ | ❌ | Limited |
 | markdowntopdf.com | Partial | ❌ | ❌ | ❌ | ✅ |
@@ -169,7 +169,7 @@ For a deeper comparison, see our [best Markdown to PDF converters guide](/blog/b
 
 **Q: Can I convert a private GitHub README?**
 
-Yes — copy the raw Markdown content and paste it into DevMark. Since conversion is client-side, your content never leaves your browser. You don't need to connect DevMark to your GitHub account.
+Yes — copy the raw Markdown content and paste it into MDTool. Since conversion is client-side, your content never leaves your browser. You don't need to connect MDTool to your GitHub account.
 
 **Q: Badges are showing as broken images in the PDF. What do I do?**
 
@@ -177,15 +177,15 @@ This usually means the badge URL is either rate-limited or requires authenticati
 
 **Q: My README has a very long table. Will it fit on the page?**
 
-Wide tables are the hardest element to handle in any Markdown-to-PDF workflow. DevMark sets the PDF width to A4 (794px at screen scale). If your table has more than 5–6 columns, consider reducing column content or splitting it into multiple smaller tables before converting.
+Wide tables are the hardest element to handle in any Markdown-to-PDF workflow. MDTool sets the PDF width to A4 (794px at screen scale). If your table has more than 5–6 columns, consider reducing column content or splitting it into multiple smaller tables before converting.
 
-**Q: Does DevMark support GitHub's custom `> [!NOTE]` alert syntax?**
+**Q: Does MDTool support GitHub's custom `> [!NOTE]` alert syntax?**
 
-GitHub's alert extensions (`> [!NOTE]`, `> [!WARNING]`, etc.) are a recent addition that isn't yet part of the GFM spec. DevMark renders them as standard blockquotes. You'll see the content, but without the colored border and icon that GitHub adds.
+GitHub's alert extensions (`> [!NOTE]`, `> [!WARNING]`, etc.) are a recent addition that isn't yet part of the GFM spec. MDTool renders them as standard blockquotes. You'll see the content, but without the colored border and icon that GitHub adds.
 
 **Q: Can I automate README to PDF conversion?**
 
-DevMark is a browser-based tool designed for manual conversions. For automated pipelines — generating PDFs in CI, for example — consider using Pandoc with a custom template or a headless Puppeteer/Playwright script. For code with syntax highlighting and Mermaid support in CI, see our guide on [Markdown to PDF code blocks](/blog/markdown-to-pdf-code-blocks).
+MDTool is a browser-based tool designed for manual conversions. For automated pipelines — generating PDFs in CI, for example — consider using Pandoc with a custom template or a headless Puppeteer/Playwright script. For code with syntax highlighting and Mermaid support in CI, see our guide on [Markdown to PDF code blocks](/blog/markdown-to-pdf-code-blocks).
 
 **Q: Does the PDF include anchor links (internal links within the README)?**
 

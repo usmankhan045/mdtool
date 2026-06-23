@@ -44,7 +44,7 @@ export function getAllBlogPosts(): BlogPost[] {
         content,
         image: data.image || `/blog/${slug}.jpg`,
         imageAlt: data.imageAlt || data.title || slug,
-        author: data.author || 'DevMark Editorial Team',
+        author: data.author || 'MDTool Editorial Team',
       };
     })
     .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
@@ -69,6 +69,6 @@ export function getBlogPost(slug: string): BlogPost | null {
     content,
     image: data.image || `/blog/${slug}.jpg`,
     imageAlt: data.imageAlt || data.title || slug,
-    author: data.author || 'DevMark Editorial Team',
+    author: data.author || 'MDTool Editorial Team',
   };
 }

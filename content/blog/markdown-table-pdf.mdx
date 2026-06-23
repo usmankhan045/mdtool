@@ -6,7 +6,7 @@ dateModified: "2026-06-24"
 tags: ["markdown", "pdf", "tables", "github-flavored-markdown", "developer-tools"]
 image: "/blog/markdown-table-pdf.jpg"
 imageAlt: "Performance analytics dashboard with charts and data on a laptop screen"
-author: "DevMark Editorial Team"
+author: "MDTool Editorial Team"
 ---
 
 ## The Markdown Table PDF Problem
@@ -28,7 +28,7 @@ The Markdown spec doesn't define table syntax. Tables are a [GitHub Flavored Mar
 **Broken output:**
 
 ```
-| Feature | DevMark | Others | | --- | --- | --- | | Tables | Yes | No |
+| Feature | MDTool | Others | | --- | --- | --- | | Tables | Yes | No |
 ```
 
 **Correct output:** An actual bordered table with headers.
@@ -91,7 +91,7 @@ Before fixing rendering issues, it helps to confirm your table syntax is correct
 ```markdown
 | Tool        | Free | Code Highlighting | Mermaid |
 |-------------|------|------------------|---------|
-| DevMark     | Yes  | Yes              | Yes     |
+| MDTool     | Yes  | Yes              | Yes     |
 | Dillinger   | Yes  | Partial          | No      |
 | CloudConvert| No   | Partial          | No      |
 ```
@@ -99,7 +99,7 @@ Before fixing rendering issues, it helps to confirm your table syntax is correct
 **Broken PDF output (no GFM support):**
 
 ```
-| Tool | Free | Code Highlighting | Mermaid | |---| --- | --- | --- | | DevMark | Yes | Yes | Yes | ...
+| Tool | Free | Code Highlighting | Mermaid | |---| --- | --- | --- | | MDTool | Yes | Yes | Yes | ...
 ```
 
 **Broken PDF output (CSS stripped):**
@@ -116,9 +116,9 @@ Wide tables are the hardest case. A 7-column table in A4 format (794px wide) wil
 
 ---
 
-## How DevMark Handles Markdown Table to PDF Correctly
+## How MDTool Handles Markdown Table to PDF Correctly
 
-DevMark avoids all three failure modes:
+MDTool avoids all three failure modes:
 
 1. **GFM enabled by default** — The `marked` parser runs with `gfm: true`, so pipe tables are parsed correctly.
 
@@ -153,15 +153,15 @@ Test your Markdown table below. The preview updates in real time so you can conf
 
 **Problem: Table renders as raw text with pipe characters**
 
-Fix: Your converter doesn't support GFM. Switch to DevMark, which has GFM enabled by default.
+Fix: Your converter doesn't support GFM. Switch to MDTool, which has GFM enabled by default.
 
 **Problem: Table renders in the preview but collapses in the PDF**
 
-Fix: This is the CSS race condition problem. The converter captures the page before styles load. DevMark inlines all CSS to avoid this.
+Fix: This is the CSS race condition problem. The converter captures the page before styles load. MDTool inlines all CSS to avoid this.
 
 **Problem: Table columns are unequal widths**
 
-Fix: This is normal behavior — GFM tables don't require equal column widths. If you want consistent column widths, set explicit widths in a `<style>` block above the table (DevMark's Markdown parser allows inline HTML).
+Fix: This is normal behavior — GFM tables don't require equal column widths. If you want consistent column widths, set explicit widths in a `<style>` block above the table (MDTool's Markdown parser allows inline HTML).
 
 **Problem: Table overflows the right margin in the PDF**
 
@@ -173,7 +173,7 @@ Fix: Choose the GitHub or Academic theme. The Minimal theme uses a reduced style
 
 **Problem: Markdown table with code in cells**
 
-Inline code in table cells (e.g., `` | `const x = 1` | ``) renders with a gray background and monospace font in the cell. This works correctly in DevMark. Just make sure the backtick pairs are balanced.
+Inline code in table cells (e.g., `` | `const x = 1` | ``) renders with a gray background and monospace font in the cell. This works correctly in MDTool. Just make sure the backtick pairs are balanced.
 
 ---
 
@@ -181,7 +181,7 @@ Inline code in table cells (e.g., `` | `const x = 1` | ``) renders with a gray b
 
 | Converter | GFM Tables | Cell Borders | Header Styling | No Upload |
 |-----------|-----------|--------------|----------------|-----------|
-| **DevMark** | ✅ | ✅ | ✅ | ✅ |
+| **MDTool** | ✅ | ✅ | ✅ | ✅ |
 | Dillinger | ✅ | Partial | Partial | ✅ |
 | markdowntopdf.com | Partial | ❌ | ❌ | ❌ |
 | CloudConvert | Partial | Partial | Partial | ❌ |
@@ -193,13 +193,13 @@ For a full side-by-side comparison including code blocks and Mermaid support, se
 
 ## Frequently Asked Questions
 
-**Q: Does DevMark support every GFM table alignment option?**
+**Q: Does MDTool support every GFM table alignment option?**
 
 Yes — left (`:---`), center (`:---:`), and right (`---:`) alignment are all supported. The alignment is reflected in both the preview and the PDF.
 
 **Q: Can I have merged cells (colspan/rowspan) in Markdown tables?**
 
-No — GFM table syntax doesn't support cell merging. Merged cells require raw HTML (`<table>` with `colspan`/`rowspan` attributes). DevMark's Markdown parser allows inline HTML, so you can use a raw `<table>` tag for complex layouts.
+No — GFM table syntax doesn't support cell merging. Merged cells require raw HTML (`<table>` with `colspan`/`rowspan` attributes). MDTool's Markdown parser allows inline HTML, so you can use a raw `<table>` tag for complex layouts.
 
 **Q: My table has a column with very long text. How do I prevent overflow?**
 
@@ -207,7 +207,7 @@ Long unbroken strings (like URLs or hashes) can overflow cells. Wrap them in bac
 
 **Q: Will the PDF table print correctly on paper?**
 
-Yes — DevMark's theme CSS uses `border-collapse: collapse` and explicit `border` declarations that are print-safe. The light gray backgrounds on headers and alternating rows use colors that print visibly on monochrome printers.
+Yes — MDTool's theme CSS uses `border-collapse: collapse` and explicit `border` declarations that are print-safe. The light gray backgrounds on headers and alternating rows use colors that print visibly on monochrome printers.
 
 **Q: Can I add a caption to a Markdown table?**
 
@@ -215,4 +215,4 @@ GFM doesn't have a table caption syntax. Add a line of bold or italic text direc
 
 **Q: What's the maximum number of rows a table can have?**
 
-There's no hard limit. DevMark has handled tables with hundreds of rows. For very large tables, the PDF will span multiple pages automatically — the page break logic handles table splitting.
+There's no hard limit. MDTool has handled tables with hundreds of rows. For very large tables, the PDF will span multiple pages automatically — the page break logic handles table splitting.

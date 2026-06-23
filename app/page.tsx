@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'DevMark — Free Developer Tools',
+  title: 'MDTool — Free Developer Tools',
   description: 'Free online developer tools. Convert Markdown to PDF, Markdown to HTML, and more. Fast, client-side, no login required.',
   alternates: { canonical: 'https://www.mdtool.dev' },
 };
@@ -72,10 +72,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why DevMark */}
+      {/* Why MDTool */}
       <section className="bg-white border-t border-gray-100 px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Why DevMark?</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Why MDTool?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             {[
               { icon: '🔒', title: 'Private by Default', desc: 'Files never leave your device. All processing is 100% client-side.' },
