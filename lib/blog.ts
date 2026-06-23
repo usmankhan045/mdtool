@@ -11,6 +11,9 @@ export interface BlogPost {
   tags: string[];
   readingTime: string;
   content: string;
+  image: string;
+  imageAlt: string;
+  author: string;
 }
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog');
@@ -39,6 +42,9 @@ export function getAllBlogPosts(): BlogPost[] {
         tags: data.tags || [],
         readingTime,
         content,
+        image: data.image || `/blog/${slug}.jpg`,
+        imageAlt: data.imageAlt || data.title || slug,
+        author: data.author || 'DevMark Editorial Team',
       };
     })
     .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
@@ -61,5 +67,8 @@ export function getBlogPost(slug: string): BlogPost | null {
     tags: data.tags || [],
     readingTime: `${Math.ceil(wordCount / 200)} min read`,
     content,
+    image: data.image || `/blog/${slug}.jpg`,
+    imageAlt: data.imageAlt || data.title || slug,
+    author: data.author || 'DevMark Editorial Team',
   };
 }

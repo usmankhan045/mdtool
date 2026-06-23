@@ -7,7 +7,10 @@ const TOOL_LINKS = [
 
 const BLOG_LINKS = [
   { href: '/blog/markdown-to-pdf-code-blocks', label: 'MD to PDF: Code Formatting Guide' },
+  { href: '/blog/markdown-table-pdf', label: 'MD Tables in PDF Exports' },
   { href: '/blog/best-markdown-to-pdf-converter', label: 'Best MD to PDF Converters' },
+  { href: '/blog/github-readme-to-pdf', label: 'GitHub README to PDF' },
+  { href: '/blog/markdown-cheatsheet', label: 'Markdown Cheatsheet' },
 ];
 
 export default function Footer() {

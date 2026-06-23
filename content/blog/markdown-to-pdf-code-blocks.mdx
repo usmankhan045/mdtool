@@ -1,9 +1,12 @@
 ---
-title: "Markdown to PDF Code Blocks: Why They Break and How to Fix It"
+title: "Markdown to PDF Code Blocks: Why They Break"
 description: "Discover why code blocks break in most Markdown to PDF converters and learn the exact steps to get syntax-highlighted, perfectly formatted code in your PDFs."
 datePublished: "2026-03-08"
-dateModified: "2026-03-08"
+dateModified: "2026-06-24"
 tags: ["markdown", "pdf", "code-blocks", "developer-tools", "syntax-highlighting"]
+image: "/blog/markdown-to-pdf-code-blocks.jpg"
+imageAlt: "Blurred close-up of syntax-highlighted code on a dark screen"
+author: "DevMark Editorial Team"
 ---
 
 ## Why Code Blocks Are the Hardest Part of Markdown to PDF Conversion
@@ -151,13 +154,13 @@ DevMark takes a different approach. The entire conversion runs **client-side in 
 
 This is especially important for code blocks, which rely on CSS properties (`white-space: pre`, `font-family: monospace`, `background-color`) that server-side PDF generators often discard.
 
-For GitHub READMEs specifically, check out our guide on [converting GitHub READMEs to PDF](/blog/github-readme-to-pdf) — it covers badge handling and image-heavy READMEs alongside code blocks.
+For GitHub READMEs specifically, check out our guide on [converting GitHub READMEs to PDF](/blog/github-readme-to-pdf) — it covers badge handling and image-heavy READMEs alongside code blocks. If you need a refresher on fenced code block syntax itself, see the [Markdown cheatsheet](/blog/markdown-cheatsheet).
 
 ## Frequently Asked Questions
 
 **Q: Does DevMark support syntax highlighting for all programming languages?**
 
-It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses `marked` with `highlight.js` for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved — only color tokens are skipped.
+It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses [`marked`](https://marked.js.org/) with [`highlight.js`](https://highlightjs.org/) for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved — only color tokens are skipped.
 
 **Q: Will the code block look the same in the PDF as in the preview?**
 

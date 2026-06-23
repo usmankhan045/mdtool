@@ -5,11 +5,13 @@ interface Props {
   description?: string;
   datePublished?: string;
   dateModified?: string;
+  image?: string;
+  author?: string;
   faqs?: { q: string; a: string }[];
   breadcrumbs?: { name: string; url: string }[];
 }
 
-export default function StructuredData({ type, name, url, description, datePublished, dateModified, faqs, breadcrumbs }: Props) {
+export default function StructuredData({ type, name, url, description, datePublished, dateModified, image, author, faqs, breadcrumbs }: Props) {
   const baseUrl = 'https://www.mdtool.dev';
 
   const schemas: Record<string, object> = {
@@ -18,7 +20,7 @@ export default function StructuredData({ type, name, url, description, datePubli
       '@type': 'Organization',
       name: 'DevMark',
       url: baseUrl,
-      logo: `${baseUrl}/favicon.ico`,
+      logo: `${baseUrl}/logo.png`,
     },
     breadcrumb: {
       '@context': 'https://schema.org',
@@ -58,13 +60,14 @@ export default function StructuredData({ type, name, url, description, datePubli
       '@type': 'Article',
       headline: name,
       url: `${baseUrl}${url || ''}`,
+      image: image ? `${baseUrl}${image}` : `${baseUrl}/og-image.png`,
       datePublished,
       dateModified: dateModified || datePublished,
-      author: { '@type': 'Organization', name: 'DevMark' },
+      author: { '@type': 'Person', name: author || 'DevMark Editorial Team', url: baseUrl },
       publisher: {
         '@type': 'Organization',
         name: 'DevMark',
-        logo: { '@type': 'ImageObject', url: `${baseUrl}/favicon.ico` },
+        logo: { '@type': 'ImageObject', url: `${baseUrl}/logo.png`, width: 512, height: 512 },
       },
     },
     faq: {

@@ -1,9 +1,12 @@
 ---
-title: "Why Markdown Tables Break in PDF Exports (And How to Fix It)"
-description: "Markdown tables are one of the most common causes of broken PDF exports. Learn why they fail, what correct output looks like, and how to fix every common table rendering problem."
+title: "Why Markdown Tables Break in PDF Exports"
+description: "Markdown tables are a common cause of broken PDF exports. Learn why they fail, what correct output looks like, and how to fix every table rendering problem."
 datePublished: "2026-03-08"
-dateModified: "2026-03-08"
+dateModified: "2026-06-24"
 tags: ["markdown", "pdf", "tables", "github-flavored-markdown", "developer-tools"]
+image: "/blog/markdown-table-pdf.jpg"
+imageAlt: "Performance analytics dashboard with charts and data on a laptop screen"
+author: "DevMark Editorial Team"
 ---
 
 ## The Markdown Table PDF Problem
@@ -20,7 +23,7 @@ There are three distinct reasons, and most broken converters hit at least two of
 
 ### Reason 1: The Parser Doesn't Support GFM
 
-The Markdown spec doesn't define table syntax. Tables are a GitHub Flavored Markdown (GFM) extension — the `| Col | Col |` pipe syntax only works if the parser has GFM mode enabled. Parsers that implement only CommonMark (the base spec) will ignore the pipe characters entirely and render your table as a paragraph of `|` characters.
+The Markdown spec doesn't define table syntax. Tables are a [GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/#tables-extension-) extension — the `| Col | Col |` pipe syntax only works if the parser has GFM mode enabled. Parsers that implement only [CommonMark](https://commonmark.org/) (the base spec) will ignore the pipe characters entirely and render your table as a paragraph of `|` characters.
 
 **Broken output:**
 
@@ -184,7 +187,7 @@ Inline code in table cells (e.g., `` | `const x = 1` | ``) renders with a gray b
 | CloudConvert | Partial | Partial | Partial | ❌ |
 | Pandoc | ✅ | ✅ | ✅ | N/A |
 
-For a full side-by-side comparison including code blocks and Mermaid support, see [Best Markdown to PDF Converter in 2026](/blog/best-markdown-to-pdf-converter).
+For a full side-by-side comparison including code blocks and Mermaid support, see [Best Markdown to PDF Converter in 2026](/blog/best-markdown-to-pdf-converter). For the full table syntax reference alongside every other Markdown element, see the [Markdown cheatsheet](/blog/markdown-cheatsheet).
 
 ---
 
