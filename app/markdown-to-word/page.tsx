@@ -3,6 +3,7 @@ import ToolClient from './ToolClient';
 import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
+import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
   title: 'Markdown to Word Converter — Free & No Login',
@@ -78,9 +79,10 @@ export default function MarkdownToWordPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Free Markdown to Word Converter
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl">
+            <p className="text-lg text-gray-600 max-w-2xl mb-4">
               Paste Markdown or upload a .md file. Get a real, editable .docx file instantly — no login, no watermark, no limits. Opens in Word, Google Docs, and LibreOffice.
             </p>
+            <ConversionDiagram from="Markdown" to="Word (.docx)" />
           </div>
         </section>
 

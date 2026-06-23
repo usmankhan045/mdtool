@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "indexnow": "node scripts/submit-indexnow.js"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",

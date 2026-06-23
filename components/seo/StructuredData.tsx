@@ -1,5 +1,5 @@
 interface Props {
-  type: 'tool' | 'blog' | 'faq' | 'organization' | 'breadcrumb';
+  type: 'tool' | 'blog' | 'faq' | 'organization' | 'breadcrumb' | 'website' | 'itemlist';
   name?: string;
   url?: string;
   description?: string;
@@ -10,9 +10,10 @@ interface Props {
   faqs?: { q: string; a: string }[];
   breadcrumbs?: { name: string; url: string }[];
   featureList?: string[];
+  items?: { name: string; url: string; description?: string }[];
 }
 
-export default function StructuredData({ type, name, url, description, datePublished, dateModified, image, author, faqs, breadcrumbs, featureList }: Props) {
+export default function StructuredData({ type, name, url, description, datePublished, dateModified, image, author, faqs, breadcrumbs, featureList, items }: Props) {
   const baseUrl = 'https://www.mdtool.dev';
 
   const schemas: Record<string, object> = {
@@ -22,6 +23,26 @@ export default function StructuredData({ type, name, url, description, datePubli
       name: 'MDTool',
       url: baseUrl,
       logo: `${baseUrl}/logo.png`,
+    },
+    website: {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'MDTool',
+      url: baseUrl,
+      description: description || 'Free online developer tools — Markdown to PDF, HTML, Word, and back, all client-side.',
+      publisher: { '@type': 'Organization', name: 'MDTool', url: baseUrl, logo: `${baseUrl}/logo.png` },
+    },
+    itemlist: {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: name || 'MDTool Developer Tools',
+      itemListElement: (items || []).map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        url: item.url.startsWith('http') ? item.url : `${baseUrl}${item.url}`,
+        description: item.description,
+      })),
     },
     breadcrumb: {
       '@context': 'https://schema.org',
@@ -64,7 +85,12 @@ export default function StructuredData({ type, name, url, description, datePubli
       image: image ? `${baseUrl}${image}` : `${baseUrl}/og-image.png`,
       datePublished,
       dateModified: dateModified || datePublished,
-      author: { '@type': 'Person', name: author || 'MDTool Editorial Team', url: baseUrl },
+      author: {
+        '@type': 'Organization',
+        name: author || 'MDTool Editorial Team',
+        url: baseUrl,
+        description: 'The MDTool team builds and maintains every converter on this site and writes guides based on direct, hands-on testing of each tool covered.',
+      },
       publisher: {
         '@type': 'Organization',
         name: 'MDTool',

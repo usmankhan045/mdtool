@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import StructuredData from '@/components/seo/StructuredData';
+import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
   title: 'MDTool — Free Developer Tools',
@@ -48,15 +50,36 @@ const TOOLS = [
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
+      <StructuredData
+        type="website"
+        description="Free online developer tools — Markdown to PDF, HTML, Word, and back, all client-side."
+      />
+      <StructuredData
+        type="itemlist"
+        name="MDTool Developer Tools"
+        items={TOOLS.map((tool) => ({ name: tool.title, url: tool.href, description: tool.description }))}
+      />
+
       {/* Hero */}
       <section className="bg-white border-b border-gray-200 px-4 py-16 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Free Developer Tools
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Fast, client-side tools for developers. No login, no watermarks, no file uploads — everything runs in your browser.
+          <p className="text-xl text-gray-600 mb-2">
+            <strong>MDTool</strong> is a free, client-side toolkit that converts between Markdown, PDF, HTML, and Word —
+            instantly, in your browser, with no login, no watermarks, and no file uploads.
           </p>
+          <p className="text-base text-gray-500 mb-8">
+            Built on the{' '}
+            <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              GitHub Flavored Markdown
+            </a>{' '}
+            spec, every conversion runs locally on your device — nothing is ever sent to a server.
+          </p>
+          <div className="flex justify-center mb-8">
+            <ConversionDiagram from="Markdown" to="PDF / HTML / Word" />
+          </div>
           <Link
             href="/markdown-to-pdf"
             className="inline-block px-8 py-3.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors text-lg"
