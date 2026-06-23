@@ -3,6 +3,9 @@ import Link from 'next/link';
 const TOOL_LINKS = [
   { href: '/markdown-to-pdf', label: 'Markdown to PDF' },
   { href: '/markdown-to-html', label: 'Markdown to HTML' },
+  { href: '/markdown-to-word', label: 'Markdown to Word' },
+  { href: '/html-to-markdown', label: 'HTML to Markdown' },
+  { href: '/word-to-markdown', label: 'Word to Markdown' },
 ];
 
 const BLOG_LINKS = [

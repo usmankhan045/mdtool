@@ -7,6 +7,9 @@ import { useState } from 'react';
 const NAV_LINKS = [
   { href: '/markdown-to-pdf', label: 'MD → PDF' },
   { href: '/markdown-to-html', label: 'MD → HTML' },
+  { href: '/markdown-to-word', label: 'MD → Word' },
+  { href: '/html-to-markdown', label: 'HTML → MD' },
+  { href: '/word-to-markdown', label: 'Word → MD' },
   { href: '/blog', label: 'Blog' },
 ];
 

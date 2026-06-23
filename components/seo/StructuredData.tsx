@@ -9,9 +9,10 @@ interface Props {
   author?: string;
   faqs?: { q: string; a: string }[];
   breadcrumbs?: { name: string; url: string }[];
+  featureList?: string[];
 }
 
-export default function StructuredData({ type, name, url, description, datePublished, dateModified, image, author, faqs, breadcrumbs }: Props) {
+export default function StructuredData({ type, name, url, description, datePublished, dateModified, image, author, faqs, breadcrumbs, featureList }: Props) {
   const baseUrl = 'https://www.mdtool.dev';
 
   const schemas: Record<string, object> = {
@@ -46,7 +47,7 @@ export default function StructuredData({ type, name, url, description, datePubli
         price: '0',
         priceCurrency: 'USD',
       },
-      featureList: [
+      featureList: featureList || [
         'Markdown to PDF conversion',
         'GitHub Flavored Markdown support',
         'Code syntax highlighting',
