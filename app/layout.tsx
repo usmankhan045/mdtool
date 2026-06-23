@@ -37,6 +37,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {adsenseId && <link rel="preconnect" href="https://pagead2.googlesyndication.com" />}
+        {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
         {adsenseId && (
           <Script
             async
