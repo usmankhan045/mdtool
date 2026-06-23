@@ -3,7 +3,7 @@ import { getAllBlogPosts } from '@/lib/blog';
 import BlogCard from '@/components/blog/BlogCard';
 
 export const metadata: Metadata = {
-  title: 'Developer Blog — MDTool',
+  title: 'Developer Blog',
   description: 'Guides and tutorials for working with Markdown, PDF conversion, and developer tools. Tips, workflows, and best practices.',
   alternates: {
     canonical: 'https://www.mdtool.dev/blog',
