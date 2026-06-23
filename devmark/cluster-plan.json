@@ -1,0 +1,210 @@
+{
+  "seed": "markdown to pdf",
+  "generatedAt": "2026-06-23",
+  "site": "devmark (client-side markdown-to-pdf / markdown-to-html converter)",
+  "pillar": {
+    "title": "Markdown to PDF Converter",
+    "keyword": "markdown to pdf",
+    "secondaryKeywords": ["markdown to pdf converter", "convert markdown to pdf", "md to pdf"],
+    "volume": "high (head term)",
+    "template": "tool-landing-page",
+    "wordCount": 1200,
+    "url": "/markdown-to-pdf",
+    "status": "written",
+    "notes": "Existing app route (app/markdown-to-pdf). Add supporting SEO copy + FAQ block around the embedded converter; do not bury the tool below the fold."
+  },
+  "clusters": [
+    {
+      "name": "Conversion Problems & Fixes",
+      "color": "#4E79A7",
+      "intent": "informational",
+      "rationale": "Shared SERP world of GitHub issue threads, forum posts, and troubleshooting guides for specific Markdown elements that break during PDF export. High-intent: visitors here already have a file that's failing, are mid-task, and convert immediately once a working tool is shown.",
+      "posts": [
+        {
+          "title": "Markdown to PDF Code Blocks: Why They Break and How to Fix It",
+          "keyword": "markdown to pdf code blocks",
+          "template": "how-to",
+          "wordCount": 1357,
+          "url": "/blog/markdown-to-pdf-code-blocks",
+          "status": "written"
+        },
+        {
+          "title": "Why Markdown Tables Break in PDF Exports (And How to Fix It)",
+          "keyword": "markdown table pdf",
+          "template": "how-to",
+          "wordCount": 1612,
+          "url": "/blog/markdown-table-pdf",
+          "status": "written"
+        },
+        {
+          "title": "Why Markdown Images Don't Show Up in PDF Exports",
+          "keyword": "markdown to pdf images not showing",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-pdf-images-not-showing",
+          "status": "planned"
+        },
+        {
+          "title": "Markdown to PDF with Mermaid Diagrams: Why They Disappear (And How to Keep Them)",
+          "keyword": "markdown to pdf mermaid diagram",
+          "template": "how-to",
+          "wordCount": 1400,
+          "url": "/blog/markdown-to-pdf-mermaid-diagrams",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Comparisons & Privacy",
+      "color": "#F28E2B",
+      "intent": "commercial",
+      "rationale": "Shared SERP world of tool-comparison and privacy/client-side-processing queries. Directly competitive: SERPs for 'best markdown to pdf converter' and 'convert markdown to pdf without uploading' return the same competitor set (CloudConvert, Dillinger, CodeShack, DevineTools). This is DevMark's core differentiation wedge — no server upload, no signup.",
+      "posts": [
+        {
+          "title": "Best Markdown to PDF Converter in 2026: DevMark vs. The Alternatives",
+          "keyword": "best markdown to pdf converter",
+          "template": "comparison",
+          "wordCount": 1657,
+          "url": "/blog/best-markdown-to-pdf-converter",
+          "status": "written"
+        },
+        {
+          "title": "Convert Markdown to PDF Without Uploading Your File (Privacy-First Tools)",
+          "keyword": "convert markdown to pdf without uploading",
+          "template": "comparison",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-pdf-no-upload-privacy",
+          "status": "planned"
+        },
+        {
+          "title": "Markdown to PDF: Online Converter vs. Pandoc — Which Should You Use?",
+          "keyword": "markdown to pdf vs pandoc",
+          "template": "comparison",
+          "wordCount": 1200,
+          "url": "/blog/markdown-to-pdf-vs-pandoc",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Developer & Docs Workflows",
+      "color": "#76B7B2",
+      "intent": "informational/transactional",
+      "rationale": "Distinct SERP world tied to specific developer use cases (GitHub repos, resumes, documentation sets) rather than generic 'converter' queries. Each is a self-contained job-to-be-done with its own competitor set (resume builders for the resume query; docs tooling for batch).",
+      "posts": [
+        {
+          "title": "GitHub README to PDF: The Complete Developer Guide",
+          "keyword": "github readme to pdf",
+          "template": "how-to",
+          "wordCount": 1361,
+          "url": "/blog/github-readme-to-pdf",
+          "status": "written"
+        },
+        {
+          "title": "How to Convert Your Markdown Resume to a Polished PDF",
+          "keyword": "markdown resume to pdf",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/markdown-resume-to-pdf",
+          "status": "planned"
+        },
+        {
+          "title": "How to Batch Convert Multiple Markdown Files to PDF",
+          "keyword": "batch convert markdown files to pdf",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/batch-convert-markdown-to-pdf",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Markdown Fundamentals",
+      "color": "#59A14F",
+      "intent": "informational",
+      "rationale": "Top-of-funnel reference content. Builds topical authority and earns links/bookmarks; feeds the other three clusters via internal links once a reader hits a syntax question while preparing a file for conversion.",
+      "posts": [
+        {
+          "title": "Complete Markdown Cheatsheet — Every Syntax You Need",
+          "keyword": "markdown cheatsheet",
+          "template": "explainer",
+          "wordCount": 1636,
+          "url": "/blog/markdown-cheatsheet",
+          "status": "written"
+        },
+        {
+          "title": "GitHub Flavored Markdown vs. Standard Markdown: What's the Difference?",
+          "keyword": "github flavored markdown vs standard markdown",
+          "template": "explainer",
+          "wordCount": 1100,
+          "url": "/blog/github-flavored-markdown-vs-standard-markdown",
+          "status": "planned"
+        }
+      ]
+    }
+  ],
+  "links": [
+    { "from": "pillar", "to": "cluster-0-post-0", "type": "mandatory", "anchor": "markdown to pdf code blocks" },
+    { "from": "cluster-0-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-0-post-1", "type": "mandatory", "anchor": "markdown table pdf" },
+    { "from": "cluster-0-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-0-post-2", "type": "mandatory", "anchor": "markdown to pdf images not showing" },
+    { "from": "cluster-0-post-2", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-0-post-3", "type": "mandatory", "anchor": "markdown to pdf mermaid diagram" },
+    { "from": "cluster-0-post-3", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-1-post-0", "type": "mandatory", "anchor": "best markdown to pdf converter" },
+    { "from": "cluster-1-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-1-post-1", "type": "mandatory", "anchor": "convert markdown to pdf without uploading" },
+    { "from": "cluster-1-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-1-post-2", "type": "mandatory", "anchor": "markdown to pdf vs pandoc" },
+    { "from": "cluster-1-post-2", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-2-post-0", "type": "mandatory", "anchor": "github readme to pdf" },
+    { "from": "cluster-2-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-2-post-1", "type": "mandatory", "anchor": "markdown resume to pdf" },
+    { "from": "cluster-2-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-2-post-2", "type": "mandatory", "anchor": "batch convert markdown files to pdf" },
+    { "from": "cluster-2-post-2", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-3-post-0", "type": "mandatory", "anchor": "markdown cheatsheet" },
+    { "from": "cluster-3-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+    { "from": "pillar", "to": "cluster-3-post-1", "type": "mandatory", "anchor": "github flavored markdown vs standard markdown" },
+    { "from": "cluster-3-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to pdf converter" },
+
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-1", "type": "recommended", "anchor": "markdown table pdf" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-0", "type": "recommended", "anchor": "code blocks breaking in PDF" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-2", "type": "recommended", "anchor": "markdown images not showing" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-1", "type": "recommended", "anchor": "tables breaking in PDF" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-3", "type": "recommended", "anchor": "mermaid diagrams in PDF" },
+    { "from": "cluster-0-post-3", "to": "cluster-0-post-2", "type": "recommended", "anchor": "images not rendering" },
+    { "from": "cluster-0-post-3", "to": "cluster-0-post-0", "type": "recommended", "anchor": "code blocks losing syntax highlighting" },
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-3", "type": "recommended", "anchor": "mermaid diagram support" },
+
+    { "from": "cluster-1-post-0", "to": "cluster-1-post-1", "type": "recommended", "anchor": "convert markdown to pdf without uploading" },
+    { "from": "cluster-1-post-1", "to": "cluster-1-post-0", "type": "recommended", "anchor": "best markdown to pdf converter" },
+    { "from": "cluster-1-post-1", "to": "cluster-1-post-2", "type": "recommended", "anchor": "online converter vs Pandoc" },
+    { "from": "cluster-1-post-2", "to": "cluster-1-post-1", "type": "recommended", "anchor": "privacy-first markdown to pdf tools" },
+    { "from": "cluster-1-post-2", "to": "cluster-1-post-0", "type": "recommended", "anchor": "best markdown to pdf converter" },
+    { "from": "cluster-1-post-0", "to": "cluster-1-post-2", "type": "recommended", "anchor": "Pandoc comparison" },
+
+    { "from": "cluster-2-post-0", "to": "cluster-2-post-1", "type": "recommended", "anchor": "markdown resume to pdf" },
+    { "from": "cluster-2-post-1", "to": "cluster-2-post-0", "type": "recommended", "anchor": "github readme to pdf" },
+    { "from": "cluster-2-post-1", "to": "cluster-2-post-2", "type": "recommended", "anchor": "batch convert markdown files" },
+    { "from": "cluster-2-post-2", "to": "cluster-2-post-1", "type": "recommended", "anchor": "markdown resume to pdf" },
+    { "from": "cluster-2-post-2", "to": "cluster-2-post-0", "type": "recommended", "anchor": "github readme to pdf" },
+    { "from": "cluster-2-post-0", "to": "cluster-2-post-2", "type": "recommended", "anchor": "batch converting markdown docs" },
+
+    { "from": "cluster-3-post-0", "to": "cluster-3-post-1", "type": "recommended", "anchor": "github flavored markdown vs standard markdown" },
+    { "from": "cluster-3-post-1", "to": "cluster-3-post-0", "type": "recommended", "anchor": "markdown cheatsheet" },
+
+    { "from": "cluster-3-post-0", "to": "cluster-0-post-0", "type": "optional", "anchor": "code blocks in PDF exports" },
+    { "from": "cluster-3-post-1", "to": "cluster-2-post-0", "type": "optional", "anchor": "github readme to pdf" },
+    { "from": "cluster-1-post-0", "to": "cluster-2-post-0", "type": "optional", "anchor": "github README conversion" }
+  ],
+  "meta": {
+    "totalPosts": 13,
+    "totalClusters": 4,
+    "totalLinks": 39,
+    "estimatedWords": 17600,
+    "writtenPosts": 6,
+    "plannedPosts": 7
+  }
+}
