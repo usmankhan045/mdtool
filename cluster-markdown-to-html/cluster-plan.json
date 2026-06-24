@@ -1,0 +1,212 @@
+{
+  "seed": "markdown to html",
+  "generatedAt": "2026-06-24",
+  "site": "devmark / MDTool (client-side markdown-to-html / markdown-to-pdf converter)",
+  "pillar": {
+    "title": "Markdown to HTML Converter",
+    "keyword": "markdown to html",
+    "secondaryKeywords": ["markdown to html converter", "md to html", "convert markdown to html"],
+    "volume": "high (head term)",
+    "template": "tool-landing-page",
+    "wordCount": 1100,
+    "url": "/markdown-to-html",
+    "status": "written",
+    "notes": "Existing app route (app/markdown-to-html) already carries strong supporting copy (snippet vs. full document comparison table, semantic-HTML/accessibility section, FAQ). Main gap is internal links: it doesn't yet link out to any of the new spoke posts below."
+  },
+  "clusters": [
+    {
+      "name": "Conversion Problems & Fixes",
+      "color": "#4E79A7",
+      "intent": "informational",
+      "rationale": "SERP world of GitHub Docs, Markdown Guide, and troubleshooting blogs for specific elements breaking during HTML export (verified via WebSearch: 'code blocks not highlighting' returns GitHub Docs, Markdown Monster, daily-dev-tips — zero overlap with the converter-tool SERP). High intent: visitor already has output that looks wrong and converts as soon as a working fix is shown.",
+      "posts": [
+        {
+          "title": "Why Code Blocks Lose Syntax Highlighting When You Convert Markdown to HTML",
+          "keyword": "markdown to html code blocks not highlighting",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-html-code-blocks-not-highlighting",
+          "status": "planned"
+        },
+        {
+          "title": "Why Markdown Tables Don't Render Properly in HTML Output",
+          "keyword": "markdown to html table not rendering",
+          "template": "how-to",
+          "wordCount": 1250,
+          "url": "/blog/markdown-to-html-table-not-rendering",
+          "status": "planned"
+        },
+        {
+          "title": "Why Markdown Images Don't Show Up After Converting to HTML",
+          "keyword": "markdown to html images not showing",
+          "template": "how-to",
+          "wordCount": 1250,
+          "url": "/blog/markdown-to-html-images-not-showing",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Comparisons & Privacy",
+      "color": "#F28E2B",
+      "intent": "commercial",
+      "rationale": "Verified via WebSearch: 'markdown to html converter', 'free no upload', and 'best online tool' all return heavy overlap on the same competitor set (markdowntohtml.com, Syncfusion, CodeShack/CodeBeautify, MarkdownLivePreview, Dillinger) -- 7+ shared results, confirming these modifiers belong on the pillar + one comparison post rather than separate pages. This is DevMark's core wedge: client-side processing, no signup, real semantic HTML output (not div soup).",
+      "posts": [
+        {
+          "title": "Best Markdown to HTML Converter in 2026: DevMark vs. The Alternatives",
+          "keyword": "best markdown to html converter",
+          "template": "comparison",
+          "wordCount": 1600,
+          "url": "/blog/best-markdown-to-html-converter",
+          "status": "planned"
+        },
+        {
+          "title": "Convert Markdown to HTML Without Uploading Your File",
+          "keyword": "markdown to html converter free no upload",
+          "template": "comparison",
+          "wordCount": 1250,
+          "url": "/blog/markdown-to-html-no-upload-privacy",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Developer & CMS Workflows",
+      "color": "#76B7B2",
+      "intent": "informational/transactional",
+      "rationale": "Verified via WebSearch: 'README.md to html github' and 'convert markdown to html for wordpress' each return their own distinct competitor set (GitHub repos/npm packages for README; WordPress plugin directory for CMS) with no overlap with the generic converter SERP. Each is a self-contained job-to-be-done.",
+      "posts": [
+        {
+          "title": "GitHub README.md to HTML: GitHub-Style Output Without the Command Line",
+          "keyword": "readme.md to html github style",
+          "template": "how-to",
+          "wordCount": 1350,
+          "url": "/blog/github-readme-to-html",
+          "status": "planned"
+        },
+        {
+          "title": "How to Convert Markdown to HTML for WordPress and Other CMS Platforms",
+          "keyword": "convert markdown to html for wordpress",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-html-wordpress-cms",
+          "status": "planned"
+        },
+        {
+          "title": "How to Batch Convert Multiple Markdown Files to HTML",
+          "keyword": "batch convert markdown files to html",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/batch-convert-markdown-to-html",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Markdown & HTML Fundamentals",
+      "color": "#59A14F",
+      "intent": "informational",
+      "rationale": "Top-of-funnel reference content. Verified via WebSearch: 'is markdown the same as html' and 'markdown to html css styling' each return distinct SERPs (Google Dev Style Guide, dev.to comparison posts / w3schools, github-markdown-css, jamstack) separate from both the converter SERP and the troubleshooting SERP. Builds topical authority and feeds the other clusters; reuses the already-written Markdown Cheatsheet post as a cross-link.",
+      "posts": [
+        {
+          "title": "Markdown vs. HTML: Key Differences and When to Use Each",
+          "keyword": "markdown vs html",
+          "template": "explainer",
+          "wordCount": 1400,
+          "url": "/blog/markdown-vs-html",
+          "status": "planned"
+        },
+        {
+          "title": "How to Style HTML Generated From Markdown (A CSS Guide)",
+          "keyword": "markdown to html css styling",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-html-css-styling",
+          "status": "planned"
+        },
+        {
+          "title": "Why Semantic HTML Matters When You Convert Markdown",
+          "keyword": "semantic html from markdown accessibility",
+          "template": "explainer",
+          "wordCount": 1150,
+          "url": "/blog/semantic-html-from-markdown",
+          "status": "planned"
+        },
+        {
+          "title": "Complete Markdown Cheatsheet — Every Syntax You Need",
+          "keyword": "markdown cheatsheet",
+          "template": "explainer",
+          "wordCount": 1636,
+          "url": "/blog/markdown-cheatsheet",
+          "status": "written",
+          "notes": "Reused from the existing 'Markdown to PDF' cluster — cross-link, do not duplicate."
+        }
+      ]
+    }
+  ],
+  "links": [
+    { "from": "pillar", "to": "cluster-0-post-0", "type": "mandatory", "anchor": "markdown to html code blocks not highlighting" },
+    { "from": "cluster-0-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-0-post-1", "type": "mandatory", "anchor": "markdown to html table not rendering" },
+    { "from": "cluster-0-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-0-post-2", "type": "mandatory", "anchor": "markdown to html images not showing" },
+    { "from": "cluster-0-post-2", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+
+    { "from": "pillar", "to": "cluster-1-post-0", "type": "mandatory", "anchor": "best markdown to html converter" },
+    { "from": "cluster-1-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-1-post-1", "type": "mandatory", "anchor": "convert markdown to html without uploading" },
+    { "from": "cluster-1-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+
+    { "from": "pillar", "to": "cluster-2-post-0", "type": "mandatory", "anchor": "readme.md to html" },
+    { "from": "cluster-2-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-2-post-1", "type": "mandatory", "anchor": "convert markdown to html for wordpress" },
+    { "from": "cluster-2-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-2-post-2", "type": "mandatory", "anchor": "batch convert markdown files to html" },
+    { "from": "cluster-2-post-2", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+
+    { "from": "pillar", "to": "cluster-3-post-0", "type": "mandatory", "anchor": "markdown vs html" },
+    { "from": "cluster-3-post-0", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-3-post-1", "type": "mandatory", "anchor": "style html generated from markdown" },
+    { "from": "cluster-3-post-1", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-3-post-2", "type": "mandatory", "anchor": "semantic html from markdown" },
+    { "from": "cluster-3-post-2", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+    { "from": "pillar", "to": "cluster-3-post-3", "type": "mandatory", "anchor": "markdown cheatsheet" },
+    { "from": "cluster-3-post-3", "to": "pillar", "type": "mandatory", "anchor": "markdown to html converter" },
+
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-1", "type": "recommended", "anchor": "markdown to html table not rendering" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-0", "type": "recommended", "anchor": "code blocks losing syntax highlighting" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-2", "type": "recommended", "anchor": "markdown images not showing" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-1", "type": "recommended", "anchor": "tables not rendering" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-0", "type": "recommended", "anchor": "code blocks not highlighting" },
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-2", "type": "recommended", "anchor": "images not showing in HTML output" },
+
+    { "from": "cluster-1-post-0", "to": "cluster-1-post-1", "type": "recommended", "anchor": "convert markdown to html without uploading" },
+    { "from": "cluster-1-post-1", "to": "cluster-1-post-0", "type": "recommended", "anchor": "best markdown to html converter" },
+
+    { "from": "cluster-2-post-0", "to": "cluster-2-post-1", "type": "recommended", "anchor": "convert markdown to html for wordpress" },
+    { "from": "cluster-2-post-1", "to": "cluster-2-post-0", "type": "recommended", "anchor": "github readme.md to html" },
+    { "from": "cluster-2-post-1", "to": "cluster-2-post-2", "type": "recommended", "anchor": "batch convert markdown files" },
+    { "from": "cluster-2-post-2", "to": "cluster-2-post-1", "type": "recommended", "anchor": "convert markdown for WordPress" },
+    { "from": "cluster-2-post-2", "to": "cluster-2-post-0", "type": "recommended", "anchor": "github readme.md to html" },
+    { "from": "cluster-2-post-0", "to": "cluster-2-post-2", "type": "recommended", "anchor": "batch converting markdown docs" },
+
+    { "from": "cluster-3-post-0", "to": "cluster-3-post-1", "type": "recommended", "anchor": "style html generated from markdown" },
+    { "from": "cluster-3-post-1", "to": "cluster-3-post-0", "type": "recommended", "anchor": "markdown vs html" },
+    { "from": "cluster-3-post-1", "to": "cluster-3-post-2", "type": "recommended", "anchor": "semantic html from markdown" },
+    { "from": "cluster-3-post-2", "to": "cluster-3-post-1", "type": "recommended", "anchor": "styling converted HTML" },
+    { "from": "cluster-3-post-2", "to": "cluster-3-post-3", "type": "recommended", "anchor": "markdown cheatsheet" },
+    { "from": "cluster-3-post-3", "to": "cluster-3-post-2", "type": "recommended", "anchor": "semantic html from markdown" },
+
+    { "from": "cluster-3-post-0", "to": "cluster-0-post-0", "type": "optional", "anchor": "code blocks not highlighting" },
+    { "from": "cluster-1-post-0", "to": "cluster-2-post-0", "type": "optional", "anchor": "github readme.md to html" },
+    { "from": "cluster-3-post-3", "to": "cluster-2-post-0", "type": "optional", "anchor": "github readme.md to html" }
+  ],
+  "meta": {
+    "totalPosts": 13,
+    "totalClusters": 4,
+    "totalLinks": 47,
+    "estimatedWords": 17086,
+    "writtenPosts": 2,
+    "plannedPosts": 11
+  }
+}
