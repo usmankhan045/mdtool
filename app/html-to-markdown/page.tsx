@@ -106,6 +106,40 @@ export default function HtmlToMarkdownPage() {
           </ol>
         </section>
 
+        {/* Format-specific substance */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Ambiguous HTML Gets Resolved</h2>
+          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              HTML can express things Markdown simply has no syntax for — presentation applied through CSS
+              classes rather than semantic tags, deeply nested tables, inline{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">style</code> attributes,{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;span&gt;</code> wrappers used purely for
+              color. Converting that to Markdown means making consistent decisions about what to keep and what
+              to drop.
+            </p>
+            <p>
+              MDTool&apos;s converter is built on{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">turndown</code> with the GFM plugin, and
+              it follows CommonMark + GitHub Flavored Markdown conventions: semantic tags like{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;strong&gt;</code>,{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;em&gt;</code>, and{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> map directly to their
+              Markdown equivalents, while presentation-only markup — inline styles, color-only{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;span&gt;</code>s, custom CSS classes —
+              is dropped, since Markdown has no equivalent to preserve it in. Nested lists are indented per the
+              CommonMark spec. A table nested inside another table&apos;s cell — something standard Markdown
+              tables can&apos;t represent — gets flattened to its text content rather than silently corrupting
+              the output.
+            </p>
+            <p>
+              The result favors a clean, portable Markdown file over pixel-perfect fidelity to the original
+              page — which is usually what you want when the destination is a README, a wiki, or another
+              Markdown-based tool rather than a visual reproduction of the source HTML.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="max-w-6xl mx-auto px-4 pb-12">
           <FaqSection items={FAQ_ITEMS} />
@@ -124,6 +158,9 @@ export default function HtmlToMarkdownPage() {
               </a>
               <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown to PDF →
+              </a>
+              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown Syntax Cheatsheet →
               </a>
             </div>
           </div>

@@ -113,6 +113,39 @@ export default function MarkdownToHtmlPage() {
           </ol>
         </section>
 
+        {/* Format-specific substance */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Snippet vs. Full Document: Which Should You Use?</h2>
+          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              MDTool gives you two different HTML outputs because they solve different problems. A{' '}
+              <strong>snippet</strong> is the bare HTML fragment — just the headings, paragraphs, lists, and
+              code blocks, with no <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;html&gt;</code>,{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;head&gt;</code>, or{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;body&gt;</code> wrapper. That&apos;s what
+              you want when pasting into an existing page, a CMS editor, or an email template that already
+              defines its own styles — wrapping the fragment in another document structure would just create
+              nested tags the browser has to clean up.
+            </p>
+            <p>
+              A <strong>full document</strong> wraps the same content in a complete, valid HTML file with a{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;!DOCTYPE html&gt;</code>, basic
+              readable styling, and a stylesheet link so syntax-highlighted code actually shows color when you
+              open the file directly. Use this when you want a standalone <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">.html</code> file
+              you can host as-is, attach as a deliverable, or open straight in a browser without any other
+              setup.
+            </p>
+            <p>
+              Either way, the conversion follows GitHub Flavored Markdown semantics: headings map to{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h1&gt;</code>–<code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h6&gt;</code>, fenced
+              code blocks map to <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;pre&gt;&lt;code&gt;</code> with
+              a language class, and tables map to real <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
+              rather than styled <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;div&gt;</code>s — so the
+              output stays usable by screen readers and other tools that expect semantic HTML.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="max-w-6xl mx-auto px-4 pb-12">
           <FaqSection items={FAQ_ITEMS} />
@@ -131,6 +164,9 @@ export default function MarkdownToHtmlPage() {
               </a>
               <a href="/html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 HTML to Markdown →
+              </a>
+              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown Syntax Cheatsheet →
               </a>
             </div>
           </div>

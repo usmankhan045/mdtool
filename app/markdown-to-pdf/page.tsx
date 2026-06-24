@@ -139,6 +139,34 @@ export default function MarkdownToPdfPage() {
           </ol>
         </section>
 
+        {/* Format-specific substance */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Some Markdown to PDF Converters Lose Formatting</h2>
+          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              Two things separate a Markdown-to-PDF converter that &ldquo;technically works&rdquo; from one that
+              produces a document you&apos;d actually send to someone: syntax-highlighted code, and rendered
+              Mermaid diagrams. Both fail in most tools for the same underlying reason.
+            </p>
+            <p>
+              A Mermaid block like <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code> isn&apos;t
+              a diagram yet — it&apos;s text that has to be parsed and rendered into SVG before anything can
+              capture it as a page. Tools that generate the PDF through a different code path than the one used
+              for the on-screen preview often skip that rendering step entirely, so the diagram block either
+              disappears or prints as raw, uninterpreted text. MDTool initializes the Mermaid renderer in the
+              browser and waits for it to finish drawing the SVG before <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">html2pdf.js</code> captures the page,
+              so the diagram in your PDF is the same one you see in the live preview.
+            </p>
+            <p>
+              Syntax highlighting breaks for a similar reason: a tool might highlight code in its browser
+              preview using one renderer, then generate the PDF server-side using a separate Markdown parser
+              that never applies <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">highlight.js</code>&apos;s
+              color classes. Because MDTool&apos;s PDF is generated directly from the same rendered HTML you see
+              on screen, there&apos;s no second conversion step where highlighting can get lost.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="max-w-6xl mx-auto px-4 pb-12">
           <FaqSection items={FAQ_ITEMS} />
@@ -154,6 +182,12 @@ export default function MarkdownToPdfPage() {
               </a>
               <a href="/blog/github-readme-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 GitHub README to PDF Guide →
+              </a>
+              <a href="/blog/best-markdown-to-pdf-converter" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Best Markdown to PDF Converters Compared →
+              </a>
+              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown Syntax Cheatsheet →
               </a>
             </div>
           </div>

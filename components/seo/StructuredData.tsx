@@ -89,7 +89,7 @@ export default function StructuredData({ type, name, url, description, datePubli
         '@type': 'Organization',
         name: author || 'MDTool Editorial Team',
         url: baseUrl,
-        description: 'The MDTool team builds and maintains every converter on this site and writes guides based on direct, hands-on testing of each tool covered.',
+        description: 'The MDTool team builds and maintains every converter on this site and writes guides based on its own tools\' documented behavior and public feature comparisons.',
       },
       publisher: {
         '@type': 'Organization',

@@ -105,6 +105,34 @@ export default function WordToMarkdownPage() {
           </ol>
         </section>
 
+        {/* Format-specific substance */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What Gets Lost When Converting from Word</h2>
+          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              A Word document carries a lot of information that has no Markdown equivalent: tracked changes,
+              comments, footnotes, custom font colors, and direct character formatting that was applied by
+              hand rather than through a named style. Converting to Markdown means deciding which of that to
+              keep.
+            </p>
+            <p>
+              MDTool&apos;s converter, built on{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">mammoth</code>, focuses on structural
+              styles rather than manual formatting: a paragraph styled as &ldquo;Heading 1&rdquo; or
+              &ldquo;Heading 2&rdquo; in Word becomes a Markdown heading, list-formatted paragraphs become
+              bullet or numbered Markdown lists, and table grids become Markdown tables. Text that was just
+              made bigger or bold by hand — without using an actual Word heading style — won&apos;t be
+              recognized as a heading, because Word itself doesn&apos;t mark it as one structurally.
+            </p>
+            <p>
+              Embedded images aren&apos;t extracted in the current version, so an image-heavy document will
+              convert with its text and structure intact but its images missing — plan to re-add those
+              manually after conversion, or keep working from the original .docx for documents where the
+              images matter as much as the text.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="max-w-6xl mx-auto px-4 pb-12">
           <FaqSection items={FAQ_ITEMS} />
@@ -123,6 +151,9 @@ export default function WordToMarkdownPage() {
               </a>
               <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown to PDF →
+              </a>
+              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown Syntax Cheatsheet →
               </a>
             </div>
           </div>

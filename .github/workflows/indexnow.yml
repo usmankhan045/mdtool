@@ -1,0 +1,16 @@
+name: Notify IndexNow
+
+# Pings Bing/Yandex/Naver via IndexNow whenever a push to main lands, so
+# non-Google search engines find new/changed pages without waiting for
+# their next crawl. The IndexNow key is public by design (it's served at
+# /<key>.txt for verification), so no secret is needed here.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/submit-indexnow.js
