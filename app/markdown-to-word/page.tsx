@@ -23,7 +23,15 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: 'Will the output be a real, editable Word document?',
-    a: 'Yes. MDTool generates a genuine .docx file (Office Open XML) — not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.',
+    a: (
+      <>
+        Yes. MDTool generates a genuine .docx file (the{' '}
+        <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          Office Open XML
+        </a>{' '}
+        standard) — not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.
+      </>
+    ),
     text: 'Yes. MDTool generates a genuine .docx file (Office Open XML), editable in Microsoft Word, Google Docs, or LibreOffice Writer.',
   },
   {
@@ -56,6 +64,7 @@ export default function MarkdownToWordPage() {
         name="Markdown to Word Converter"
         url="/markdown-to-word"
         description="Convert Markdown to a real, editable .docx Word document instantly in your browser. Supports headings, tables, lists, and code blocks."
+        dateModified="2026-06-24"
         featureList={[
           'Markdown to editable .docx conversion',
           'Tables, lists, and headings preserved',
@@ -79,8 +88,16 @@ export default function MarkdownToWordPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Free Markdown to Word Converter
             </h1>
+            <p className="text-xs text-gray-400 mb-3">Updated June 24, 2026</p>
+            <p className="text-base text-gray-700 max-w-2xl mb-3 leading-relaxed">
+              <strong>Markdown to Word conversion</strong> turns Markdown syntax into a real, editable .docx
+              file — headings become Word heading styles, lists become native bullet or numbered lists, and
+              tables become Word table grids. MDTool generates the .docx entirely in your browser, with no
+              upload step, so the file opens directly in Microsoft Word, Google Docs, or LibreOffice Writer —
+              free, with no signup.
+            </p>
             <p className="text-lg text-gray-600 max-w-2xl mb-4">
-              Paste Markdown or upload a .md file. Get a real, editable .docx file instantly — no login, no watermark, no limits. Opens in Word, Google Docs, and LibreOffice.
+              Opens in Word, Google Docs, and LibreOffice. No login, no watermark, no limits.
             </p>
             <ConversionDiagram from="Markdown" to="Word (.docx)" />
           </div>
@@ -121,12 +138,51 @@ export default function MarkdownToWordPage() {
             </p>
             <p>
               MDTool&apos;s Word export, built on the{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">docx</code> library, is focused on getting
-              text structure right first: heading levels, bold/italic runs, bullet and numbered lists, and
-              tables all map cleanly to their native Word equivalents. Mermaid diagrams and embedded images
-              aren&apos;t wired into that pipeline yet. If your document needs the diagrams to render, use the{' '}
+              <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">docx</a>{' '}
+              library, is focused on getting text structure right first: heading levels, bold/italic runs,
+              bullet and numbered lists, and tables all map cleanly to their native Word equivalents. Mermaid
+              diagrams and embedded images aren&apos;t wired into that pipeline yet. If your document needs the
+              diagrams to render, use the{' '}
               <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a> instead,
               which renders Mermaid directly in the browser before generating the file.
+            </p>
+            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown element</th>
+                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Word output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Headings (#, ##)</td>
+                  <td className="px-3 py-2">✅ Native Word heading styles</td>
+                </tr>
+                <tr className="border-t border-gray-200 bg-gray-50">
+                  <td className="px-3 py-2 font-medium">Lists, tables, blockquotes</td>
+                  <td className="px-3 py-2">✅ Native Word lists/tables</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Bold, italic, code spans</td>
+                  <td className="px-3 py-2">✅ Native character formatting</td>
+                </tr>
+                <tr className="border-t border-gray-200 bg-gray-50">
+                  <td className="px-3 py-2 font-medium">Mermaid diagrams</td>
+                  <td className="px-3 py-2">❌ Not yet supported — use Markdown to PDF</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Embedded images</td>
+                  <td className="px-3 py-2">❌ Not yet supported</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              In practice this trade-off rarely matters for the documents people actually send through a Word
+              converter: contracts, reports, proposals, and meeting notes are almost entirely headings, body
+              text, and tables — exactly what the Office Open XML pipeline handles natively. Diagrams tend to
+              show up in technical READMEs and developer docs, which are also exactly the documents most
+              likely to end up as a PDF or web page rather than a .docx file, so the PDF export is the better
+              fit for that case anyway.
             </p>
           </div>
         </section>

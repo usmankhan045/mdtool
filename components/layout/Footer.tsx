@@ -68,6 +68,7 @@ export default function Footer() {
           <Link href="/about" className="hover:text-blue-400 transition-colors">About</Link>
           <Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy</Link>
           <Link href="/contact" className="hover:text-blue-400 transition-colors">Contact</Link>
+          <a href="https://github.com/usmankhan045/mdtool" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">GitHub</a>
         </div>
         <span>No login required · No watermarks · Files never uploaded</span>
       </div>

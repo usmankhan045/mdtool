@@ -30,7 +30,7 @@ export default function DownloadButton({ htmlContent, theme, filename, size = 'd
   };
 
   const sizeClass = size === 'compact'
-    ? 'px-3 py-1.5 text-xs font-medium rounded-md'
+    ? 'px-3 py-2 text-xs font-medium rounded-md'
     : 'px-6 py-3 text-base font-semibold rounded-lg shadow-md hover:shadow-lg';
 
   return (

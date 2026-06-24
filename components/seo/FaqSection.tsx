@@ -18,6 +18,8 @@ export default function FaqSection({ items }: { items: FaqItem[] }) {
           <div key={i} className="border border-gray-200 rounded-lg overflow-hidden">
             <button
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              aria-expanded={openIndex === i}
+              aria-controls={`faq-answer-${i}`}
               className="w-full text-left px-5 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
             >
               <span className="font-medium text-gray-800 pr-4">{item.q}</span>
@@ -28,11 +30,9 @@ export default function FaqSection({ items }: { items: FaqItem[] }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            {openIndex === i && (
-              <div className="px-5 py-4 bg-gray-50 border-t border-gray-200">
-                <p className="text-gray-700 leading-relaxed">{item.a}</p>
-              </div>
-            )}
+            <div id={`faq-answer-${i}`} className={`px-5 py-4 bg-gray-50 border-t border-gray-200 ${openIndex === i ? '' : 'hidden'}`}>
+              <p className="text-gray-700 leading-relaxed">{item.a}</p>
+            </div>
           </div>
         ))}
       </div>

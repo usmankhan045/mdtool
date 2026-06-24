@@ -7,7 +7,7 @@ import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
   title: 'Word to Markdown Converter — Free & No Login',
-  description: 'Convert .docx Word documents to clean Markdown instantly in your browser. Supports headings, tables, and lists. Free, no signup.',
+  description: 'Convert .docx Word documents to clean Markdown instantly in your browser. Supports headings, tables, lists, and formatting. Free, no signup, no limits.',
   keywords: ['word to markdown', 'docx to markdown', 'docx to md', 'convert word to markdown', 'word markdown converter'],
   openGraph: {
     title: 'Free Word to Markdown Converter — MDTool',
@@ -23,7 +23,15 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: 'What file formats are supported?',
-    a: 'Modern .docx files (Word 2007 and later, the Office Open XML format). Legacy .doc files (Word 97-2003 binary format) are not supported — save the file as .docx first if you have an older file.',
+    a: (
+      <>
+        Modern .docx files (Word 2007 and later, the{' '}
+        <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          Office Open XML
+        </a>{' '}
+        format). Legacy .doc files (Word 97-2003 binary format) are not supported — save the file as .docx first if you have an older file.
+      </>
+    ),
     text: 'Modern .docx files are supported. Legacy .doc files (Word 97-2003 binary format) are not supported — save the file as .docx first.',
   },
   {
@@ -56,6 +64,7 @@ export default function WordToMarkdownPage() {
         name="Word to Markdown Converter"
         url="/word-to-markdown"
         description="Convert .docx Word documents to clean Markdown instantly in your browser. Supports headings, tables, and lists."
+        dateModified="2026-06-24"
         featureList={[
           'Word (.docx) to Markdown conversion',
           'Headings, tables, and lists preserved',
@@ -78,8 +87,15 @@ export default function WordToMarkdownPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Free Word to Markdown Converter
             </h1>
+            <p className="text-xs text-gray-400 mb-3">Updated June 24, 2026</p>
+            <p className="text-base text-gray-700 max-w-2xl mb-3 leading-relaxed">
+              <strong>Word to Markdown conversion</strong> reads the structural styles in a .docx file —
+              Heading 1, Heading 2, bullet lists, tables — and re-expresses them as plain Markdown syntax.
+              MDTool converts Word to Markdown entirely in your browser: upload a .docx file and get clean,
+              version-control-friendly Markdown back, free, with no signup and no file size limit.
+            </p>
             <p className="text-lg text-gray-600 max-w-2xl mb-4">
-              Upload a .docx file and get clean Markdown instantly — no login, no watermark, no limits. Headings, tables, and lists convert automatically.
+              Headings, tables, and lists convert automatically. No login, no watermark.
             </p>
             <ConversionDiagram from="Word (.docx)" to="Markdown" />
           </div>
@@ -117,18 +133,55 @@ export default function WordToMarkdownPage() {
             </p>
             <p>
               MDTool&apos;s converter, built on{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">mammoth</code>, focuses on structural
-              styles rather than manual formatting: a paragraph styled as &ldquo;Heading 1&rdquo; or
+              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">mammoth</a>,
+              focuses on structural styles rather than manual formatting: a paragraph styled as &ldquo;Heading 1&rdquo; or
               &ldquo;Heading 2&rdquo; in Word becomes a Markdown heading, list-formatted paragraphs become
               bullet or numbered Markdown lists, and table grids become Markdown tables. Text that was just
               made bigger or bold by hand — without using an actual Word heading style — won&apos;t be
               recognized as a heading, because Word itself doesn&apos;t mark it as one structurally.
             </p>
+            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Word element</th>
+                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Heading 1 / Heading 2 styles</td>
+                  <td className="px-3 py-2">✅ #, ##</td>
+                </tr>
+                <tr className="border-t border-gray-200 bg-gray-50">
+                  <td className="px-3 py-2 font-medium">Bullet / numbered lists, tables</td>
+                  <td className="px-3 py-2">✅ Markdown lists / pipe tables</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Bold / italic text</td>
+                  <td className="px-3 py-2">✅ **bold** / *italic*</td>
+                </tr>
+                <tr className="border-t border-gray-200 bg-gray-50">
+                  <td className="px-3 py-2 font-medium">Manual formatting (no named style)</td>
+                  <td className="px-3 py-2">❌ Treated as plain text</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Embedded images, comments, tracked changes</td>
+                  <td className="px-3 py-2">❌ Not extracted</td>
+                </tr>
+              </tbody>
+            </table>
             <p>
               Embedded images aren&apos;t extracted in the current version, so an image-heavy document will
               convert with its text and structure intact but its images missing — plan to re-add those
               manually after conversion, or keep working from the original .docx for documents where the
               images matter as much as the text.
+            </p>
+            <p>
+              This style-based approach is also why pasted-in text from another source sometimes converts
+              unevenly: if someone copied a paragraph from a PDF or web page into the Word document without
+              reapplying a heading style, Word stores it as plain body text with manual formatting on top,
+              and the converter — correctly, by Word&apos;s own structural rules — treats it as a normal
+              paragraph rather than guessing that it was meant to be a heading.
             </p>
           </div>
         </section>

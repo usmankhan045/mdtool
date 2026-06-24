@@ -66,7 +66,7 @@ export default function EmbeddedTool() {
           <button
             key={t.id}
             onClick={() => setTheme(t.id)}
-            className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors border ${
+            className={`px-3 py-2 rounded-full text-xs font-medium transition-colors border ${
               theme === t.id
                 ? 'bg-blue-600 text-white border-blue-600'
                 : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300'
@@ -89,7 +89,7 @@ export default function EmbeddedTool() {
             <span className="text-xs text-gray-500 font-medium">Markdown</span>
             <button
               onClick={() => setMarkdown('')}
-              className="text-xs text-gray-400 hover:text-gray-600"
+              className="text-xs text-gray-400 hover:text-gray-600 px-2 py-2 -my-2"
             >
               Clear
             </button>
