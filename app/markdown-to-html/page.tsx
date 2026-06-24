@@ -67,6 +67,34 @@ const FAQ_ITEMS = [
     a: 'No file size limit. Since all processing runs locally in your browser, conversion speed depends on your device rather than any server restriction.',
     text: 'No file size limit. Since all processing runs locally in your browser, conversion speed depends on your device rather than any server restriction.',
   },
+  {
+    q: 'Can I use the HTML output in an email template?',
+    a: 'Yes — use the snippet output (Full document turned off) and paste it into your email tool’s HTML/code view. Most email clients strip <head> tags anyway, so the snippet is the right format here, not the full document.',
+    text: 'Yes - use the snippet output (Full document turned off) and paste it into your email tool’s HTML/code view. Most email clients strip head tags anyway, so the snippet is the right format here.',
+  },
+  {
+    q: 'Does converting a Mermaid code block render it as a diagram?',
+    a: (
+      <>
+        No. A <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code> block is
+        preserved as a labeled code block showing the raw syntax, not rendered into a visual
+        diagram. For actual Mermaid diagram rendering, use the{' '}
+        <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a>{' '}
+        instead.
+      </>
+    ),
+    text: 'No. A mermaid code block is preserved as a labeled code block showing the raw syntax, not rendered into a visual diagram. For actual Mermaid diagram rendering, use the Markdown to PDF converter instead.',
+  },
+  {
+    q: 'Are nested lists and blockquotes supported?',
+    a: 'Yes. Nested bullet and numbered lists convert to properly nested <ul>/<ol> markup, and blockquotes (including blockquotes containing other Markdown elements) convert to <blockquote> with the inner formatting preserved.',
+    text: 'Yes. Nested bullet and numbered lists convert to properly nested ul/ol markup, and blockquotes convert to blockquote with the inner formatting preserved.',
+  },
+  {
+    q: 'Can I edit the HTML after MDTool generates it?',
+    a: 'Yes. Switch to the Code tab, copy the HTML, and edit it anywhere you like — a text editor, your CMS’s code view, or a code editor. MDTool doesn’t lock the output or require you to come back to make changes.',
+    text: 'Yes. Switch to the Code tab, copy the HTML, and edit it anywhere you like - a text editor, your CMS’s code view, or a code editor.',
+  },
 ];
 
 export default function MarkdownToHtmlPage() {
@@ -129,12 +157,27 @@ export default function MarkdownToHtmlPage() {
 
         {/* SEO Content */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to HTML</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to HTML Free</h2>
+          <p className="text-gray-700 leading-relaxed mb-3 max-w-3xl">
+            Converting Markdown to HTML with MDTool takes four steps and no account — paste your
+            content, watch the live preview, choose your output format, then copy or download.
+            The whole process runs in your browser, so it works the same whether you&apos;re
+            converting one file or fifty.
+          </p>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
-            <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file</li>
-            <li>Watch the live HTML preview update in real-time on the right</li>
-            <li>Switch to the <strong>Code</strong> tab to view the raw HTML, and toggle <strong>Full document</strong> for a standalone file vs. a pasteable snippet</li>
-            <li>Click <strong>Copy</strong> or <strong>Download .html</strong> to grab your output</li>
+            <li>Paste your Markdown text into the left panel, or click <strong>Upload .md</strong> to
+              load a file directly from your computer — there&apos;s no size limit, so a full
+              README or a multi-page doc converts just as easily as a short snippet</li>
+            <li>Watch the live HTML preview update in real time on the right as you type. Headings,
+              lists, tables, and fenced code blocks render exactly as they will in the final
+              output, so you can catch formatting issues before exporting anything</li>
+            <li>Switch to the <strong>Code</strong> tab to view the raw HTML markup, then toggle{' '}
+              <strong>Full document</strong> on or off depending on where the HTML is going: on
+              for a standalone <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">.html</code> file,
+              off for a pasteable snippet you&apos;ll drop into an existing page or CMS</li>
+            <li>Click <strong>Copy</strong> to grab the HTML straight to your clipboard, or{' '}
+              <strong>Download .html</strong> to save it as a file — either way, the conversion
+              is final, with no processing queue or wait time</li>
           </ol>
         </section>
 
@@ -213,6 +256,48 @@ export default function MarkdownToHtmlPage() {
           </div>
         </section>
 
+        {/* What's Preserved + Free/Privacy substance */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">What MDTool Preserves in HTML Output</h3>
+          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              <strong>GFM tables</strong> convert to real <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
+              with <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;thead&gt;</code> and{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;tbody&gt;</code>, not styled divs.{' '}
+              <strong>Fenced code blocks</strong> get syntax highlighting via{' '}
+              <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">highlight.js</a>,
+              with JavaScript, TypeScript, Python, Bash, CSS, HTML, JSON, YAML, SQL, Rust, Go, and Dart
+              recognized by name (other languages fall back to automatic detection).{' '}
+              <strong>Images</strong> carry over as standard <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;img&gt;</code> tags
+              with whatever path you wrote in the Markdown — relative or absolute — unchanged.
+            </p>
+            <p>
+              <strong>Mermaid code blocks</strong> (<code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code>) are
+              preserved as a labeled code block showing the raw diagram syntax — they are not
+              rendered into a visual diagram in this converter. If you need the actual diagram
+              rendered into the output, use the{' '}
+              <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a>,
+              which renders Mermaid blocks before export.
+            </p>
+          </div>
+        </section>
+
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Is This Converter Free?</h3>
+          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              Yes — MDTool is free with no account, no premium tier, and no usage cap. There&apos;s
+              no paywall hiding the Full document export, no watermark on the HTML you download,
+              and no limit on how many times you can convert. That&apos;s possible because nothing
+              you paste is ever uploaded: the conversion runs entirely in your browser&apos;s
+              JavaScript engine, using the same{' '}
+              <a href="https://marked.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">marked</a>{' '}
+              parser whether you convert one line or a 10,000-word document, so there&apos;s no
+              server-side cost that would require a subscription to cover.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="max-w-6xl mx-auto px-4 pb-12">
           <FaqSection items={FAQ_ITEMS} />
@@ -234,6 +319,15 @@ export default function MarkdownToHtmlPage() {
               </a>
               <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown Syntax Cheatsheet →
+              </a>
+              <a href="/blog/markdown-to-html-guide" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Complete Conversion Guide →
+              </a>
+              <a href="/blog/markdown-to-html-email" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown to HTML for Email →
+              </a>
+              <a href="/blog/markdown-to-html-static-site" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown to HTML for Static Sites →
               </a>
             </div>
           </div>

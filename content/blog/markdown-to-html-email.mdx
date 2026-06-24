@@ -1,0 +1,94 @@
+---
+title: "How to Convert Markdown to HTML for Email Templates"
+description: "Converting Markdown to HTML is step one. Here's why your email breaks in Outlook or Gmail if you skip step two — CSS inlining — and how to do both."
+datePublished: "2026-06-24"
+dateModified: "2026-06-24"
+tags: ["markdown", "html", "email", "developer-tools"]
+image: "/blog/markdown-to-html-email.jpg"
+imageAlt: "Email inbox interface on a laptop screen"
+author: "MDTool Editorial Team"
+---
+
+## Markdown to HTML for Email, in Two Steps
+
+Converting Markdown to HTML for an email template takes two steps, not one: **convert** the Markdown to HTML, then **inline the CSS**. Most "my email looks broken in Outlook" problems trace back to skipping step two — the HTML itself converted fine, but the styling that made it look right relied on a stylesheet the email client never loaded.
+
+This guide covers why that second step exists, how to do both parts, and what specifically breaks (and what doesn't) when you skip it.
+
+---
+
+## Why Email HTML Isn't the Same as Web HTML
+
+A normal webpage loads CSS from a `<link>` tag in the `<head>`, or from a `<style>` block. Email clients routinely strip both. Gmail, Outlook, and most webmail clients sanitize incoming HTML for security reasons, and an external stylesheet reference is one of the first things to go — along with `<script>` tags, and in many clients, the entire `<head>` element itself.
+
+That leaves exactly one styling method that reliably survives: **inline styles**, written directly on each element as a `style="..."` attribute rather than referenced from elsewhere. `<p style="color: #333; font-size: 14px;">` survives. `<p class="body-text">` with the actual rule sitting in a stylesheet does not, because the class name means nothing without the rule that defines it.
+
+Outlook adds a second wrinkle on top of this: its desktop versions render HTML using Microsoft Word's layout engine rather than a standard browser engine, which has much weaker support for modern CSS — flexbox and grid layouts in particular tend to collapse. That's why email templates still commonly use `<table>`-based layouts for structure, even though no one would build a website that way in 2026.
+
+So a Markdown-to-HTML converter that outputs clean, semantic, modern HTML — which is exactly what you want for a webpage — produces something that's only half-ready for an email client.
+
+---
+
+## Step 1: Convert Your Markdown to HTML
+
+Start by converting your Markdown to a plain HTML **snippet** — the bare fragment with no `<html>`, `<head>`, or `<body>` wrapper, since none of that survives an email client anyway. The **[Markdown to HTML converter](/markdown-to-html)** does this for free, with the snippet/full-document toggle turned to snippet.
+
+This step gives you correct structure: real `<h1>`–`<h3>` tags for headings, `<table>` markup if your Markdown has GFM tables, `<ul>`/`<ol>` for lists, `<p>` for paragraphs. What it does **not** give you is any visual styling at all. The output is bare semantic HTML with no colors, no custom fonts, no spacing beyond each browser's or email client's own default rendering of those tags. That's expected — styling is the next step, not this one.
+
+<Callout type="info">
+  A Markdown-to-HTML converter handles structure. It does not handle email-client compatibility on its own — that requires the inlining step below, regardless of which converter you use.
+</Callout>
+
+---
+
+## Step 2: Inline the CSS Before You Send
+
+This is the step that actually makes HTML "email-safe," and it's the step a general-purpose Markdown-to-HTML converter doesn't do, because it's specific to email rather than to Markdown conversion.
+
+**What inlining means concretely:** instead of `<h2 class="section-title">Update</h2>` with a rule like `.section-title { color: #1a1a2e; font-size: 20px; }` sitting in a stylesheet, inlining produces `<h2 style="color: #1a1a2e; font-size: 20px;">Update</h2>` — the same visual result, but with the styling baked directly into the tag so it has nothing to lose when the stylesheet gets stripped.
+
+You have three practical ways to get there from the plain HTML snippet:
+
+1. **Paste into your ESP's editor.** Mailchimp, ConvertKit, and most modern email service providers will accept pasted HTML in their code-block or HTML editor, and several auto-inline basic styles applied through their own visual tools. This is the path of least effort if you're already sending through one of these platforms.
+2. **Run it through a CSS inliner.** Tools built specifically for this (Premailer is the most established one, available as a library or hosted service) take HTML with a `<style>` block and rewrite every rule onto the matching elements as inline attributes.
+3. **Use a dedicated Markdown-to-email tool.** Several tools exist specifically for this combined workflow — they convert Markdown to HTML and inline the CSS in the same step, aimed at people who'd rather not handle inlining separately. That convenience trades off against the control and the "no extra service" simplicity of doing the two steps yourself.
+
+There's no single "more correct" choice between these — pick based on whether you're sending through an ESP that already inlines for you, or producing a standalone `.html` file you need fully email-ready on its own.
+
+---
+
+## What Happens to Code Blocks and Syntax Highlighting in Email
+
+If your Markdown includes fenced code blocks, it's worth knowing specifically what survives the trip to an email client and what doesn't.
+
+A Markdown-to-HTML converter that supports syntax highlighting (MDTool included) does it by wrapping tokens in `<span>` elements with class names like `hljs-keyword` or `hljs-string`, then relying on a separate CSS theme to assign those classes actual colors. That CSS theme is exactly the kind of external stylesheet email clients strip — so the class names survive in the HTML, but the colors don't. The code still renders as monospace text in a `<pre><code>` block; it just comes through as plain, uncolored text rather than syntax-highlighted.
+
+If you specifically need colored code in an email — a changelog with code diffs, a technical newsletter — your two options are: inline the specific highlight.js color rules onto each span the same way you'd inline any other style, or accept plain monospace formatting, which is what most technical newsletters actually do, since colored code in email is a genuinely uncommon ask outside developer-focused content.
+
+---
+
+## Frequently Asked Questions
+
+**Q: Does MDTool inline CSS automatically when I convert Markdown to HTML?**
+
+No. MDTool's converter outputs clean semantic HTML — the structure step — but does not inline CSS. Inlining is a separate step you'd do afterward, either through your email platform's editor or a dedicated CSS inlining tool.
+
+**Q: Can I just paste the "Full document" export into an email?**
+
+Not recommended. The full-document export links an external stylesheet for syntax highlighting, which most email clients strip — so you'd lose that styling anyway, with no benefit over the simpler snippet output. Use the snippet for email.
+
+**Q: Will my Markdown tables render correctly in an email?**
+
+The table structure (`<table>`, `<tr>`, `<td>`) converts and will display in virtually every email client, since that's the most universally supported HTML element by design — it's literally the layout method emails fall back on for everything else. Borders, padding, and other table styling still need to be inlined to survive.
+
+**Q: Do images in my Markdown work in email?**
+
+The `<img>` tag and its `src` path carry over, but the path must point to a publicly hosted image — email clients don't have access to local files or relative paths the way a browser viewing your own site might.
+
+**Q: Why does my email look fine in Gmail but broken in Outlook?**
+
+This is almost always the table-layout/CSS-rendering-engine issue described above. Gmail's rendering is closer to a standard browser; desktop Outlook uses Word's layout engine, which handles modern CSS layout methods (flexbox, grid) much less reliably. Table-based layout is the workaround.
+
+**Q: Is there a way to test how my converted HTML will actually look in different email clients before sending?**
+
+Yes — email testing services exist specifically to render your HTML across dozens of real email clients (Gmail, Outlook, Apple Mail, etc.) and show you screenshots, which is the only reliable way to catch client-specific rendering issues before sending to a real list.

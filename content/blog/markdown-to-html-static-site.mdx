@@ -1,0 +1,91 @@
+---
+title: "Using Markdown to HTML Conversion for Static Sites and Docs"
+description: "Static site generators convert Markdown to HTML automatically at build time. Here's when you need raw HTML instead, and how to get it for one-off pages."
+datePublished: "2026-06-24"
+dateModified: "2026-06-24"
+tags: ["markdown", "html", "static-site-generators", "developer-tools"]
+image: "/blog/markdown-to-html-static-site.jpg"
+imageAlt: "Code editor showing a folder of markdown files"
+author: "MDTool Editorial Team"
+---
+
+## Markdown, HTML, and Static Sites
+
+If you're building a site with Jekyll, Hugo, or Astro, Markdown-to-HTML conversion is already happening for you automatically at build time — you don't need a separate converter for content inside that pipeline. Where a standalone converter actually helps is everything *outside* that pipeline: a one-off page, a doc you're sharing before a generator is set up, or content you're migrating out of a generator entirely.
+
+This guide covers how static site generators actually handle that conversion, when raw HTML is the better call instead of standing up a generator, and how to get clean HTML for those one-off cases.
+
+---
+
+## How Static Site Generators Use Markdown
+
+Every major static site generator follows the same basic shape: you write content in Markdown files, the generator's build process parses each file and converts it to HTML, then wraps that HTML in a template before writing out the final static page. The differences are in the templating layer, not the Markdown parsing itself.
+
+**Jekyll** (Ruby) reads Markdown files with YAML front matter, converts the body to HTML, and inserts it into a Liquid template — this combination, plus tight GitHub integration, is what made Jekyll the generator that popularized the category.
+
+**Hugo** (Go) does the same conceptual job but is built for speed: it can process thousands of Markdown files in a fraction of a second, using Go's own templating language rather than Liquid. The tradeoff is a steeper templating learning curve for anyone not already familiar with Go's syntax.
+
+**Astro** handles Markdown through content collections — a typed system where a folder of Markdown files becomes a structured collection, and a `render()` function turns each entry into HTML you can drop into a component, alongside automatically extracted headings for things like a table of contents.
+
+In all three cases, you never see the intermediate HTML directly — it's generated and immediately templated as part of the build. That's the right workflow if you're maintaining an ongoing site. It's the wrong tool if you just need HTML output once.
+
+---
+
+## When You Need Raw HTML Instead of a Generator
+
+A handful of situations come up often enough to be worth naming directly:
+
+- **A single one-off page.** You need one HTML page from one Markdown file — a project writeup, a styled README, a one-time announcement — and setting up a generator's config, templates, and build process for a single page is disproportionate to the task.
+- **Sharing content before a generator exists.** You're drafting documentation in Markdown for a project that doesn't have a static site set up yet, and you need to preview or share it as HTML now rather than waiting on site infrastructure.
+- **Contributors without local tooling.** Someone needs to produce HTML from Markdown but doesn't have Node, Ruby, or Go installed, and isn't going to install a full generator's toolchain to convert one file.
+- **Migrating away from a generator.** You're moving content out of a static site (or into a CMS) and need the rendered HTML as an intermediate or final format, separate from the generator's own build output.
+
+None of these are arguments against static site generators in general — they're arguments for keeping a one-off converter in your toolkit for the moments a full build pipeline is the wrong amount of infrastructure.
+
+---
+
+## Using MDTool for Quick One-Off Conversions
+
+For exactly the cases above, the **[Markdown to HTML converter](/markdown-to-html)** does the conversion step a generator would otherwise do at build time — paste your Markdown, get HTML back, with no project setup, no config file, no build step. It's the right tool when you need HTML from one file, right now, outside of any generator's pipeline.
+
+It is not a generator replacement, and it's worth being direct about why: a generator gives you templating, navigation between pages, an asset pipeline, and often automatic sitemap and RSS generation — none of which a single conversion produces. If you're maintaining more than a handful of interlinked pages with shared layout, a generator is doing real work that a one-off converter was never meant to replace.
+
+---
+
+## Full Document vs. Snippet for Static Sites
+
+The same snippet/full-document choice that applies everywhere else in MDTool has a specific answer for static-site use cases.
+
+**Use the snippet** when the HTML is going into an existing template or layout — which is the normal case if you're hand-rolling a static page that reuses your site's header, footer, and CSS. The snippet gives you just the converted content, ready to drop into the body of that template, the same way a generator would inject the rendered Markdown into its own layout.
+
+**Use the full document** when there is no template at all — a genuinely standalone page you're hosting as-is, with no shared layout to plug into. The full document gives you a complete, valid HTML file with basic styling included, so it looks reasonable without any additional CSS.
+
+If you're not sure which applies, the test is the same one that applies to CMS pasting: does this page need to look right entirely on its own, or is something else going to wrap it? Standing alone → full document. Going into a template → snippet.
+
+---
+
+## Frequently Asked Questions
+
+**Q: Should I use MDTool instead of Jekyll or Hugo for my whole site?**
+
+No — for an ongoing multi-page site with shared navigation and layout, a static site generator is doing real, necessary work (templating, build pipeline, often sitemap/RSS generation) that a one-off converter doesn't replace. MDTool is for individual conversions outside that kind of pipeline.
+
+**Q: Can I use MDTool to preview what my Markdown will look like before setting up a generator?**
+
+Yes — pasting your Markdown in gives you an immediate HTML preview, which is useful for checking formatting before you've set up any generator's templates or build process.
+
+**Q: Do Jekyll, Hugo, and Astro all support the same Markdown syntax?**
+
+The core syntax (headings, lists, links, code blocks) is consistent across all three, since they're all built on similar underlying Markdown parsers. GitHub Flavored Markdown extensions like tables may need to be explicitly enabled depending on the generator and its configuration.
+
+**Q: I'm migrating a static site to a CMS — can I bulk-convert the Markdown files?**
+
+MDTool converts one file at a time through its browser interface, which works fine for a handful of pages. For a true bulk migration of many files, a script-based approach (a Pandoc loop, or a small Node script) is the more practical path.
+
+**Q: Does the converted HTML include the front matter from my Markdown files?**
+
+No — YAML front matter (the metadata block between `---` markers that generators use for titles, dates, and tags) isn't part of standard Markdown rendering and won't appear in the converted HTML output; it's metadata the generator reads separately, not content the parser converts.
+
+**Q: Will my code blocks keep their syntax highlighting if I paste the output into a static site template?**
+
+Yes, as long as your template includes a highlight.js stylesheet (or your generator's own syntax-highlighting CSS) — the converted code blocks carry the necessary class names, but like any HTML, the actual colors depend on a stylesheet being present wherever the HTML ends up.
