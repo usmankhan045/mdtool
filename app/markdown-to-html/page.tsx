@@ -109,10 +109,12 @@ export default function MarkdownToHtmlPage() {
         featureList={[
           'Markdown to HTML conversion',
           'GitHub Flavored Markdown support',
-          'Code syntax highlighting',
+          'Code syntax highlighting for 12 languages',
+          'Semantic HTML output (real headings and tables, not styled divs)',
           'Snippet or full-document HTML output',
           'Copy to clipboard',
           'Client-side processing — files never uploaded',
+          'No account, no premium tier, no usage limit',
         ]}
       />
       <StructuredData
@@ -130,7 +132,7 @@ export default function MarkdownToHtmlPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Free Markdown to HTML Converter
             </h1>
-            <p className="text-xs text-gray-400 mb-3">Updated June 24, 2026</p>
+            <p className="text-xs text-gray-400 mb-3">Updated June 24, 2026 · Built and maintained by MDTool</p>
             <p className="text-base text-gray-700 max-w-2xl mb-3 leading-relaxed">
               <strong>Markdown to HTML conversion</strong> is the process of transforming Markdown syntax —
               headings, lists, tables, bold/italic text, and fenced code blocks — into standard HTML markup
@@ -258,7 +260,7 @@ export default function MarkdownToHtmlPage() {
 
         {/* What's Preserved + Free/Privacy substance */}
         <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">What MDTool Preserves in HTML Output</h3>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What MDTool Preserves in HTML Output</h2>
           <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
             <p>
               <strong>GFM tables</strong> convert to real <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
@@ -283,7 +285,7 @@ export default function MarkdownToHtmlPage() {
         </section>
 
         <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Is This Converter Free?</h3>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Is This Converter Free?</h2>
           <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
             <p>
               Yes — MDTool is free with no account, no premium tier, and no usage cap. There&apos;s

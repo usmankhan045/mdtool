@@ -19,6 +19,9 @@ MDTool is a free tool site (no account, no watermark, no paywall) for converting
 - [Markdown Cheatsheet: Every Syntax You Need](https://www.mdtool.dev/blog/markdown-cheatsheet): Reference covering every Markdown element, including GitHub Flavored Markdown.
 - [Why Markdown Tables Break in PDF Exports](https://www.mdtool.dev/blog/markdown-table-pdf): Why Markdown tables commonly fail in PDF exports and how to fix it.
 - [Markdown to PDF Code Blocks: Why They Break](https://www.mdtool.dev/blog/markdown-to-pdf-code-blocks): Why code blocks lose formatting in most Markdown-to-PDF converters and how to get syntax-highlighted output.
+- [Markdown to HTML Online: The Complete Conversion Guide](https://www.mdtool.dev/blog/markdown-to-html-guide): How Markdown-to-HTML conversion works, when to use snippet vs. full-document output, and what survives the conversion.
+- [How to Convert Markdown to HTML for Email Templates](https://www.mdtool.dev/blog/markdown-to-html-email): Why email-safe HTML requires CSS inlining as a separate step after conversion, and how to do both.
+- [Using Markdown to HTML Conversion for Static Sites and Docs](https://www.mdtool.dev/blog/markdown-to-html-static-site): How Jekyll, Hugo, and Astro handle Markdown, and when raw HTML conversion beats setting up a generator.
 
 ## Notes for AI agents and crawlers
 
