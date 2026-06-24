@@ -95,6 +95,7 @@ export default function MarkdownToPdfPage() {
         name="Markdown to PDF Converter"
         url="/markdown-to-pdf"
         description="Convert Markdown to PDF instantly in your browser. Supports GitHub Flavored Markdown, code blocks with syntax highlighting, tables, images, and Mermaid diagrams."
+        dateModified="2026-06-24"
       />
       <StructuredData
         type="breadcrumb"
@@ -111,8 +112,16 @@ export default function MarkdownToPdfPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Free Markdown to PDF Converter
             </h1>
+            <p className="text-xs text-gray-400 mb-3">Updated June 24, 2026</p>
+            <p className="text-base text-gray-700 max-w-2xl mb-3 leading-relaxed">
+              <strong>Markdown to PDF conversion</strong> renders Markdown — headings, tables, syntax-highlighted
+              code, and Mermaid diagrams — into a paginated PDF document ready to print, email, or archive.
+              MDTool generates the PDF entirely in your browser, from the same rendered HTML you see in the
+              live preview, so nothing gets lost between preview and export — free, with no signup and no
+              file size limit.
+            </p>
             <p className="text-lg text-gray-600 max-w-2xl mb-4">
-              Paste Markdown or upload a .md file. Get a perfect PDF instantly — no login, no watermark, no limits. Supports code highlighting, tables, and Mermaid diagrams.
+              Supports code highlighting, tables, and Mermaid diagrams. No login, no watermark.
             </p>
             <ConversionDiagram from="Markdown" to="PDF" />
           </div>
@@ -157,6 +166,32 @@ export default function MarkdownToPdfPage() {
               browser and waits for it to finish drawing the SVG before <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">html2pdf.js</code> captures the page,
               so the diagram in your PDF is the same one you see in the live preview.
             </p>
+            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Theme</th>
+                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Best for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">GitHub</td>
+                  <td className="px-3 py-2">READMEs and developer documentation</td>
+                </tr>
+                <tr className="border-t border-gray-200 bg-gray-50">
+                  <td className="px-3 py-2 font-medium">Academic</td>
+                  <td className="px-3 py-2">Papers, reports, and formal write-ups</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2 font-medium">Minimal</td>
+                  <td className="px-3 py-2">Clean, modern general-purpose documents</td>
+                </tr>
+                <tr className="border-t border-gray-200 bg-gray-50">
+                  <td className="px-3 py-2 font-medium">Dark</td>
+                  <td className="px-3 py-2">Dark-background reading and screen sharing</td>
+                </tr>
+              </tbody>
+            </table>
             <p>
               Syntax highlighting breaks for a similar reason: a tool might highlight code in its browser
               preview using one renderer, then generate the PDF server-side using a separate Markdown parser

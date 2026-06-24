@@ -47,7 +47,7 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
         {fileName && (
           <button
             onClick={onClear}
-            className="text-xs px-2 py-1 bg-white border border-gray-300 rounded hover:bg-gray-50 text-gray-600"
+            className="text-sm px-3.5 min-h-[44px] bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-gray-600"
           >
             Remove
           </button>
@@ -86,7 +86,7 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
             <p className="text-sm text-gray-500">Drag and drop a .docx file here</p>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-md shadow-sm transition-all"
+              className="flex items-center gap-1.5 text-sm font-semibold px-4 min-h-[44px] bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-md shadow-sm transition-all"
             >
               Choose .docx file
             </button>

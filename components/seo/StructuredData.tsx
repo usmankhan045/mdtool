@@ -14,6 +14,7 @@ interface Props {
 }
 
 export default function StructuredData({ type, name, url, description, datePublished, dateModified, image, author, faqs, breadcrumbs, featureList, items }: Props) {
+  const toolDateModified = dateModified || '2026-06-24';
   const baseUrl = 'https://www.mdtool.dev';
 
   const schemas: Record<string, object> = {
@@ -23,6 +24,7 @@ export default function StructuredData({ type, name, url, description, datePubli
       name: 'MDTool',
       url: baseUrl,
       logo: `${baseUrl}/logo.png`,
+      sameAs: ['https://github.com/usmankhan045/mdtool'],
     },
     website: {
       '@context': 'https://schema.org',
@@ -63,6 +65,7 @@ export default function StructuredData({ type, name, url, description, datePubli
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Any',
       browserRequirements: 'Requires JavaScript',
+      dateModified: toolDateModified,
       offers: {
         '@type': 'Offer',
         price: '0',

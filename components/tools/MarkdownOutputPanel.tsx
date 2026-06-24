@@ -35,14 +35,14 @@ export default function MarkdownOutputPanel({ markdown, filename = 'document.md'
           <button
             onClick={handleCopy}
             disabled={!markdown.trim()}
-            className="text-xs px-2.5 py-1 bg-white border border-gray-300 rounded hover:bg-gray-50 text-gray-600 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="text-xs px-3 min-h-[44px] bg-white border border-gray-300 rounded hover:bg-gray-50 text-gray-600 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {copied ? 'Copied!' : 'Copy'}
           </button>
           <button
             onClick={handleDownload}
             disabled={!markdown.trim()}
-            className="flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-md shadow-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-md shadow-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
