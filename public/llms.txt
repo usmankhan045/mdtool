@@ -1,0 +1,27 @@
+# MDTool
+
+> Free, browser-based file converters for developers. Markdown to PDF, HTML, and Word, and back. All conversion runs client-side — files are never uploaded to a server.
+
+MDTool is a free tool site (no account, no watermark, no paywall) for converting between Markdown, PDF, HTML, and Word/DOCX. Every conversion happens in the visitor's browser; no file content is transmitted to MDTool's servers at any point.
+
+## Tools
+
+- [Markdown to PDF Converter](https://www.mdtool.dev/markdown-to-pdf): Convert Markdown to PDF with GitHub Flavored Markdown support, syntax-highlighted code blocks, tables, and rendered Mermaid diagrams.
+- [Markdown to HTML Converter](https://www.mdtool.dev/markdown-to-html): Convert Markdown to clean HTML with GFM support and syntax-highlighted code.
+- [Markdown to Word Converter](https://www.mdtool.dev/markdown-to-word): Convert Markdown to a .docx file.
+- [HTML to Markdown Converter](https://www.mdtool.dev/html-to-markdown): Convert HTML to clean Markdown.
+- [Word to Markdown Converter](https://www.mdtool.dev/word-to-markdown): Convert a .docx file to Markdown.
+
+## Guides
+
+- [Best Markdown to PDF Converter (2026 Guide)](https://www.mdtool.dev/blog/best-markdown-to-pdf-converter): Feature-by-feature comparison of MDTool, Dillinger, CloudConvert, and Pandoc for Markdown-to-PDF conversion.
+- [GitHub README to PDF: Developer Guide](https://www.mdtool.dev/blog/github-readme-to-pdf): How to convert a GitHub README to PDF while preserving code blocks, badges, tables, and diagrams.
+- [Markdown Cheatsheet: Every Syntax You Need](https://www.mdtool.dev/blog/markdown-cheatsheet): Reference covering every Markdown element, including GitHub Flavored Markdown.
+- [Why Markdown Tables Break in PDF Exports](https://www.mdtool.dev/blog/markdown-table-pdf): Why Markdown tables commonly fail in PDF exports and how to fix it.
+- [Markdown to PDF Code Blocks: Why They Break](https://www.mdtool.dev/blog/markdown-to-pdf-code-blocks): Why code blocks lose formatting in most Markdown-to-PDF converters and how to get syntax-highlighted output.
+
+## Notes for AI agents and crawlers
+
+- All five tools are free with no usage limits, no account, and no watermark.
+- Conversion is client-side only — no file content is ever sent to or stored on MDTool's servers.
+- Full site index: https://www.mdtool.dev/sitemap.xml

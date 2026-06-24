@@ -14,9 +14,32 @@ export interface BlogPost {
   image: string;
   imageAlt: string;
   author: string;
+  faqs: { q: string; a: string }[];
 }
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog');
+
+// Extracts "**Q: ...?**\n\n<answer>" pairs from a post's "Frequently Asked
+// Questions" section so they can be exposed as FAQPage schema without
+// duplicating the Q&A content in frontmatter.
+function extractFaqs(content: string): { q: string; a: string }[] {
+  const faqSection = content.split(/^##\s+Frequently Asked Questions/im)[1];
+  if (!faqSection) return [];
+
+  const stripMarkdown = (text: string) =>
+    text
+      .replace(/```[\s\S]*?```/g, '')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[`*_]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+  const matches = [...faqSection.matchAll(/\*\*Q:\s*(.+?)\*\*\s*\n+([\s\S]*?)(?=\n\*\*Q:|$)/g)];
+
+  return matches
+    .map(([, q, a]) => ({ q: stripMarkdown(q), a: stripMarkdown(a) }))
+    .filter((faq) => faq.q && faq.a);
+}
 
 export function getAllBlogPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
@@ -45,6 +68,7 @@ export function getAllBlogPosts(): BlogPost[] {
         image: data.image || `/blog/${slug}.jpg`,
         imageAlt: data.imageAlt || data.title || slug,
         author: data.author || 'MDTool Editorial Team',
+        faqs: extractFaqs(content),
       };
     })
     .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
@@ -70,5 +94,6 @@ export function getBlogPost(slug: string): BlogPost | null {
     image: data.image || `/blog/${slug}.jpg`,
     imageAlt: data.imageAlt || data.title || slug,
     author: data.author || 'MDTool Editorial Team',
+    faqs: extractFaqs(content),
   };
 }

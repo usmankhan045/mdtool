@@ -67,6 +67,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         image={post.image}
         author={post.author}
       />
+      {post.faqs.length > 0 && <StructuredData type="faq" faqs={post.faqs} />}
 
       <main className="max-w-3xl mx-auto px-4 py-12">
         {/* Post Header */}

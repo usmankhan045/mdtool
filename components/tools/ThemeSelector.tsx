@@ -23,7 +23,7 @@ export default function ThemeSelector({ selected, onSelect }: Props) {
           key={theme.id}
           onClick={() => onSelect(theme.id)}
           title={theme.description}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border ${
+          className={`px-3.5 min-h-[44px] flex items-center rounded-full text-sm font-medium transition-all border ${
             selected === theme.id
               ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
               : 'bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:text-blue-600'

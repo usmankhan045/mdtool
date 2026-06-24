@@ -107,6 +107,30 @@ export default function MarkdownToWordPage() {
           </ol>
         </section>
 
+        {/* Format-specific substance */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Mermaid Diagrams Aren&apos;t in the Word Export Yet</h2>
+          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              HTML and PDF can both embed a diagram as a vector image directly in the page — an inline{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;svg&gt;</code> for HTML, or a captured
+              vector layer for PDF. The Word format (.docx, technically Office Open XML) doesn&apos;t work that
+              way. An image in a Word document has to exist as a separate embedded file with its own
+              relationship entry in the document&apos;s XML structure — a meaningfully different code path
+              than rendering a diagram onto a canvas.
+            </p>
+            <p>
+              MDTool&apos;s Word export, built on the{' '}
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">docx</code> library, is focused on getting
+              text structure right first: heading levels, bold/italic runs, bullet and numbered lists, and
+              tables all map cleanly to their native Word equivalents. Mermaid diagrams and embedded images
+              aren&apos;t wired into that pipeline yet. If your document needs the diagrams to render, use the{' '}
+              <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a> instead,
+              which renders Mermaid directly in the browser before generating the file.
+            </p>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="max-w-6xl mx-auto px-4 pb-12">
           <FaqSection items={FAQ_ITEMS} />
@@ -125,6 +149,9 @@ export default function MarkdownToWordPage() {
               </a>
               <a href="/word-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Word to Markdown →
+              </a>
+              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown Syntax Cheatsheet →
               </a>
             </div>
           </div>

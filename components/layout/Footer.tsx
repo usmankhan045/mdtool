@@ -39,7 +39,7 @@ export default function Footer() {
           <ul className="space-y-2">
             {TOOL_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-sm hover:text-blue-400 transition-colors">
+                <Link href={link.href} className="text-sm hover:text-blue-400 transition-colors inline-block py-1">
                   {link.label}
                 </Link>
               </li>
@@ -53,7 +53,7 @@ export default function Footer() {
           <ul className="space-y-2">
             {BLOG_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-sm hover:text-blue-400 transition-colors">
+                <Link href={link.href} className="text-sm hover:text-blue-400 transition-colors inline-block py-1">
                   {link.label}
                 </Link>
               </li>
@@ -62,8 +62,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-gray-800 px-4 py-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-gray-600">
+      <div className="border-t border-gray-800 px-4 py-4 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-600">
         <span>© {new Date().getFullYear()} MDTool. Free to use, forever.</span>
+        <div className="flex items-center gap-4">
+          <Link href="/about" className="hover:text-blue-400 transition-colors">About</Link>
+          <Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy</Link>
+          <Link href="/contact" className="hover:text-blue-400 transition-colors">Contact</Link>
+        </div>
         <span>No login required · No watermarks · Files never uploaded</span>
       </div>
     </footer>
