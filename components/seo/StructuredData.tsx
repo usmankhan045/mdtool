@@ -66,6 +66,11 @@ export default function StructuredData({ type, name, url, description, datePubli
       operatingSystem: 'Any',
       browserRequirements: 'Requires JavaScript',
       dateModified: toolDateModified,
+      author: {
+        '@type': 'Organization',
+        name: author || 'MDTool',
+        url: baseUrl,
+      },
       offers: {
         '@type': 'Offer',
         price: '0',

@@ -67,6 +67,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         image={post.image}
         author={post.author}
       />
+      <StructuredData
+        type="breadcrumb"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog' },
+          { name: post.title, url: `/blog/${slug}` },
+        ]}
+      />
       {post.faqs.length > 0 && <StructuredData type="faq" faqs={post.faqs} />}
 
       <main className="max-w-3xl mx-auto px-4 py-12">
