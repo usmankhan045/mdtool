@@ -35,25 +35,25 @@ export default function AboutPage() {
           <p>
             MDTool is a small set of single-purpose conversion tools: Markdown to PDF, Markdown to HTML,
             Markdown to Word, HTML to Markdown, and Word to Markdown. There is no account system, no
-            saved-document history, and no paywall — every tool is free to use without limits.
+            saved-document history, and no paywall. Every tool is free to use without limits.
           </p>
 
           <h2>How conversion actually works</h2>
           <p>
             Every conversion runs entirely in your browser using JavaScript. When you paste text or upload
-            a file, it is parsed and rendered locally on your device — it is never transmitted to an MDTool
+            a file, it is parsed and rendered locally on your device. It is never transmitted to an MDTool
             server. You can verify this yourself: open your browser&apos;s Network tab while converting and
             you&apos;ll see no outbound request carrying your document content.
           </p>
           <p>This is possible because each tool is built on well-established open-source libraries:</p>
           <ul>
-            <li><strong>marked</strong> — Markdown parsing</li>
-            <li><strong>highlight.js</strong> — syntax highlighting for code blocks</li>
-            <li><strong>mermaid</strong> — diagram rendering</li>
-            <li><strong>html2pdf.js</strong> — in-browser HTML-to-PDF generation</li>
-            <li><strong>docx</strong> — generating Word (.docx) files</li>
-            <li><strong>mammoth</strong> — reading Word (.docx) files</li>
-            <li><strong>turndown</strong> — HTML-to-Markdown conversion</li>
+            <li><strong>marked</strong>: Markdown parsing</li>
+            <li><strong>highlight.js</strong>: syntax highlighting for code blocks</li>
+            <li><strong>mermaid</strong>: diagram rendering</li>
+            <li><strong>html2pdf.js</strong>: in-browser HTML-to-PDF generation</li>
+            <li><strong>docx</strong>: generating Word (.docx) files</li>
+            <li><strong>mammoth</strong>: reading Word (.docx) files</li>
+            <li><strong>turndown</strong>: HTML-to-Markdown conversion</li>
           </ul>
           <p>
             None of these libraries require a server round-trip to do their job, which is why MDTool doesn&apos;t

@@ -3,7 +3,7 @@ import StructuredData from '@/components/seo/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with the MDTool team — bug reports, feature requests, and general questions.',
+  description: 'Get in touch with the MDTool team for bug reports, feature requests, and general questions.',
   alternates: {
     canonical: 'https://www.mdtool.dev/contact',
   },

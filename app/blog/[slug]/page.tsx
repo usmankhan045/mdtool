@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           };
           return (
             <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
-              <h3 className="font-semibold text-blue-900 mb-2">Try it yourself — free</h3>
+              <h3 className="font-semibold text-blue-900 mb-2">Try it yourself, free</h3>
               <p className="text-blue-800 text-sm mb-4">{cta.description}</p>
               <a href={cta.href} className="inline-block px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
                 {cta.label}

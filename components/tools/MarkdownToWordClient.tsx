@@ -10,7 +10,7 @@ const SAMPLE_MARKDOWN = `# Welcome to MDTool
 
 ## Headings and Text
 
-MDTool converts your **Markdown** into a real, editable Word document — not a screenshot.
+MDTool converts your **Markdown** into a real, editable Word document, not a screenshot.
 
 ## Table Example
 
@@ -39,7 +39,7 @@ export default function MarkdownToWordClient() {
     <div className="space-y-4">
       {/* Controls Bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-        <p className="text-sm text-gray-500">Converts to a real, editable .docx file — opens in Word, Google Docs, and LibreOffice.</p>
+        <p className="text-sm text-gray-500">Converts to a real, editable .docx file that opens in Word, Google Docs, and LibreOffice.</p>
         <DownloadWordButton markdown={markdown} filename="document.docx" />
       </div>
 

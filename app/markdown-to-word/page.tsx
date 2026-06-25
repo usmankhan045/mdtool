@@ -6,11 +6,11 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Free Markdown to Word Converter — Real .docx, No Signup',
-  description: 'Convert Markdown to a real, editable .docx document free, with no signup. Opens in Word, Google Docs, and LibreOffice — try it now.',
+  title: 'Free Markdown to Word Converter: Real .docx, No Signup',
+  description: 'Convert Markdown to a real, editable .docx document free, with no signup. Opens in Word, Google Docs, and LibreOffice. Try it now.',
   keywords: ['markdown to word', 'md to word', 'markdown to docx', 'convert markdown to word', 'markdown word converter'],
   openGraph: {
-    title: 'Free Markdown to Word Converter — Real .docx, No Signup',
+    title: 'Free Markdown to Word Converter: Real .docx, No Signup',
     description: 'Convert Markdown to an editable .docx file instantly. Opens in Word, Google Docs, and LibreOffice. 100% free, no login.',
     url: 'https://www.mdtool.dev/markdown-to-word',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
@@ -29,30 +29,30 @@ const FAQ_ITEMS = [
         <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
           Office Open XML
         </a>{' '}
-        standard) — not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.
+        standard), not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.
       </>
     ),
     text: 'Yes. MDTool generates a genuine .docx file (Office Open XML), editable in Microsoft Word, Google Docs, or LibreOffice Writer.',
   },
   {
     q: 'Does it support tables in Word?',
-    a: 'Yes. Markdown tables convert to native Word table grids — real rows and columns you can resize, restyle, and edit directly in Word, not an image or plain-text approximation.',
+    a: 'Yes. Markdown tables convert to native Word table grids: real rows and columns you can resize, restyle, and edit directly in Word, not an image or plain-text approximation.',
     text: 'Yes. Markdown tables convert to native Word table grids you can resize, restyle, and edit directly in Word.',
   },
   {
     q: 'Can I open it in Google Docs?',
-    a: 'Yes. Because the output is a standard .docx file rather than a proprietary format, Google Docs opens it directly — just upload it to Drive or use File → Open, no special import step needed.',
+    a: 'Yes. Because the output is a standard .docx file rather than a proprietary format, Google Docs opens it directly. Just upload it to Drive or use File → Open, no special import step needed.',
     text: 'Yes. The output is a standard .docx file, so Google Docs opens it directly with no special import step.',
   },
   {
     q: 'What Markdown elements are supported?',
-    a: 'Headings (H1–H6), bold, italic, strikethrough, links, ordered and unordered lists, tables, fenced code blocks, and blockquotes all convert to their native Word equivalents. Mermaid diagrams and embedded images are not yet supported in the Word export.',
-    text: 'Headings (H1–H6), bold, italic, strikethrough, links, lists, tables, fenced code blocks, and blockquotes all convert to native Word equivalents.',
+    a: 'Headings (H1 to H6), bold, italic, strikethrough, links, ordered and unordered lists, tables, fenced code blocks, and blockquotes all convert to their native Word equivalents. Mermaid diagrams and embedded images are not yet supported in the Word export.',
+    text: 'Headings (H1 to H6), bold, italic, strikethrough, links, lists, tables, fenced code blocks, and blockquotes all convert to native Word equivalents.',
   },
   {
     q: 'Is there a file size limit?',
-    a: 'No hard limit. Conversion happens entirely in your browser rather than on a server, so the only practical ceiling is your own device’s memory for extremely large files — there’s no upload cap to hit.',
-    text: 'No hard limit — conversion runs entirely in your browser, so there’s no server-side upload cap.',
+    a: 'No hard limit. Conversion happens entirely in your browser rather than on a server, so the only practical ceiling is your own device’s memory for extremely large files. There’s no upload cap to hit.',
+    text: 'No hard limit. Conversion runs entirely in your browser, so there’s no server-side upload cap.',
   },
   {
     q: 'Does it handle code blocks?',
@@ -66,7 +66,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Does it support Mermaid diagrams or images like the PDF converter?',
-    a: 'Word documents render fonts and basic layout very differently from PDFs — Mermaid diagrams and embedded images are not yet supported in the Word export. Use the Markdown to PDF tool if you need diagrams.',
+    a: 'Word documents render fonts and basic layout very differently from PDFs. Mermaid diagrams and embedded images are not yet supported in the Word export. Use the Markdown to PDF tool if you need diagrams.',
     text: 'Mermaid diagrams and embedded images are not yet supported in the Word export. Use the Markdown to PDF tool if you need diagrams.',
   },
   {
@@ -77,7 +77,7 @@ const FAQ_ITEMS = [
   {
     q: 'Is this really free, with no signup or watermark?',
     a: 'Yes. There’s no account, no trial period, and no watermark on the downloaded file. Since the .docx is built in your browser rather than on a paid server pipeline, there’s no usage-based cost to recover, which is why the tool can stay free with no catch.',
-    text: 'Yes — no account, no trial period, and no watermark, since conversion runs client-side with no server cost to recover.',
+    text: 'Yes: no account, no trial period, and no watermark, since conversion runs client-side with no server cost to recover.',
   },
 ];
 
@@ -95,7 +95,7 @@ export default function MarkdownToWordPage() {
           'Tables, lists, and headings preserved',
           'Opens in Word, Google Docs, and LibreOffice',
           'Live Word-style preview',
-          'Client-side processing — files never uploaded',
+          'Client-side processing, files never uploaded',
         ]}
       />
       <StructuredData
@@ -111,7 +111,7 @@ export default function MarkdownToWordPage() {
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Free Markdown to Word Converter — Real .docx, No Signup
+              Free Markdown to Word Converter: Real .docx, No Signup
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
               Turn Markdown into a real, editable .docx that opens in Word, Google Docs, and LibreOffice.
@@ -131,9 +131,9 @@ export default function MarkdownToWordPage() {
           <div className="flex flex-col md:flex-row md:items-start gap-8">
             <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
               <strong>Markdown to Word conversion</strong> turns Markdown syntax into a real, editable .docx
-              file — headings become Word heading styles, lists become native bullet or numbered lists, and
+              file: headings become Word heading styles, lists become native bullet or numbered lists, and
               tables become Word table grids. MDTool generates the .docx entirely in your browser, with no
-              upload step, so the file opens directly in Microsoft Word, Google Docs, or LibreOffice Writer —
+              upload step, so the file opens directly in Microsoft Word, Google Docs, or LibreOffice Writer,
               free, with no signup.
             </p>
             <ConversionDiagram from="Markdown" to="Word (.docx)" />
@@ -149,13 +149,13 @@ export default function MarkdownToWordPage() {
         <section className="max-w-6xl mx-auto px-4 py-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to Word Free</h2>
           <p className="text-gray-700 leading-relaxed max-w-3xl mb-4">
-            Converting Markdown to Word takes four steps and no account — paste your content, watch the
+            Converting Markdown to Word takes four steps and no account: paste your content, watch the
             preview, and download a real .docx file with nothing held back behind a signup screen.
           </p>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
-            <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file — no account required</li>
+            <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file, no account required</li>
             <li>See the live Word-style preview update in real-time on the right as you type</li>
-            <li>Click <strong>Download Word — Free</strong> to save your .docx file, with no paywall or watermark</li>
+            <li>Click <strong>Download Word, Free</strong> to save your .docx file, with no paywall or watermark</li>
             <li>Open it directly in Microsoft Word, Google Docs, or LibreOffice Writer</li>
           </ol>
         </section>
@@ -172,7 +172,7 @@ export default function MarkdownToWordPage() {
                 <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">docx</a>{' '}
                 library, which maps Markdown structure to native Office Open XML elements rather than
                 approximating formatting with plain text. Headings (H1 through H6) become real Word heading
-                styles, not just bold text — bold, italic, strikethrough, and links become native character
+                styles, not just bold text. Bold, italic, strikethrough, and links become native character
                 formatting, ordered and unordered lists become native Word lists, tables become native table
                 grids, and blockquotes and fenced code blocks get their own paragraph styles.
               </p>
@@ -185,7 +185,7 @@ export default function MarkdownToWordPage() {
                 </thead>
                 <tbody>
                   <tr className="border-t border-gray-200">
-                    <td className="px-3 py-2 font-medium">Headings (H1–H6)</td>
+                    <td className="px-3 py-2 font-medium">Headings (H1 to H6)</td>
                     <td className="px-3 py-2">✅ Native Word heading styles</td>
                   </tr>
                   <tr className="border-t border-gray-200 bg-gray-50">
@@ -210,7 +210,7 @@ export default function MarkdownToWordPage() {
                   </tr>
                   <tr className="border-t border-gray-200">
                     <td className="px-3 py-2 font-medium">Mermaid diagrams, embedded images</td>
-                    <td className="px-3 py-2">❌ Not yet supported — use Markdown to PDF</td>
+                    <td className="px-3 py-2">❌ Not yet supported (use Markdown to PDF)</td>
                   </tr>
                 </tbody>
               </table>
@@ -220,7 +220,7 @@ export default function MarkdownToWordPage() {
           <div className="mb-8">
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Compatible With Google Docs and LibreOffice</h3>
             <p className="text-gray-700 leading-relaxed max-w-3xl">
-              Yes — explicitly. The download is a standard .docx file built on the Office Open XML
+              Yes, explicitly. The download is a standard .docx file built on the Office Open XML
               specification, not a proprietary MDTool format, so it opens the same way any other .docx would:
               directly in Microsoft Word, uploaded into Google Docs, or opened in LibreOffice Writer, with
               heading styles, lists, and tables intact in all three.
@@ -242,7 +242,7 @@ export default function MarkdownToWordPage() {
           <div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Is It Really Free</h3>
             <p className="text-gray-700 leading-relaxed max-w-3xl">
-              Yes, with no catch. The .docx file is generated entirely client-side, in your browser — there&apos;s
+              Yes, with no catch. The .docx file is generated entirely client-side, in your browser, so there&apos;s
               no server doing the conversion, which is also why there&apos;s no usage-based cost to recover
               through a paywall or watermark. There&apos;s no account to create, no email to hand over, and no
               trial period that reverts to paid after a few conversions. The output file is identical whether
@@ -257,11 +257,11 @@ export default function MarkdownToWordPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Mermaid Diagrams Aren&apos;t in the Word Export Yet</h2>
           <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
             <p>
-              HTML and PDF can both embed a diagram as a vector image directly in the page — an inline{' '}
+              HTML and PDF can both embed a diagram as a vector image directly in the page: an inline{' '}
               <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;svg&gt;</code> for HTML, or a captured
               vector layer for PDF. The Word format (.docx, technically Office Open XML) doesn&apos;t work that
               way. An image in a Word document has to exist as a separate embedded file with its own
-              relationship entry in the document&apos;s XML structure — a meaningfully different code path
+              relationship entry in the document&apos;s XML structure, a meaningfully different code path
               than rendering a diagram onto a canvas, which is why it isn&apos;t wired into the table above yet.
             </p>
             <p>
@@ -270,7 +270,7 @@ export default function MarkdownToWordPage() {
               which renders Mermaid directly in the browser before generating the file. In practice this
               trade-off rarely matters for the documents people actually send through a Word converter:
               contracts, reports, proposals, and meeting notes are almost entirely headings, body text, and
-              tables — exactly what the Office Open XML pipeline handles natively. Diagrams tend to show up in
+              tables, exactly what the Office Open XML pipeline handles natively. Diagrams tend to show up in
               technical READMEs and developer docs, which are also exactly the documents most likely to end up
               as a PDF or web page rather than a .docx file, so the PDF export is the better fit for that case
               anyway.

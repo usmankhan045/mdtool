@@ -41,8 +41,8 @@ export default function PrivacyPage() {
           <p>MDTool does not require an account, so we don&apos;t collect names, emails, or passwords to use the tools. We do use:</p>
           <ul>
             <li>
-              <strong>Analytics (Google Analytics):</strong> standard, aggregated usage data — pages visited,
-              approximate location (country/city level), device/browser type — to understand how the site is
+              <strong>Analytics (Google Analytics):</strong> standard, aggregated usage data, such as pages visited,
+              approximate location (country/city level), and device/browser type, to understand how the site is
               used. This does not include the content of anything you convert.
             </li>
             <li>

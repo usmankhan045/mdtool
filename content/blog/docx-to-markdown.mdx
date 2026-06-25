@@ -17,27 +17,27 @@ ctaTool:
 
 Word's `.docx` format is an excellent page-layout format. It handles fonts, section breaks, tracked changes, and print layout in a way that plain text never will. But the same rich-format container that makes Word powerful for editing becomes friction the moment content needs to move into a developer workflow.
 
-GitHub's 2025 Octoverse report (published October 2025) counted 630 million total repositories on the platform, with 121 million new repositories added in a single year — that's 230+ new repositories created every minute. Every one of those repositories that includes documentation files expects Markdown, not `.docx`. A README rendered in a GitHub repository, a wiki page, a contributing guide, a changelog — all of these live as `.md` files because that is the format GitHub's renderer speaks natively.
+GitHub's 2025 Octoverse report (published October 2025) counted 630 million total repositories on the platform, with 121 million new repositories added in a single year, which works out to 230+ new repositories created every minute. Every one of those repositories that includes documentation files expects Markdown, not `.docx`. A README rendered in a GitHub repository, a wiki page, a contributing guide, a changelog: all of these live as `.md` files because that is the format GitHub's renderer speaks natively.
 
 The same is true for static site generators like Jekyll, Hugo, Eleventy, and Astro, which build pages from Markdown source files. And for Obsidian, where notes live as plain `.md` files in a folder structure. And for docs platforms like MkDocs, Docusaurus, and GitBook. Converting an existing Word document to Markdown is the bridging step that lets content originally written in a word processor move cleanly into any of these platforms.
 
 ## How MDTool Converts .docx to Markdown
 
-The conversion is a two-stage pipeline. Both stages are open-source MIT-licensed JavaScript libraries that run entirely in your browser — no file is uploaded, no server is involved.
+The conversion is a two-stage pipeline. Both stages are open-source MIT-licensed JavaScript libraries that run entirely in your browser: no file is uploaded, no server is involved.
 
-**Stage 1 — mammoth.js extracts the document structure.** [mammoth.js](https://github.com/mwilliamson/mammoth.js) (6,200+ GitHub stars, BSD-2-Clause license) reads the DOCX file's internal XML — a `.docx` file is actually a ZIP archive containing XML files that describe the document's content and styles — and maps Word's named paragraph styles to HTML equivalents. A paragraph styled as "Heading 1" in Word becomes `<h1>`, a "Heading 2" becomes `<h2>`, a bulleted list item becomes `<li>`, and so on. The key word is *named styles*: mammoth.js reads what Word says the structure is, not what it looks like on screen.
+**Stage 1: mammoth.js extracts the document structure.** [mammoth.js](https://github.com/mwilliamson/mammoth.js) (6,200+ GitHub stars, BSD-2-Clause license) reads the DOCX file's internal XML (a `.docx` file is actually a ZIP archive containing XML files that describe the document's content and styles) and maps Word's named paragraph styles to HTML equivalents. A paragraph styled as "Heading 1" in Word becomes `<h1>`, a "Heading 2" becomes `<h2>`, a bulleted list item becomes `<li>`, and so on. The key word is *named styles*: mammoth.js reads what Word says the structure is, not what it looks like on screen.
 
-**Stage 2 — turndown renders GitHub Flavored Markdown.** [turndown](https://github.com/mixmark-io/turndown) (11,300+ GitHub stars, MIT license, latest release v7.2.4, April 2026) takes the HTML output from mammoth and converts it to Markdown. With the [`turndown-plugin-gfm`](https://github.com/mixmark-io/turndown-plugin-gfm) extension enabled (128 GitHub stars, MIT license), the output targets GitHub Flavored Markdown specifically: tables become pipe tables, code blocks use triple-backtick fenced syntax, and lists use the `- item` dash-space format that renders correctly on GitHub, GitLab, Obsidian, and every major static site generator.
+**Stage 2: turndown renders GitHub Flavored Markdown.** [turndown](https://github.com/mixmark-io/turndown) (11,300+ GitHub stars, MIT license, latest release v7.2.4, April 2026) takes the HTML output from mammoth and converts it to Markdown. With the [`turndown-plugin-gfm`](https://github.com/mixmark-io/turndown-plugin-gfm) extension enabled (128 GitHub stars, MIT license), the output targets GitHub Flavored Markdown specifically: tables become pipe tables, code blocks use triple-backtick fenced syntax, and lists use the `- item` dash-space format that renders correctly on GitHub, GitLab, Obsidian, and every major static site generator.
 
-No single JavaScript library converts DOCX directly to Markdown in one pass — the two-stage approach (DOCX→HTML→Markdown) is the established pattern in the JavaScript ecosystem precisely because mammoth.js has the best DOCX parsing and turndown has the best HTML→Markdown conversion, and combining both stages produces better output than any single-library approach.
+No single JavaScript library converts DOCX directly to Markdown in one pass. The two-stage approach (DOCX→HTML→Markdown) is the established pattern in the JavaScript ecosystem precisely because mammoth.js has the best DOCX parsing and turndown has the best HTML→Markdown conversion, and combining both stages produces better output than any single-library approach.
 
 ## Formatting That Survives the Conversion
 
-Because mammoth.js maps *structural* styles — not visual formatting — these elements convert reliably:
+Because mammoth.js maps *structural* styles, not visual formatting, these elements convert reliably:
 
 | Word element | Markdown output | Notes |
 |---|---|---|
-| Heading 1 – Heading 6 styles | `#` through `######` | Requires named Word style, not manual bolding |
+| Heading 1 to Heading 6 styles | `#` through `######` | Requires named Word style, not manual bolding |
 | Bold / italic | `**bold**` / `*italic*` | Both inline and paragraph-level |
 | Bullet lists | `- item` | Nested lists convert with indentation |
 | Numbered lists | `1. item` | Auto-numbered correctly |
@@ -45,7 +45,7 @@ Because mammoth.js maps *structural* styles — not visual formatting — these 
 | Simple tables | GFM pipe tables | One header row, no merged cells |
 | Inline code | `` `code` `` | If styled as Code Character in Word |
 
-The conversion works cleanest when the source document was written using Word's built-in styles — the Styles gallery in the Home tab. Documents where headings were created by making text bigger and bold by hand rather than applying a "Heading 1" style will not convert with heading hierarchy intact, because Word's own XML stores those paragraphs as body text with font overrides, not as structural headings.
+The conversion works cleanest when the source document was written using Word's built-in styles, the Styles gallery in the Home tab. Documents where headings were created by making text bigger and bold by hand rather than applying a "Heading 1" style will not convert with heading hierarchy intact, because Word's own XML stores those paragraphs as body text with font overrides, not as structural headings.
 
 ## What to Expect With Complex Word Documents
 
@@ -53,7 +53,7 @@ Four patterns in Word documents require manual attention after conversion:
 
 **Embedded images** are not extracted. mammoth.js does not output base64-encoded images or image references in its default configuration. An image-heavy document will convert with all its text and structure intact, but images will be absent from the output. Plan to re-add images manually, or use Pandoc with `--extract-media` if image extraction is required.
 
-**Merged table cells** are simplified. GFM pipe tables have no syntax for `colspan` or `rowspan`. A Word table with merged cells is flattened into a rectangular grid — cells are split rather than merged. The content is preserved but the merge layout is lost. Rebuild merged-cell tables manually or use an HTML `<table>` fallback in Markdown.
+**Merged table cells** are simplified. GFM pipe tables have no syntax for `colspan` or `rowspan`. A Word table with merged cells is flattened into a rectangular grid, with cells split rather than merged. The content is preserved but the merge layout is lost. Rebuild merged-cell tables manually or use an HTML `<table>` fallback in Markdown.
 
 **Tracked changes and comments** are stripped. Only the accepted (current) version of the text appears in the Markdown output. Accept or reject all tracked changes in Word before converting if you need to control which version is exported.
 
@@ -63,15 +63,15 @@ Four patterns in Word documents require manual attention after conversion:
 
 Even a clean conversion benefits from a quick pass before publishing:
 
-1. **Check heading hierarchy.** Verify that no heading levels are skipped — jumping from `##` to `####` without a `###` in between breaks navigation on MkDocs and Docusaurus. Use a Markdown linter or a quick find-and-replace scan.
+1. **Check heading hierarchy.** Verify that no heading levels are skipped, since jumping from `##` to `####` without a `###` in between breaks navigation on MkDocs and Docusaurus. Use a Markdown linter or a quick find-and-replace scan.
 
 2. **Remove duplicate blank lines.** Word documents often have extra paragraph breaks between sections that convert to multiple consecutive blank lines. One blank line between paragraphs is standard; more than two is typically noise.
 
 3. **Fix image references.** Converted `.md` files will have placeholder text or empty image references where images were. Replace these with valid relative paths to image files after you've added the images to your project's assets folder.
 
-4. **Audit table output.** Scan every table in the output for cells that look suspiciously short — this is often the symptom of a merged cell being split. Rebuild these manually.
+4. **Audit table output.** Scan every table in the output for cells that look suspiciously short, which is often the symptom of a merged cell being split. Rebuild these manually.
 
-5. **Add YAML front matter if needed.** Static site generators like Jekyll and Hugo expect a YAML front matter block at the top of every content file (`---` delimiters with `title`, `date`, `tags` fields). This is not something the converter adds — it's a per-document step. See the [Markdown cheatsheet](/blog/markdown-cheatsheet) for front matter syntax.
+5. **Add YAML front matter if needed.** Static site generators like Jekyll and Hugo expect a YAML front matter block at the top of every content file (`---` delimiters with `title`, `date`, `tags` fields). This is not something the converter adds; it's a per-document step. See the [Markdown cheatsheet](/blog/markdown-cheatsheet) for front matter syntax.
 
 ## Frequently Asked Questions
 
@@ -81,7 +81,7 @@ No. Because MDTool runs the conversion in your browser, there is no server-side 
 
 **Q: Can I convert a .doc file (older Word format)?**
 
-Not directly — only `.docx` files (Word 2007 and later) are supported. Legacy `.doc` files use a binary format that mammoth.js does not support. Open the file in Word or LibreOffice and save a copy as `.docx` first.
+Not directly. Only `.docx` files (Word 2007 and later) are supported. Legacy `.doc` files use a binary format that mammoth.js does not support. Open the file in Word or LibreOffice and save a copy as `.docx` first.
 
 **Q: Does the output work on GitHub without any cleanup?**
 
@@ -89,19 +89,19 @@ For text-heavy documents with heading styles and simple tables, the output is ty
 
 **Q: What's the difference between MDTool and word2md.com?**
 
-Both use a JavaScript-based browser converter, but MDTool names its underlying libraries ([mammoth.js](/word-to-markdown) + turndown) and processes files client-side with no upload. word2md.com is the original browser-based converter and is open-source — both are reasonable choices for one-off conversions.
+Both use a JavaScript-based browser converter, but MDTool names its underlying libraries ([mammoth.js](/word-to-markdown) + turndown) and processes files client-side with no upload. word2md.com is the original browser-based converter and is open-source. Both are reasonable choices for one-off conversions.
 
 **Q: Can I convert multiple Word files at once?**
 
-Not in the browser tool — one file at a time. For batch conversion, Pandoc's command line handles a full directory of `.docx` files in a single shell loop. Microsoft's [MarkItDown](https://github.com/microsoft/markitdown) Python library is also designed for bulk pipeline use, supporting 12+ file formats including DOCX.
+Not in the browser tool: one file at a time. For batch conversion, Pandoc's command line handles a full directory of `.docx` files in a single shell loop. Microsoft's [MarkItDown](https://github.com/microsoft/markitdown) Python library is also designed for bulk pipeline use, supporting 12+ file formats including DOCX.
 
 **Q: What Markdown flavor does the converter output?**
 
 GitHub Flavored Markdown (GFM). This is compatible with GitHub, GitLab, Obsidian, Jekyll, Hugo, Eleventy, Astro, MkDocs, Docusaurus, and most other tools that render Markdown. If your target platform uses strict CommonMark without GFM extensions (rare), pipe tables may need to be reformatted.
 
-**Q: My document had hyperlinks — do they survive?**
+**Q: My document had hyperlinks, do they survive?**
 
-Yes. Hyperlinks in Word convert to `[text](url)` Markdown syntax with the URL intact. The one exception is hyperlinks to other `.docx` files on a local drive or SharePoint — those URLs typically break after conversion because the paths no longer exist in the Markdown context.
+Yes. Hyperlinks in Word convert to `[text](url)` Markdown syntax with the URL intact. The one exception is hyperlinks to other `.docx` files on a local drive or SharePoint, where those URLs typically break after conversion because the paths no longer exist in the Markdown context.
 
 **Q: Does the converter handle nested lists?**
 

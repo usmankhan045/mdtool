@@ -48,7 +48,7 @@ export default function EmbeddedTool() {
       {/* Header bar */}
       <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-blue-100">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-gray-700">Try it — Markdown to PDF</span>
+          <span className="text-sm font-semibold text-gray-700">Try it: Markdown to PDF</span>
           <span className="text-xs text-gray-400 hidden sm:inline">Live converter</span>
         </div>
         <Link
@@ -124,7 +124,7 @@ export default function EmbeddedTool() {
       {/* Footer CTA */}
       <div className="px-4 py-2.5 bg-blue-600 text-center">
         <Link href="/markdown-to-pdf" className="text-white text-xs font-medium hover:underline">
-          Need more features? Open the full tool — themes, Mermaid diagrams, file upload →
+          Need more features? Open the full tool for themes, Mermaid diagrams, and file upload →
         </Link>
       </div>
     </div>

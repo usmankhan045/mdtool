@@ -9,12 +9,12 @@ author: "MDTool Editorial Team"
 ---
 
 <Callout type="info">
-  **Key takeaways:** "Markdown to DOCX" and "Markdown to Word" are the same conversion — `.docx` is just the file extension. A genuine `.docx` stores content inside the standard Office Open XML `<w:body>` element; some converters instead wrap rendered HTML in a Word-only shim, which opens fine in Word but appears blank in Google Docs or LibreOffice. MDTool builds real OOXML elements directly from a Markdown token AST, so the output works identically across all three.
+  **Key takeaways:** "Markdown to DOCX" and "Markdown to Word" are the same conversion, since `.docx` is just the file extension. A genuine `.docx` stores content inside the standard Office Open XML `<w:body>` element; some converters instead wrap rendered HTML in a Word-only shim, which opens fine in Word but appears blank in Google Docs or LibreOffice. MDTool builds real OOXML elements directly from a Markdown token AST, so the output works identically across all three.
 </Callout>
 
 ## Markdown to DOCX Is the Same Thing as Markdown to Word
 
-"Markdown to DOCX" and "Markdown to Word" describe the same conversion — `.docx` is just the literal file extension Word documents use, so anyone searching for a DOCX-specific converter wants exactly what a Word converter produces. But not every tool that claims to produce a `.docx` file actually does. Some generate a real Word document. Others wrap rendered HTML in a thin shim and hope Word doesn't look too closely.
+"Markdown to DOCX" and "Markdown to Word" describe the same conversion. `.docx` is just the literal file extension Word documents use, so anyone searching for a DOCX-specific converter wants exactly what a Word converter produces. But not every tool that claims to produce a `.docx` file actually does. Some generate a real Word document. Others wrap rendered HTML in a thin shim and hope Word doesn't look too closely.
 
 This matters more than it sounds like it should, because the difference shows up the moment you open the file somewhere other than Microsoft Word itself. This guide explains what actually makes a `.docx` file valid, what MDTool's converter builds under the hood, which Markdown elements survive the conversion, and what to check if a converted document looks wrong once you open it.
 
@@ -22,23 +22,23 @@ This matters more than it sounds like it should, because the difference shows up
 
 ## What Makes a Real .docx Different From a Fake One
 
-A `.docx` file is not a single document — it's a zip archive of XML files, structured according to the [Office Open XML](https://www.ecma-international.org/publications-and-standards/standards/ecma-376/) (OOXML) standard. The visible content of the document lives in a specific part of that archive, `word/document.xml`, inside a `<w:body>` element with a defined schema for paragraphs, runs, tables, and styles.
+A `.docx` file is not a single document; it's a zip archive of XML files, structured according to the [Office Open XML](https://www.ecma-international.org/publications-and-standards/standards/ecma-376/) (OOXML) standard. The visible content of the document lives in a specific part of that archive, `word/document.xml`, inside a `<w:body>` element with a defined schema for paragraphs, runs, tables, and styles.
 
-That's the genuine path. There's also a shortcut some converters take: render the Markdown to HTML, then wrap that HTML in a Word-readable container using an `altChunk` reference or an MHTML-based shim (a technique used by libraries like `html-docx-js`). Microsoft Word has special-cased support for reading these shims, so the file *does* open correctly in Word. But the visible content in an altChunk-based file lives outside the real `<w:body>` — it's attached as an external HTML part that Word knows how to import on open.
+That's the genuine path. There's also a shortcut some converters take: render the Markdown to HTML, then wrap that HTML in a Word-readable container using an `altChunk` reference or an MHTML-based shim (a technique used by libraries like `html-docx-js`). Microsoft Word has special-cased support for reading these shims, so the file *does* open correctly in Word. But the visible content in an altChunk-based file lives outside the real `<w:body>`: it's attached as an external HTML part that Word knows how to import on open.
 
-The problem is that nothing other than Word knows to do that import. Open the same file in Google Docs, LibreOffice Writer, or a programmatic reader like `mammoth.js`, and you'll often see a blank or near-empty document, because those tools read `<w:body>` directly and the altChunk shim never populated it. If you've ever converted a Markdown file to "Word," had it look fine in Word, and then seen a blank page after uploading to Google Drive — this is almost certainly why.
+The problem is that nothing other than Word knows to do that import. Open the same file in Google Docs, LibreOffice Writer, or a programmatic reader like `mammoth.js`, and you'll often see a blank or near-empty document, because those tools read `<w:body>` directly and the altChunk shim never populated it. If you've ever converted a Markdown file to "Word," had it look fine in Word, and then seen a blank page after uploading to Google Drive, this is almost certainly why.
 
 ## What MDTool Generates Under the Hood
 
-MDTool's Word export doesn't render HTML at any point in the pipeline. The Markdown source is parsed with [marked](https://marked.js.org/)'s lexer into a token AST — the same parse step used internally across MDTool's other converters — and that AST is walked directly into native OOXML objects using the [docx](https://docx.js.org/) library, the same engine documented on the [Markdown to Word converter](/markdown-to-word) page itself.
+MDTool's Word export doesn't render HTML at any point in the pipeline. The Markdown source is parsed with [marked](https://marked.js.org/)'s lexer into a token AST, the same parse step used internally across MDTool's other converters, and that AST is walked directly into native OOXML objects using the [docx](https://docx.js.org/) library, the same engine documented on the [Markdown to Word converter](/markdown-to-word) page itself.
 
-Concretely: a heading token becomes a `Paragraph` with a real `HeadingLevel` (1 through 6) attached, not bold text styled to look like a heading. A bold or italic run becomes a `TextRun` with `bold` or `italics` set on it directly. A link becomes an `ExternalHyperlink` object — a native, clickable Word hyperlink — rather than plain underlined text with a URL typed out next to it. A table becomes a real `Table` made of `TableRow` and `TableCell` objects, with the header row given its own shading. None of this goes through an HTML intermediate step, which is exactly why the output opens identically in Word, Google Docs, and LibreOffice: the file is built from the same `<w:body>` schema all three readers expect, not assembled around a Word-specific shortcut.
+Concretely: a heading token becomes a `Paragraph` with a real `HeadingLevel` (1 through 6) attached, not bold text styled to look like a heading. A bold or italic run becomes a `TextRun` with `bold` or `italics` set on it directly. A link becomes an `ExternalHyperlink` object, a native, clickable Word hyperlink, rather than plain underlined text with a URL typed out next to it. A table becomes a real `Table` made of `TableRow` and `TableCell` objects, with the header row given its own shading. None of this goes through an HTML intermediate step, which is exactly why the output opens identically in Word, Google Docs, and LibreOffice: the file is built from the same `<w:body>` schema all three readers expect, not assembled around a Word-specific shortcut.
 
 ## Formatting That Survives the Conversion
 
 Because the conversion maps Markdown tokens directly to OOXML elements, the formatting that survives is the formatting with a clean, direct mapping to a native Word equivalent:
 
-- **Headings (H1–H6)** → native Word heading styles, visible in the Navigation Pane
+- **Headings (H1 to H6)** → native Word heading styles, visible in the Navigation Pane
 - **Bold, italic, strikethrough** → native character formatting
 - **Links** → native clickable hyperlinks
 - **Ordered and unordered lists** → native Word list formatting
@@ -46,7 +46,7 @@ Because the conversion maps Markdown tokens directly to OOXML elements, the form
 - **Blockquotes** → indented paragraphs with a left border rule
 - **Fenced code blocks** → monospace paragraphs with light shading
 
-Two things currently fall outside that mapping. **Mermaid diagrams and embedded images** aren't supported in the Word export — an image in a `.docx` file has to exist as a separate embedded file with its own relationship entry in the document's XML, a meaningfully different code path than rendering a diagram to a canvas. If your document needs diagrams to render, the [Markdown to PDF converter](/markdown-to-pdf) handles that case instead, since PDF and HTML output can both embed vector graphics directly. **Deeply nested sub-lists** are also a known current limitation — list items currently convert at a single, consistent indent level rather than preserving multiple nesting levels, so a deeply nested outline will need manual re-indenting in Word after conversion.
+Two things currently fall outside that mapping. **Mermaid diagrams and embedded images** aren't supported in the Word export. An image in a `.docx` file has to exist as a separate embedded file with its own relationship entry in the document's XML, a meaningfully different code path than rendering a diagram to a canvas. If your document needs diagrams to render, the [Markdown to PDF converter](/markdown-to-pdf) handles that case instead, since PDF and HTML output can both embed vector graphics directly. **Deeply nested sub-lists** are also a known current limitation: list items currently convert at a single, consistent indent level rather than preserving multiple nesting levels, so a deeply nested outline will need manual re-indenting in Word after conversion.
 
 For the complete syntax reference behind every element listed above, see the [Markdown cheatsheet](/blog/markdown-cheatsheet).
 
@@ -54,15 +54,15 @@ For the complete syntax reference behind every element listed above, see the [Ma
 
 Most "the conversion looks wrong" reports trace back to one of a few specific causes:
 
-**The document opens blank in Google Docs or LibreOffice, but fine in Word.** This is the altChunk/HTML-shim problem described above — the converter you used isn't generating a genuine `<w:body>`. Switching to a converter that builds real OOXML elements (rather than wrapping HTML) resolves it permanently, not just for that one file.
+**The document opens blank in Google Docs or LibreOffice, but fine in Word.** This is the altChunk/HTML-shim problem described above: the converter you used isn't generating a genuine `<w:body>`. Switching to a converter that builds real OOXML elements (rather than wrapping HTML) resolves it permanently, not just for that one file.
 
-**Headings look right but don't show up in the Navigation Pane or an auto-generated table of contents.** Some converters fake heading appearance with bold text and a larger font size instead of applying an actual `Heading 1`–`Heading 6` style. Visually identical, structurally invisible to Word. Check by opening View → Navigation Pane — if it's empty, the headings weren't mapped to real styles.
+**Headings look right but don't show up in the Navigation Pane or an auto-generated table of contents.** Some converters fake heading appearance with bold text and a larger font size instead of applying an actual `Heading 1` to `Heading 6` style. Visually identical, structurally invisible to Word. Check by opening View → Navigation Pane; if it's empty, the headings weren't mapped to real styles.
 
-**Tables show up as plain text with pipe characters still in it.** Markdown tables are a GitHub Flavored Markdown extension, not part of core Markdown — a parser without GFM support will print the pipe syntax literally instead of building a table.
+**Tables show up as plain text with pipe characters still in it.** Markdown tables are a GitHub Flavored Markdown extension, not part of core Markdown, so a parser without GFM support will print the pipe syntax literally instead of building a table.
 
-**List nesting looks flatter than the source Markdown.** As noted above, this is a real current limitation in multi-level list handling, not a formatting bug — re-indent the affected items manually once the document is open.
+**List nesting looks flatter than the source Markdown.** As noted above, this is a real current limitation in multi-level list handling, not a formatting bug. Re-indent the affected items manually once the document is open.
 
-**Code blocks lost their monospace formatting.** This usually means the content was copy-pasted from a rendered Markdown preview rather than converted from the raw source — pasting rendered text carries over visual formatting inconsistently, while running the original Markdown through an actual converter preserves the code block as a distinct token.
+**Code blocks lost their monospace formatting.** This usually means the content was copy-pasted from a rendered Markdown preview rather than converted from the raw source. Pasting rendered text carries over visual formatting inconsistently, while running the original Markdown through an actual converter preserves the code block as a distinct token.
 
 Ready to convert? The [Markdown to Word converter](/markdown-to-word) runs this entire pipeline client-side, in your browser, with no signup and no upload step.
 
@@ -72,15 +72,15 @@ Ready to convert? The [Markdown to Word converter](/markdown-to-word) runs this 
 
 **Q: Is a Markdown-to-DOCX converter different from a Markdown-to-Word converter?**
 
-No. "DOCX" and "Word document" refer to the same Office Open XML file format — DOCX is simply the file extension. A tool described as either one should produce an identical kind of file.
+No. "DOCX" and "Word document" refer to the same Office Open XML file format, and DOCX is simply the file extension. A tool described as either one should produce an identical kind of file.
 
 **Q: What's the actual difference between a real .docx and an HTML file renamed .docx?**
 
-A real `.docx` stores its visible content inside the standard `<w:body>` element defined by the Office Open XML schema. An HTML-wrapped file instead attaches rendered HTML as an external part via an `altChunk` or MHTML shim — Word knows to import that shim on open, but other readers (Google Docs, LibreOffice, programmatic parsers) read `<w:body>` directly and see a blank document.
+A real `.docx` stores its visible content inside the standard `<w:body>` element defined by the Office Open XML schema. An HTML-wrapped file instead attaches rendered HTML as an external part via an `altChunk` or MHTML shim. Word knows to import that shim on open, but other readers (Google Docs, LibreOffice, programmatic parsers) read `<w:body>` directly and see a blank document.
 
 **Q: Does Markdown-to-DOCX conversion support tables?**
 
-Yes. Markdown tables convert to native Word table grids — real rows and columns with a shaded header row, editable directly in Word, not an image or plain-text approximation.
+Yes. Markdown tables convert to native Word table grids: real rows and columns with a shaded header row, editable directly in Word, not an image or plain-text approximation.
 
 **Q: Are bold, italic, and strikethrough preserved?**
 
@@ -92,12 +92,12 @@ Markdown links become native, clickable Word hyperlinks rather than plain text w
 
 **Q: Does it support nested or multi-level lists?**
 
-Partially. Top-level ordered and unordered lists convert correctly, but deeply nested sub-lists currently render at a single consistent indent level rather than preserving multiple nesting depths. This is a known limitation, not a parsing failure — re-indent nested items manually in Word if your source has multiple list levels.
+Partially. Top-level ordered and unordered lists convert correctly, but deeply nested sub-lists currently render at a single consistent indent level rather than preserving multiple nesting depths. This is a known limitation, not a parsing failure. Re-indent nested items manually in Word if your source has multiple list levels.
 
 **Q: Why don't Mermaid diagrams or images appear in the converted document?**
 
-Word documents handle embedded visuals very differently from HTML or PDF — an image in a `.docx` file needs its own embedded file and relationship entry in the document's XML, a different code path than rendering a diagram onto a page. Use the [Markdown to PDF converter](/markdown-to-pdf) if your document needs diagrams to render.
+Word documents handle embedded visuals very differently from HTML or PDF. An image in a `.docx` file needs its own embedded file and relationship entry in the document's XML, a different code path than rendering a diagram onto a page. Use the [Markdown to PDF converter](/markdown-to-pdf) if your document needs diagrams to render.
 
 **Q: Is the conversion done online, or does my file get uploaded to a server?**
 
-The conversion runs entirely client-side, in your browser. The Markdown is parsed and the `.docx` file is assembled locally — no file content is ever uploaded.
+The conversion runs entirely client-side, in your browser. The Markdown is parsed and the `.docx` file is assembled locally, so no file content is ever uploaded.

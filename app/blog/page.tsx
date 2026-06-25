@@ -30,7 +30,7 @@ export default function BlogIndexPage() {
       {/* Post Grid */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         {posts.length === 0 ? (
-          <p className="text-gray-500 text-center py-16">No posts yet — check back soon.</p>
+          <p className="text-gray-500 text-center py-16">No posts yet. Check back soon.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.map((post) => (

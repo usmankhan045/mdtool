@@ -3,7 +3,7 @@ import Link from 'next/link';
 import StructuredData from '@/components/seo/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'MDTool — Free Developer Tools',
+  title: 'MDTool: Free Developer Tools',
   description: 'Free online developer tools. Convert Markdown to PDF, Markdown to HTML, and more. Fast, client-side, no login required.',
   alternates: { canonical: 'https://www.mdtool.dev' },
 };
@@ -68,7 +68,7 @@ export default function HomePage() {
     <main className="bg-gray-50">
       <StructuredData
         type="website"
-        description="Free online developer tools — Markdown to PDF, HTML, Word, and back, all client-side."
+        description="Free online developer tools: Markdown to PDF, HTML, Word, and back, all client-side."
       />
       <StructuredData
         type="itemlist"
@@ -108,8 +108,8 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-3 text-base md:text-lg text-blue-100/80 leading-relaxed">
-              MDTool converts between Markdown, PDF, HTML, and Word right in your browser —
-              no login, no watermarks, and nothing ever uploaded to a server.
+              MDTool converts between Markdown, PDF, HTML, and Word right in your browser,
+              with no login, no watermarks, and nothing ever uploaded to a server.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default function HomePage() {
               <span className="h-3 w-3 rounded-full bg-rose-400/80" />
               <span className="h-3 w-3 rounded-full bg-amber-400/80" />
               <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
-              <span className="ml-3 font-mono text-xs text-blue-200/60">mdtool — convert</span>
+              <span className="ml-3 font-mono text-xs text-blue-200/60">mdtool: convert</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-stretch">
@@ -254,7 +254,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: '🔒', title: 'Private by default', desc: 'Files never leave your device. Every conversion runs 100% client-side in your browser.' },
-              { icon: '⚡', title: 'Instant results', desc: 'No server round-trips. Conversion happens in milliseconds — paste, convert, download.' },
+              { icon: '⚡', title: 'Instant results', desc: 'No server round-trips. Conversion happens in milliseconds: paste, convert, download.' },
               { icon: '🆓', title: 'Free forever', desc: 'No paywalls, no watermarks, no signup. Open a tool and start converting right away.' },
             ].map((item) => (
               <div key={item.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-6">

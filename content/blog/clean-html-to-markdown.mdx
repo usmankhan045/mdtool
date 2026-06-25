@@ -1,6 +1,6 @@
 ---
 title: "How to Convert Messy HTML to Clean Markdown"
-description: "Word exports, Confluence pages, and WYSIWYG editors produce HTML full of inline styles and nested divs. Here's what gets cleaned up automatically — and what doesn't."
+description: "Word exports, Confluence pages, and WYSIWYG editors produce HTML full of inline styles and nested divs. Here's what gets cleaned up automatically, and what doesn't."
 datePublished: "2026-06-24"
 dateModified: "2026-06-24"
 tags: ["html", "markdown", "cleanup", "developer-tools"]
@@ -17,18 +17,18 @@ Most "messy" HTML comes from a small set of repeat offenders, and recognizing wh
 
 **Div soup and span soup.** Deeply nested `<div>` wrappers with no semantic meaning are common output from visual page builders and editors that wrap every element in multiple layout containers, often three or four levels deep for a single paragraph.
 
-**Word-generated HTML specifically.** Microsoft Word's "Save as HTML" output is notorious even among messy-HTML sources: proprietary `mso-`-prefixed CSS properties, conditional comments (`<!--[if gte mso 9]>`), and a redundant `<span>` wrapped around every few words — none of which carry semantic meaning.
+**Word-generated HTML specifically.** Microsoft Word's "Save as HTML" output is notorious even among messy-HTML sources: proprietary `mso-`-prefixed CSS properties, conditional comments (`<!--[if gte mso 9]>`), and a redundant `<span>` wrapped around every few words, none of which carry semantic meaning.
 
 **Redundant or duplicate formatting.** A bold `<span>` sitting inside a paragraph that's already wrapped in `<strong>`, or empty `<p></p>` tags left behind from editing in a WYSIWYG tool, are common but harmless leftovers.
 
 ## What Turndown Does to Clean It Up
 
-MDTool's converter, `turndown`, walks the actual rendered DOM structure rather than pattern-matching raw text, so it naturally ignores presentation noise and extracts only the semantic content — text, headings, links, and list or table structure.
+MDTool's converter, `turndown`, walks the actual rendered DOM structure rather than pattern-matching raw text, so it naturally ignores presentation noise and extracts only the semantic content: text, headings, links, and list or table structure.
 
 | Before (messy HTML) | After (Markdown) | Why |
 |---|---|---|
-| `<p style="color:#333;font-size:14px">Text</p>` | `Text` | Inline style attributes are dropped entirely, regardless of what CSS they specify — there's no Markdown syntax to preserve them in |
-| `<span style="color:red">Text</span>` (no `<strong>`/`<em>` inside) | `Text` | Redundant spans with no semantic tag collapse to plain text — the color attribute and wrapper are discarded |
+| `<p style="color:#333;font-size:14px">Text</p>` | `Text` | Inline style attributes are dropped entirely, regardless of what CSS they specify, since there's no Markdown syntax to preserve them in |
+| `<span style="color:red">Text</span>` (no `<strong>`/`<em>` inside) | `Text` | Redundant spans with no semantic tag collapse to plain text, and the color attribute and wrapper are discarded |
 | `<p></p>` (empty paragraph) | *(collapsed)* | Empty paragraphs collapse to normal spacing rather than being preserved as stray blank elements |
 | `<!--[if gte mso 9]>...<!--[endif]-->` | *(absent)* | Conditional comments and Word-specific metadata aren't part of the visible content tree, so they're never processed as content |
 
@@ -36,9 +36,9 @@ MDTool's converter, `turndown`, walks the actual rendered DOM structure rather t
 
 Being honest about the remaining 10% saves more time than pretending it doesn't exist:
 
-- **Merged-cell tables.** Tables pasted from Word or Excel frequently use `colspan`/`rowspan` for visual layout. These flatten during conversion since GFM tables can't represent merged cells — expect to rebuild complex tables manually.
+- **Merged-cell tables.** Tables pasted from Word or Excel frequently use `colspan`/`rowspan` for visual layout. These flatten during conversion since GFM tables can't represent merged cells, so expect to rebuild complex tables manually.
 - **Stray escaped characters.** Smart quotes and em-dashes from Word convert fine, but literal `*` or `_` characters in your source text get backslash-escaped (`\*`) so they aren't misread as Markdown emphasis syntax. This is correct behavior, but worth a glance if your source had a lot of literal asterisks.
-- **Fake headings.** WYSIWYG editors often apply heading-looking font sizes via inline `style` rather than actual `<h2>`/`<h3>` tags. A visually-styled "heading" that isn't a real heading tag won't convert to a Markdown heading at all — this is, by a wide margin, the single most common manual fix needed after converting Word or Confluence exports.
+- **Fake headings.** WYSIWYG editors often apply heading-looking font sizes via inline `style` rather than actual `<h2>`/`<h3>` tags. A visually-styled "heading" that isn't a real heading tag won't convert to a Markdown heading at all. This is, by a wide margin, the single most common manual fix needed after converting Word or Confluence exports.
 - **Broken or relative image paths.** An image that displayed correctly inside the original document (referenced by an embedded or temporary path) may not resolve once that path is just plain text sitting in a Markdown file.
 
 ## Tips for the Cleanest Output
@@ -46,29 +46,29 @@ Being honest about the remaining 10% saves more time than pretending it doesn't 
 - **Strip formatting before converting, if your source tool allows it.** A "paste as plain text" or "remove formatting" option that still preserves real headings, lists, and links reduces the noise the converter has to deal with before you even start.
 - **Check headings first.** Since fake-heading-via-font-size is the most common issue, scan the converted output for missing `#` symbols anywhere you expected a heading.
 - **Convert long documents in smaller chunks.** Pasting an entire 50-page Word export at once makes it harder to spot a problem area. Converting section by section makes manual fixes far more manageable.
-- **Verify every table.** Tables are the highest-risk element in Word- or Confluence-style messy HTML — check each converted table specifically before trusting the rest of the document.
+- **Verify every table.** Tables are the highest-risk element in Word- or Confluence-style messy HTML, so check each converted table specifically before trusting the rest of the document.
 
 For HTML that's messy specifically because it came out of a CMS export rather than Word, see our guide on [converting HTML to Markdown for CMS migration](/blog/html-to-markdown-cms-migration), which covers front matter and image-path cleanup as well.
 
-Ready to try it on your own document? The [HTML to Markdown converter](/html-to-markdown) runs entirely in your browser — paste or upload your messy HTML and see the cleaned-up Markdown immediately.
+Ready to try it on your own document? The [HTML to Markdown converter](/html-to-markdown) runs entirely in your browser: paste or upload your messy HTML and see the cleaned-up Markdown immediately.
 
 ## Frequently Asked Questions
 
 **Q: Why does my converted Markdown have backslashes before some characters?**
 
-Markdown uses certain characters (`*`, `_`, `[`, `]`) as syntax for emphasis and links. If your source HTML contains those characters as literal text, the converter escapes them with a backslash so they render as plain text instead of being misread as Markdown syntax — this is correct, expected behavior, not an error.
+Markdown uses certain characters (`*`, `_`, `[`, `]`) as syntax for emphasis and links. If your source HTML contains those characters as literal text, the converter escapes them with a backslash so they render as plain text instead of being misread as Markdown syntax. This is correct, expected behavior, not an error.
 
 **Q: Does cleaning up messy HTML lose any actual content?**
 
-No — only presentation (inline styles, redundant wrapper tags, CSS classes) is removed. Visible text, links, headings, and list or table structure are preserved exactly. If text seems to be missing, check whether it was actually presentation-only markup, like a decorative icon span, rather than real content.
+No. Only presentation (inline styles, redundant wrapper tags, CSS classes) is removed. Visible text, links, headings, and list or table structure are preserved exactly. If text seems to be missing, check whether it was actually presentation-only markup, like a decorative icon span, rather than real content.
 
 **Q: Why didn't my Word document's headings convert to Markdown headings?**
 
-If Word applied a heading *look* using font size and bold styling rather than an actual Heading 1/2/3 style, the exported HTML contains a styled `<p>` or `<span>`, not a real `<h1>`–`<h6>` tag — and the converter can only convert what's actually marked up as a heading. Apply real heading styles in Word before exporting, or add the `#` syntax manually afterward.
+If Word applied a heading *look* using font size and bold styling rather than an actual Heading 1/2/3 style, the exported HTML contains a styled `<p>` or `<span>`, not a real `<h1>` to `<h6>` tag, and the converter can only convert what's actually marked up as a heading. Apply real heading styles in Word before exporting, or add the `#` syntax manually afterward.
 
 **Q: Can I convert HTML copied directly from a webpage, not just a file?**
 
-Yes — paste HTML copied via Copy from a rendered page, View Source, or Inspect Element the same way you'd paste an exported file. The converter processes whatever HTML is in the paste field regardless of where it came from.
+Yes. Paste HTML copied via Copy from a rendered page, View Source, or Inspect Element the same way you'd paste an exported file. The converter processes whatever HTML is in the paste field regardless of where it came from.
 
 **Q: Will conditional comments and Word-specific metadata show up in my Markdown?**
 
@@ -76,4 +76,4 @@ No. Conditional comments and Word-specific metadata aren't part of the visible c
 
 **Q: Is there a way to automate cleanup for many messy HTML files at once?**
 
-MDTool is built for one-at-a-time, paste-and-preview conversions. For batch cleanup of many files, scripting the underlying `turndown` library directly — with custom rules for your specific source format — is more practical than pasting files one by one.
+MDTool is built for one-at-a-time, paste-and-preview conversions. For batch cleanup of many files, scripting the underlying `turndown` library directly, with custom rules for your specific source format, is more practical than pasting files one by one.
