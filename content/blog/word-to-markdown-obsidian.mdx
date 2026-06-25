@@ -1,6 +1,6 @@
 ---
 title: "How to Convert Word Documents to Markdown for Obsidian"
-description: "Obsidian vaults store notes as plain .md files — Word's .docx format can't open directly. Here's the conversion workflow, what Obsidian-specific syntax to add after conversion, and the fastest path using the Docxer plugin."
+description: "Obsidian vaults store notes as plain .md files, but Word's .docx format can't open directly. Here's the conversion workflow, what Obsidian-specific syntax to add after conversion, and the fastest path using the Docxer plugin."
 datePublished: "2026-06-25"
 dateModified: "2026-06-25"
 tags: ["obsidian", "markdown", "word", "docx", "note-taking"]
@@ -15,15 +15,15 @@ ctaTool:
 
 ## Why Obsidian Users Want Their Word Docs in Markdown
 
-Obsidian stores every note as a plain `.md` file in a folder on your local filesystem — no proprietary database, no lock-in, just text files you can open with any editor. That design choice is the reason Obsidian's knowledge graph, backlinks, and search all work without a server: the vault is just a directory. It has also driven the growth of the [Obsidian community plugin directory](https://obsidian.md/plugins), which lists over 1,000 third-party extensions as of 2026 — all of them built on top of plain `.md` files precisely because the format can be extended without breaking compatibility.
+Obsidian stores every note as a plain `.md` file in a folder on your local filesystem, with no proprietary database, no lock-in, just text files you can open with any editor. That design choice is the reason Obsidian's knowledge graph, backlinks, and search all work without a server: the vault is just a directory. It has also driven the growth of the [Obsidian community plugin directory](https://obsidian.md/plugins), which lists over 1,000 third-party extensions as of 2026, all of them built on top of plain `.md` files precisely because the format can be extended without breaking compatibility.
 
-Word's `.docx` format doesn't fit this model. A `.docx` file is a ZIP archive of XML — it can't be opened in Obsidian, linked to from another note, or indexed by the graph view. Converting it to Markdown puts the content where Obsidian can reach it: in a plain `.md` file that participates in your vault's link structure and shows up in search.
+Word's `.docx` format doesn't fit this model. A `.docx` file is a ZIP archive of XML, so it can't be opened in Obsidian, linked to from another note, or indexed by the graph view. Converting it to Markdown puts the content where Obsidian can reach it: in a plain `.md` file that participates in your vault's link structure and shows up in search.
 
-The conversion is a one-way step. Once the note lives in your vault as a `.md` file, you maintain it there — if stakeholders or clients need a Word version later, the [Markdown to Word converter](/markdown-to-word) handles the reverse direction.
+The conversion is a one-way step. Once the note lives in your vault as a `.md` file, you maintain it there. If stakeholders or clients need a Word version later, the [Markdown to Word converter](/markdown-to-word) handles the reverse direction.
 
 ## What Obsidian-Flavored Markdown Needs
 
-This is the part that most conversion guides skip: Obsidian uses a superset of standard Markdown. The converter outputs valid GitHub Flavored Markdown — which is correct and readable in Obsidian — but it doesn't produce the Obsidian-specific syntax that activates the features most users rely on.
+This is the part that most conversion guides skip: Obsidian uses a superset of standard Markdown. The converter outputs valid GitHub Flavored Markdown, which is correct and readable in Obsidian, but it doesn't produce the Obsidian-specific syntax that activates the features most users rely on.
 
 Here's what standard converter output looks like vs. what Obsidian natively uses:
 
@@ -36,7 +36,7 @@ Here's what standard converter output looks like vs. what Obsidian natively uses
 | Properties / frontmatter | Not produced | YAML block at top of file |
 | Highlights | Not produced | `==highlighted text==` |
 
-The important framing here: **standard GFM links still work in Obsidian** — a `[Note](note.md)` link will navigate correctly. They just don't appear as connections in the graph view or show up as backlinks. Wikilinks (`[[Note Title]]`) are what Obsidian's graph draws edges for.
+The important framing here: **standard GFM links still work in Obsidian**, and a `[Note](note.md)` link will navigate correctly. They just don't appear as connections in the graph view or show up as backlinks. Wikilinks (`[[Note Title]]`) are what Obsidian's graph draws edges for.
 
 Whether you need wikilinks depends on how you use Obsidian. If you're importing standalone reference documents (a spec, a policy, a report) you'll reference but not heavily interlink, standard GFM output is fine as-is. If you're building a connected knowledge base where the graph view matters, plan to convert internal references to wikilinks after conversion.
 
@@ -47,15 +47,15 @@ The fastest path to a vault-ready `.md` file:
 1. **Open** your `.docx` file in Word and accept all tracked changes (Review → Accept → Accept All Changes). The converter outputs only the accepted text, so unresolved tracked changes will silently disappear.
 2. **Go to** the [word to markdown converter](/word-to-markdown).
 3. **Drag and drop** the `.docx` file onto the left panel, or click the file picker.
-4. The converter reads the document using [mammoth.js](https://github.com/mwilliamson/mammoth.js) — extracting heading styles, bold/italic, lists, tables, and hyperlinks — then renders GitHub Flavored Markdown via [turndown](https://github.com/mixmark-io/turndown).
+4. The converter reads the document using [mammoth.js](https://github.com/mwilliamson/mammoth.js), extracting heading styles, bold/italic, lists, tables, and hyperlinks, then renders GitHub Flavored Markdown via [turndown](https://github.com/mixmark-io/turndown).
 5. **Download the `.md` file** using the Download button, or copy the Markdown and paste it into a new file in your vault.
-6. **Move the `.md` file into your vault folder** — drag it in Finder/Explorer to the correct location in your vault's directory structure.
+6. **Move the `.md` file into your vault folder** by dragging it in Finder/Explorer to the correct location in your vault's directory structure.
 
 ### Alternative: The Docxer Plugin
 
 If you want to convert Word documents without leaving Obsidian, the [Docxer community plugin](https://github.com/Developer-Mike/obsidian-docxer) (83,988 downloads, v2.3.1, actively maintained as of May 2026) lets you open a `.docx` file directly inside a vault tab and convert it with a single click. It uses the same mammoth.js + turndown pipeline under the hood, so the output is equivalent to what MDTool produces.
 
-Install from Settings → Community Plugins → Browse → search "Docxer". One limitation worth knowing: Docxer's output is standard Markdown, not Obsidian-flavored wikilinks — the post-conversion steps below still apply.
+Install from Settings → Community Plugins → Browse → search "Docxer". One limitation worth knowing: Docxer's output is standard Markdown, not Obsidian-flavored wikilinks, so the post-conversion steps below still apply.
 
 ## Post-Conversion Cleanup for Obsidian
 
@@ -82,7 +82,7 @@ Obsidian will index the `tags:` values and make them searchable across your vaul
 
 Find any `[text](filename.md)` links in the converted output that point to other notes in your vault. Convert them to wikilink syntax: `[[filename]]` or `[[filename|display text]]`. This is what makes connections appear in Obsidian's graph view and backlinks panel.
 
-If the document doesn't reference other vault notes — it's a standalone import — skip this step entirely.
+If the document doesn't reference other vault notes (it's a standalone import), skip this step entirely.
 
 ### 3. Upgrade Blockquotes to Callouts (Optional)
 
@@ -117,23 +117,23 @@ For vault organization, either add `#tags` inline in the note body where relevan
 
 **Q: Can I open a .docx file directly in Obsidian without converting it?**
 
-No. Obsidian only renders files in its supported formats — Markdown (`.md`), Canvas (`.canvas`), and a handful of image/audio/video/PDF types. A `.docx` file will appear in the vault's file list but will not render. You must convert it to `.md` first.
+No. Obsidian only renders files in its supported formats: Markdown (`.md`), Canvas (`.canvas`), and a handful of image/audio/video/PDF types. A `.docx` file will appear in the vault's file list but will not render. You must convert it to `.md` first.
 
 **Q: Does the converted Markdown show up in Obsidian's graph view?**
 
-The note itself shows up in the graph once it's in the vault. Its links only appear as graph edges if the links use `[[wikilink]]` syntax — standard `[text](url)` links are not drawn as connections. Convert internal note references to wikilinks if graph visibility matters.
+The note itself shows up in the graph once it's in the vault. Its links only appear as graph edges if the links use `[[wikilink]]` syntax. Standard `[text](url)` links are not drawn as connections. Convert internal note references to wikilinks if graph visibility matters.
 
 **Q: Is Obsidian Sync safe for vault files converted from Word?**
 
-Yes. Obsidian Sync uses AES-256 end-to-end encryption (confirmed on the official pricing page, $4/month billed annually). The converted `.md` files are treated identically to any other vault file — they sync the same way and are encrypted in transit and at rest.
+Yes. Obsidian Sync uses AES-256 end-to-end encryption (confirmed on the official pricing page, $4/month billed annually). The converted `.md` files are treated identically to any other vault file: they sync the same way and are encrypted in transit and at rest.
 
 **Q: What happens to headers, bullet lists, and bold text after conversion?**
 
-These convert cleanly. Word's Heading 1 style becomes `# H1` in Markdown, bullet lists become `- item`, and bold text becomes `**bold**`. The conversion preserves structural styles — it reads what Word explicitly marks as a heading, not what looks like a heading visually.
+These convert cleanly. Word's Heading 1 style becomes `# H1` in Markdown, bullet lists become `- item`, and bold text becomes `**bold**`. The conversion preserves structural styles: it reads what Word explicitly marks as a heading, not what looks like a heading visually.
 
 **Q: What about footnotes in Word documents?**
 
-GFM has no standard footnote syntax, so Word footnotes are dropped by the converter. You can add Markdown extended footnote syntax (`[^1]`) manually — Obsidian renders extended footnotes in reading view, though they're not part of strict GFM.
+GFM has no standard footnote syntax, so Word footnotes are dropped by the converter. You can add Markdown extended footnote syntax (`[^1]`) manually, and Obsidian renders extended footnotes in reading view, though they're not part of strict GFM.
 
 **Q: Can I convert a batch of Word files at once?**
 

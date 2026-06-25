@@ -31,7 +31,7 @@ export default function StructuredData({ type, name, url, description, datePubli
       '@type': 'WebSite',
       name: 'MDTool',
       url: baseUrl,
-      description: description || 'Free online developer tools — Markdown to PDF, HTML, Word, and back, all client-side.',
+      description: description || 'Free online developer tools: Markdown to PDF, HTML, Word, and back, all client-side.',
       publisher: { '@type': 'Organization', name: 'MDTool', url: baseUrl, logo: `${baseUrl}/logo.png` },
     },
     itemlist: {
@@ -59,9 +59,9 @@ export default function StructuredData({ type, name, url, description, datePubli
     tool: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: name || 'MDTool — Developer Tools',
+      name: name || 'MDTool Developer Tools',
       url: `${baseUrl}${url || ''}`,
-      description: description || 'Free online developer tools — Markdown to PDF converter and more.',
+      description: description || 'Free online developer tools: Markdown to PDF converter and more.',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Any',
       browserRequirements: 'Requires JavaScript',
@@ -83,7 +83,7 @@ export default function StructuredData({ type, name, url, description, datePubli
         'Code syntax highlighting',
         'Mermaid diagram support',
         'Multiple PDF themes',
-        'Client-side processing — files never uploaded',
+        'Client-side processing, files never uploaded',
       ],
     },
     blog: {

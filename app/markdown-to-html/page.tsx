@@ -6,11 +6,11 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Markdown to HTML Converter — Free & No Login',
+  title: 'Markdown to HTML Converter: Free & No Login',
   description: 'Convert Markdown to clean HTML instantly in your browser. Supports GFM, syntax-highlighted code, tables, and images. Copy or download the HTML. Free, no signup.',
   keywords: ['markdown to html', 'md to html', 'convert markdown to html', 'markdown html converter', 'markdown renderer'],
   openGraph: {
-    title: 'Free Markdown to HTML Converter — MDTool',
+    title: 'Free Markdown to HTML Converter | MDTool',
     description: 'Convert Markdown to clean, ready-to-use HTML. Live preview, code highlighting, copy or download. 100% free, no login.',
     url: 'https://www.mdtool.dev/markdown-to-html',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
@@ -54,7 +54,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What is the difference between "Full document" and snippet output?',
-    a: 'Full document wraps the converted HTML in a complete <html>/<head>/<body> structure with basic styling — ready to save as a standalone .html file. Turning it off gives you just the HTML fragment, ideal for pasting into an existing page, CMS, or email template.',
+    a: 'Full document wraps the converted HTML in a complete <html>/<head>/<body> structure with basic styling, ready to save as a standalone .html file. Turning it off gives you just the HTML fragment, ideal for pasting into an existing page, CMS, or email template.',
     text: 'Full document wraps the converted HTML in a complete html/head/body structure with basic styling. Turning it off gives you just the HTML fragment, ideal for pasting into an existing page or CMS.',
   },
   {
@@ -69,7 +69,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I use the HTML output in an email template?',
-    a: 'Yes — use the snippet output (Full document turned off) and paste it into your email tool’s HTML/code view. Most email clients strip <head> tags anyway, so the snippet is the right format here, not the full document.',
+    a: 'Yes. Use the snippet output (Full document turned off) and paste it into your email tool’s HTML/code view. Most email clients strip <head> tags anyway, so the snippet is the right format here, not the full document.',
     text: 'Yes - use the snippet output (Full document turned off) and paste it into your email tool’s HTML/code view. Most email clients strip head tags anyway, so the snippet is the right format here.',
   },
   {
@@ -92,7 +92,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I edit the HTML after MDTool generates it?',
-    a: 'Yes. Switch to the Code tab, copy the HTML, and edit it anywhere you like — a text editor, your CMS’s code view, or a code editor. MDTool doesn’t lock the output or require you to come back to make changes.',
+    a: 'Yes. Switch to the Code tab, copy the HTML, and edit it anywhere you like: a text editor, your CMS’s code view, or a code editor. MDTool doesn’t lock the output or require you to come back to make changes.',
     text: 'Yes. Switch to the Code tab, copy the HTML, and edit it anywhere you like - a text editor, your CMS’s code view, or a code editor.',
   },
 ];
@@ -113,7 +113,7 @@ export default function MarkdownToHtmlPage() {
           'Semantic HTML output (real headings and tables, not styled divs)',
           'Snippet or full-document HTML output',
           'Copy to clipboard',
-          'Client-side processing — files never uploaded',
+          'Client-side processing, files never uploaded',
           'No account, no premium tier, no usage limit',
         ]}
       />
@@ -133,7 +133,7 @@ export default function MarkdownToHtmlPage() {
               Free Markdown to HTML Converter
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
-              Paste or drop a .md file and get clean, semantic HTML — live preview, code highlighting, and
+              Paste or drop a .md file and get clean, semantic HTML, with live preview, code highlighting, and
               one-click copy or download.
             </p>
             <p className="text-xs text-blue-200/50">Updated June 24, 2026 · Built and maintained by MDTool</p>
@@ -149,11 +149,11 @@ export default function MarkdownToHtmlPage() {
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
             <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
-              <strong>Markdown to HTML conversion</strong> is the process of transforming Markdown syntax —
-              headings, lists, tables, bold/italic text, and fenced code blocks — into standard HTML markup
+              <strong>Markdown to HTML conversion</strong> is the process of transforming Markdown syntax,
+              such as headings, lists, tables, bold/italic text, and fenced code blocks, into standard HTML markup
               that any browser renders natively. MDTool converts Markdown to HTML entirely in your browser:
-              paste or drop a .md file and get clean, semantic HTML — a pasteable snippet or a full
-              standalone document — free, with no signup and no file size limit.
+              paste or drop a .md file and get clean, semantic HTML, either a pasteable snippet or a full
+              standalone document, free, with no signup and no file size limit.
             </p>
             <ConversionDiagram from="Markdown" to="HTML" />
           </div>
@@ -168,14 +168,14 @@ export default function MarkdownToHtmlPage() {
         <section className="max-w-6xl mx-auto px-4 py-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to HTML Free</h2>
           <p className="text-gray-700 leading-relaxed mb-3 max-w-3xl">
-            Converting Markdown to HTML with MDTool takes four steps and no account — paste your
+            Converting Markdown to HTML with MDTool takes four steps and no account: paste your
             content, watch the live preview, choose your output format, then copy or download.
             The whole process runs in your browser, so it works the same whether you&apos;re
             converting one file or fifty.
           </p>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
             <li>Paste your Markdown text into the left panel, or click <strong>Upload .md</strong> to
-              load a file directly from your computer — there&apos;s no size limit, so a full
+              load a file directly from your computer. There&apos;s no size limit, so a full
               README or a multi-page doc converts just as easily as a short snippet</li>
             <li>Watch the live HTML preview update in real time on the right as you type. Headings,
               lists, tables, and fenced code blocks render exactly as they will in the final
@@ -185,7 +185,7 @@ export default function MarkdownToHtmlPage() {
               for a standalone <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">.html</code> file,
               off for a pasteable snippet you&apos;ll drop into an existing page or CMS</li>
             <li>Click <strong>Copy</strong> to grab the HTML straight to your clipboard, or{' '}
-              <strong>Download .html</strong> to save it as a file — either way, the conversion
+              <strong>Download .html</strong> to save it as a file. Either way, the conversion
               is final, with no processing queue or wait time</li>
           </ol>
         </section>
@@ -196,12 +196,12 @@ export default function MarkdownToHtmlPage() {
           <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
             <p>
               MDTool gives you two different HTML outputs because they solve different problems. A{' '}
-              <strong>snippet</strong> is the bare HTML fragment — just the headings, paragraphs, lists, and
+              <strong>snippet</strong> is the bare HTML fragment: just the headings, paragraphs, lists, and
               code blocks, with no <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;html&gt;</code>,{' '}
               <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;head&gt;</code>, or{' '}
               <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;body&gt;</code> wrapper. That&apos;s what
               you want when pasting into an existing page, a CMS editor, or an email template that already
-              defines its own styles — wrapping the fragment in another document structure would just create
+              defines its own styles, since wrapping the fragment in another document structure would just create
               nested tags the browser has to clean up.
             </p>
             <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
@@ -215,7 +215,7 @@ export default function MarkdownToHtmlPage() {
               <tbody>
                 <tr className="border-t border-gray-200">
                   <td className="px-3 py-2 font-medium">Wrapper</td>
-                  <td className="px-3 py-2">None — bare HTML fragment</td>
+                  <td className="px-3 py-2">None (bare HTML fragment)</td>
                   <td className="px-3 py-2">Complete &lt;html&gt;/&lt;head&gt;/&lt;body&gt;</td>
                 </tr>
                 <tr className="border-t border-gray-200 bg-gray-50">
@@ -247,19 +247,19 @@ export default function MarkdownToHtmlPage() {
               Either way, the conversion follows{' '}
               <a href="https://commonmark.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CommonMark</a>{' '}
               and GitHub Flavored Markdown semantics: headings map to{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h1&gt;</code>–<code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h6&gt;</code>, fenced
+              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h1&gt;</code> to <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h6&gt;</code>, fenced
               code blocks map to <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;pre&gt;&lt;code&gt;</code> with
               a language class, and tables map to real <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
-              rather than styled <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;div&gt;</code>s — so the
+              rather than styled <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;div&gt;</code>s, so the
               output stays usable by screen readers and other tools that expect semantic HTML.
             </p>
             <p>
               That semantic mapping matters most for accessibility. A screen reader announces{' '}
               <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup with row and column
-              context, and lets a user jump between headings by level — neither is possible if a converter
+              context, and lets a user jump between headings by level; neither is possible if a converter
               outputs visually similar but semantically empty <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;div&gt;</code> grids
               and bold paragraphs instead. Because MDTool emits real heading tags and real table elements, the
-              HTML you export is just as navigable with assistive technology as it is readable visually —
+              HTML you export is just as navigable with assistive technology as it is readable visually,
               whether you paste the snippet into a CMS or host the full document as-is.
             </p>
           </div>
@@ -278,11 +278,11 @@ export default function MarkdownToHtmlPage() {
               with JavaScript, TypeScript, Python, Bash, CSS, HTML, JSON, YAML, SQL, Rust, Go, and Dart
               recognized by name (other languages fall back to automatic detection).{' '}
               <strong>Images</strong> carry over as standard <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;img&gt;</code> tags
-              with whatever path you wrote in the Markdown — relative or absolute — unchanged.
+              with whatever path you wrote in the Markdown, relative or absolute, unchanged.
             </p>
             <p>
               <strong>Mermaid code blocks</strong> (<code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code>) are
-              preserved as a labeled code block showing the raw diagram syntax — they are not
+              preserved as a labeled code block showing the raw diagram syntax; they are not
               rendered into a visual diagram in this converter. If you need the actual diagram
               rendered into the output, use the{' '}
               <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a>,
@@ -295,7 +295,7 @@ export default function MarkdownToHtmlPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Is This Converter Free?</h2>
           <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
             <p>
-              Yes — MDTool is free with no account, no premium tier, and no usage cap. There&apos;s
+              Yes. MDTool is free with no account, no premium tier, and no usage cap. There&apos;s
               no paywall hiding the Full document export, no watermark on the HTML you download,
               and no limit on how many times you can convert. That&apos;s possible because nothing
               you paste is ever uploaded: the conversion runs entirely in your browser&apos;s

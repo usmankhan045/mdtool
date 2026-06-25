@@ -12,13 +12,13 @@ author: "MDTool Editorial Team"
 
 If you've ever tried to convert a Markdown file with code blocks into a PDF, you've almost certainly run into at least one of these problems:
 
-- Monospace font not used — code renders in the same proportional font as body text
-- No syntax highlighting — everything is plain black text
+- Monospace font not used, so code renders in the same proportional font as body text
+- No syntax highlighting, so everything is plain black text
 - Lines overflow the page and get cut off
 - Indentation is lost, making code unreadable
 - Background color disappears, so code blocks look identical to normal paragraphs
 
-These aren't random bugs. They happen because most tools take a shortcut: they parse Markdown into HTML, then dump it into a PDF renderer that ignores CSS entirely. Code blocks depend heavily on CSS (`font-family: monospace`, `white-space: pre`, `overflow-x: auto`, background colors) — and when CSS is stripped out, code becomes unreadable.
+These aren't random bugs. They happen because most tools take a shortcut: they parse Markdown into HTML, then dump it into a PDF renderer that ignores CSS entirely. Code blocks depend heavily on CSS (`font-family: monospace`, `white-space: pre`, `overflow-x: auto`, background colors), and when CSS is stripped out, code becomes unreadable.
 
 ## What Broken Code Blocks Look Like
 
@@ -83,11 +83,11 @@ async function convertMarkdownToPDF(markdownContent) {
 }
 ```
 
-Notice the three things that make this work: the `<pre>` element gets a background and padding, `code` gets a monospace font, and `html2pdf.js` is imported dynamically so it only ever runs in the browser — never on the server where `window` is undefined.
+Notice the three things that make this work: the `<pre>` element gets a background and padding, `code` gets a monospace font, and `html2pdf.js` is imported dynamically so it only ever runs in the browser, never on the server where `window` is undefined.
 
 ## Step-by-Step: Convert Markdown with Code Blocks to PDF
 
-### Step 1 — Paste Your Markdown
+### Step 1: Paste Your Markdown
 
 Open the converter below (or at [/markdown-to-pdf](/markdown-to-pdf)) and paste your Markdown. Your code blocks should be fenced with triple backticks and include a language identifier:
 
@@ -97,9 +97,9 @@ Open the converter below (or at [/markdown-to-pdf](/markdown-to-pdf)) and paste 
 ```
 ````
 
-Language identifiers like `javascript`, `python`, `bash`, `typescript`, and `json` enable syntax highlighting. Without one, the converter still preserves formatting — but coloring is skipped.
+Language identifiers like `javascript`, `python`, `bash`, `typescript`, and `json` enable syntax highlighting. Without one, the converter still preserves formatting, but coloring is skipped.
 
-### Step 2 — Check the Live Preview
+### Step 2: Check the Live Preview
 
 The preview panel renders your Markdown in real time. Before downloading, verify that:
 
@@ -107,15 +107,15 @@ The preview panel renders your Markdown in real time. Before downloading, verify
 - Indentation is preserved (4-space indents should look like 4 spaces, not 1)
 - Long lines wrap correctly or have a horizontal scrollbar hint
 
-If the preview looks right, the PDF will match — the converter uses the same rendered HTML for both.
+If the preview looks right, the PDF will match, because the converter uses the same rendered HTML for both.
 
-### Step 3 — Choose a Theme (Optional)
+### Step 3: Choose a Theme (Optional)
 
-Light themes (GitHub, Default) work best for printed PDFs because they use dark text on a white or light-gray code background — exactly what you'd expect on paper. Dark themes look great on screen but can waste toner and reduce readability when physically printed.
+Light themes (GitHub, Default) work best for printed PDFs because they use dark text on a white or light-gray code background, exactly what you'd expect on paper. Dark themes look great on screen but can waste toner and reduce readability when physically printed.
 
-### Step 4 — Download the PDF
+### Step 4: Download the PDF
 
-Click **Download PDF**. The conversion happens entirely in your browser using `html2pdf.js` — your Markdown never leaves your machine, and no server processes it.
+Click **Download PDF**. The conversion happens entirely in your browser using `html2pdf.js`, so your Markdown never leaves your machine, and no server processes it.
 
 <Callout type="success">
   **Tip:** For technical documentation, use the GitHub theme. It matches the code block style developers already recognize from GitHub READMEs.
@@ -123,14 +123,14 @@ Click **Download PDF**. The conversion happens entirely in your browser using `h
 
 ## Try It Right Here
 
-You can convert Markdown with code blocks to PDF directly below — no signup required:
+You can convert Markdown with code blocks to PDF directly below, no signup required:
 
 <EmbeddedTool />
 
 ## Common Problems and Fixes
 
 **Problem: Code lines are cut off at the right edge of the page**
-Fix: Make sure your code lines are under ~80–90 characters. The converter wraps very long lines, but it can't reformat code logic. Break long lines manually before converting.
+Fix: Make sure your code lines are under ~80 to 90 characters. The converter wraps very long lines, but it can't reformat code logic. Break long lines manually before converting.
 
 **Problem: Syntax highlighting doesn't appear**
 Fix: Add a language tag after the opening triple backtick. ` ```js ` instead of just ` ``` `.
@@ -143,23 +143,23 @@ Fix: Use a theme other than "Minimal." The Minimal theme intentionally strips ba
 
 ## How MDTool Handles Code Blocks Differently
 
-Most online Markdown-to-PDF converters run on the server: they accept your Markdown, process it with a headless browser or a PDF library, and return a file. The problem is CSS support in these pipelines is inconsistent — especially for code blocks.
+Most online Markdown-to-PDF converters run on the server: they accept your Markdown, process it with a headless browser or a PDF library, and return a file. The problem is CSS support in these pipelines is inconsistent, especially for code blocks.
 
 MDTool takes a different approach. The entire conversion runs **client-side in your browser** using `html2pdf.js` with `html2canvas`. This means:
 
-1. **Full CSS fidelity** — the PDF is a snapshot of what you actually see in the preview
-2. **No data sent to a server** — your code stays on your machine
-3. **Consistent output** — what you see is exactly what you get
+1. **Full CSS fidelity**: the PDF is a snapshot of what you actually see in the preview
+2. **No data sent to a server**: your code stays on your machine
+3. **Consistent output**: what you see is exactly what you get
 
 This is especially important for code blocks, which rely on CSS properties (`white-space: pre`, `font-family: monospace`, `background-color`) that server-side PDF generators often discard.
 
-For GitHub READMEs specifically, check out our guide on [converting GitHub READMEs to PDF](/blog/github-readme-to-pdf) — it covers badge handling and image-heavy READMEs alongside code blocks. If you need a refresher on fenced code block syntax itself, see the [Markdown cheatsheet](/blog/markdown-cheatsheet).
+For GitHub READMEs specifically, check out our guide on [converting GitHub READMEs to PDF](/blog/github-readme-to-pdf). It covers badge handling and image-heavy READMEs alongside code blocks. If you need a refresher on fenced code block syntax itself, see the [Markdown cheatsheet](/blog/markdown-cheatsheet).
 
 ## Frequently Asked Questions
 
 **Q: Does MDTool support syntax highlighting for all programming languages?**
 
-It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses [`marked`](https://marked.js.org/) with [`highlight.js`](https://highlightjs.org/) for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved — only color tokens are skipped.
+It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses [`marked`](https://marked.js.org/) with [`highlight.js`](https://highlightjs.org/) for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved, and only color tokens are skipped.
 
 **Q: Will the code block look the same in the PDF as in the preview?**
 
@@ -175,7 +175,7 @@ Use four backticks to open and close the fenced block instead of three. This all
 
 **Q: Is there a file size limit?**
 
-There's no server-side limit because conversion happens in your browser. The practical limit is your device's RAM — most modern machines handle Markdown files up to several megabytes without issue.
+There's no server-side limit because conversion happens in your browser. The practical limit is your device's RAM, and most modern machines handle Markdown files up to several megabytes without issue.
 
 **Q: Can I use MDTool for confidential code?**
 
@@ -183,4 +183,4 @@ Yes. Because conversion is entirely client-side, your code is never transmitted 
 
 ---
 
-Ready to convert? Head to the [Markdown to PDF converter](/markdown-to-pdf) and paste your code-heavy Markdown — your code blocks will render exactly as intended.
+Ready to convert? Head to the [Markdown to PDF converter](/markdown-to-pdf) and paste your code-heavy Markdown. Your code blocks will render exactly as intended.

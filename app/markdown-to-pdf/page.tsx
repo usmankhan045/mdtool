@@ -6,11 +6,11 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Markdown to PDF Converter — Free & No Login',
+  title: 'Markdown to PDF Converter: Free & No Login',
   description: 'Convert Markdown to PDF instantly in your browser. Supports GFM, syntax-highlighted code, tables, images, and Mermaid diagrams. Free, no signup.',
   keywords: ['markdown to pdf', 'md to pdf', 'convert markdown to pdf', 'markdown pdf converter', 'github readme to pdf'],
   openGraph: {
-    title: 'Free Markdown to PDF Converter — MDTool',
+    title: 'Free Markdown to PDF Converter | MDTool',
     description: 'Convert Markdown to PDF instantly. Supports code highlighting, tables, Mermaid diagrams. 100% free, no login.',
     url: 'https://www.mdtool.dev/markdown-to-pdf',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
@@ -113,7 +113,7 @@ export default function MarkdownToPdfPage() {
               Free Markdown to PDF Converter
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
-              Paste or upload Markdown and download a paginated PDF — code highlighting, tables, and
+              Paste or upload Markdown and download a paginated PDF, with code highlighting, tables, and
               Mermaid diagrams included. No login, no watermark.
             </p>
             <p className="text-xs text-blue-200/50">Updated June 24, 2026</p>
@@ -129,10 +129,10 @@ export default function MarkdownToPdfPage() {
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
             <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
-              <strong>Markdown to PDF conversion</strong> renders Markdown — headings, tables, syntax-highlighted
-              code, and Mermaid diagrams — into a paginated PDF document ready to print, email, or archive.
+              <strong>Markdown to PDF conversion</strong> renders Markdown, including headings, tables, syntax-highlighted
+              code, and Mermaid diagrams, into a paginated PDF document ready to print, email, or archive.
               MDTool generates the PDF entirely in your browser, from the same rendered HTML you see in the
-              live preview, so nothing gets lost between preview and export — free, with no signup and no
+              live preview, so nothing gets lost between preview and export. It is free, with no signup and no
               file size limit.
             </p>
             <ConversionDiagram from="Markdown" to="PDF" />
@@ -151,7 +151,7 @@ export default function MarkdownToPdfPage() {
             <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file</li>
             <li>Choose a PDF theme: GitHub, Academic, Minimal, or Dark</li>
             <li>See the live preview update in real-time on the right</li>
-            <li>Click <strong>Download PDF — Free</strong> to save your file</li>
+            <li>Click <strong>Download PDF, Free</strong> to save your file</li>
           </ol>
         </section>
 
@@ -166,7 +166,7 @@ export default function MarkdownToPdfPage() {
             </p>
             <p>
               A Mermaid block like <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code> isn&apos;t
-              a diagram yet — it&apos;s text that has to be parsed and rendered into SVG before anything can
+              a diagram yet; it&apos;s text that has to be parsed and rendered into SVG before anything can
               capture it as a page. Tools that generate the PDF through a different code path than the one used
               for the on-screen preview often skip that rendering step entirely, so the diagram block either
               disappears or prints as raw, uninterpreted text. MDTool initializes the Mermaid renderer in the

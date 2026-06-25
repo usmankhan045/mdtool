@@ -11,11 +11,11 @@ author: "MDTool Editorial Team"
 
 ## Why Teams Migrate From HTML CMS to Markdown
 
-Migrating away from an HTML-based CMS toward a Markdown workflow is one of the most common reasons people go looking for an HTML-to-Markdown converter — not because Markdown is trendy, but because the destination platforms specifically want it. **Notion** treats Markdown as its native import and export format. **Ghost**'s post editor is Markdown-first under the hood, even though it renders HTML on the published page. Static site generators — **Astro**, **Hugo**, **Jekyll**, and others — build entire sites from Markdown (or MDX) files committed to a Git repository, with no database involved at all.
+Migrating away from an HTML-based CMS toward a Markdown workflow is one of the most common reasons people go looking for an HTML-to-Markdown converter. It's not because Markdown is trendy, but because the destination platforms specifically want it. **Notion** treats Markdown as its native import and export format. **Ghost**'s post editor is Markdown-first under the hood, even though it renders HTML on the published page. Static site generators (**Astro**, **Hugo**, **Jekyll**, and others) build entire sites from Markdown (or MDX) files committed to a Git repository, with no database involved at all.
 
-The draw is consistent across all of these destinations: content lives in version-controllable plain-text files instead of a database table, there's no plugin ecosystem to patch and maintain, and the files themselves are portable — a Markdown file isn't tied to one platform's theme CSS the way an HTML export can be.
+The draw is consistent across all of these destinations: content lives in version-controllable plain-text files instead of a database table, there's no plugin ecosystem to patch and maintain, and the files themselves are portable: a Markdown file isn't tied to one platform's theme CSS the way an HTML export can be.
 
-The friction point is almost always the same, though: your existing content already exists as HTML — exported from WordPress, copied from a documentation site, or sitting in a CMS with no native Markdown export. That's the actual conversion this guide walks through.
+The friction point is almost always the same, though: your existing content already exists as HTML, exported from WordPress, copied from a documentation site, or sitting in a CMS with no native Markdown export. That's the actual conversion this guide walks through.
 
 ## What Converts Cleanly and What Does Not
 
@@ -39,32 +39,32 @@ If your source documents are actually Word files rather than HTML pages, the [Wo
 
 1. **Get the HTML.** Use View Source or Inspect Element on a live page, your CMS's HTML export feature, or a WordPress XML export converted to per-page HTML.
 2. **Convert.** Paste the HTML into the [HTML to Markdown converter](/html-to-markdown), or upload the `.html` file directly via drag-and-drop.
-3. **Check the high-risk areas first.** Tables and code blocks are where conversion most often needs a second pass — verify those before trusting the rest of the page.
-4. **Save with the filename and structure your destination expects.** Copy the Markdown or download it as `.md`. Note that MDTool converts body content only — Hugo, Jekyll, and Astro all expect YAML front matter (title, date, slug) at the top of the file, which you'll need to add separately since it isn't represented as visible page content in the source HTML.
-5. **Repeat per page.** For a handful of pages, this paste-based workflow is the fastest path. For a migration spanning dozens or hundreds of pages, script the conversion against the underlying `turndown` library directly rather than pasting one page at a time — the same logic MDTool uses, but callable in a loop.
+3. **Check the high-risk areas first.** Tables and code blocks are where conversion most often needs a second pass, so verify those before trusting the rest of the page.
+4. **Save with the filename and structure your destination expects.** Copy the Markdown or download it as `.md`. Note that MDTool converts body content only. Hugo, Jekyll, and Astro all expect YAML front matter (title, date, slug) at the top of the file, which you'll need to add separately since it isn't represented as visible page content in the source HTML.
+5. **Repeat per page.** For a handful of pages, this paste-based workflow is the fastest path. For a migration spanning dozens or hundreds of pages, script the conversion against the underlying `turndown` library directly rather than pasting one page at a time. It's the same logic MDTool uses, but callable in a loop.
 
 ## Cleaning Up the Output After Conversion
 
 A few issues show up reliably enough across CMS migrations that it's worth checking for them specifically, the same way developers converting [GitHub READMEs to PDF](/blog/github-readme-to-pdf) check badges and Mermaid diagrams before trusting a batch export:
 
-- **Missing front matter.** Every Markdown-based platform needs metadata MDTool doesn't generate — add title, date, and slug fields manually or with a small script per platform.
-- **Near-empty Markdown tables.** Layout-only HTML tables from page-builder plugins sometimes convert into a pipe table with little real content — delete these rather than trying to repair them.
-- **Broken relative image paths.** An image path that resolved correctly on the old CMS often won't resolve on the new platform's folder structure. Re-point these to wherever you're now hosting images — most static site generators expect them in a `static/` or `public/` folder.
+- **Missing front matter.** Every Markdown-based platform needs metadata MDTool doesn't generate, so add title, date, and slug fields manually or with a small script per platform.
+- **Near-empty Markdown tables.** Layout-only HTML tables from page-builder plugins sometimes convert into a pipe table with little real content, so delete these rather than trying to repair them.
+- **Broken relative image paths.** An image path that resolved correctly on the old CMS often won't resolve on the new platform's folder structure. Re-point these to wherever you're now hosting images; most static site generators expect them in a `static/` or `public/` folder.
 - **Stray emphasis markers.** HTML that applies bold via both a CSS class and a real `<strong>` tag can occasionally produce doubled-up `**` characters. Proofread the first converted page closely before applying the same workflow across the rest of the migration.
 
 ## Frequently Asked Questions
 
 **Q: Can MDTool migrate an entire WordPress site at once?**
 
-No — MDTool converts one page of HTML at a time, in your browser. For migrating an entire site, export each page's HTML, convert pages individually, or script the conversion against the underlying `turndown` library if you need to process many files programmatically.
+No. MDTool converts one page of HTML at a time, in your browser. For migrating an entire site, export each page's HTML, convert pages individually, or script the conversion against the underlying `turndown` library if you need to process many files programmatically.
 
 **Q: Does converted Markdown include front matter for Hugo or Jekyll?**
 
-No. MDTool converts the body content of the HTML — headings, text, tables, code — not metadata. You'll need to add YAML front matter (title, date, slug, tags) manually or with a separate script, since that data isn't represented as visible content in the source HTML.
+No. MDTool converts the body content of the HTML (headings, text, tables, code), not metadata. You'll need to add YAML front matter (title, date, slug, tags) manually or with a separate script, since that data isn't represented as visible content in the source HTML.
 
 **Q: What happens to WordPress shortcodes during conversion?**
 
-Shortcode syntax itself (`[gallery ids="1,2,3"]`) is usually already expanded into plain HTML by the time you copy a rendered page, so the bracket syntax won't appear — but the resulting div-based layout markup has no Markdown equivalent and needs to be manually rebuilt using your new platform's image or component syntax.
+Shortcode syntax itself (`[gallery ids="1,2,3"]`) is usually already expanded into plain HTML by the time you copy a rendered page, so the bracket syntax won't appear, but the resulting div-based layout markup has no Markdown equivalent and needs to be manually rebuilt using your new platform's image or component syntax.
 
 **Q: Can I convert HTML exported from Notion into Markdown for a different platform?**
 
@@ -72,7 +72,7 @@ Notion already exports to Markdown natively, so for Notion content specifically 
 
 **Q: Does the converted Markdown work with MDX, for Astro or Gatsby?**
 
-Yes — standard Markdown output is also valid MDX, since MDX is a superset of Markdown syntax. You may still need to manually convert any embedded interactive widgets into actual JSX components, since those have no Markdown representation to begin with.
+Yes. Standard Markdown output is also valid MDX, since MDX is a superset of Markdown syntax. You may still need to manually convert any embedded interactive widgets into actual JSX components, since those have no Markdown representation to begin with.
 
 **Q: Will my page's CSS classes carry over?**
 
@@ -80,7 +80,7 @@ No, and that's intentional. CSS classes are presentation, not content, and Markd
 
 **Q: How do I handle internal links between migrated pages?**
 
-Links convert as-is, including their original `href` values. After migration, you'll likely need to update those hrefs to match your new platform's URL structure — a find-and-replace pass, not something the converter can infer automatically.
+Links convert as-is, including their original `href` values. After migration, you'll likely need to update those hrefs to match your new platform's URL structure. That's a find-and-replace pass, not something the converter can infer automatically.
 
 **Q: Is it safe to convert pages with customer data or unpublished drafts?**
 

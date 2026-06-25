@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
           <p className="text-sm text-gray-500 leading-relaxed">
             Free developer tools for Markdown, PDF conversion, and more.
-            All processing is client-side — your files never leave your device.
+            All processing is client-side. Your files never leave your device.
           </p>
         </div>
 

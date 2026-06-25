@@ -11,9 +11,9 @@ author: "MDTool Editorial Team"
 
 ## Markdown to HTML, Explained
 
-Converting Markdown to HTML online means pasting plain-text Markdown into a browser-based tool and getting back standard HTML — no software to install, no command line. The conversion itself is a well-understood, three-step process that every Markdown parser follows in some form, whether it's a website's build pipeline or a free converter you paste into.
+Converting Markdown to HTML online means pasting plain-text Markdown into a browser-based tool and getting back standard HTML, with no software to install and no command line. The conversion itself is a well-understood, three-step process that every Markdown parser follows in some form, whether it's a website's build pipeline or a free converter you paste into.
 
-This guide walks through how that process actually works, when to use a pasteable snippet versus a full standalone document, where Markdown-to-HTML conversion shows up in real workflows, and which Markdown features survive the trip to HTML cleanly — and which don't. If you just want to convert something right now, the **[Markdown to HTML converter](/markdown-to-html)** does it free, in your browser, with no signup.
+This guide walks through how that process actually works, when to use a pasteable snippet versus a full standalone document, where Markdown-to-HTML conversion shows up in real workflows, and which Markdown features survive the trip to HTML cleanly, as well as which don't. If you just want to convert something right now, the **[Markdown to HTML converter](/markdown-to-html)** does it free, in your browser, with no signup.
 
 ---
 
@@ -23,13 +23,13 @@ In one sentence: a Markdown-to-HTML converter reads your plain text, breaks it i
 
 That's the whole job, but it happens in three distinct stages:
 
-**1. Tokenizing.** The parser scans your Markdown line by line and identifies what kind of block it's looking at — is this line a heading (starts with `#`), a list item (starts with `-` or a number), a fenced code block (wrapped in triple backticks), or a plain paragraph? This pass doesn't produce HTML yet; it produces a flat list of "this chunk is a heading, this chunk is a paragraph" labels.
+**1. Tokenizing.** The parser scans your Markdown line by line and identifies what kind of block it's looking at: is this line a heading (starts with `#`), a list item (starts with `-` or a number), a fenced code block (wrapped in triple backticks), or a plain paragraph? This pass doesn't produce HTML yet; it produces a flat list of "this chunk is a heading, this chunk is a paragraph" labels.
 
-**2. Building structure.** The tokens get assembled into a tree — technically an Abstract Syntax Tree (AST) — that captures nesting. A bullet list with sub-bullets becomes a parent list node with child list nodes. A blockquote containing a code block becomes a quote node wrapping a code node. This is the stage where structure that looks simple in plain text (indentation, nesting) gets made explicit.
+**2. Building structure.** The tokens get assembled into a tree (technically an Abstract Syntax Tree, or AST) that captures nesting. A bullet list with sub-bullets becomes a parent list node with child list nodes. A blockquote containing a code block becomes a quote node wrapping a code node. This is the stage where structure that looks simple in plain text (indentation, nesting) gets made explicit.
 
-**3. Rendering.** The tree gets walked node by node, and each node type is mapped to its HTML equivalent: a heading-level-2 node becomes `<h2>...</h2>`, a list node becomes `<ul>` with `<li>` children, a code node becomes `<pre><code>`. This is also where extensions plug in — GitHub Flavored Markdown (GFM) adds table and task-list node types that core Markdown doesn't have, and a syntax-highlighting library like [highlight.js](https://highlightjs.org/) can intercept the code-node rendering step to wrap tokens in colored spans.
+**3. Rendering.** The tree gets walked node by node, and each node type is mapped to its HTML equivalent: a heading-level-2 node becomes `<h2>...</h2>`, a list node becomes `<ul>` with `<li>` children, a code node becomes `<pre><code>`. This is also where extensions plug in: GitHub Flavored Markdown (GFM) adds table and task-list node types that core Markdown doesn't have, and a syntax-highlighting library like [highlight.js](https://highlightjs.org/) can intercept the code-node rendering step to wrap tokens in colored spans.
 
-MDTool's converter runs this exact pipeline using [marked](https://marked.js.org/), a widely used JavaScript Markdown parser, with GFM extensions turned on. Because all three stages run as JavaScript in your browser, nothing about your Markdown ever needs to leave your device to get converted — there's no server doing the tokenizing for you.
+MDTool's converter runs this exact pipeline using [marked](https://marked.js.org/), a widely used JavaScript Markdown parser, with GFM extensions turned on. Because all three stages run as JavaScript in your browser, nothing about your Markdown ever needs to leave your device to get converted, and there's no server doing the tokenizing for you.
 
 <Callout type="info">
   Want to see this pipeline in action? **[Open the Markdown to HTML converter →](/markdown-to-html)** and watch the live preview update as you type.
@@ -41,9 +41,9 @@ MDTool's converter runs this exact pipeline using [marked](https://marked.js.org
 
 Most browser-based converters, including MDTool, give you two flavors of HTML output. The right one depends entirely on where the HTML is going next, not on a feature preference.
 
-**Use the snippet** (just the HTML fragment, no `<html>`/`<head>`/`<body>` wrapper) when you're pasting into something that already has its own page structure and styles — a CMS post editor, an existing webpage, an email template builder. Wrapping a fragment in another full document structure here just creates nested tags the browser has to untangle, and your existing styles won't apply correctly to a self-contained document.
+**Use the snippet** (just the HTML fragment, no `<html>`/`<head>`/`<body>` wrapper) when you're pasting into something that already has its own page structure and styles, such as a CMS post editor, an existing webpage, or an email template builder. Wrapping a fragment in another full document structure here just creates nested tags the browser has to untangle, and your existing styles won't apply correctly to a self-contained document.
 
-**Use the full document** (complete, valid HTML file with its own `<!DOCTYPE html>`, basic styling, and a stylesheet link) when the HTML needs to stand on its own — saved as a `.html` file you'll host directly, attach as a deliverable, or open straight in a browser with no other setup. A full document also bundles a highlight.js stylesheet automatically, so syntax-highlighted code actually shows color the moment you open the file, rather than rendering as plain monochrome text.
+**Use the full document** (complete, valid HTML file with its own `<!DOCTYPE html>`, basic styling, and a stylesheet link) when the HTML needs to stand on its own, saved as a `.html` file you'll host directly, attach as a deliverable, or open straight in a browser with no other setup. A full document also bundles a highlight.js stylesheet automatically, so syntax-highlighted code actually shows color the moment you open the file, rather than rendering as plain monochrome text.
 
 If you're not sure which one you need, ask: "does this HTML need to look right by itself, or is it going to live inside something else?" Standing alone → full document. Living inside something else → snippet. For the full feature-by-feature comparison table, see the [markdown to html converter](/markdown-to-html) page directly.
 
@@ -54,31 +54,31 @@ If you're not sure which one you need, ask: "does this HTML need to look right b
 Markdown-to-HTML conversion shows up in a handful of recurring workflows, each with a slightly different requirement:
 
 - **Embedding in an existing website.** A team writes documentation or release notes in Markdown because it's faster to draft, then converts to HTML once to drop into a static page or a custom CMS field. The snippet format is almost always right here.
-- **Email templates.** Newsletter tools and transactional email builders typically want a self-contained HTML fragment with inline-friendly markup — no `<head>`, no external stylesheet dependency, since most email clients strip both anyway. Conversion is only step one here; see [converting Markdown to HTML for email templates](/blog/markdown-to-html-email) for the CSS-inlining step that comes after.
+- **Email templates.** Newsletter tools and transactional email builders typically want a self-contained HTML fragment with inline-friendly markup, with no `<head>` and no external stylesheet dependency, since most email clients strip both anyway. Conversion is only step one here; see [converting Markdown to HTML for email templates](/blog/markdown-to-html-email) for the CSS-inlining step that comes after.
 - **CMS migration.** Moving content out of a Markdown-based system (a docs tool, a static site generator, a wiki export) into a CMS that expects HTML is one of the most common reasons people convert in bulk rather than one file at a time.
-- **Static site generator input.** Counterintuitively, some static site generators that don't have native Markdown support — or custom templating systems built before Markdown support was added — take pre-converted HTML as input rather than parsing Markdown themselves at build time. See [using Markdown to HTML conversion for static sites and docs](/blog/markdown-to-html-static-site) for when raw HTML beats setting up a generator entirely.
+- **Static site generator input.** Counterintuitively, some static site generators that don't have native Markdown support, or custom templating systems built before Markdown support was added, take pre-converted HTML as input rather than parsing Markdown themselves at build time. See [using Markdown to HTML conversion for static sites and docs](/blog/markdown-to-html-static-site) for when raw HTML beats setting up a generator entirely.
 
 Each of these is really the same conversion with a different destination, which is why the snippet/full-document choice above matters more than which specific tool you use.
 
 ---
 
-## What Survives the Conversion — and What Doesn't
+## What Survives the Conversion, and What Doesn't
 
 Not every Markdown feature maps cleanly to HTML the same way across every parser, and it's worth knowing which parts of your document are safe and which need a second look after converting.
 
 **Reliably preserved across virtually every Markdown-to-HTML converter:** headings, bold/italic text, ordered and unordered lists (including nesting), inline code and fenced code blocks, links, and images with their original `src` paths intact.
 
-**Preserved if the parser supports GitHub Flavored Markdown specifically:** tables (core Markdown has no table syntax at all — it's a GFM addition), task lists (`- [x]`), strikethrough, and automatic URL linking. A converter built on plain CommonMark without GFM extensions will print table pipes as literal text rather than rendering a table — this is the single most common "why didn't my table convert" complaint.
+**Preserved if the parser supports GitHub Flavored Markdown specifically:** tables (core Markdown has no table syntax at all, since it's a GFM addition), task lists (`- [x]`), strikethrough, and automatic URL linking. A converter built on plain CommonMark without GFM extensions will print table pipes as literal text rather than rendering a table, which is the single most common "why didn't my table convert" complaint.
 
 **Inconsistent across parsers, even with GFM enabled:** footnotes, definition lists, and custom container blocks (used by some documentation-specific Markdown dialects) are extensions that not every parser implements, including `marked`. If your source document relies on these, check the converted output specifically for those sections rather than assuming they came through.
 
-**Never automatically preserved:** anything that depends on the *destination* rather than the Markdown itself — relative image paths only resolve correctly if the HTML ends up in the same relative location as the images, and syntax-highlighting colors only display if the HTML output (or the page hosting it) includes a highlight.js stylesheet.
+**Never automatically preserved:** anything that depends on the *destination* rather than the Markdown itself. Relative image paths only resolve correctly if the HTML ends up in the same relative location as the images, and syntax-highlighting colors only display if the HTML output (or the page hosting it) includes a highlight.js stylesheet.
 
 ---
 
 ## Try It Now
 
-You don't need a separate tool for any of the use cases above — paste your Markdown into the converter, pick snippet or full document based on where it's going, and copy or download the result.
+You don't need a separate tool for any of the use cases above. Paste your Markdown into the converter, pick snippet or full document based on where it's going, and copy or download the result.
 
 **[Open the Markdown to HTML converter →](/markdown-to-html)**
 
@@ -90,11 +90,11 @@ For the underlying Markdown syntax itself, see the [complete Markdown cheatsheet
 
 **Q: Is converting Markdown to HTML online the same as using a command-line tool like Pandoc?**
 
-The end result — HTML output — is the same, but the workflow differs. A browser-based converter needs no installation and works on any device with a browser, while command-line tools like Pandoc need to be installed but offer more control over custom templates and batch processing.
+The end result, HTML output, is the same, but the workflow differs. A browser-based converter needs no installation and works on any device with a browser, while command-line tools like Pandoc need to be installed but offer more control over custom templates and batch processing.
 
 **Q: Do I need to know HTML to convert Markdown to HTML?**
 
-No. The conversion happens automatically — you write Markdown, the tool outputs HTML. Understanding basic HTML tags helps if you want to edit the output afterward, but it's not required to use a converter.
+No. The conversion happens automatically: you write Markdown, the tool outputs HTML. Understanding basic HTML tags helps if you want to edit the output afterward, but it's not required to use a converter.
 
 **Q: Why does my table show up as plain text with pipe characters instead of a table?**
 
@@ -102,7 +102,7 @@ Tables are a GitHub Flavored Markdown (GFM) extension, not part of core Markdown
 
 **Q: Can I convert a Markdown file with images to HTML?**
 
-Yes — image syntax converts to standard `<img>` tags. The image path in your Markdown carries over exactly as written, so make sure the path will still resolve correctly wherever the HTML ends up.
+Yes. Image syntax converts to standard `<img>` tags. The image path in your Markdown carries over exactly as written, so make sure the path will still resolve correctly wherever the HTML ends up.
 
 **Q: Does converting to HTML lose any formatting?**
 
@@ -110,7 +110,7 @@ Headings, lists, code blocks, tables (with GFM), and links all convert reliably.
 
 **Q: What's the difference between a Markdown parser and a Markdown renderer?**
 
-In practice the terms are often used interchangeably, but technically the parser builds the structural tree (the AST) from your text, and the renderer walks that tree to produce the final output format — HTML in this case, but the same tree could be rendered to PDF or plain text instead.
+In practice the terms are often used interchangeably, but technically the parser builds the structural tree (the AST) from your text, and the renderer walks that tree to produce the final output format, HTML in this case, but the same tree could be rendered to PDF or plain text instead.
 
 **Q: Is it safe to convert Markdown containing sensitive information online?**
 
