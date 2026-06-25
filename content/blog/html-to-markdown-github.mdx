@@ -1,0 +1,88 @@
+---
+title: "Converting HTML to Markdown for GitHub READMEs and Wikis"
+description: "GitHub renders only a sanitized subset of HTML in READMEs and wikis. Here's why Markdown is the better default, what HTML actually survives, and how to convert cleanly."
+datePublished: "2026-06-24"
+dateModified: "2026-06-24"
+tags: ["html", "markdown", "github", "developer-tools"]
+image: "/blog/html-to-markdown-github.jpg"
+imageAlt: "Code editor showing a project file tree alongside a Git commit history with branch merges"
+author: "MDTool Editorial Team"
+---
+
+## Why GitHub Prefers Markdown Over HTML in READMEs
+
+GitHub renders READMEs and wiki pages through GitHub Flavored Markdown (GFM), and while it does allow some raw HTML to pass through, it sanitizes that HTML aggressively for security — stripping `<script>` tags, inline style attributes, and class/id attributes even on tags it otherwise permits. Markdown, by contrast, is GitHub's first-class format: every GFM extension — tables, task lists, autolinks — is built to render predictably across the whole platform, since public READMEs, wiki pages, issues, pull requests, and comments all share the same renderer.
+
+There are two practical reasons this matters beyond security. The first is portability: a Markdown README renders consistently on GitHub, GitLab, npm, and PyPI, while raw HTML may not render the same way — or at all — when the same content is mirrored on a different platform. The second is diffability: Markdown's plain-text nature produces clean, readable diffs in pull requests, while HTML's nested tags and attributes turn a small content edit into a noisy diff that's harder to review. For how GFM itself differs from the CommonMark baseline, see [GitHub Flavored Markdown vs. standard Markdown](/blog/github-flavored-markdown-vs-standard-markdown).
+
+## What HTML GitHub Actually Renders (Limited Subset)
+
+GitHub uses an open-source sanitization step — based on `html-pipeline`'s sanitization filter — that allows through only tags that GFM syntax itself can already produce, plus a handful more useful for layout. Here's the practically useful subset:
+
+| Tag | Allowed? | Notes |
+|---|---|---|
+| `<table>`, `<tr>`, `<td>`, `<th>`, `<thead>`, `<tbody>` | ✅ Allowed | Raw HTML tables render, but Markdown pipe tables diff better in PRs |
+| `<a>`, `<img>` | ✅ Allowed | Links and images render normally |
+| `<details>`, `<summary>` | ✅ Allowed | The supported way to build collapsible sections |
+| `<blockquote>`, `<code>`, `<pre>` | ✅ Allowed | Same elements GFM syntax already produces |
+| `<sup>`, `<sub>`, `<kbd>`, `<mark>` | ✅ Allowed | Useful for footnote-style markers and keyboard-shortcut docs |
+| `<div>`, `<span>` | ✅ Allowed, but stripped of styling | Tag survives; any `class`/`id`/`style` attribute on it does not |
+| `<script>` | ❌ Stripped entirely | Removed for security, no exceptions |
+| Inline `style="..."` attributes | ❌ Stripped on every tag | Even on otherwise-allowed tags like `<table>` or `<div>` |
+| `class`/`id` attributes | ❌ Stripped on every tag | Same rule as inline styles — no exceptions |
+
+This means a `<div class="badge-row">` you copied from another site will render as a plain `<div>` with no styling at all — the class that controlled its appearance is gone.
+
+Wiki pages follow a similar set of rules, with two notable gaps worth knowing about: mixing Markdown syntax *inside* an HTML block on a wiki page doesn't reliably render, and footnotes — supported in regular repository Markdown — aren't supported on wiki pages at all.
+
+## Converting Your HTML Docs to GFM With MDTool
+
+If your documentation started life as HTML — exported from Confluence, scraped from an internal wiki, or hand-written — converting it to GFM before committing it as a `README.md` or wiki page avoids the sanitization surprises above entirely, since you're authoring in the format GitHub actually expects rather than hoping your HTML survives the filter.
+
+1. Paste your HTML into the [HTML to Markdown converter](/html-to-markdown), or upload the `.html` file directly.
+2. MDTool's converter is built on `turndown` with the GFM plugin — the same dialect GitHub renders — so the output typically needs little adjustment before committing.
+3. Copy the Markdown and save it as `README.md`, or paste it directly into a new wiki page.
+4. Commit and check the rendered result on GitHub itself before treating the migration as done — sanitization behavior is easiest to verify by looking at the actual rendered page.
+
+## What to Fix After Conversion (Common GFM Issues)
+
+- **Merged-cell tables.** `colspan`/`rowspan` from a source table flattens during conversion, since GFM tables can't represent merged cells — rebuild these manually rather than trying to coax the converter into preserving them.
+- **Collapsible sections.** HTML built with a `<div class="collapsible">` and a small JavaScript snippet has no Markdown equivalent and gets dropped. Rebuild it using GitHub's actual `<details>`/`<summary>` tags instead, which survive both rendering and sanitization.
+- **Badge containers.** A bare `<img>` badge converts fine, but a wrapping `<div>` with alignment or spacing CSS won't carry its styling over. Re-create spacing with blank lines or a Markdown table instead of relying on the original container.
+- **In-page anchor links.** GitHub auto-generates heading anchors by lowercasing the heading text and replacing spaces with hyphens. If your old HTML used manually assigned `id` attributes for jump links, you'll need to rewrite those links to match GitHub's auto-slugified IDs.
+
+For comparing how a converted README behaves across different output formats, see our guide on [GitHub README to PDF](/blog/github-readme-to-pdf).
+
+## Frequently Asked Questions
+
+**Q: Does GitHub strip all HTML from Markdown files?**
+
+No — GitHub allows a sanitized subset of HTML tags (like `<details>`, `<summary>`, `<sub>`, `<sup>`, `<kbd>`, and basic table tags) through its sanitization filter, but strips `<script>` tags, inline style attributes, and class/id attributes even on the tags it permits.
+
+**Q: Can I use raw HTML tables in a GitHub README instead of Markdown tables?**
+
+Yes, raw `<table>` HTML is on GitHub's allowed-tag list and will render, but Markdown's pipe-table syntax is easier to maintain and diff in pull requests, so most projects convert HTML tables to GFM tables rather than keeping raw HTML.
+
+**Q: Why did my collapsible HTML section disappear after conversion?**
+
+Custom collapsible widgets built with a `<div>` and JavaScript have no Markdown equivalent and get dropped or flattened during conversion. GitHub's native `<details>`/`<summary>` tags are the supported replacement and survive both Markdown rendering and the sanitization filter.
+
+**Q: Do GitHub wikis support the same HTML as repository READMEs?**
+
+Mostly — wikis render Markdown and a similar sanitized HTML subset, but mixing Markdown syntax inside HTML blocks doesn't reliably render on wiki pages, and footnotes aren't supported in wikis at all, unlike regular repository Markdown files.
+
+**Q: Will my anchor links still work after converting to Markdown?**
+
+Links convert with their `href` intact, but if your old HTML used manually assigned `id` attributes for in-page jump links, you'll need to update them — GitHub auto-generates heading anchor IDs from the heading text.
+
+**Q: Can I convert a whole documentation site's HTML pages into GitHub wiki pages?**
+
+Yes, one page at a time through the paste-or-upload workflow. For a large docs site with many pages, consider scripting the conversion against the underlying `turndown` library rather than converting each page by hand.
+
+**Q: Does converting to Markdown lose syntax highlighting in code blocks?**
+
+No, as long as the source HTML's `<code>` element has a language class like `language-js` — the converter preserves it as a fenced code block with that language tag, which GitHub then syntax-highlights with its own renderer.
+
+**Q: Is my private repository's documentation safe to paste into an online converter?**
+
+As long as the converter processes content client-side — MDTool does, with conversion running as JavaScript in your browser and nothing uploaded to a server — pasting private documentation carries no more risk than opening it in a local text editor.

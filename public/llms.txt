@@ -9,7 +9,7 @@ MDTool is a free tool site (no account, no watermark, no paywall) for converting
 - [Markdown to PDF Converter](https://www.mdtool.dev/markdown-to-pdf): Convert Markdown to PDF with GitHub Flavored Markdown support, syntax-highlighted code blocks, tables, and rendered Mermaid diagrams.
 - [Markdown to HTML Converter](https://www.mdtool.dev/markdown-to-html): Convert Markdown to clean HTML with GFM support and syntax-highlighted code.
 - [Markdown to Word Converter](https://www.mdtool.dev/markdown-to-word): Convert Markdown to a .docx file.
-- [HTML to Markdown Converter](https://www.mdtool.dev/html-to-markdown): Convert HTML to clean Markdown.
+- [HTML to Markdown Converter](https://www.mdtool.dev/html-to-markdown): Convert HTML to clean Markdown — paste or upload .html, GFM output, nothing sent to a server.
 - [Word to Markdown Converter](https://www.mdtool.dev/word-to-markdown): Convert a .docx file to Markdown.
 
 ## Guides
@@ -22,6 +22,12 @@ MDTool is a free tool site (no account, no watermark, no paywall) for converting
 - [Markdown to HTML Online: The Complete Conversion Guide](https://www.mdtool.dev/blog/markdown-to-html-guide): How Markdown-to-HTML conversion works, when to use snippet vs. full-document output, and what survives the conversion.
 - [How to Convert Markdown to HTML for Email Templates](https://www.mdtool.dev/blog/markdown-to-html-email): Why email-safe HTML requires CSS inlining as a separate step after conversion, and how to do both.
 - [Using Markdown to HTML Conversion for Static Sites and Docs](https://www.mdtool.dev/blog/markdown-to-html-static-site): How Jekyll, Hugo, and Astro handle Markdown, and when raw HTML conversion beats setting up a generator.
+- [Markdown to DOCX: How to Generate a Real Word Document From Markdown](https://www.mdtool.dev/blog/markdown-to-docx): What makes a .docx file genuine Office Open XML rather than HTML wrapped in a Word shim, and what MDTool generates under the hood.
+- [How to Convert a Markdown Resume to a Word Document](https://www.mdtool.dev/blog/markdown-resume-to-word): A copy-paste Markdown resume template plus step-by-step conversion to a Word document.
+- [Converting Technical Documentation From Markdown to Word](https://www.mdtool.dev/blog/markdown-to-word-documentation): What survives conversion in API docs and technical guides — headings, tables, and code blocks — and what doesn't yet.
+- [How to Convert HTML to Markdown for CMS Migration](https://www.mdtool.dev/blog/html-to-markdown-cms-migration): What converts cleanly and what doesn't when migrating from an HTML CMS to Notion, Ghost, Astro, Hugo, or Jekyll.
+- [Converting HTML to Markdown for GitHub READMEs and Wikis](https://www.mdtool.dev/blog/html-to-markdown-github): Which raw HTML tags GitHub's sanitization filter actually allows, and how to convert HTML docs to clean GFM.
+- [How to Convert Messy HTML to Clean Markdown](https://www.mdtool.dev/blog/clean-html-to-markdown): What Word, Confluence, and WYSIWYG exports do to HTML, and what turndown cleans up automatically vs. what needs a manual pass.
 
 ## Notes for AI agents and crawlers
 

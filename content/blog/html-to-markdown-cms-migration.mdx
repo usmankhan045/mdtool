@@ -1,0 +1,87 @@
+---
+title: "How to Convert HTML to Markdown for CMS Migration"
+description: "Migrating from WordPress, Confluence, or any HTML-based CMS to Notion, Ghost, Astro, or Hugo? Here's what converts cleanly, what doesn't, and the step-by-step process."
+datePublished: "2026-06-24"
+dateModified: "2026-06-24"
+tags: ["html", "markdown", "cms-migration", "developer-tools"]
+image: "/blog/html-to-markdown-cms-migration.jpg"
+imageAlt: "Close-up of a laptop screen showing CSS code in a text editor"
+author: "MDTool Editorial Team"
+---
+
+## Why Teams Migrate From HTML CMS to Markdown
+
+Migrating away from an HTML-based CMS toward a Markdown workflow is one of the most common reasons people go looking for an HTML-to-Markdown converter — not because Markdown is trendy, but because the destination platforms specifically want it. **Notion** treats Markdown as its native import and export format. **Ghost**'s post editor is Markdown-first under the hood, even though it renders HTML on the published page. Static site generators — **Astro**, **Hugo**, **Jekyll**, and others — build entire sites from Markdown (or MDX) files committed to a Git repository, with no database involved at all.
+
+The draw is consistent across all of these destinations: content lives in version-controllable plain-text files instead of a database table, there's no plugin ecosystem to patch and maintain, and the files themselves are portable — a Markdown file isn't tied to one platform's theme CSS the way an HTML export can be.
+
+The friction point is almost always the same, though: your existing content already exists as HTML — exported from WordPress, copied from a documentation site, or sitting in a CMS with no native Markdown export. That's the actual conversion this guide walks through.
+
+## What Converts Cleanly and What Does Not
+
+Set honest expectations before you commit to converting an entire content library, because HTML is more expressive than Markdown and some things genuinely don't survive the trip.
+
+| Source HTML | Result | Notes |
+|---|---|---|
+| Headings, paragraphs, bold/italic | ✅ Converts cleanly | Maps directly to Markdown syntax |
+| Links and images | ✅ Converts cleanly | `href`, `src`, and `alt` preserved as-is |
+| Ordered/unordered lists, incl. nesting | ✅ Converts cleanly | Indentation follows CommonMark rules |
+| Straightforward GFM tables | ✅ Converts cleanly | Simple row/column tables only |
+| Fenced code blocks | ✅ Converts cleanly | Language tag kept if source has `class="language-js"` |
+| Inline styles, presentation-only `<span>` | ❌ Dropped | No Markdown equivalent to preserve them in |
+| `colspan`/`rowspan`, nested tables | ⚠️ Flattened | GFM tables can't express merged cells |
+| Embedded JS widgets, iframes, galleries | ❌ Dropped | No Markdown representation exists |
+| Expanded CMS shortcodes (e.g. WordPress galleries) | ⚠️ Needs manual rebuild | Leaves div-based layout markup with no Markdown equivalent |
+
+If your source documents are actually Word files rather than HTML pages, the [Word to Markdown converter](/word-to-markdown) handles that format directly rather than requiring an HTML export step first.
+
+## Step-by-Step Migration With MDTool
+
+1. **Get the HTML.** Use View Source or Inspect Element on a live page, your CMS's HTML export feature, or a WordPress XML export converted to per-page HTML.
+2. **Convert.** Paste the HTML into the [HTML to Markdown converter](/html-to-markdown), or upload the `.html` file directly via drag-and-drop.
+3. **Check the high-risk areas first.** Tables and code blocks are where conversion most often needs a second pass — verify those before trusting the rest of the page.
+4. **Save with the filename and structure your destination expects.** Copy the Markdown or download it as `.md`. Note that MDTool converts body content only — Hugo, Jekyll, and Astro all expect YAML front matter (title, date, slug) at the top of the file, which you'll need to add separately since it isn't represented as visible page content in the source HTML.
+5. **Repeat per page.** For a handful of pages, this paste-based workflow is the fastest path. For a migration spanning dozens or hundreds of pages, script the conversion against the underlying `turndown` library directly rather than pasting one page at a time — the same logic MDTool uses, but callable in a loop.
+
+## Cleaning Up the Output After Conversion
+
+A few issues show up reliably enough across CMS migrations that it's worth checking for them specifically, the same way developers converting [GitHub READMEs to PDF](/blog/github-readme-to-pdf) check badges and Mermaid diagrams before trusting a batch export:
+
+- **Missing front matter.** Every Markdown-based platform needs metadata MDTool doesn't generate — add title, date, and slug fields manually or with a small script per platform.
+- **Near-empty Markdown tables.** Layout-only HTML tables from page-builder plugins sometimes convert into a pipe table with little real content — delete these rather than trying to repair them.
+- **Broken relative image paths.** An image path that resolved correctly on the old CMS often won't resolve on the new platform's folder structure. Re-point these to wherever you're now hosting images — most static site generators expect them in a `static/` or `public/` folder.
+- **Stray emphasis markers.** HTML that applies bold via both a CSS class and a real `<strong>` tag can occasionally produce doubled-up `**` characters. Proofread the first converted page closely before applying the same workflow across the rest of the migration.
+
+## Frequently Asked Questions
+
+**Q: Can MDTool migrate an entire WordPress site at once?**
+
+No — MDTool converts one page of HTML at a time, in your browser. For migrating an entire site, export each page's HTML, convert pages individually, or script the conversion against the underlying `turndown` library if you need to process many files programmatically.
+
+**Q: Does converted Markdown include front matter for Hugo or Jekyll?**
+
+No. MDTool converts the body content of the HTML — headings, text, tables, code — not metadata. You'll need to add YAML front matter (title, date, slug, tags) manually or with a separate script, since that data isn't represented as visible content in the source HTML.
+
+**Q: What happens to WordPress shortcodes during conversion?**
+
+Shortcode syntax itself (`[gallery ids="1,2,3"]`) is usually already expanded into plain HTML by the time you copy a rendered page, so the bracket syntax won't appear — but the resulting div-based layout markup has no Markdown equivalent and needs to be manually rebuilt using your new platform's image or component syntax.
+
+**Q: Can I convert HTML exported from Notion into Markdown for a different platform?**
+
+Notion already exports to Markdown natively, so for Notion content specifically you usually don't need an HTML-to-Markdown step at all. Reach for HTML conversion only when Markdown export isn't available for the specific content type you're working with.
+
+**Q: Does the converted Markdown work with MDX, for Astro or Gatsby?**
+
+Yes — standard Markdown output is also valid MDX, since MDX is a superset of Markdown syntax. You may still need to manually convert any embedded interactive widgets into actual JSX components, since those have no Markdown representation to begin with.
+
+**Q: Will my page's CSS classes carry over?**
+
+No, and that's intentional. CSS classes are presentation, not content, and Markdown has no syntax to represent them. Your new platform applies its own styling to the converted Markdown.
+
+**Q: How do I handle internal links between migrated pages?**
+
+Links convert as-is, including their original `href` values. After migration, you'll likely need to update those hrefs to match your new platform's URL structure — a find-and-replace pass, not something the converter can infer automatically.
+
+**Q: Is it safe to convert pages with customer data or unpublished drafts?**
+
+Yes. MDTool's conversion runs entirely in your browser via JavaScript; nothing is uploaded to a server, so unpublished or sensitive content never leaves your device during conversion.

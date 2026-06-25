@@ -41,3 +41,48 @@ No deprecated types in use. No HowTo markup despite the page describing a 4-step
 5. **Info — Leave `FAQPage` in place.** No Google SERP benefit since May 7, 2026, but retain for AI/LLM citation value of the 8 Q&A pairs.
 
 How to verify each fix landed: re-run `/seo schema https://www.mdtool.dev/markdown-to-pdf` after deploy, or paste the URL into Google's Rich Results Test — `Organization` and `BreadcrumbList` should both report as detected with no errors.
+
+---
+
+# Schema Markup Report — www.mdtool.dev/html-to-markdown
+
+**Analyzed:** 2026-06-24
+**Note:** the live URL still serves the pre-edit page (see `GEO-ANALYSIS.md`'s 2026-06-24 entry for the deployment-gap note). This audits the local source in `app/html-to-markdown/page.tsx` that will replace it once deployed.
+
+## Detection Summary
+
+Format: **JSON-LD only**, matching Google's preferred format, consistent with the rest of the site.
+
+| # | Schema Type | Source | JSON Valid |
+|---|---|---|---|
+| 1 | `Organization` | `app/layout.tsx` (global, every page) | ✅ |
+| 2 | `WebApplication` | `StructuredData type="tool"` | ✅ |
+| 3 | `BreadcrumbList` | `StructuredData type="breadcrumb"` | ✅ |
+| 4 | `FAQPage` | Rendered by `FaqSection` from the page's 10 FAQ items | ✅ |
+
+## Validation Results
+
+| Schema | Status | Issues |
+|--------|--------|--------|
+| `Organization` | ✅ Resolved since last audit | Was the top-priority gap on 2026-06-23 (no sitewide entity schema at all). Now present globally with `name`, `url`, `logo`, and `sameAs: ["https://github.com/usmankhan045/mdtool"]`. Only one `sameAs` link — add Twitter/X or LinkedIn if those accounts exist; Low priority, not a defect. |
+| `WebApplication` | ⚠️ Valid but still incomplete | Unlike the `/markdown-to-pdf` audit, the `description` passed here **is already page-specific** (not reused sitewide copy) — that specific gap from the 2026-06-23 report doesn't apply here. Still missing: `image`/`screenshot` (no visual of the converter UI) and `datePublished` (only `dateModified` is set). No `aggregateRating` — correctly absent, since no real rating data exists to back it. |
+| `BreadcrumbList` | ✅ Valid | Home → HTML to Markdown Converter, 2 levels, correctly formed. |
+| `FAQPage` | ℹ️ Info, not Critical | 10 Q&As, all structurally valid (`Question` → `acceptedAnswer` → `Answer.text`). No Google SERP rich-result benefit since the May 7, 2026 retirement — **keep it anyway** for AI Mode / AI Overviews / LLM citation value. Do not remove. |
+
+No deprecated types in use. No `HowTo` markup despite the page's numbered "How to Convert HTML to Markdown" steps — correctly avoided (deprecated September 2023).
+
+## Missing Schema Opportunities
+
+| Gap | Severity | Why it matters |
+|---|---|---|
+| No `image`/`screenshot` on `WebApplication` | Low | Recommended property for the software-app rich card. A screenshot of the paste/upload UI with the live preview would qualify — the same asset the GEO report recommends for multi-modal content. |
+| No `datePublished` on `WebApplication` | Low | `dateModified` alone is set; adding `datePublished` gives a fuller recency signal for AI Mode's freshness weighting. |
+| `Organization.sameAs` has only one entry | Low | Add Twitter/X, LinkedIn, or other real profile URLs as they come online — do not fabricate placeholder links. |
+
+## Recommendations (priority order)
+
+1. **Low — Add `image` to the `WebApplication` schema** once a UI screenshot exists.
+2. **Low — Add `datePublished`** alongside the existing `dateModified` on the `tool` schema type in `components/seo/StructuredData.tsx` — affects every tool page since it's a shared component default, not just this one.
+3. **Info — Leave `FAQPage` in place.** No Google SERP benefit since May 7, 2026, but retains AI/LLM citation value for all 10 Q&A pairs.
+
+How to verify each fix landed: re-run `/seo schema https://www.mdtool.dev/html-to-markdown` after deploy, or paste the URL into Google's Rich Results Test.

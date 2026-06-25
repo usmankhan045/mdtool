@@ -15,6 +15,7 @@ export interface BlogPost {
   imageAlt: string;
   author: string;
   faqs: { q: string; a: string }[];
+  ctaTool?: { href: string; label: string; description: string };
 }
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog');
@@ -69,6 +70,7 @@ export function getAllBlogPosts(): BlogPost[] {
         imageAlt: data.imageAlt || data.title || slug,
         author: data.author || 'MDTool Editorial Team',
         faqs: extractFaqs(content),
+        ctaTool: data.ctaTool,
       };
     })
     .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
@@ -95,5 +97,6 @@ export function getBlogPost(slug: string): BlogPost | null {
     imageAlt: data.imageAlt || data.title || slug,
     author: data.author || 'MDTool Editorial Team',
     faqs: extractFaqs(content),
+    ctaTool: data.ctaTool,
   };
 }

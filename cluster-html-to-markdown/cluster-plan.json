@@ -1,0 +1,219 @@
+{
+  "seed": "html to markdown",
+  "generatedAt": "2026-06-24",
+  "site": "devmark / MDTool — client-side HTML→Markdown converter (no upload, no signup; built on turndown + GFM plugin)",
+  "pillar": {
+    "title": "HTML to Markdown Converter",
+    "keyword": "html to markdown",
+    "secondaryKeywords": ["html to markdown converter", "html to md", "convert html to markdown"],
+    "volume": "high (head term)",
+    "template": "tool-landing-page",
+    "wordCount": 1300,
+    "url": "/html-to-markdown",
+    "status": "written",
+    "notes": "Existing app route (app/html-to-markdown) already has a strong 'How Ambiguous HTML Gets Resolved' section with an HTML-element-to-Markdown mapping table and 5 FAQs — stronger than most competitor tool pages. Same gap as the sibling pillars: nothing links to it from blog content yet."
+  },
+  "clusters": [
+    {
+      "name": "Conversion Problems & Fixes",
+      "color": "#4E79A7",
+      "intent": "informational",
+      "rationale": "Verified via WebSearch: 'html to markdown code block not converting' returns Daring Fireball, Markdown Guide, and PHP-league/Turndown GitHub issue threads — zero overlap with the converter-tool SERP. Search also surfaced a real, citable failure mode (HTML in ISO-8859-1/Windows-1252 encoding produces garbled characters after conversion) and the lossy-by-design framing (Markdown ~15 constructs vs. HTML 100+ elements) that other competitor pages don't explain. High intent: visitor's output already looks wrong.",
+      "posts": [
+        {
+          "title": "Why Code Blocks Lose Their Language Tag When You Convert HTML to Markdown",
+          "keyword": "html to markdown code block language not preserved",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/html-to-markdown-code-block-language",
+          "status": "planned"
+        },
+        {
+          "title": "Why HTML Tables Don't Convert Cleanly to Markdown",
+          "keyword": "html table to markdown not working",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/html-table-to-markdown-not-working",
+          "status": "planned"
+        },
+        {
+          "title": "Why Nested Lists Get Flattened When You Convert HTML to Markdown",
+          "keyword": "html to markdown nested list indent",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/html-to-markdown-nested-list-indent",
+          "status": "planned"
+        },
+        {
+          "title": "Garbled Characters After Converting HTML to Markdown? Fix the Encoding",
+          "keyword": "html to markdown encoding garbled characters",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/html-to-markdown-encoding-garbled-characters",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Comparisons & Tools",
+      "color": "#F28E2B",
+      "intent": "commercial",
+      "rationale": "Verified via WebSearch: 'html to markdown converter', 'html to markdown online free', and 'best html to markdown converter 2026' all return 7+ shared results — codebeautify.org, htmlmarkdown.com, Syncfusion, Browserling, CodeShack, CloudConvert, PicoToolkit, Dillinger. Unlike the sibling 'Markdown to HTML' cluster, developer-facing library results (Turndown, JohannesKaufmann/html-to-markdown, the PyPI html-to-markdown package) rank inside this same head-term SERP rather than a separate one, so the comparison post should acknowledge the library option for scripted workflows while still routing manual/one-off conversions to the tool.",
+      "posts": [
+        {
+          "title": "Best HTML to Markdown Converter in 2026: DevMark vs. The Alternatives",
+          "keyword": "best html to markdown converter",
+          "template": "comparison",
+          "wordCount": 1650,
+          "url": "/blog/best-html-to-markdown-converter",
+          "status": "planned"
+        },
+        {
+          "title": "Convert HTML to Markdown Without Uploading Your File",
+          "keyword": "html to markdown converter free no upload",
+          "template": "comparison",
+          "wordCount": 1300,
+          "url": "/blog/html-to-markdown-no-upload-privacy",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "AI & LLM Workflows",
+      "color": "#B07AA1",
+      "intent": "informational/transactional",
+      "rationale": "Verified via WebSearch: 'scrape website to markdown tool' returns an entirely separate, fast-moving competitor set (Firecrawl, Simplescraper, Bright Data, Decodo) built around full-page URL scraping for LLM ingestion — zero overlap with the static-HTML converter SERP. DevMark's tool is paste/upload-based (you already have the HTML — from view-source, a clipboard grab, an exported doc) rather than a URL fetcher, so this cluster deliberately targets the narrower 'I already have HTML, need clean Markdown for a prompt' job rather than competing with full-site crawlers head-on.",
+      "posts": [
+        {
+          "title": "How to Convert HTML to Markdown for ChatGPT and Claude Prompts",
+          "keyword": "convert html to markdown for llm prompt",
+          "template": "how-to",
+          "wordCount": 1400,
+          "url": "/blog/html-to-markdown-for-llm-prompts",
+          "status": "planned"
+        },
+        {
+          "title": "HTML to Markdown vs. Web Scraping Tools: When You Already Have the HTML",
+          "keyword": "html to markdown vs web scraper",
+          "template": "explainer",
+          "wordCount": 1200,
+          "url": "/blog/html-to-markdown-vs-web-scraper",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Migration & Docs Workflows",
+      "color": "#76B7B2",
+      "intent": "informational/transactional",
+      "rationale": "Verified via WebSearch: 'convert confluence page to markdown' returns Atlassian Marketplace apps and GitHub exporters, and 'html email to markdown' returns file2markdown, Markdown Here, and PHP-league/html-to-markdown — each its own distinct competitor set with no overlap with the generic converter SERP. Same job-to-be-done pattern as the sibling clusters' CMS/dev-workflow buckets: a specific export format, a specific destination.",
+      "posts": [
+        {
+          "title": "How to Convert a Confluence Page to Markdown (No Plugin Required)",
+          "keyword": "confluence page to markdown",
+          "template": "how-to",
+          "wordCount": 1400,
+          "url": "/blog/confluence-page-to-markdown",
+          "status": "planned"
+        },
+        {
+          "title": "How to Convert an HTML Email to Markdown",
+          "keyword": "html email to markdown",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/html-email-to-markdown",
+          "status": "planned"
+        },
+        {
+          "title": "How to Export WordPress Posts to Markdown Without a Plugin",
+          "keyword": "wordpress html to markdown",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/wordpress-html-to-markdown",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Fundamentals & Reference",
+      "color": "#59A14F",
+      "intent": "informational",
+      "rationale": "Top-of-funnel reference content. Deliberately does NOT duplicate the sibling 'Markdown to HTML' cluster's planned /blog/markdown-vs-html post (see ../cluster-markdown-to-html/cluster-plan.json) — that asset is reused via cross-link instead of being rebuilt here, same pattern as how both PDF and HTML-pillar clusters reuse the single 'Markdown Cheatsheet' post.",
+      "posts": [
+        {
+          "title": "Which HTML Elements Convert to Which Markdown Syntax? A Complete Mapping",
+          "keyword": "html elements to markdown syntax mapping",
+          "template": "explainer",
+          "wordCount": 1300,
+          "url": "/blog/html-elements-to-markdown-mapping",
+          "status": "planned",
+          "notes": "Expands the element-mapping table already in app/html-to-markdown/page.tsx into a full reference post."
+        }
+      ]
+    }
+  ],
+  "links": [
+    { "from": "pillar", "to": "cluster-0-post-0", "type": "mandatory", "anchor": "html to markdown code block language" },
+    { "from": "cluster-0-post-0", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-0-post-1", "type": "mandatory", "anchor": "html table to markdown not working" },
+    { "from": "cluster-0-post-1", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-0-post-2", "type": "mandatory", "anchor": "html to markdown nested list indent" },
+    { "from": "cluster-0-post-2", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-0-post-3", "type": "mandatory", "anchor": "html to markdown encoding garbled characters" },
+    { "from": "cluster-0-post-3", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+
+    { "from": "pillar", "to": "cluster-1-post-0", "type": "mandatory", "anchor": "best html to markdown converter" },
+    { "from": "cluster-1-post-0", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-1-post-1", "type": "mandatory", "anchor": "convert html to markdown without uploading" },
+    { "from": "cluster-1-post-1", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+
+    { "from": "pillar", "to": "cluster-2-post-0", "type": "mandatory", "anchor": "html to markdown for chatgpt and claude prompts" },
+    { "from": "cluster-2-post-0", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-2-post-1", "type": "mandatory", "anchor": "html to markdown vs web scraper" },
+    { "from": "cluster-2-post-1", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+
+    { "from": "pillar", "to": "cluster-3-post-0", "type": "mandatory", "anchor": "confluence page to markdown" },
+    { "from": "cluster-3-post-0", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-3-post-1", "type": "mandatory", "anchor": "html email to markdown" },
+    { "from": "cluster-3-post-1", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+    { "from": "pillar", "to": "cluster-3-post-2", "type": "mandatory", "anchor": "wordpress html to markdown" },
+    { "from": "cluster-3-post-2", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+
+    { "from": "pillar", "to": "cluster-4-post-0", "type": "mandatory", "anchor": "html elements to markdown mapping" },
+    { "from": "cluster-4-post-0", "to": "pillar", "type": "mandatory", "anchor": "html to markdown converter" },
+
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-1", "type": "recommended", "anchor": "html table to markdown not working" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-0", "type": "recommended", "anchor": "code block language not preserved" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-2", "type": "recommended", "anchor": "nested list indent" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-1", "type": "recommended", "anchor": "html table to markdown not working" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-3", "type": "recommended", "anchor": "encoding garbled characters" },
+    { "from": "cluster-0-post-3", "to": "cluster-0-post-2", "type": "recommended", "anchor": "nested list indent" },
+    { "from": "cluster-0-post-3", "to": "cluster-0-post-0", "type": "recommended", "anchor": "code block language not preserved" },
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-3", "type": "recommended", "anchor": "encoding garbled characters" },
+
+    { "from": "cluster-1-post-0", "to": "cluster-1-post-1", "type": "recommended", "anchor": "convert html to markdown without uploading" },
+    { "from": "cluster-1-post-1", "to": "cluster-1-post-0", "type": "recommended", "anchor": "best html to markdown converter" },
+
+    { "from": "cluster-2-post-0", "to": "cluster-2-post-1", "type": "recommended", "anchor": "html to markdown vs web scraper" },
+    { "from": "cluster-2-post-1", "to": "cluster-2-post-0", "type": "recommended", "anchor": "html to markdown for llm prompts" },
+
+    { "from": "cluster-3-post-0", "to": "cluster-3-post-1", "type": "recommended", "anchor": "html email to markdown" },
+    { "from": "cluster-3-post-1", "to": "cluster-3-post-0", "type": "recommended", "anchor": "confluence page to markdown" },
+    { "from": "cluster-3-post-1", "to": "cluster-3-post-2", "type": "recommended", "anchor": "wordpress html to markdown" },
+    { "from": "cluster-3-post-2", "to": "cluster-3-post-1", "type": "recommended", "anchor": "html email to markdown" },
+    { "from": "cluster-3-post-2", "to": "cluster-3-post-0", "type": "recommended", "anchor": "confluence page to markdown" },
+    { "from": "cluster-3-post-0", "to": "cluster-3-post-2", "type": "recommended", "anchor": "wordpress html to markdown" },
+
+    { "from": "cluster-2-post-0", "to": "cluster-1-post-0", "type": "optional", "anchor": "best html to markdown converter" },
+    { "from": "cluster-3-post-0", "to": "cluster-4-post-0", "type": "optional", "anchor": "html elements to markdown mapping" },
+    { "from": "cluster-0-post-0", "to": "cluster-4-post-0", "type": "optional", "anchor": "html elements to markdown mapping" }
+  ],
+  "meta": {
+    "totalPosts": 13,
+    "totalClusters": 5,
+    "totalLinks": 45,
+    "estimatedWords": 17050,
+    "writtenPosts": 1,
+    "plannedPosts": 12
+  }
+}

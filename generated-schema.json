@@ -52,5 +52,30 @@
       "Client-side processing — files never uploaded"
     ],
     "image": "[Screenshot URL of the converter UI]"
+  },
+  "webapplication_schema_html_to_markdown_add_image_and_datepublished": {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "HTML to Markdown Converter",
+    "url": "https://www.mdtool.dev/html-to-markdown",
+    "description": "Convert HTML to clean Markdown instantly in your browser. Paste or upload, with GFM tables, code blocks, links, and lists.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "datePublished": "[Date this tool page first went live]",
+    "dateModified": "2026-06-24",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "HTML to Markdown conversion",
+      "GitHub Flavored Markdown (GFM) output",
+      "Code block language preservation",
+      "Paste or file upload (drag-and-drop)",
+      "Client-side processing — nothing sent to a server"
+    ],
+    "image": "[Screenshot URL of the paste/upload UI with live preview]"
   }
 }
