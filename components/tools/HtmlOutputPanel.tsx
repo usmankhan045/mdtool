@@ -107,7 +107,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
       {tab === 'preview' ? (
         <iframe
           srcDoc={htmlContent.trim() ? fullHtml : '<p style="color:#9ca3af;font-style:italic;font-family:sans-serif;margin:24px;">Your preview will appear here as you type...</p>'}
-          className="flex-1 w-full min-h-[500px] border-0 bg-white rounded-b-lg border-x border-b border-gray-200"
+          className="flex-1 w-full min-h-[340px] sm:min-h-[500px] border-0 bg-white rounded-b-lg border-x border-b border-gray-200"
           title="HTML Preview"
           sandbox="allow-same-origin"
         />
@@ -115,7 +115,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
         <textarea
           value={outputCode}
           readOnly
-          className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[500px]"
+          className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
           spellCheck={false}
         />
       )}

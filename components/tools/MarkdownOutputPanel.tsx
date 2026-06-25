@@ -56,7 +56,7 @@ export default function MarkdownOutputPanel({ markdown, filename = 'document.md'
         value={loading ? 'Converting...' : markdown}
         readOnly
         placeholder="Your converted Markdown will appear here..."
-        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[500px]"
+        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
         spellCheck={false}
       />
     </div>
