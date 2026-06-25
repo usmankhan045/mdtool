@@ -163,12 +163,6 @@ SEO is a first-class concern in this project:
 
 Supporting analysis docs live in the repo root: `GEO-ANALYSIS.md`, `SCHEMA-REPORT.md`, and `generated-schema.json`.
 
-## Analytics & Ads
-
-Both are **opt-in and disabled by default** — neither script renders unless its environment variable is set:
-
-- **Google Analytics 4** via `@next/third-parties` — enabled only when `NEXT_PUBLIC_GA_ID` is present.
-- **Google AdSense** — enabled only when `NEXT_PUBLIC_ADSENSE_ID` is present; ad slots render through `components/ads/AdSlot.tsx`.
 
 ## Security
 
