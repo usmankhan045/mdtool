@@ -65,6 +65,7 @@ export default function StructuredData({ type, name, url, description, datePubli
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Any',
       browserRequirements: 'Requires JavaScript',
+      datePublished,
       dateModified: toolDateModified,
       author: {
         '@type': 'Organization',

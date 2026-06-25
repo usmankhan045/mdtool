@@ -1,0 +1,134 @@
+---
+title: "Migrating Word Documents to Markdown for GitHub and Docs Sites"
+description: "Moving content from Word into a GitHub repo, wiki, or static site generator? Here's the conversion workflow, the post-conversion fixes that matter, and the GitHub-specific quirks to watch for."
+datePublished: "2026-06-25"
+dateModified: "2026-06-25"
+tags: ["github", "markdown", "word", "docx", "documentation", "developer-tools"]
+image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Laptop computer displaying lines of code on a dark screen, representing a developer documentation workflow"
+author: "MDTool Editorial Team"
+ctaTool:
+  href: "/word-to-markdown"
+  label: "Open Word to Markdown Converter →"
+  description: "Convert your .docx file to GitHub-ready Markdown now. No install, runs entirely in your browser."
+---
+
+## Why Dev Teams Keep Docs in Markdown on GitHub
+
+Documentation written in Markdown lives alongside the code it describes — in the same repository, tracked by the same Git history, reviewed through the same pull request workflow. That alignment matters in practice: a Word document sitting in a shared drive can't be diffed in a PR, can't be linked from a GitHub issue, and can't be automatically published by a documentation site generator.
+
+GitHub hosts over 630 million repositories (GitHub Octoverse, October 2025), and its platform is built around Markdown. [GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/) — GitHub's spec, version 0.29-gfm — is a strict superset of CommonMark that adds five extensions: tables, task list items, strikethrough, extended autolinks, and a small set of disallowed raw HTML tags. A README, a CONTRIBUTING guide, a GitHub wiki page, and a GitHub Discussions post all render GFM by default.
+
+Static site generators follow the same expectation. Jekyll, Hugo, Eleventy, Astro, Docusaurus, and MkDocs all use Markdown as their primary content format — source files live in a `content/`, `docs/`, or `src/` folder and are built into the published site. Content originally written in Word needs a clean `.md` conversion before it fits into any of these pipelines.
+
+## Converting Existing Word Docs With MDTool
+
+The conversion step is fast. The cleanup that follows takes more attention.
+
+**Step 1: Prepare the Word document.** Before converting, accept all tracked changes (Review → Accept → Accept All Changes) and delete any comments. The converter sees only the final accepted state of the document — unresolved changes and annotation threads are stripped silently.
+
+**Step 2: Convert using the [word to markdown converter](/word-to-markdown).** Drag and drop the `.docx` file onto the tool. It reads the document using [mammoth.js](https://github.com/mwilliamson/mammoth.js), which maps Word's named heading styles to Markdown headings, and then converts to GFM via [turndown](https://github.com/mixmark-io/turndown). Download the `.md` output.
+
+**Step 3: Rename the file** to match your documentation site's naming convention. GitHub and most static site generators expect lowercase filenames with hyphens — `my-guide.md` not `My Guide.md`. Spaces in filenames cause broken URLs and broken internal links.
+
+**Step 4: Place the file in the repository.** For a GitHub repository README, the file should be at the repo root as `README.md`. For a documentation site, it typically goes in the `docs/` folder (MkDocs, Docusaurus) or `content/` (Hugo) or `src/pages/` (Astro).
+
+## What Needs Fixing After Conversion
+
+A converted `.md` file from a typical Word document is around 80–90% ready. The remaining issues are predictable:
+
+### Heading Levels
+
+The most common failure: a Word document with a "Title" style (which mammoth maps to `# H1`) alongside multiple "Heading 1" style sections produces a file with multiple `# H1` headings. GitHub renders all of them, but the auto-generated table of contents (shown when a rendered file has 2+ headings) looks broken — every H1 appears as a top-level entry with no visual hierarchy.
+
+Fix: Audit the heading structure and promote headings correctly. The document should have one `# H1` at the top (the document title), followed by `## H2` sections. GitHub's TOC is a fast sanity check — if it looks wrong in the rendered preview, the heading hierarchy needs adjustment.
+
+### Images
+
+Word embeds images as binary objects inside the `.docx` ZIP archive. The converter does not extract them — the `.md` output contains only text, with images absent. Re-add images manually:
+
+1. Extract images from the Word document (right-click each image → Save as Picture, or use Pandoc's `--extract-media=./assets` flag to extract all images at once)
+2. Commit the image files to a subfolder in the repository: `git add assets/` alongside the `.md` file. **This step is the most commonly missed** — the images exist on disk but aren't staged.
+3. Update image references in the Markdown to use relative paths: `![alt text](assets/image.png)`
+
+Note that GitHub wikis handle images differently from repository READMEs. In a wiki, images are stored in the `_assets/` folder of the wiki's git repository (`https://github.com/USER/REPO.wiki.git`) and served from `raw.githubusercontent.com/USER/REPO.wiki/main/_assets/filename.png`. Drag-and-drop image upload (available since February 2022 in the wiki editor) is the easiest path for adding images to wiki pages.
+
+### Code Blocks
+
+If the Word document contained code samples styled with a Code Character or code paragraph style, these may convert to indented code blocks (4-space prefix) rather than fenced code blocks (triple backticks). GitHub renders indented code correctly, but fenced blocks support syntax highlighting via a language tag:
+
+````
+```python
+def hello():
+    return "world"
+```
+````
+
+Replace indented code blocks with fenced blocks and add the language identifier. This is a manual step but improves rendered readability significantly.
+
+### Internal Cross-References
+
+Word's internal cross-references ("See Section 3" → bookmark link) become anchor links in the converted Markdown, often with auto-generated IDs that don't match GitHub's heading anchor format. GitHub generates heading anchors by lowercasing the heading text and replacing spaces with hyphens — `## My Section` becomes `#my-section`. Any anchor links in the converted output that don't follow this format will produce 404s in the rendered GitHub page.
+
+Fix: After conversion, search for `#` links in the file and update each one to match the GitHub-generated anchor ID of the target heading. This anchor-ID mismatch is a documented behavior difference in the [Pandoc issue tracker](https://github.com/jgm/pandoc/issues/3088) — Pandoc's generated anchor IDs use a different scheme than GitHub's auto-slug format, so any in-document cross-references from the Word conversion always need a manual pass before committing.
+
+## Setting Up a Docs Folder in a GitHub Repo
+
+For documentation that should live alongside code rather than in a wiki:
+
+**Repository documentation (simple):**
+```
+repo/
+├── README.md          ← entry point, rendered on repo homepage
+├── CONTRIBUTING.md    ← how to contribute
+├── docs/
+│   ├── getting-started.md
+│   ├── api-reference.md
+│   └── configuration.md
+```
+
+GitHub automatically renders `README.md` at the repo root. Files in `docs/` are accessible by URL (`github.com/USER/REPO/blob/main/docs/filename.md`) and can be linked from the README.
+
+**GitHub wiki (separate content area):**
+The wiki is a separate Git repository, cloneable via `git clone https://github.com/USER/REPO.wiki.git`. Add `.md` files and push to publish them. Wiki pages support `[[WikiLink]]` double-bracket internal links for cross-page navigation — these are specific to the wiki renderer and do **not** work in repository READMEs or in standard GFM.
+
+**Static site generator (full docs site):**
+If the repository powers a documentation site (MkDocs, Docusaurus, Hugo), the Markdown files go in the site's content directory and are published through the CI/CD pipeline. The specific folder and frontmatter requirements vary by generator — see each tool's documentation for the exact folder structure and YAML frontmatter fields expected.
+
+## Frequently Asked Questions
+
+**Q: Does GitHub render all Markdown the same way across READMEs, wikis, and issues?**
+
+Mostly — all use GFM — but with a few differences. Wikis support `[[WikiLink]]` internal links. Issues and discussions support emoji shortcodes (`:smile:`). Footnotes ([^1] syntax) work in READMEs and issues but not in wikis. The safest GFM for cross-surface compatibility avoids footnotes and wikilinks.
+
+**Q: Is there a file size limit for Markdown files on GitHub?**
+
+GitHub renders Markdown files up to 512KB in size. Files larger than 512KB are displayed as raw text without rendering. For typical documentation pages, this limit is rarely reached — a 512KB Markdown file is roughly 75,000–100,000 words of plain text.
+
+**Q: Can I link between `.md` files in a repository?**
+
+Yes, using relative paths: `[link text](../other-file.md)` or `[link text](subfolder/file.md)`. GitHub resolves relative links correctly in the rendered view. Absolute URLs also work but break when the repository is forked or renamed.
+
+**Q: Why does my converted README look fine locally but wrong on GitHub?**
+
+The most common causes: (1) heading hierarchy issues visible in GitHub's auto-TOC, (2) image paths that work locally but fail because `assets/` wasn't committed, or (3) GFM extensions (tables, task lists) not rendering because the file has `.txt` extension instead of `.md`.
+
+**Q: What's the difference between GitHub wiki pages and repository documentation?**
+
+Wiki pages live in a separate git repository and have their own URL structure (`github.com/USER/REPO/wiki/PageName`). Repository docs live in the main repo (e.g., `docs/file.md`) and are accessed as regular files. Wikis are easier to edit via the web UI; repo docs integrate into your PR review workflow.
+
+**Q: Should I use MDTool or Pandoc for converting Word docs destined for GitHub?**
+
+MDTool is faster for one-off conversions — drag, drop, download, commit. Pandoc's `--extract-media=./assets` flag is better when images need to be extracted alongside the text, since MDTool doesn't extract embedded images. For bulk migrations of many files, a Pandoc shell loop or [Microsoft MarkItDown](https://github.com/microsoft/markitdown) Python library handles batches more efficiently.
+
+**Q: Do I need to add YAML frontmatter for GitHub READMEs?**
+
+No. GitHub ignores YAML frontmatter in rendered Markdown files — it renders the `---` block as a visible horizontal rule rather than parsing the metadata. YAML frontmatter is required for Jekyll, Hugo, and similar SSGs but is unnecessary and slightly disruptive for plain GitHub README files.
+
+**Q: Can I convert HTML pages from a legacy documentation site to Markdown for GitHub?**
+
+Yes — that's a separate workflow. Paste the HTML into the [HTML to Markdown converter](/html-to-markdown), which uses the same GFM-targeted turndown pipeline. The same post-conversion fixes apply: heading hierarchy, image paths, and internal link anchors.
+
+---
+
+For general Markdown syntax reference when editing the converted output, see the [Markdown cheatsheet](/blog/markdown-cheatsheet). For the detailed explanation of how HTML content from older doc sites converts to GFM, see [HTML to Markdown for GitHub](/blog/html-to-markdown-github).

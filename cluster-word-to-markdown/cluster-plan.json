@@ -1,0 +1,234 @@
+{
+  "seed": "word to markdown",
+  "generatedAt": "2026-06-24",
+  "site": "devmark / MDTool (client-side markdown-to-word / markdown-to-pdf / markdown-to-html / html-to-markdown / word-to-markdown converter)",
+  "pillar": {
+    "title": "Word to Markdown Converter",
+    "keyword": "word to markdown",
+    "secondaryKeywords": [
+      "docx to markdown",
+      "word document to markdown",
+      "convert word to markdown",
+      "docx to md"
+    ],
+    "volume": "high (head term)",
+    "template": "tool-landing-page",
+    "wordCount": 1100,
+    "url": "/word-to-markdown",
+    "status": "written",
+    "notes": "Existing app route (app/word-to-markdown) already has a strong 'What Gets Lost When Converting from Word' section explaining the heading-style-vs-manual-formatting distinction (built on mammoth.js) and 5 FAQ items. This is a new, fourth cluster -- confirmed via public/llms.txt that no existing guide currently targets 'word to markdown', 'docx to markdown', or their variants (the HTML-to-Markdown and Markdown-to-Word clusters cover the inverse/different-format directions only). Main gap is the same as every prior cluster on this site: the pillar currently links only to other tool pages and the Markdown Cheatsheet post, no topical spokes."
+  },
+  "clusters": [
+    {
+      "name": "Conversion Problems & Fixes",
+      "color": "#4E79A7",
+      "intent": "informational",
+      "rationale": "Verified via WebSearch: 'word to markdown images not extracted', 'word table not converting to markdown table', and pandoc's own GitHub issue tracker (jgm/pandoc#11412, 'Images with caption + number are not extracted') all surface a distinct troubleshooting competitor set -- codegenes.net, christiantietze.de, blog.markdowntools.com, and the Pandoc issue tracker itself -- with near-zero overlap against the generic 'word to markdown converter' head-term SERP (word2md.com, word2md.net, docstomarkdown.pro, monkt.com, vertopal, Aspose). This mirrors the inverse-direction troubleshooting cluster already built for Markdown-to-Word. High intent: the visitor already has broken output and converts as soon as a working fix is shown. Note the images issue is doubly relevant here because MDTool's own word-to-markdown tool (built on mammoth.js) does not extract embedded images either -- this post can honestly explain why and what to do about it, which the existing FAQ already alludes to.",
+      "posts": [
+        {
+          "title": "Why Images Disappear When You Convert Word to Markdown",
+          "keyword": "word to markdown images not extracted",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/word-to-markdown-images-not-extracted",
+          "status": "planned"
+        },
+        {
+          "title": "Why Word Tables Don't Convert Cleanly to Markdown Tables",
+          "keyword": "word table not converting to markdown table",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/word-to-markdown-table-not-converting",
+          "status": "planned"
+        },
+        {
+          "title": "Why Manual Formatting Gets Lost When You Convert Word to Markdown",
+          "keyword": "word formatting lost converting to markdown",
+          "template": "how-to",
+          "wordCount": 1250,
+          "url": "/blog/word-to-markdown-formatting-lost",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Comparisons",
+      "color": "#F28E2B",
+      "intent": "commercial",
+      "rationale": "Verified via WebSearch: 'word to markdown converter', 'convert docx to markdown online', and 'best docx to markdown converter 2026' return heavy overlap on the same competitor set -- word2md.com, word2md.net, docstomarkdown.pro, monkt.com, vertopal, Aspose, plus Pandoc and Mammoth.js as the non-browser alternatives -- 6+ shared results, confirming these belong on one comparison post and one Pandoc-alternative post rather than fragmenting further. This is MDTool's core wedge versus this specific set: true client-side processing (word2md.net and most others still process server-side despite privacy claims), no signup, no batch-file paywall.",
+      "posts": [
+        {
+          "title": "Best Word to Markdown Converter in 2026: MDTool vs. word2md, Pandoc, and More",
+          "keyword": "best word to markdown converter",
+          "template": "comparison",
+          "wordCount": 1650,
+          "url": "/blog/best-word-to-markdown-converter",
+          "status": "planned"
+        },
+        {
+          "title": "Word to Markdown Without Pandoc: A No-Install Browser Alternative",
+          "keyword": "pandoc alternative word to markdown browser",
+          "template": "comparison",
+          "wordCount": 1300,
+          "url": "/blog/word-to-markdown-without-pandoc",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Source-App Workflows",
+      "color": "#76B7B2",
+      "intent": "informational/transactional",
+      "rationale": "Verified via WebSearch: 'import word document into Obsidian as markdown' and 'google docs to markdown converter' each return their own distinct competitor set and job-to-be-done, with zero overlap against the generic Word-to-Markdown SERP. Obsidian has its own forum threads and dedicated plugins (Docxer, obsidian-pandoc) debating the plugin-vs-pre-convert approach. Google Docs to Markdown is a genuinely separate SERP world (gdoc2md.com, the Mr0grog/google-docs-to-markdown GitHub project, Google's own native 'Copy as Markdown' feature, and the GD2md-html Workspace add-on) because Google Docs isn't a .docx file -- it needs either its own export step or a different tool entirely, which is exactly the disambiguation this post provides. Notion was evaluated and excluded (see excludedKeywords) because Notion imports .docx natively without needing a Markdown intermediate step.",
+      "posts": [
+        {
+          "title": "Importing Word Documents Into Obsidian as Markdown (No Plugin Required)",
+          "keyword": "import word document into obsidian markdown",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/word-to-markdown-obsidian-import",
+          "status": "planned"
+        },
+        {
+          "title": "Google Docs to Markdown vs. Word to Markdown: Which Converter Do You Actually Need",
+          "keyword": "google docs to markdown converter",
+          "template": "explainer",
+          "wordCount": 1250,
+          "url": "/blog/google-docs-vs-word-to-markdown",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "AI & Documentation Use Cases",
+      "color": "#59A14F",
+      "intent": "informational",
+      "rationale": "Verified via WebSearch: 'convert docx to markdown for RAG LLM training data preparation' surfaces a completely separate, fast-growing competitor set with zero overlap against the generic converter SERP -- Microsoft's open-source MarkItDown (2,700+ projects, purpose-built for LLM pipelines), AnythingMD, oa.doc2md, and several 2026-dated blog posts (knightli.com, iterationlayer.com, aibuilderclub.com) explaining why Markdown chunks more cleanly for embeddings than raw DOCX. This is a genuinely current (2026) and distinct intent: technical users converting internal Word docs into a knowledge base or RAG pipeline, not casual document conversion. Paired with a docs-migration post (Word documentation moving into a docs-as-code repo/GitHub wiki) which targets the same technical-documentation audience from the legacy-content-migration angle rather than the AI-pipeline angle -- distinct enough to justify two posts, confirmed no shared top-10 results between the two query sets.",
+      "posts": [
+        {
+          "title": "How to Convert Word Documents to Markdown for RAG and LLM Knowledge Bases",
+          "keyword": "convert docx to markdown for rag",
+          "template": "how-to",
+          "wordCount": 1500,
+          "url": "/blog/word-to-markdown-for-rag-llm",
+          "status": "planned"
+        },
+        {
+          "title": "Migrating Word Documentation to Markdown for GitHub Wikis and Docs-as-Code",
+          "keyword": "word documentation to markdown migration",
+          "template": "how-to",
+          "wordCount": 1350,
+          "url": "/blog/word-documentation-to-markdown-migration",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Complete Guide & Reference",
+      "color": "#B07AA1",
+      "intent": "informational",
+      "rationale": "The natural-language phrasing 'convert word document to markdown' is a long-tail variant of the head term with its own large, more conversational SERP (mixed how-to content alongside the tool pages) -- distinct enough from the tool-landing-page pillar to support a dedicated ultimate-guide post, the same pattern as the existing 'Markdown to HTML Online: The Complete Conversion Guide' post on this site. Pairs with the already-written Markdown Cheatsheet as a reference cross-link rather than duplicating it.",
+      "posts": [
+        {
+          "title": "How to Convert a Word Document to Markdown: The Complete Guide",
+          "keyword": "convert word document to markdown",
+          "template": "ultimate-guide",
+          "wordCount": 2200,
+          "url": "/blog/convert-word-document-to-markdown",
+          "status": "planned",
+          "notes": "Priority post -- full content brief generated separately per explicit request."
+        },
+        {
+          "title": "Complete Markdown Cheatsheet — Every Syntax You Need",
+          "keyword": "markdown cheatsheet",
+          "template": "explainer",
+          "wordCount": 1636,
+          "url": "/blog/markdown-cheatsheet",
+          "status": "written",
+          "notes": "Reused from the existing 'Markdown to PDF' cluster -- cross-link, do not duplicate."
+        }
+      ]
+    }
+  ],
+  "links": [
+    { "from": "pillar", "to": "cluster-0-post-0", "type": "mandatory", "anchor": "word to markdown images not extracted" },
+    { "from": "cluster-0-post-0", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-0-post-1", "type": "mandatory", "anchor": "word table not converting to markdown table" },
+    { "from": "cluster-0-post-1", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-0-post-2", "type": "mandatory", "anchor": "word formatting lost converting to markdown" },
+    { "from": "cluster-0-post-2", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-1-post-0", "type": "mandatory", "anchor": "best word to markdown converter" },
+    { "from": "cluster-1-post-0", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-1-post-1", "type": "mandatory", "anchor": "word to markdown without pandoc" },
+    { "from": "cluster-1-post-1", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-2-post-0", "type": "mandatory", "anchor": "import word document into obsidian as markdown" },
+    { "from": "cluster-2-post-0", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-2-post-1", "type": "mandatory", "anchor": "google docs to markdown vs word to markdown" },
+    { "from": "cluster-2-post-1", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-3-post-0", "type": "mandatory", "anchor": "convert docx to markdown for rag and llm" },
+    { "from": "cluster-3-post-0", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-3-post-1", "type": "mandatory", "anchor": "migrating word documentation to markdown" },
+    { "from": "cluster-3-post-1", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-4-post-0", "type": "mandatory", "anchor": "convert a word document to markdown" },
+    { "from": "cluster-4-post-0", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+    { "from": "pillar", "to": "cluster-4-post-1", "type": "mandatory", "anchor": "markdown cheatsheet" },
+    { "from": "cluster-4-post-1", "to": "pillar", "type": "mandatory", "anchor": "word to markdown converter" },
+
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-1", "type": "recommended", "anchor": "tables not converting cleanly" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-0", "type": "recommended", "anchor": "images disappearing during conversion" },
+    { "from": "cluster-0-post-1", "to": "cluster-0-post-2", "type": "recommended", "anchor": "manual formatting getting lost" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-1", "type": "recommended", "anchor": "tables not converting cleanly" },
+    { "from": "cluster-0-post-2", "to": "cluster-0-post-0", "type": "recommended", "anchor": "images disappearing during conversion" },
+    { "from": "cluster-0-post-0", "to": "cluster-0-post-2", "type": "recommended", "anchor": "formatting lost during conversion" },
+
+    { "from": "cluster-1-post-0", "to": "cluster-1-post-1", "type": "recommended", "anchor": "word to markdown without pandoc" },
+    { "from": "cluster-1-post-1", "to": "cluster-1-post-0", "type": "recommended", "anchor": "best word to markdown converter" },
+
+    { "from": "cluster-2-post-0", "to": "cluster-2-post-1", "type": "recommended", "anchor": "google docs vs word to markdown" },
+    { "from": "cluster-2-post-1", "to": "cluster-2-post-0", "type": "recommended", "anchor": "importing word documents into obsidian" },
+
+    { "from": "cluster-3-post-0", "to": "cluster-3-post-1", "type": "recommended", "anchor": "migrating word documentation to markdown" },
+    { "from": "cluster-3-post-1", "to": "cluster-3-post-0", "type": "recommended", "anchor": "converting docx to markdown for RAG" },
+
+    { "from": "cluster-4-post-0", "to": "cluster-4-post-1", "type": "recommended", "anchor": "markdown cheatsheet" },
+    { "from": "cluster-4-post-1", "to": "cluster-4-post-0", "type": "recommended", "anchor": "convert a word document to markdown" },
+
+    { "from": "cluster-1-post-0", "to": "cluster-4-post-0", "type": "optional", "anchor": "the complete conversion guide" },
+    { "from": "cluster-3-post-0", "to": "cluster-4-post-1", "type": "optional", "anchor": "markdown cheatsheet" },
+    { "from": "cluster-2-post-1", "to": "cluster-1-post-1", "type": "optional", "anchor": "word to markdown without pandoc" }
+  ],
+  "meta": {
+    "totalPosts": 12,
+    "totalClusters": 5,
+    "totalLinks": 39,
+    "estimatedWords": 17136,
+    "writtenPosts": 2,
+    "plannedPosts": 10
+  },
+  "cannibalizationCheck": {
+    "status": "pass",
+    "notes": "No two posts share a primary keyword. No overlap with the existing 'HTML to Markdown' or 'Markdown to Word' cluster keyword sets -- confirmed via WebSearch that 'word table not converting to markdown table' and 'word to markdown images not extracted' return entirely different domain sets (codegenes.net, christiantietze.de, blog.markdowntools.com, pandoc GitHub issues) than the inverse-direction Markdown-to-Word troubleshooting queries (markdown-to-word.online, markdowntoword.pro, mdtoword.org) -- zero shared top-10 results between the two directions."
+  },
+  "excludedKeywords": [
+    {
+      "keyword": "docx to markdown python library",
+      "reason": "SERP dominated by developer/CLI tools (Microsoft MarkItDown, docx2md, Aspose.Words for Python, ConvertAPI Python SDK) -- audience wants code, not a browser tool. Same exclusion logic applied across every prior cluster on this site."
+    },
+    {
+      "keyword": "pandoc docx to markdown command line --extract-media",
+      "reason": "Navigational/developer-CLI intent -- the exact flag syntax shows the searcher already knows they want Pandoc specifically."
+    },
+    {
+      "keyword": "notion import word document markdown",
+      "reason": "Verified via WebSearch: Notion's own Settings -> Import flow accepts .docx files directly and natively, with no Markdown intermediate step required. Targeting this keyword would require telling users they don't need MDTool at all for this workflow -- not a content opportunity for this site, unlike Obsidian where pre-converting genuinely helps."
+    },
+    {
+      "keyword": "office to markdown vscode extension",
+      "reason": "Navigational -- branded query for a specific IDE extension (Testany.office-to-markdown), not a content opportunity for a browser tool."
+    },
+    {
+      "keyword": "word2md.com alternative",
+      "reason": "Navigational -- branded competitor query, folded into the 'best word to markdown converter' comparison post instead of a standalone page."
+    }
+  ]
+}

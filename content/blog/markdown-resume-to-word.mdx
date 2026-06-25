@@ -1,0 +1,111 @@
+---
+title: "How to Convert a Markdown Resume to a Word Document"
+description: "Write your resume in Markdown, keep it version-controlled, then convert it to a real Word document — with a copy-paste template included."
+datePublished: "2026-06-24"
+tags: ["markdown", "resume", "word", "docx", "developer-tools"]
+image: "/blog/markdown-resume-to-word.jpg"
+imageAlt: "A person reviewing a printed resume document at a table"
+author: "MDTool Editorial Team"
+---
+
+<Callout type="info">
+  **Key takeaways:** Markdown resumes convert most reliably to Word when the source avoids tables and multi-column layouts — a single-column, heading-based structure is what parses cleanly through resume-screening systems. This guide includes a copy-paste Markdown resume template and a step-by-step conversion workflow using MDTool's free, no-signup converter.
+</Callout>
+
+## Why Developers Write Resumes in Markdown
+
+A resume written in Markdown lives in plain text, which means it goes through the same workflow as everything else a developer writes: version-controlled in Git, diffable when you update it, and editable in whatever text editor you already use — no fighting with Word's autoformatting, no resume that looks different on a colleague's machine because of a missing font.
+
+The catch is that almost no job application portal accepts a `.md` file. Most want a `.docx` or PDF upload, which means the Markdown source needs a conversion step before it's actually submittable. That conversion step is also where a Markdown resume's biggest advantage comes from: because the source is plain text with simple structural markup, it converts to a clean, single-column, heading-based Word document — exactly the layout that resume-screening systems parse most reliably.
+
+## A Working Markdown Resume Template
+
+Most guides on this topic describe the idea of a Markdown resume without actually showing one. Here's a complete, working template — copy it, replace the content, and convert it directly:
+
+```markdown
+# Jordan Rivera
+
+Software Engineer · jordan@email.com · [linkedin.com/in/jordanrivera](https://linkedin.com/in/jordanrivera) · [github.com/jrivera](https://github.com/jrivera)
+
+## Summary
+
+Backend engineer with 6 years of experience building distributed systems in Go and Python. Focused on API design, observability, and reducing on-call load.
+
+## Experience
+
+**Senior Software Engineer** — Acme Corp (2022–Present)
+
+- Redesigned the payments service's retry logic, cutting failed-transaction support tickets by 40%
+- Led the migration of 12 internal services from REST to gRPC
+- Mentored two junior engineers through their first on-call rotations
+
+**Software Engineer** — Globex Inc (2019–2022)
+
+- Built the company's first internal API gateway, reducing average endpoint latency by 30%
+- Wrote the incident-response runbook still in use today
+
+## Skills
+
+Go, Python, PostgreSQL, gRPC, Kubernetes, Terraform
+
+## Education
+
+**B.S. Computer Science** — State University (2019)
+```
+
+Notice what this template deliberately avoids: no tables used for layout, no multi-column sections, no embedded images for section dividers. Every section is a heading, every line of detail is a bullet point or a bold line of plain text. That restraint is the point — it's what makes the converted Word document parse cleanly instead of scrambling when something downstream tries to read it.
+
+## Converting to Word With MDTool, Step by Step
+
+1. Paste the template above (or your own Markdown resume) into the [Markdown to Word converter](/markdown-to-word) — no account needed.
+2. Check the live preview on the right. Headings should appear as distinct heading styles, not just bold text, and bullet points should render as a proper list.
+3. Click **Download Word — Free** to save the `.docx` file.
+4. Open it in Word, Google Docs, or LibreOffice to do a final formatting pass — font size, margins, spacing — before submitting.
+
+The conversion preserves the document's structure (headings, bold text, links, lists) but doesn't add visual design on top of it. That's intentional: a structurally clean resume is what both human reviewers and automated screening systems need most, and any visual polish is faster to add manually in Word afterward than to fight into the Markdown source.
+
+## Word vs. PDF for Resume Submission — When to Use Each
+
+If a job posting explicitly says "PDF only" or "Word document required," follow that instruction — it overrides any general default. When the format isn't specified, the two options trade off differently:
+
+**A `.docx` file** is plain, structured XML text. Headings, bullet points, and bold text are all stored as distinct, machine-readable elements, which is exactly what a resume-screening system needs to extract your experience correctly. It also lets a reviewer leave comments or track changes directly on the file if they're helping you edit it.
+
+**A PDF** guarantees the layout looks identical no matter what device or software opens it — useful if you've done custom visual formatting in Word that you don't want reflowing differently on someone else's machine. The [Markdown to PDF converter](/markdown-to-pdf) handles that conversion directly from the same Markdown source if you'd rather submit a PDF.
+
+For a resume built from the plain, heading-based template above, `.docx` is generally the safer default precisely because there's no custom layout at risk of looking different elsewhere — the structure is the whole point.
+
+---
+
+## Frequently Asked Questions
+
+**Q: Why convert a Markdown resume to Word instead of just keeping it in Markdown?**
+
+Almost no job application portal accepts a raw `.md` file. Converting to `.docx` also lets a mentor or friend leave comments and track changes directly on the file, which a plain-text Markdown source doesn't support.
+
+**Q: Will a Markdown resume pass through an applicant tracking system correctly?**
+
+That depends on the resume's structure more than the conversion tool. A single-column, heading-based layout (like the template above) converts to a Word document that's straightforward for screening systems to parse correctly. Multi-column layouts and tables used for visual alignment are the more common cause of parsing problems.
+
+**Q: Should I use a table to align job dates on the right side of the page?**
+
+No. Avoid using tables for visual layout in a resume — many parsers read table cells in an order that doesn't match the visual layout, which can scramble your work history. Use plain bullet lists and put dates in parentheses next to the job title instead, as in the template above.
+
+**Q: Does the conversion preserve bold job titles and links?**
+
+Yes. Bold text converts to native Word character formatting, and Markdown links convert to real, clickable Word hyperlinks rather than plain text URLs.
+
+**Q: Can I use a two-column layout for skills and experience side by side?**
+
+It's not recommended. Multi-column layouts don't have a clean equivalent in standard Markdown, and even if you forced one with raw HTML, it would carry the same ATS-parsing risk as layout tables. A single column keeps both the source and the converted document simple and reliably parseable.
+
+**Q: What if I want a more visually designed resume than this template?**
+
+The conversion preserves document structure — headings, bold text, lists, links — but doesn't add custom visual design. For heavier styling (custom fonts, color accents, spacing), do that manually in Word after the conversion; the structural conversion gives you a clean starting point to design from.
+
+**Q: Is there a file size or length limit on the resume?**
+
+No. Conversion happens entirely in your browser, so there's no server-side upload limit to worry about.
+
+**Q: Should I submit a Word document or a PDF for a job application?**
+
+Follow the job posting's instructions if it specifies one. If it doesn't, a `.docx` is generally the safer default for a structurally simple resume, since machine-readability matters more than pixel-perfect layout — see the Word vs. PDF section above for the full reasoning.

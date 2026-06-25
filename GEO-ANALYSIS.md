@@ -199,6 +199,97 @@ research; this is the single largest content gap.
 | 4 | Add visible last-updated date + refresh cadence | Low | Medium |
 | 5 | Add theme screenshot(s) with alt text | Medium | Medium |
 
+---
+
+# GEO Analysis: 4-Page Audit — 2026-06-24
+
+**Audited:** 2026-06-24
+**Pages:** `/html-to-markdown` (tool), `/blog/html-to-markdown-cms-migration`, `/blog/html-to-markdown-github`, `/blog/clean-html-to-markdown` (3 new posts)
+
+## Deployment Note — Important
+
+The live site at `https://www.mdtool.dev` has **not yet picked up today's work**:
+
+- `https://www.mdtool.dev/html-to-markdown` is live but serves the **pre-edit** version (old title "HTML to Markdown Converter — Free & No Login," old "How Ambiguous HTML Gets Resolved" section).
+- All three new blog post URLs return **404** — they exist locally in `content/blog/` but haven't been built/deployed.
+
+This audit scores the **local source** that will become these URLs once deployed, not the current live response. Re-run this audit post-deploy to confirm the scores hold against the actual served HTML.
+
+## Sitewide Findings From the 2026-06-23 Audit — Status Check
+
+| Finding (from §3–§11 above) | Status today |
+|---|---|
+| Critical: canonical/sitemap pointed at non-resolving `devmark.tools` | ✅ **Resolved.** `app/layout.tsx` `metadataBase`, `app/sitemap.ts`, and every page's `canonical` now consistently use `https://www.mdtool.dev`, which resolves and serves correctly. |
+| FAQ accordion only rendered the open panel's answer into the DOM (7 of 8 answers existed only in JSON-LD) | ✅ **Resolved.** `components/seo/FaqSection.tsx` now maps over *all* items unconditionally and toggles visibility with a CSS `hidden` class (`display:none`), not conditional unmounting — every answer is present in the server-rendered HTML regardless of which accordion panel is open. Verified by reading the component source directly. |
+| No sitewide `Organization` schema | ✅ **Resolved.** `app/layout.tsx` renders `<StructuredData type="organization" />` globally; includes `name`, `url`, `logo`, and one `sameAs` (GitHub). Only one `sameAs` link exists — add Twitter/X or LinkedIn if/when those accounts exist (Low priority, not a regression). |
+| No `BreadcrumbList` anywhere | ✅ **Resolved on audited pages.** `/html-to-markdown` and all three new blog posts render `BreadcrumbList` schema. |
+| `llms.txt` missing (404) | ✅ **Resolved.** `/llms.txt` is live, well-structured (Tools + Guides + "Notes for AI agents" sections), uses the correct `mdtool.dev` URLs throughout. **Gap:** it does not yet list any of today's 3 new posts or reflect the upgraded `/html-to-markdown` copy — expected, since none of that is deployed yet. Update it once these ship (see Top 5 below). |
+| No visible last-updated date on `/markdown-to-pdf` | Not re-checked (out of scope today) — but `/html-to-markdown` now shows a visible "Updated June 24, 2026" string. |
+
+## 1. GEO Readiness Scores
+
+| Page | Score | Tier |
+|---|---|---|
+| `/html-to-markdown` | **77/100** | Strong |
+| `/blog/html-to-markdown-github` | **67/100** | Acceptable |
+| `/blog/html-to-markdown-cms-migration` | **63/100** | Acceptable |
+| `/blog/clean-html-to-markdown` | **62/100** | Acceptable |
+
+### `/html-to-markdown` breakdown
+
+| Category | Score | Weight | Notes |
+|---|---|---|---|
+| Citability | 21/25 | 25% | Strong definitional opener ("HTML to Markdown conversion strips HTML down to..."), concrete Preserves/Strips tables, and the "Is It Free" section is ~130 words and fully self-contained — almost exactly the 134-167 word optimal citation length. |
+| Structural Readability | 16/20 | 20% | Clean H1→H2→H3, 10-item FAQ in clear Q&A form, two data tables. Loses points because the H2/H3 section titles ("What to Know Before You Convert," "Is It Free") aren't phrased as questions, which is what AI Overview/AI Mode query-matching rewards most. |
+| Multi-Modal Content | 9/15 | 15% | Has the `ConversionDiagram` SVG and the live converter itself (counts as an interactive tool), but no screenshots or video. |
+| Authority & Brand Signals | 13/20 | 20% | Visible update date, cites primary technical sources (turndown, CommonMark, GFM spec), `Organization` schema with one `sameAs`. No named Person author/credentials, no Wikipedia/Reddit/YouTube presence for the brand. |
+| Technical Accessibility | 18/20 | 20% | All text content is server-rendered (only the converter widget bails to client-side); `robots.txt` is blanket-allow; `llms.txt` lists this page (though with the old, thinner description — update once deployed). |
+
+### Blog posts breakdown (all three share the same structural pattern)
+
+| Category | Weight | CMS Migration | GitHub | Clean HTML | Why |
+|---|---|---|---|---|---|
+| Citability | 25% | 17/25 | 20/25 | 16/25 | The GitHub post scores highest because it cites a specific, verifiable, unique data point — GitHub's actual `html-pipeline` sanitization allowed-tag list — which is exactly the kind of citable fact AI engines pull. The other two are accurate and well-sourced but more qualitative/process-driven, with fewer standalone quotable facts. |
+| Structural Readability | 20% | 15/20 | 15/20 | 15/20 | Clean H2 hierarchy, FAQ in Q&A form, short paragraphs. None use a comparison table or question-form headings — both are quick wins available on a future pass. |
+| Multi-Modal Content | 15% | 3/15 | 3/15 | 3/15 | **Largest gap across all three.** No hero images exist yet (flagged at the time these were written — `public/blog/*.jpg` files were never generated), no diagrams, no video. This is the single biggest lever available for all three posts. |
+| Authority & Brand Signals | 20% | 12/20 | 13/20 | 12/20 | `datePublished`/`dateModified` present and fresh (today's date), cites primary sources (turndown, CommonMark, GFM spec, GitHub's `html-pipeline`), but author is the generic `Organization`-type "MDTool Editorial Team" rather than a named Person with credentials — consistent with the rest of the site, not a regression, but a ceiling on the Authority score everywhere it applies. |
+| Technical Accessibility | 20% | 16/20 | 16/20 | 16/20 | Rendered server-side via `MDXRemote` from `next-mdx-remote/rsc` (an RSC-compatible server component) — fully crawlable without JS execution. Not yet reflected in `/llms.txt` or live `sitemap.xml` because they aren't deployed; both will pick these up automatically post-deploy (`app/sitemap.ts` calls `getAllBlogPosts()` dynamically — no manual sitemap edit needed; `llms.txt` is a static file and *does* need a manual edit). |
+
+## 2. Platform Breakdown (all 4 pages)
+
+| Platform | Outlook | Why |
+|---|---|---|
+| Google AI Overviews | Medium | Ranking-correlated; these pages aren't live/indexed yet, so no current signal — content quality itself is solid once indexed. |
+| Google AI Mode | Medium | Rewards freshness (all 4 pages are dated today) and entity authority (weak — no brand entity presence yet). |
+| ChatGPT | Low-Medium | No Wikipedia/Reddit presence for "MDTool." The GitHub post's sourced, specific fact (sanitization tag list) is the kind of content ChatGPT's web search tends to surface when it does crawl. |
+| Perplexity | Low | No Reddit/community discussion presence detected for the brand or these specific topics. |
+
+## 3. AI Crawler Access Status
+
+`robots.txt` (confirmed live):
+```
+User-Agent: *
+Allow: /
+
+Sitemap: https://www.mdtool.dev/sitemap.xml
+```
+
+Blanket `Allow: /` covers GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, and CCBot implicitly — no AI crawler is blocked. The sitemap directive correctly points at the live, resolving domain (last audit's issue is fixed). Optional, Low-priority refinement: add explicit per-crawler `User-Agent` blocks if you ever want to allow AI *search* crawlers while blocking AI *training* crawlers (e.g., block `CCBot` specifically) — not needed today since the blanket allow is intentional and working.
+
+## 4. Top 5 Highest-Impact Changes
+
+1. **Deploy today's work.** Nothing else on this list matters until `/html-to-markdown`'s edits and the 3 new posts are actually live — right now AI crawlers see either stale content or a 404.
+2. **Generate the 3 missing hero images** (`public/blog/html-to-markdown-cms-migration.jpg`, `html-to-markdown-github.jpg`, `clean-html-to-markdown.jpg`) — this is the single largest, identical gap across all three new posts (Multi-Modal: 3/15 each).
+3. **Update `/llms.txt`** to add an "HTML to Markdown" line under Tools (refresh the description to match the upgraded page) and 3 new entries under Guides for the new posts, once deployed.
+4. **Rephrase section headings as questions** on `/html-to-markdown` (e.g., "Is It Free" → "Is MDTool's HTML to Markdown Converter Free?") and add at least one comparison table to each of the 3 blog posts — both are low-effort, structural-readability wins.
+5. **Add a named author with credentials** (or at least a consistent "About the MDTool team" bio block linked from posts) instead of the generic "MDTool Editorial Team" Organization byline — raises the Authority ceiling across every piece of content on the site, not just these 4 pages.
+
+## 5. Content Reformatting Suggestions
+
+- `/html-to-markdown`: convert "What MDTool Preserves" / "What Gets Stripped" / "Is It Free" from statements to questions to better match AI Overview / AI Mode query patterns.
+- `html-to-markdown-cms-migration.mdx` and `clean-html-to-markdown.mdx`: each has at least one place where a comparison table would out-perform the current bullet list (e.g., "What Converts Cleanly and What Does Not" → two-column table; "What Turndown Does to Clean It Up" → before/after table).
+- `html-to-markdown-github.mdx`: already has the strongest single citable fact on the site (GitHub's allowed HTML tag list) — consider pulling it into its own short table (`Tag` | `Allowed?` | `Notes`) rather than a prose list, to make it even more directly extractable.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Built by agricidaniel — Join the AI Marketing Hub community
 🆓 Free  → https://www.skool.com/ai-marketing-hub

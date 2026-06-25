@@ -1,0 +1,454 @@
+{
+  "seed": "markdown to word",
+  "generatedAt": "2026-06-24",
+  "site": "devmark / MDTool (client-side markdown-to-word / markdown-to-pdf / markdown-to-html converter)",
+  "pillar": {
+    "title": "Markdown to Word Converter",
+    "keyword": "markdown to word",
+    "secondaryKeywords": [
+      "markdown to docx",
+      "md to word",
+      "convert markdown to word",
+      "markdown word converter"
+    ],
+    "volume": "high (head term)",
+    "template": "tool-landing-page",
+    "wordCount": 1150,
+    "url": "/markdown-to-word",
+    "status": "written",
+    "notes": "Existing app route (app/markdown-to-word) already has a strong comparison table (Mermaid/image limitations vs. native Word elements) and 5 FAQ items. This is a genuinely new cluster -- no existing blog post targets 'markdown to word' or its variants (confirmed via public/llms.txt). Main gap is internal links: the pillar currently links only to other tool pages and the Markdown Cheatsheet post, no topical spokes."
+  },
+  "clusters": [
+    {
+      "name": "Conversion Problems & Fixes",
+      "color": "#4E79A7",
+      "intent": "informational",
+      "rationale": "SERP world dominated by dedicated troubleshooting pages (markdown-to-word.online/*-troubleshooting, markdowntoword.pro/blog/markdown-conversion-troubleshooting) plus GitHub issues for specific elements breaking during DOCX export. Verified via WebSearch: 'markdown table not converting to word table', 'markdown code blocks lost when pasted into word', and 'markdown headings not converting to word heading styles' each return 6+ shared results among markdown-to-word.online, markdowntoword.io/.pro, mdtoword.org -- the same competitor cluster as the head term, but on dedicated sub-pages, confirming these belong as spokes rather than folded into the pillar. High intent: visitor's output already looks wrong and converts as soon as a working fix is shown.",
+      "posts": [
+        {
+          "title": "Why Markdown Tables Don't Convert to Word Tables Properly",
+          "keyword": "markdown table not converting to word table",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-word-table-not-converting",
+          "status": "planned"
+        },
+        {
+          "title": "Why Code Blocks Get Lost When You Paste Markdown Into Word",
+          "keyword": "markdown code blocks lost when pasted into word",
+          "template": "how-to",
+          "wordCount": 1250,
+          "url": "/blog/markdown-to-word-code-blocks-lost",
+          "status": "planned"
+        },
+        {
+          "title": "Why Markdown Headings Don't Become Word Heading Styles (And How to Fix It)",
+          "keyword": "markdown headings not converting to word heading styles",
+          "template": "how-to",
+          "wordCount": 1250,
+          "url": "/blog/markdown-to-word-headings-not-converting",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Comparisons & Privacy",
+      "color": "#F28E2B",
+      "intent": "commercial",
+      "rationale": "Verified via WebSearch: 'best markdown to word converter 2026', 'markdown to word converter no upload privacy', and 'pandoc alternative markdown to word browser' all return heavy overlap on the same competitor set (markdowntoword.io, .net, .pro, mconverter.eu, cloudconvert, mdtoword.org, Writage, Pandoc) -- 7+ shared results, confirming these modifiers belong on one comparison post and one privacy-angle post rather than fragmenting further. This is MDTool's core wedge versus this specific competitor set: client-side processing (most competitors upload to a server despite claiming 'free'), no signup, no file-size paywall, real Office Open XML output (not Pandoc's CLI learning curve).",
+      "posts": [
+        {
+          "title": "Best Markdown to Word Converter in 2026: MDTool vs. The Alternatives",
+          "keyword": "best markdown to word converter",
+          "template": "comparison",
+          "wordCount": 1650,
+          "url": "/blog/best-markdown-to-word-converter",
+          "status": "planned"
+        },
+        {
+          "title": "Markdown to Word Without Pandoc: A No-Install Browser Alternative",
+          "keyword": "pandoc alternative markdown to word browser",
+          "template": "comparison",
+          "wordCount": 1300,
+          "url": "/blog/markdown-to-word-without-pandoc",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Source-App Workflows",
+      "color": "#76B7B2",
+      "intent": "informational/transactional",
+      "rationale": "Verified via WebSearch: 'paste ChatGPT markdown into word', 'obsidian notes export to word', 'notion export markdown to word', and 'github readme to word document' each return their own distinct competitor set and job-to-be-done -- ChatGPT-to-Word alone supports dedicated competitor sites (md2doc.com, docstomarkdown.pro, a custom ChatGPT GPT) with near-zero overlap against the generic converter SERP or the Obsidian/Notion SERPs. Each source app has different export quirks (Obsidian wiki-links/callouts, Notion nested toggles, ChatGPT's copy-button markdown, GitHub badges/code fences) that justify separate pages rather than one generic post.",
+      "posts": [
+        {
+          "title": "How to Turn ChatGPT Markdown Into a Word Document",
+          "keyword": "paste chatgpt markdown into word document",
+          "template": "how-to",
+          "wordCount": 1350,
+          "url": "/blog/chatgpt-markdown-to-word",
+          "status": "planned"
+        },
+        {
+          "title": "Obsidian to Word: Exporting Notes Without Losing Formatting",
+          "keyword": "obsidian notes export to word document",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/obsidian-to-word",
+          "status": "planned"
+        },
+        {
+          "title": "GitHub README to Word: Converting README.md Without the Command Line",
+          "keyword": "github readme to word document",
+          "template": "how-to",
+          "wordCount": 1300,
+          "url": "/blog/github-readme-to-word",
+          "status": "planned"
+        },
+        {
+          "title": "Notion to Word: Exporting Pages via Markdown the Easy Way",
+          "keyword": "notion export markdown to word",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/notion-to-word",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Use Cases & Reference",
+      "color": "#59A14F",
+      "intent": "informational",
+      "rationale": "Verified via WebSearch: 'markdown resume to word document' and 'markdown to word table of contents' each return distinct SERPs (pandoc_resume/markdown-resume blogs for the former; Word TOC mechanics and heading-style explainers for the latter) separate from both the converter SERP and the troubleshooting SERP. Builds topical authority for document-formatting intent and feeds the other clusters; reuses the already-written Markdown Cheatsheet post as a cross-link rather than duplicating it.",
+      "posts": [
+        {
+          "title": "How to Write a Resume in Markdown and Export It to Word",
+          "keyword": "markdown resume to word document",
+          "template": "how-to",
+          "wordCount": 1250,
+          "url": "/blog/markdown-resume-to-word",
+          "status": "planned"
+        },
+        {
+          "title": "How to Get a Table of Contents When You Convert Markdown to Word",
+          "keyword": "markdown to word table of contents",
+          "template": "how-to",
+          "wordCount": 1200,
+          "url": "/blog/markdown-to-word-table-of-contents",
+          "status": "planned"
+        },
+        {
+          "title": "Complete Markdown Cheatsheet — Every Syntax You Need",
+          "keyword": "markdown cheatsheet",
+          "template": "explainer",
+          "wordCount": 1636,
+          "url": "/blog/markdown-cheatsheet",
+          "status": "written",
+          "notes": "Reused from the existing 'Markdown to PDF' cluster -- cross-link, do not duplicate."
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "from": "pillar",
+      "to": "cluster-0-post-0",
+      "type": "mandatory",
+      "anchor": "markdown table not converting to word table"
+    },
+    {
+      "from": "cluster-0-post-0",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-0-post-1",
+      "type": "mandatory",
+      "anchor": "markdown code blocks lost when pasted into word"
+    },
+    {
+      "from": "cluster-0-post-1",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-0-post-2",
+      "type": "mandatory",
+      "anchor": "markdown headings not converting to word heading styles"
+    },
+    {
+      "from": "cluster-0-post-2",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-1-post-0",
+      "type": "mandatory",
+      "anchor": "best markdown to word converter"
+    },
+    {
+      "from": "cluster-1-post-0",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-1-post-1",
+      "type": "mandatory",
+      "anchor": "markdown to word without pandoc"
+    },
+    {
+      "from": "cluster-1-post-1",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-2-post-0",
+      "type": "mandatory",
+      "anchor": "chatgpt markdown to word"
+    },
+    {
+      "from": "cluster-2-post-0",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-2-post-1",
+      "type": "mandatory",
+      "anchor": "obsidian to word"
+    },
+    {
+      "from": "cluster-2-post-1",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-2-post-2",
+      "type": "mandatory",
+      "anchor": "github readme to word"
+    },
+    {
+      "from": "cluster-2-post-2",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-2-post-3",
+      "type": "mandatory",
+      "anchor": "notion to word"
+    },
+    {
+      "from": "cluster-2-post-3",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-3-post-0",
+      "type": "mandatory",
+      "anchor": "markdown resume to word"
+    },
+    {
+      "from": "cluster-3-post-0",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-3-post-1",
+      "type": "mandatory",
+      "anchor": "markdown to word table of contents"
+    },
+    {
+      "from": "cluster-3-post-1",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "pillar",
+      "to": "cluster-3-post-2",
+      "type": "mandatory",
+      "anchor": "markdown cheatsheet"
+    },
+    {
+      "from": "cluster-3-post-2",
+      "to": "pillar",
+      "type": "mandatory",
+      "anchor": "markdown to word converter"
+    },
+    {
+      "from": "cluster-0-post-0",
+      "to": "cluster-0-post-1",
+      "type": "recommended",
+      "anchor": "code blocks lost when pasted into word"
+    },
+    {
+      "from": "cluster-0-post-1",
+      "to": "cluster-0-post-0",
+      "type": "recommended",
+      "anchor": "tables not converting to word tables"
+    },
+    {
+      "from": "cluster-0-post-1",
+      "to": "cluster-0-post-2",
+      "type": "recommended",
+      "anchor": "headings not converting to word styles"
+    },
+    {
+      "from": "cluster-0-post-2",
+      "to": "cluster-0-post-1",
+      "type": "recommended",
+      "anchor": "code blocks lost when pasted into word"
+    },
+    {
+      "from": "cluster-0-post-2",
+      "to": "cluster-0-post-0",
+      "type": "recommended",
+      "anchor": "tables not converting properly"
+    },
+    {
+      "from": "cluster-0-post-0",
+      "to": "cluster-0-post-2",
+      "type": "recommended",
+      "anchor": "headings not becoming Word styles"
+    },
+    {
+      "from": "cluster-1-post-0",
+      "to": "cluster-1-post-1",
+      "type": "recommended",
+      "anchor": "markdown to word without pandoc"
+    },
+    {
+      "from": "cluster-1-post-1",
+      "to": "cluster-1-post-0",
+      "type": "recommended",
+      "anchor": "best markdown to word converter"
+    },
+    {
+      "from": "cluster-2-post-0",
+      "to": "cluster-2-post-2",
+      "type": "recommended",
+      "anchor": "github readme to word"
+    },
+    {
+      "from": "cluster-2-post-1",
+      "to": "cluster-2-post-3",
+      "type": "recommended",
+      "anchor": "notion to word"
+    },
+    {
+      "from": "cluster-2-post-2",
+      "to": "cluster-2-post-0",
+      "type": "recommended",
+      "anchor": "chatgpt markdown to word"
+    },
+    {
+      "from": "cluster-2-post-3",
+      "to": "cluster-2-post-1",
+      "type": "recommended",
+      "anchor": "obsidian to word"
+    },
+    {
+      "from": "cluster-2-post-0",
+      "to": "cluster-2-post-1",
+      "type": "recommended",
+      "anchor": "obsidian notes to word"
+    },
+    {
+      "from": "cluster-2-post-3",
+      "to": "cluster-2-post-2",
+      "type": "recommended",
+      "anchor": "github readme to word"
+    },
+    {
+      "from": "cluster-3-post-0",
+      "to": "cluster-3-post-1",
+      "type": "recommended",
+      "anchor": "table of contents in your Word export"
+    },
+    {
+      "from": "cluster-3-post-1",
+      "to": "cluster-3-post-0",
+      "type": "recommended",
+      "anchor": "markdown resume to word"
+    },
+    {
+      "from": "cluster-3-post-1",
+      "to": "cluster-3-post-2",
+      "type": "recommended",
+      "anchor": "markdown cheatsheet"
+    },
+    {
+      "from": "cluster-3-post-2",
+      "to": "cluster-3-post-0",
+      "type": "recommended",
+      "anchor": "writing a resume in markdown"
+    },
+    {
+      "from": "cluster-1-post-0",
+      "to": "cluster-2-post-0",
+      "type": "optional",
+      "anchor": "chatgpt markdown to word"
+    },
+    {
+      "from": "cluster-2-post-2",
+      "to": "cluster-3-post-1",
+      "type": "optional",
+      "anchor": "table of contents for long documents"
+    },
+    {
+      "from": "cluster-3-post-2",
+      "to": "cluster-0-post-2",
+      "type": "optional",
+      "anchor": "heading levels and Word styles"
+    }
+  ],
+  "meta": {
+    "totalPosts": 13,
+    "totalClusters": 4,
+    "totalLinks": 45,
+    "estimatedWords": 16986,
+    "writtenPosts": 2,
+    "plannedPosts": 11
+  },
+  "cannibalizationCheck": {
+    "status": "pass",
+    "notes": "No two posts share a primary keyword. No overlap with the existing 'Markdown to PDF' or 'Markdown to HTML' cluster keyword sets -- 'markdown resume to word' and 'github readme to word' are DOCX-specific variants distinct from their PDF/HTML cluster counterparts (github-readme-to-pdf, github-readme-to-html target different output formats and different SERPs, confirmed no shared top-10 results)."
+  },
+  "excludedKeywords": [
+    {
+      "keyword": "batch convert markdown files to word",
+      "reason": "SERP dominated by CLI/programmatic tools (Aspose .NET, Python scripts, GitHub repos) -- audience wants code, not a browser tool. Same exclusion logic applied in the HTML cluster."
+    },
+    {
+      "keyword": "pandoc markdown to word command line",
+      "reason": "Navigational/developer-CLI intent, zero conversion fit for a no-code browser tool."
+    },
+    {
+      "keyword": "writage word plugin",
+      "reason": "Navigational -- branded query for a specific competitor product, not a content opportunity."
+    },
+    {
+      "keyword": "cloudconvert markdown to docx",
+      "reason": "Navigational -- branded competitor query."
+    }
+  ]
+}

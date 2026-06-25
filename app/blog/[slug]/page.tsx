@@ -117,13 +117,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
 
         {/* CTA */}
-        <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
-          <h3 className="font-semibold text-blue-900 mb-2">Try it yourself — free</h3>
-          <p className="text-blue-800 text-sm mb-4">Convert your Markdown to a perfect PDF right now. No signup, no watermark.</p>
-          <a href="/markdown-to-pdf" className="inline-block px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Open Markdown to PDF Converter →
-          </a>
-        </div>
+        {(() => {
+          const cta = post.ctaTool ?? {
+            href: '/markdown-to-pdf',
+            label: 'Open Markdown to PDF Converter →',
+            description: 'Convert your Markdown to a perfect PDF right now. No signup, no watermark.',
+          };
+          return (
+            <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
+              <h3 className="font-semibold text-blue-900 mb-2">Try it yourself — free</h3>
+              <p className="text-blue-800 text-sm mb-4">{cta.description}</p>
+              <a href={cta.href} className="inline-block px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                {cta.label}
+              </a>
+            </div>
+          );
+        })()}
       </main>
     </>
   );
