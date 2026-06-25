@@ -126,30 +126,37 @@ export default function MarkdownToHtmlPage() {
       />
 
       <main className="min-h-screen bg-gray-50">
-        {/* Hero / Header */}
-        <section className="bg-white border-b border-gray-200 px-4 py-8">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+        {/* Hero — title over the live converter */}
+        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+          <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3">
               Free Markdown to HTML Converter
             </h1>
-            <p className="text-xs text-gray-400 mb-3">Updated June 24, 2026 · Built and maintained by MDTool</p>
-            <p className="text-base text-gray-700 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+              Paste or drop a .md file and get clean, semantic HTML — live preview, code highlighting, and
+              one-click copy or download.
+            </p>
+            <p className="text-xs text-blue-200/50">Updated June 24, 2026 · Built and maintained by MDTool</p>
+          </div>
+        </section>
+
+        {/* The tool — lifted into the hero band so it's the first thing you reach */}
+        <section className="max-w-6xl mx-auto px-4 -mt-10 relative z-10">
+          <ToolClient />
+        </section>
+
+        {/* About this converter */}
+        <section className="max-w-6xl mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row md:items-start gap-8">
+            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
               <strong>Markdown to HTML conversion</strong> is the process of transforming Markdown syntax —
               headings, lists, tables, bold/italic text, and fenced code blocks — into standard HTML markup
               that any browser renders natively. MDTool converts Markdown to HTML entirely in your browser:
               paste or drop a .md file and get clean, semantic HTML — a pasteable snippet or a full
               standalone document — free, with no signup and no file size limit.
             </p>
-            <p className="text-lg text-gray-600 max-w-2xl mb-4">
-              Live preview, code highlighting, and one-click copy or download.
-            </p>
             <ConversionDiagram from="Markdown" to="HTML" />
           </div>
-        </section>
-
-        {/* Main Tool — Client Component */}
-        <section className="max-w-6xl mx-auto px-4 py-6">
-          <ToolClient />
         </section>
 
         {/* Ad Slot — Between tool and FAQ */}
