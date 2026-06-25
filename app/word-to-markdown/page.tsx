@@ -120,14 +120,29 @@ export default function WordToMarkdownPage() {
       />
 
       <main className="min-h-screen bg-gray-50">
-        {/* Hero / Header */}
-        <section className="bg-white border-b border-gray-200 px-4 py-8">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+        {/* Hero — title over the live converter */}
+        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+          <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3">
               Free Word to Markdown Converter
             </h1>
-            <p className="text-xs text-gray-400 mb-3">Updated June 25, 2026</p>
-            <p className="text-base text-gray-700 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+              Drag and drop a .docx file and get clean, plain-text GitHub Flavored Markdown back. No upload,
+              no watermark.
+            </p>
+            <p className="text-xs text-blue-200/50">Updated June 25, 2026</p>
+          </div>
+        </section>
+
+        {/* The tool — lifted into the hero band so it's the first thing you reach */}
+        <section className="max-w-6xl mx-auto px-4 -mt-10 relative z-10">
+          <ToolClient />
+        </section>
+
+        {/* About this converter */}
+        <section className="max-w-6xl mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row md:items-start gap-8">
+            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
               <strong>Word to Markdown conversion</strong> reads the structural styles in your .docx file —
               Heading 1, Heading 2, bullet lists, tables, bold, italic — and outputs clean, plain-text Markdown.
               MDTool converts Word to Markdown entirely in your browser using{' '}
@@ -136,16 +151,8 @@ export default function WordToMarkdownPage() {
               <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>{' '}
               to render it as GitHub Flavored Markdown — free, with no login and no file size limit.
             </p>
-            <p className="text-lg text-gray-600 max-w-2xl mb-4">
-              Drag and drop a .docx file to get started. No upload, no watermark.
-            </p>
             <ConversionDiagram from="Word (.docx)" to="Markdown (.md)" />
           </div>
-        </section>
-
-        {/* Main Tool — Client Component */}
-        <section className="max-w-6xl mx-auto px-4 py-6">
-          <ToolClient />
         </section>
 
         {/* Ad Slot — Between tool and content */}
