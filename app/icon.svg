@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="MDTool">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#244c79"/>
+      <stop offset="1" stop-color="#16314f"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <g fill="none" stroke="#7dd3fc" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="12,10 6.5,16 12,22"/>
+    <polyline points="20,10 25.5,16 20,22"/>
+  </g>
+  <line x1="18" y1="9" x2="14" y2="23" stroke="#bae6fd" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

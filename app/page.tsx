@@ -93,29 +93,28 @@ export default function HomePage() {
           className="absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl"
         />
 
-        <div className="relative max-w-6xl mx-auto px-4 pt-16 pb-14 md:pt-24 md:pb-20">
+        <div className="relative max-w-6xl mx-auto px-4 pt-8 pb-10 md:pt-12 md:pb-14">
           <div className="max-w-3xl mx-auto text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-400/10 px-3.5 py-1.5 font-mono text-xs text-blue-200">
               <span className="text-blue-300">&lt;/&gt;</span>
               Markdown toolkit · runs in your browser
             </span>
 
-            <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight">
-              Turn Markdown into
-              <br className="hidden sm:block" />{' '}
+            <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+              Turn Markdown into{' '}
               <span className="bg-gradient-to-r from-sky-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent">
                 PDF, HTML &amp; Word
               </span>
             </h1>
 
-            <p className="mt-5 text-lg md:text-xl text-blue-100/80 leading-relaxed">
+            <p className="mt-3 text-base md:text-lg text-blue-100/80 leading-relaxed">
               MDTool converts between Markdown, PDF, HTML, and Word right in your browser —
               no login, no watermarks, and nothing ever uploaded to a server.
             </p>
           </div>
 
           {/* Signature: the "convert window" — raw Markdown → rendered output */}
-          <div className="mt-12 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-[#0f1e30] shadow-2xl shadow-blue-950/50">
+          <div className="mt-7 mx-auto max-w-4xl rounded-2xl border border-white/10 bg-[#0f1e30] shadow-2xl shadow-blue-950/50">
             {/* window chrome */}
             <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
               <span className="h-3 w-3 rounded-full bg-rose-400/80" />
@@ -126,7 +125,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-stretch">
               {/* Left: raw markdown, real text with syntax tokens */}
-              <div className="p-5 md:p-6 font-mono text-[13px] leading-7 text-blue-100/90">
+              <div className="p-5 font-mono text-[13px] leading-6 text-blue-100/90">
                 <div className="mb-3 font-sans text-xs uppercase tracking-wider text-blue-200/50">
                   README.md
                 </div>
@@ -149,7 +148,7 @@ export default function HomePage() {
               </div>
 
               {/* Right: rendered output stack — fixes the cut-off output card */}
-              <div className="p-5 md:p-6">
+              <div className="p-5">
                 <div className="mb-3 font-sans text-xs uppercase tracking-wider text-blue-200/50">
                   Output
                 </div>
@@ -170,7 +169,7 @@ export default function HomePage() {
           </div>
 
           {/* CTA: every converter, primary first */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/markdown-to-pdf"
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-blue-900/40 transition-colors hover:bg-blue-500"
@@ -190,7 +189,7 @@ export default function HomePage() {
           </div>
 
           {/* trust strip — true facts, not decoration */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-xs text-blue-200/50">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-xs text-blue-200/50">
             <span>100% client-side</span>
             <span className="hidden sm:inline text-white/15">•</span>
             <a
