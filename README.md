@@ -19,7 +19,6 @@ Live site: **[www.mdtool.dev](https://www.mdtool.dev)**
 - [Analytics & Ads](#analytics--ads)
 - [Security](#security)
 - [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
 - [Scripts](#scripts)
 - [Deployment](#deployment)
 
@@ -195,15 +194,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
-
-## Environment Variables
-
-Copy `.env.example` to `.env.local`. All variables are **optional** — the site runs fully without them.
-
-| Variable | Purpose |
-|----------|---------|
-| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`). Unset = no analytics. |
-| `NEXT_PUBLIC_ADSENSE_ID` | Google AdSense publisher ID (e.g. `ca-pub-...`). Unset = no ads. |
 
 ## Scripts
 
