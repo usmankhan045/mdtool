@@ -69,7 +69,7 @@ export default function HtmlEditor({ value, onChange, charCount }: Props) {
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         placeholder={`<h1>Paste your HTML here...</h1>\n\nOr drag and drop a .html file.\n\n<p>Supports tables, lists, links, images, code blocks, and blockquotes.</p>`}
-        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[500px]"
+        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
         spellCheck={false}
       />
 

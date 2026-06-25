@@ -58,7 +58,7 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
         onDrop={handleDrop}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
-        className={`flex-1 flex flex-col items-center justify-center gap-3 border-x border-b border-gray-200 rounded-b-lg min-h-[500px] transition-colors ${
+        className={`flex-1 flex flex-col items-center justify-center gap-3 border-x border-b border-gray-200 rounded-b-lg min-h-[340px] sm:min-h-[500px] transition-colors ${
           dragOver ? 'bg-blue-50 border-blue-300' : 'bg-white'
         }`}
       >

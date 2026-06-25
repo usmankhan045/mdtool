@@ -5,7 +5,7 @@ import { getBlogPost, getAllBlogPosts } from '@/lib/blog';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
-import EmbeddedTool from '@/components/tools/EmbeddedTool';
+import EmbeddedTool from '@/components/tools/EmbeddedToolLazy';
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts();

@@ -48,7 +48,7 @@ export default function PdfPreview({ htmlContent, theme }: Props) {
       </div>
       <iframe
         srcDoc={srcDoc}
-        className="flex-1 w-full min-h-[500px] border-0"
+        className="flex-1 w-full min-h-[340px] sm:min-h-[500px] border-0"
         title="PDF Preview"
         sandbox="allow-same-origin"
       />

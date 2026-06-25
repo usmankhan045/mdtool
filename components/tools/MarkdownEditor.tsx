@@ -69,7 +69,7 @@ export default function MarkdownEditor({ value, onChange, wordCount }: Props) {
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         placeholder={`# Paste your Markdown here...\n\nOr drag and drop a .md file.\n\n## Features supported:\n- GitHub Flavored Markdown\n- Code syntax highlighting\n- Tables, images, blockquotes\n- Mermaid diagrams\n\n\`\`\`javascript\nconst greeting = 'Hello World';\nconsole.log(greeting);\n\`\`\``}
-        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[500px]"
+        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
         spellCheck={false}
       />
 
