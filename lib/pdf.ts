@@ -1,5 +1,18 @@
-// IMPORTANT: Never import html2pdf at the top level — SSR will crash
-// Always use dynamic import inside the function
+// PDF generation via pdfmake — a TRUE vector PDF engine.
+//
+// Why pdfmake (not html2canvas/html2pdf): html2canvas rasterises the page into
+// an image, which makes long documents blurry, drops heading word-spacing, and
+// produces huge non-selectable files. pdfmake draws REAL text into the PDF, so
+// output is crisp at any zoom, selectable/searchable, small, and downloads in
+// one click with no browser print "watermark" (header/footer).
+//
+// Tradeoff: styling is a clean, consistent rebuild per theme (fonts, sizes,
+// colors, tables, code) rather than a pixel-copy of the CSS themes.
+//
+// IMPORTANT: pdfmake is browser-only and heavy — always dynamic-import it inside
+// the function so SSR never touches it.
+
+import { applyEmojiFont } from './emoji';
 
 export type ThemeId = 'github' | 'academic' | 'minimal' | 'dark';
 
@@ -9,251 +22,232 @@ export interface PdfOptions {
   pageSize?: 'a4' | 'letter';
 }
 
-// Theme CSS strings (loaded client-side only)
-// All selectors are scoped to .pdf-container to prevent leaking into the page
-const THEMES: Record<ThemeId, string> = {
-  github: `
-    .pdf-container { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; color: #24292e; padding: 32px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { line-height: 1.25; font-weight: 600; margin: 24px 0 16px; }
-    .pdf-container h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-    .pdf-container h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-    .pdf-container h3 { font-size: 1.25em; }
-    .pdf-container h4 { font-size: 1em; }
-    .pdf-container h5 { font-size: 0.875em; }
-    .pdf-container h6 { font-size: 0.85em; color: #6a737d; }
-    .pdf-container p { margin: 0 0 16px; }
-    .pdf-container code { background: #f6f8fa; border-radius: 3px; font-size: 85%; padding: 0.2em 0.4em; font-family: 'SFMono-Regular', Consolas, monospace; }
-    .pdf-container pre { background: #f6f8fa; border-radius: 6px; padding: 16px; overflow: auto; }
-    .pdf-container pre code { background: transparent; padding: 0; }
-    .pdf-container table { border-collapse: collapse; width: 100%; margin: 16px 0; }
-    .pdf-container th, .pdf-container td { border: 1px solid #dfe2e5; padding: 6px 13px; line-height: 1.4; vertical-align: top; }
-    .pdf-container th { background: #f6f8fa; font-weight: 600; }
-    .pdf-container tr:nth-child(even) { background: #f6f8fa; }
-    .pdf-container blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; margin: 0; padding: 0 16px; }
-    .pdf-container img { max-width: 100%; }
-    .pdf-container .hljs { background: #f6f8fa; }
-  `,
-  academic: `
-    .pdf-container { font-family: Georgia, serif; font-size: 12pt; line-height: 1.8; color: #000; padding: 40px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { line-height: 1.25; font-weight: bold; }
-    .pdf-container h1 { font-size: 18pt; text-align: center; margin: 0 0 8px; }
-    .pdf-container h2 { font-size: 14pt; margin: 20px 0 10px; }
-    .pdf-container h3 { font-size: 12pt; margin: 16px 0 8px; }
-    .pdf-container h4 { font-size: 12pt; font-style: italic; margin: 14px 0 6px; }
-    .pdf-container h5, .pdf-container h6 { font-size: 11pt; margin: 12px 0 6px; }
-    .pdf-container p { margin: 0 0 12px; }
-    .pdf-container code { font-family: 'Courier New', monospace; font-size: 10pt; background: #f5f5f5; padding: 1px 4px; }
-    .pdf-container pre { background: #f5f5f5; padding: 12px; border: 1px solid #ddd; }
-    .pdf-container pre code { background: transparent; padding: 0; }
-    .pdf-container table { border-collapse: collapse; width: 100%; margin: 16px 0; }
-    .pdf-container th, .pdf-container td { border: 1px solid #333; padding: 8px; text-align: left; line-height: 1.4; vertical-align: top; }
-    .pdf-container th { background: #f0f0f0; }
-    .pdf-container blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #555; margin-left: 0; }
-  `,
-  minimal: `
-    .pdf-container { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; line-height: 1.7; color: #333; padding: 28px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { line-height: 1.25; font-weight: 600; margin: 24px 0 12px; }
-    .pdf-container h1 { font-size: 1.8em; margin-top: 20px; }
-    .pdf-container h2 { font-size: 1.4em; }
-    .pdf-container h3 { font-size: 1.2em; }
-    .pdf-container h4 { font-size: 1.05em; }
-    .pdf-container h5 { font-size: 1em; }
-    .pdf-container h6 { font-size: 0.9em; color: #666; }
-    .pdf-container p { margin: 0 0 14px; }
-    .pdf-container code { font-family: 'SFMono-Regular', monospace; font-size: 85%; background: #f5f5f5; padding: 0.2em 0.4em; border-radius: 3px; }
-    .pdf-container pre { background: #f8f8f8; padding: 20px; border-radius: 8px; }
-    .pdf-container pre code { background: transparent; padding: 0; }
-    .pdf-container table { border-collapse: collapse; width: 100%; }
-    .pdf-container th, .pdf-container td { border-bottom: 2px solid #333; padding: 8px; text-align: left; line-height: 1.4; vertical-align: top; }
-    .pdf-container th { background: #f0e0e0; }
-    .pdf-container blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #666; margin-left: 0; }
-  `,
-  dark: `
-    .pdf-container { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; line-height: 1.6; color: #e6edf3; background: #0d1117; padding: 32px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { color: #f0f6fc; line-height: 1.25; font-weight: 600; margin: 24px 0 16px; }
-    .pdf-container h1 { font-size: 2em; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
-    .pdf-container h2 { font-size: 1.5em; border-bottom: 1px solid #30363d; padding-bottom: 6px; }
-    .pdf-container h3 { font-size: 1.25em; }
-    .pdf-container h4 { font-size: 1em; }
-    .pdf-container h5 { font-size: 0.875em; }
-    .pdf-container h6 { font-size: 0.85em; color: #8b949e; }
-    .pdf-container p { margin: 0 0 16px; }
-    .pdf-container code { background: #161b22; color: #ff7b72; border-radius: 3px; padding: 2px 6px; font-family: 'SFMono-Regular', monospace; }
-    .pdf-container pre { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 16px; }
-    .pdf-container pre code { background: transparent; color: #e6edf3; padding: 0; }
-    .pdf-container table { border-collapse: collapse; width: 100%; }
-    .pdf-container th, .pdf-container td { border: 1px solid #30363d; padding: 8px 12px; line-height: 1.4; vertical-align: top; }
-    .pdf-container th { background: #161b22; }
-    .pdf-container tr:nth-child(even) { background: #161b22; }
-    .pdf-container blockquote { border-left: 4px solid #3b82f6; padding-left: 16px; color: #8b949e; margin: 0; }
-    .pdf-container a { color: #58a6ff; }
-  `,
-};
-
-// Highlight.js GitHub theme CSS — inlined so we don't need a network request
-// This avoids the race condition where html2canvas captures before the
-// external <link> stylesheet has finished loading.
-const HLJS_GITHUB_CSS = `
-.hljs{color:#24292e;background:#f6f8fa}.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-variable.language_{color:#d73a49}.hljs-title,.hljs-title.class_,.hljs-title.class_.inherited__,.hljs-title.function_{color:#6f42c1}.hljs-attr,.hljs-attribute,.hljs-literal,.hljs-meta,.hljs-number,.hljs-operator,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-variable{color:#005cc5}.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#032f62}.hljs-built_in,.hljs-symbol{color:#e36209}.hljs-code,.hljs-comment,.hljs-formula{color:#6a737d}.hljs-name,.hljs-quote,.hljs-selector-pseudo,.hljs-selector-tag{color:#22863a}.hljs-subst{color:#24292e}.hljs-section{color:#005cc5;font-weight:700}.hljs-bullet{color:#735c0f}.hljs-emphasis{color:#24292e;font-style:italic}.hljs-strong{color:#24292e;font-weight:700}.hljs-addition{color:#22863a;background:#f0fff4}.hljs-deletion{color:#b31d28;background:#ffeef0}
-`;
-
-// Highlight.js Dark theme CSS — inlined for dark theme
-const HLJS_DARK_CSS = `
-.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-class .hljs-title,.hljs-title.class_{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}
-`;
-
-
-// Log everything in dev so a failed export is diagnosable from the console.
+// Log in dev so a failed export is diagnosable from the console.
 const DEBUG =
   typeof process !== 'undefined' && process.env.NODE_ENV !== 'production';
 const log = (...args: unknown[]) => DEBUG && console.log('[pdf]', ...args);
 
-// Sample a rendered canvas to detect a blank/uniform result (the classic
-// html2canvas "empty PDF" symptom). Returns whether every sampled pixel is the
-// same colour — true means the canvas painted nothing meaningful.
-function inspectCanvas(canvas: HTMLCanvasElement) {
-  const { width, height } = canvas;
-  const ctx = canvas.getContext('2d');
-  if (!ctx || !width || !height) {
-    return { width, height, uniform: true, sampled: 0, reason: 'no-context-or-zero-size' };
+interface ThemeTokens {
+  fontSize: number;
+  lineHeight: number;
+  color: string; // body text
+  headingColor: string;
+  link: string;
+  thFill: string; // table header background
+  codeColor: string;
+  quoteColor: string;
+  pageColor?: string; // full-page background (dark theme)
+  h1Align?: 'center';
+}
+
+const THEME_TOKENS: Record<ThemeId, ThemeTokens> = {
+  github: {
+    fontSize: 11,
+    lineHeight: 1.4,
+    color: '#24292e',
+    headingColor: '#24292e',
+    link: '#0969da',
+    thFill: '#f6f8fa',
+    codeColor: '#6f42c1',
+    quoteColor: '#6a737d',
+  },
+  academic: {
+    fontSize: 12,
+    lineHeight: 1.5,
+    color: '#111111',
+    headingColor: '#000000',
+    link: '#1a4f8b',
+    thFill: '#f0f0f0',
+    codeColor: '#333333',
+    quoteColor: '#555555',
+    h1Align: 'center',
+  },
+  minimal: {
+    fontSize: 11,
+    lineHeight: 1.45,
+    color: '#333333',
+    headingColor: '#111111',
+    link: '#2563eb',
+    thFill: '#f0e0e0',
+    codeColor: '#444444',
+    quoteColor: '#666666',
+  },
+  dark: {
+    fontSize: 11,
+    lineHeight: 1.4,
+    color: '#e6edf3',
+    headingColor: '#f0f6fc',
+    link: '#58a6ff',
+    thFill: '#161b22',
+    codeColor: '#ff7b72',
+    quoteColor: '#8b949e',
+    pageColor: '#0d1117',
+  },
+};
+
+// Per-tag style overrides handed to html-to-pdfmake. Tight, explicit heading
+// margins + sizes keep the hierarchy clear and consistent across themes.
+function buildDefaultStyles(t: ThemeTokens) {
+  // NOTE: every value here is fed through JSON.parse(JSON.stringify(value)) by
+  // html-to-pdfmake, so an `undefined` value throws "undefined is not valid
+  // JSON". Never include a key whose value may be undefined — spread it in only
+  // when set (see h1's alignment below).
+  return {
+    h1: { fontSize: 25, bold: true, color: t.headingColor, margin: [0, 14, 0, 8], ...(t.h1Align ? { alignment: t.h1Align } : {}) },
+    h2: { fontSize: 19, bold: true, color: t.headingColor, margin: [0, 14, 0, 6] },
+    h3: { fontSize: 15, bold: true, color: t.headingColor, margin: [0, 12, 0, 4] },
+    h4: { fontSize: 13, bold: true, color: t.headingColor, margin: [0, 10, 0, 4] },
+    h5: { fontSize: 12, bold: true, color: t.headingColor, margin: [0, 8, 0, 4] },
+    h6: { fontSize: 11, bold: true, color: t.color, margin: [0, 8, 0, 4] },
+    p: { margin: [0, 0, 0, 8] },
+    a: { color: t.link, decoration: 'underline' },
+    th: { bold: true, fillColor: t.thFill, color: t.color, margin: [0, 3, 0, 3] },
+    td: { margin: [0, 3, 0, 3] },
+    code: { color: t.codeColor, fontSize: 10 },
+    pre: { color: t.color, fontSize: 9.5, margin: [0, 4, 0, 8], preserveLeadingSpaces: true },
+    blockquote: { italics: true, color: t.quoteColor, margin: [10, 4, 0, 8] },
+    li: { margin: [0, 2, 0, 2] },
+    table: { marginBottom: 8 },
+  };
+}
+
+// Page dimensions in PDF points, for the dark-theme full-page background.
+const PAGE_DIMS = {
+  a4: { width: 595.28, height: 841.89 },
+  letter: { width: 612, height: 792 },
+};
+
+// pdfmake never breaks a line in the middle of an unbroken run of characters, so
+// long tokens (URLs, paths, identifiers like `x:topposts:reminder-apps`) force
+// it into pathologically slow layout — minutes on a large doc. We insert a
+// zero-width space after every long run of non-space characters so pdfmake has a
+// legal break point. We only touch TEXT nodes (never tag markup) by parsing the
+// HTML, so attributes/structure are untouched.
+function softenHtmlLongTokens(html: string): string {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+  const textNodes: Text[] = [];
+  let node: Node | null;
+  while ((node = walker.nextNode())) textNodes.push(node as Text);
+  let injected = 0;
+  for (const tn of textNodes) {
+    const before = tn.nodeValue ?? '';
+    const after = before.replace(/(\S{16})(?=\S)/g, (m) => {
+      injected++;
+      return m + '​';
+    });
+    if (after !== before) tn.nodeValue = after;
   }
-  const data = ctx.getImageData(0, 0, width, height).data;
-  // Stride by a prime so we sweep the whole bitmap without scanning every pixel.
-  const stride = 4 * 9973;
-  let sampled = 0;
-  let uniform = true;
-  let first = -1;
-  for (let i = 0; i < data.length; i += stride) {
-    const key = (data[i] << 24) | (data[i + 1] << 16) | (data[i + 2] << 8) | data[i + 3];
-    if (first === -1) first = key;
-    else if (key !== first) uniform = false;
-    sampled++;
-  }
-  return { width, height, uniform, sampled, reason: uniform ? 'all-pixels-identical' : 'ok' };
+  log('softened long tokens', { breakpointsInjected: injected });
+  return doc.body.innerHTML;
 }
 
 export async function generatePdf(
   htmlContent: string,
   options: PdfOptions
 ): Promise<void> {
-  const html2pdf = (await import('html2pdf.js')).default;
-  log('start', { theme: options.theme, pageSize: options.pageSize, htmlLength: htmlContent.length });
+  const { theme } = options;
+  const sizeKey = options.pageSize || 'a4';
+  const pageSize = sizeKey === 'letter' ? 'LETTER' : 'A4';
+  const filename = options.filename || 'document.pdf';
+  const t = THEME_TOKENS[theme];
 
-  // Inject theme CSS into <head> so selectors work correctly on the content element
-  const styleEl = document.createElement('style');
-  styleEl.id = 'pdf-theme-style';
-  styleEl.textContent = THEMES[options.theme];
-  document.head.appendChild(styleEl);
+  log('start (vector/pdfmake)', { theme, pageSize, htmlLength: htmlContent.length });
 
-  // Inject highlight.js CSS — inlined to avoid race conditions with external stylesheets.
-  // Previously a <link> to cdnjs was appended but html2canvas would capture the element
-  // BEFORE the network request for the stylesheet completed, producing an empty/unstyled PDF.
-  const hljsStyle = document.createElement('style');
-  hljsStyle.id = 'pdf-hljs-style';
-  hljsStyle.textContent = options.theme === 'dark' ? HLJS_DARK_CSS : HLJS_GITHUB_CSS;
-  document.head.appendChild(hljsStyle);
+  // Dynamic import — keep pdfmake out of the SSR/bundle entry.
+  const [pdfMakeMod, vfsMod, htmlToPdfmakeMod] = await Promise.all([
+    import('pdfmake/build/pdfmake'),
+    import('pdfmake/build/vfs_fonts'),
+    import('html-to-pdfmake'),
+  ]);
 
-  // Render from a REAL, laid-out element. html2pdf.js v0.14+ clones the element
-  // we pass (deepCloneBasic) and renders the CLONE in its own overlay — but
-  // html2canvas is unreliable when the source element is detached from the
-  // document: it can measure a height of 0 and emit a COMPLETELY BLANK PDF.
-  // So we DO attach the element, inside a visually-hidden HOST wrapper.
-  //
-  // Critical: the offscreen/hidden styles live on the HOST, never on the
-  // .pdf-container element itself. If they were on the element, the clone would
-  // inherit `left:-9999px` / opacity and render offscreen — blank again. The
-  // host is 0×0 with overflow:hidden, so the content lays out at full height
-  // (the child's width is fixed and its height is unconstrained) but is never
-  // painted on screen, so the user sees no flash.
-  const MARGIN_MM = 15;
-  const MM_TO_PX = 96 / 25.4;
-  // html2pdf.js's container is always forced to `pageSize.inner.width` (the
-  // printable area, i.e. page width minus margins) regardless of any
-  // width/windowWidth option, and it never sets overflow:hidden. If our
-  // content element is wider than that — e.g. sized to the FULL page width
-  // instead of the margin-adjusted printable width — it overflows the
-  // container box and html2canvas's capture (bound to the container) crops
-  // off whatever sticks out, cutting content off on the right.
-  const PAGE_WIDTH_MM: Record<'a4' | 'letter', number> = { a4: 210, letter: 215.9 };
-  const pageWidthMm = PAGE_WIDTH_MM[options.pageSize || 'a4'];
-  const contentWidthPx = Math.floor((pageWidthMm - MARGIN_MM * 2) * MM_TO_PX);
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const pdfMake: any = (pdfMakeMod as any).default ?? pdfMakeMod;
+  const vfsRaw: any = vfsMod as any;
+  // vfs_fonts exports the font file-map directly (module.exports = vfs); under
+  // ESM interop it lands on `.default`.
+  const vfs = vfsRaw.default ?? vfsRaw.vfs ?? vfsRaw;
+  // pdfmake 0.3 registers fonts via addVirtualFileSystem() — assigning
+  // `pdfMake.vfs` (the 0.2 API) is ignored, so Roboto-Regular.ttf isn't found.
+  if (typeof pdfMake.addVirtualFileSystem === 'function') {
+    pdfMake.addVirtualFileSystem(vfs);
+  } else {
+    pdfMake.vfs = vfs;
+  }
+  const htmlToPdfmake: any = (htmlToPdfmakeMod as any).default ?? htmlToPdfmakeMod;
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
-  const host = document.createElement('div');
-  host.style.cssText =
-    'position:fixed; top:0; left:0; width:0; height:0; overflow:hidden; opacity:0; z-index:-1; pointer-events:none;';
+  const softened = softenHtmlLongTokens(htmlContent);
 
-  const element = document.createElement('div');
-  element.className = 'pdf-container';
-  element.innerHTML = htmlContent;
-  element.style.width = `${contentWidthPx}px`;
-
-  host.appendChild(element);
-  document.body.appendChild(host);
-
-  // After layout, the element must have real, non-zero dimensions — a zero
-  // height here is the upstream cause of a blank PDF.
-  const rect = element.getBoundingClientRect();
-  log('element laid out', {
-    contentWidthPx,
-    offsetWidth: element.offsetWidth,
-    offsetHeight: element.offsetHeight,
-    scrollHeight: element.scrollHeight,
-    rectWidth: Math.round(rect.width),
-    rectHeight: Math.round(rect.height),
-    childNodes: element.childNodes.length,
-  });
-  if (element.offsetHeight === 0 || element.offsetWidth === 0) {
-    log('WARNING: element has zero size before render — output will be blank');
+  let content;
+  try {
+    const t0 = performance.now();
+    content = htmlToPdfmake(softened, {
+      window,
+      defaultStyles: buildDefaultStyles(t),
+      // We only ship Roboto, so drop any font-family the HTML carries.
+      ignoreStyles: ['font-family'],
+      removeExtraBlanks: true,
+    });
+    log('html-to-pdfmake done', {
+      ms: Math.round(performance.now() - t0),
+      blocks: Array.isArray(content) ? content.length : 'n/a',
+    });
+  } catch (err) {
+    log('html-to-pdfmake FAILED', err);
+    throw new Error(`Could not convert content to PDF: ${err instanceof Error ? err.message : String(err)}`);
   }
 
-  const config = {
-    margin: [MARGIN_MM, MARGIN_MM, MARGIN_MM, MARGIN_MM] as [number, number, number, number],
-    filename: options.filename || 'document.pdf',
-    image: { type: 'jpeg' as const, quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      letterRendering: true,
-      logging: DEBUG,
+  // pdfmake/Roboto carries no emoji glyphs, so any emoji would render as a "tofu"
+  // box. Strip emoji (and the whitespace they leave) so the PDF is clean — no box,
+  // no orphaned gap.
+  applyEmojiFont(content);
+
+  const dims = PAGE_DIMS[sizeKey];
+  const docDefinition = {
+    pageSize,
+    pageMargins: [42, 42, 42, 50] as [number, number, number, number],
+    defaultStyle: {
+      font: 'Roboto',
+      fontSize: t.fontSize,
+      lineHeight: t.lineHeight,
+      color: t.color,
     },
-    jsPDF: {
-      unit: 'mm',
-      format: options.pageSize || 'a4',
-      orientation: 'portrait' as const,
-    },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+    // Full-bleed page background for the dark theme.
+    background: t.pageColor
+      ? () => ({
+          canvas: [
+            { type: 'rect', x: 0, y: 0, w: dims.width, h: dims.height, color: t.pageColor },
+          ],
+        })
+      : undefined,
+    content,
   };
 
+  log('building pdf…');
+  const tBuild = performance.now();
+  // pdfmake 0.3 changed getBlob/download to ASYNC methods that RETURN a Promise
+  // — the 0.2-era callback argument is silently ignored (which is why both
+  // `.download(name, cb)` and `.getBlob(cb)` left the button hanging: the
+  // callback never fired). We await the returned Promise and trigger the
+  // download ourselves, so the loading state clears exactly when it completes.
+  // Still one click, no print dialog, no watermark.
+  let blob: Blob;
   try {
-    // Run the pipeline in steps so we can inspect the intermediate canvas
-    // instead of blindly saving whatever (possibly blank) result comes out.
-    const worker = html2pdf().set(config).from(element);
-
-    log('rendering canvas…');
-    await worker.toCanvas();
-    const canvas = (await worker.get('canvas')) as HTMLCanvasElement | undefined;
-
-    if (!canvas) {
-      throw new Error('html2canvas produced no canvas (worker.get("canvas") was empty)');
-    }
-    const report = inspectCanvas(canvas);
-    log('canvas rendered', report);
-    if (report.uniform) {
-      throw new Error(
-        `PDF render is blank — canvas ${report.width}×${report.height}, every sampled pixel identical (${report.reason}). ` +
-        `element ${element.offsetWidth}×${element.offsetHeight}.`
-      );
-    }
-
-    log('building pdf + saving…');
-    await worker.save();
-    log('done — saved', config.filename);
+    blob = await pdfMake.createPdf(docDefinition).getBlob();
   } catch (err) {
-    log('FAILED', err);
-    throw err;
-  } finally {
-    document.body.removeChild(host);
-    document.head.removeChild(styleEl);
-    document.head.removeChild(hljsStyle);
+    log('createPdf FAILED', err);
+    throw err instanceof Error ? err : new Error(String(err));
   }
+  log('pdf built', { ms: Math.round(performance.now() - tBuild), bytes: blob.size });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  log('done — downloaded', filename);
 }
