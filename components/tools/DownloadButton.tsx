@@ -23,7 +23,8 @@ export default function DownloadButton({ htmlContent, theme, filename, size = 'd
       await generatePdf(htmlContent, { theme, filename: filename || 'document.pdf' });
     } catch (err) {
       console.error('PDF generation failed:', err);
-      alert('PDF generation failed. Please try again.');
+      const detail = err instanceof Error ? err.message : String(err);
+      alert(`PDF generation failed:\n\n${detail}`);
     } finally {
       setLoading(false);
     }
