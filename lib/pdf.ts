@@ -123,18 +123,16 @@ export async function generatePdf(
   hljsStyle.textContent = options.theme === 'dark' ? HLJS_DARK_CSS : HLJS_GITHUB_CSS;
   document.head.appendChild(hljsStyle);
 
-  // Render from a REAL, laid-out element. html2pdf.js v0.14+ clones the element
-  // we pass (deepCloneBasic) and renders the CLONE in its own overlay — but
-  // html2canvas is unreliable when the source element is detached from the
-  // document: it can measure a height of 0 and emit a COMPLETELY BLANK PDF.
-  // So we DO attach the element, inside a visually-hidden HOST wrapper.
+  // Create the content element but do NOT append it to the document with
+  // offscreen positioning. html2pdf.js v0.14+ uses deepCloneBasic() to clone
+  // the source element and renders the CLONE inside its own overlay container
+  // (position:absolute; left:0; top:0). If the source element carries an inline
+  // style like `left:-9999px`, that style is copied to the clone, which then
+  // renders 9999px off to the left inside the overlay — outside html2canvas's
+  // capture area — producing a completely blank PDF.
   //
-  // Critical: the offscreen/hidden styles live on the HOST, never on the
-  // .pdf-container element itself. If they were on the element, the clone would
-  // inherit `left:-9999px` / opacity and render offscreen — blank again. The
-  // host is 0×0 with overflow:hidden, so the content lays out at full height
-  // (the child's width is fixed and its height is unconstrained) but is never
-  // painted on screen, so the user sees no flash.
+  // Fix: pass a plain element with no offscreen positioning. html2pdf.js creates
+  // its own hidden overlay (opacity:0) so the user never sees the content flash.
   const MARGIN_MM = 15;
   const MM_TO_PX = 96 / 25.4;
   // html2pdf.js's container is always forced to `pageSize.inner.width` (the
@@ -148,17 +146,10 @@ export async function generatePdf(
   const pageWidthMm = PAGE_WIDTH_MM[options.pageSize || 'a4'];
   const contentWidthPx = Math.floor((pageWidthMm - MARGIN_MM * 2) * MM_TO_PX);
 
-  const host = document.createElement('div');
-  host.style.cssText =
-    'position:fixed; top:0; left:0; width:0; height:0; overflow:hidden; opacity:0; z-index:-1; pointer-events:none;';
-
   const element = document.createElement('div');
   element.className = 'pdf-container';
   element.innerHTML = htmlContent;
   element.style.width = `${contentWidthPx}px`;
-
-  host.appendChild(element);
-  document.body.appendChild(host);
 
   const config = {
     margin: [MARGIN_MM, MARGIN_MM, MARGIN_MM, MARGIN_MM] as [number, number, number, number],
@@ -181,7 +172,6 @@ export async function generatePdf(
   try {
     await html2pdf().set(config).from(element).save();
   } finally {
-    document.body.removeChild(host);
     document.head.removeChild(styleEl);
     document.head.removeChild(hljsStyle);
   }
