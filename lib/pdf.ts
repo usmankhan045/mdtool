@@ -14,19 +14,13 @@ export interface PdfOptions {
 const THEMES: Record<ThemeId, string> = {
   github: `
     .pdf-container { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; color: #24292e; padding: 32px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { line-height: 1.25; font-weight: 600; margin: 24px 0 16px; }
-    .pdf-container h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+    .pdf-container h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; margin-top: 24px; }
     .pdf-container h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-    .pdf-container h3 { font-size: 1.25em; }
-    .pdf-container h4 { font-size: 1em; }
-    .pdf-container h5 { font-size: 0.875em; }
-    .pdf-container h6 { font-size: 0.85em; color: #6a737d; }
-    .pdf-container p { margin: 0 0 16px; }
     .pdf-container code { background: #f6f8fa; border-radius: 3px; font-size: 85%; padding: 0.2em 0.4em; font-family: 'SFMono-Regular', Consolas, monospace; }
     .pdf-container pre { background: #f6f8fa; border-radius: 6px; padding: 16px; overflow: auto; }
     .pdf-container pre code { background: transparent; padding: 0; }
     .pdf-container table { border-collapse: collapse; width: 100%; margin: 16px 0; }
-    .pdf-container th, .pdf-container td { border: 1px solid #dfe2e5; padding: 6px 13px; line-height: 1.4; vertical-align: top; }
+    .pdf-container th, .pdf-container td { border: 1px solid #dfe2e5; padding: 6px 13px; }
     .pdf-container th { background: #f6f8fa; font-weight: 600; }
     .pdf-container tr:nth-child(even) { background: #f6f8fa; }
     .pdf-container blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; margin: 0; padding: 0 16px; }
@@ -35,54 +29,38 @@ const THEMES: Record<ThemeId, string> = {
   `,
   academic: `
     .pdf-container { font-family: Georgia, serif; font-size: 12pt; line-height: 1.8; color: #000; padding: 40px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { line-height: 1.25; font-weight: bold; }
-    .pdf-container h1 { font-size: 18pt; text-align: center; margin: 0 0 8px; }
-    .pdf-container h2 { font-size: 14pt; margin: 20px 0 10px; }
-    .pdf-container h3 { font-size: 12pt; margin: 16px 0 8px; }
-    .pdf-container h4 { font-size: 12pt; font-style: italic; margin: 14px 0 6px; }
-    .pdf-container h5, .pdf-container h6 { font-size: 11pt; margin: 12px 0 6px; }
-    .pdf-container p { margin: 0 0 12px; }
+    .pdf-container h1 { font-size: 18pt; text-align: center; margin-bottom: 8px; }
+    .pdf-container h2 { font-size: 14pt; margin-top: 20px; }
     .pdf-container code { font-family: 'Courier New', monospace; font-size: 10pt; background: #f5f5f5; padding: 1px 4px; }
     .pdf-container pre { background: #f5f5f5; padding: 12px; border: 1px solid #ddd; }
     .pdf-container pre code { background: transparent; padding: 0; }
     .pdf-container table { border-collapse: collapse; width: 100%; margin: 16px 0; }
-    .pdf-container th, .pdf-container td { border: 1px solid #333; padding: 8px; text-align: left; line-height: 1.4; vertical-align: top; }
+    .pdf-container th, .pdf-container td { border: 1px solid #333; padding: 8px; text-align: left; }
     .pdf-container th { background: #f0f0f0; }
     .pdf-container blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #555; margin-left: 0; }
   `,
   minimal: `
     .pdf-container { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-size: 15px; line-height: 1.7; color: #333; padding: 28px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { line-height: 1.25; font-weight: 600; margin: 24px 0 12px; }
-    .pdf-container h1 { font-size: 1.8em; margin-top: 20px; }
-    .pdf-container h2 { font-size: 1.4em; }
-    .pdf-container h3 { font-size: 1.2em; }
-    .pdf-container h4 { font-size: 1.05em; }
-    .pdf-container h5 { font-size: 1em; }
-    .pdf-container h6 { font-size: 0.9em; color: #666; }
-    .pdf-container p { margin: 0 0 14px; }
+    .pdf-container h1 { font-size: 1.8em; font-weight: 600; margin-top: 20px; }
+    .pdf-container h2 { font-size: 1.4em; font-weight: 600; }
     .pdf-container code { font-family: 'SFMono-Regular', monospace; font-size: 85%; background: #f5f5f5; padding: 0.2em 0.4em; border-radius: 3px; }
     .pdf-container pre { background: #f8f8f8; padding: 20px; border-radius: 8px; }
     .pdf-container pre code { background: transparent; padding: 0; }
     .pdf-container table { border-collapse: collapse; width: 100%; }
-    .pdf-container th, .pdf-container td { border-bottom: 2px solid #333; padding: 8px; text-align: left; line-height: 1.4; vertical-align: top; }
+    .pdf-container th, .pdf-container td { border-bottom: 2px solid #333; padding: 8px; text-align: left; }
     .pdf-container th { background: #f0e0e0; }
     .pdf-container blockquote { border-left: 3px solid #ccc; padding-left: 16px; color: #666; margin-left: 0; }
   `,
   dark: `
     .pdf-container { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; line-height: 1.6; color: #e6edf3; background: #0d1117; padding: 32px; }
-    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4, .pdf-container h5, .pdf-container h6 { color: #f0f6fc; line-height: 1.25; font-weight: 600; margin: 24px 0 16px; }
-    .pdf-container h1 { font-size: 2em; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
-    .pdf-container h2 { font-size: 1.5em; border-bottom: 1px solid #30363d; padding-bottom: 6px; }
-    .pdf-container h3 { font-size: 1.25em; }
-    .pdf-container h4 { font-size: 1em; }
-    .pdf-container h5 { font-size: 0.875em; }
-    .pdf-container h6 { font-size: 0.85em; color: #8b949e; }
-    .pdf-container p { margin: 0 0 16px; }
+    .pdf-container h1, .pdf-container h2, .pdf-container h3, .pdf-container h4 { color: #f0f6fc; }
+    .pdf-container h1 { border-bottom: 1px solid #30363d; padding-bottom: 8px; }
+    .pdf-container h2 { border-bottom: 1px solid #30363d; padding-bottom: 6px; }
     .pdf-container code { background: #161b22; color: #ff7b72; border-radius: 3px; padding: 2px 6px; font-family: 'SFMono-Regular', monospace; }
     .pdf-container pre { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 16px; }
     .pdf-container pre code { background: transparent; color: #e6edf3; padding: 0; }
     .pdf-container table { border-collapse: collapse; width: 100%; }
-    .pdf-container th, .pdf-container td { border: 1px solid #30363d; padding: 8px 12px; line-height: 1.4; vertical-align: top; }
+    .pdf-container th, .pdf-container td { border: 1px solid #30363d; padding: 8px 12px; }
     .pdf-container th { background: #161b22; }
     .pdf-container tr:nth-child(even) { background: #161b22; }
     .pdf-container blockquote { border-left: 4px solid #3b82f6; padding-left: 16px; color: #8b949e; margin: 0; }
