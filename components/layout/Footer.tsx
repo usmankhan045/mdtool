@@ -6,6 +6,7 @@ const TOOL_LINKS = [
   { href: '/markdown-to-word', label: 'Markdown to Word' },
   { href: '/html-to-markdown', label: 'HTML to Markdown' },
   { href: '/word-to-markdown', label: 'Word to Markdown' },
+  { href: '/markdown-table-generator', label: 'Markdown Table Generator' },
 ];
 
 const BLOG_LINKS = [
@@ -13,7 +14,7 @@ const BLOG_LINKS = [
   { href: '/blog/markdown-table-pdf', label: 'MD Tables in PDF Exports' },
   { href: '/blog/best-markdown-to-pdf-converter', label: 'Best MD to PDF Converters' },
   { href: '/blog/github-readme-to-pdf', label: 'GitHub README to PDF' },
-  { href: '/blog/markdown-cheatsheet', label: 'Markdown Cheatsheet' },
+  { href: '/markdown-cheat-sheet', label: 'Markdown Cheatsheet' },
 ];
 
 export default function Footer() {

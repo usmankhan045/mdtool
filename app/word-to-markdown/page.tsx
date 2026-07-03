@@ -6,7 +6,7 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Word to Markdown Converter: Free, No Login, No Upload',
+  title: 'Word to Markdown Converter — Free Online, No Upload',
   description: 'Convert .docx Word documents to clean Markdown instantly in your browser. Headings, tables, lists, bold, italic, and links convert automatically. Free, no signup, no file size limit.',
   keywords: ['word to markdown', 'docx to markdown', 'docx to md', 'convert word to markdown', 'word markdown converter'],
   openGraph: {
@@ -114,17 +114,12 @@ export default function WordToMarkdownPage() {
           { name: 'Word to Markdown Converter', url: '/word-to-markdown' },
         ]}
       />
-      <StructuredData
-        type="faq"
-        faqs={FAQ_ITEMS.map(item => ({ q: item.q, a: item.text }))}
-      />
-
       <main className="min-h-screen bg-gray-50">
         {/* Hero — title over the live converter */}
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Free Word to Markdown Converter
+              Free Online Word to Markdown Converter
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
               Drag and drop a .docx file and get clean, plain-text GitHub Flavored Markdown back. No upload,
@@ -381,8 +376,14 @@ export default function WordToMarkdownPage() {
               <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown to PDF →
               </a>
-              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown Syntax Cheatsheet →
+              </a>
+              <a href="/blog/word-to-markdown-github-docs" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Word to Markdown for GitHub →
+              </a>
+              <a href="/blog/word-to-markdown-obsidian" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Word to Markdown for Obsidian →
               </a>
               <a href="/blog/docx-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 DOCX to Markdown Guide →

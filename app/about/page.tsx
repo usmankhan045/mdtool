@@ -50,7 +50,7 @@ export default function AboutPage() {
             <li><strong>marked</strong>: Markdown parsing</li>
             <li><strong>highlight.js</strong>: syntax highlighting for code blocks</li>
             <li><strong>mermaid</strong>: diagram rendering</li>
-            <li><strong>html2pdf.js</strong>: in-browser HTML-to-PDF generation</li>
+            <li><strong>pdfmake</strong> + <strong>html-to-pdfmake</strong>: in-browser vector PDF generation with selectable, searchable text</li>
             <li><strong>docx</strong>: generating Word (.docx) files</li>
             <li><strong>mammoth</strong>: reading Word (.docx) files</li>
             <li><strong>turndown</strong>: HTML-to-Markdown conversion</li>
@@ -58,6 +58,28 @@ export default function AboutPage() {
           <p>
             None of these libraries require a server round-trip to do their job, which is why MDTool doesn&apos;t
             have one for the conversion step itself.
+          </p>
+
+          <h2 id="author">Who runs MDTool</h2>
+          <p>
+            MDTool is built and maintained by <strong>Muhammad Usman</strong>, a software developer who works
+            on browser-based document processing and web tooling. He writes every converter and every guide
+            on this site, and the recommendations in the blog are based on the tools&apos; documented behavior
+            and hands-on testing. You can see the project&apos;s source and history on{' '}
+            <a href="https://github.com/usmankhan045/mdtool" target="_blank" rel="noopener noreferrer">GitHub</a>.
+          </p>
+          <p>
+            MDTool is an independent, solo-maintained project. That&apos;s also why it can stay free: there is
+            no team, no office, and no server infrastructure processing your files.
+          </p>
+
+          <h2>Not to be confused with</h2>
+          <p>
+            The name &ldquo;mdtool&rdquo; is also used by two unrelated pieces of software: the{' '}
+            <strong>MonoDevelop command-line tool</strong> (<code>mdtool</code>, for building MonoDevelop
+            projects) and <strong>MDTools</strong>, a SolidWorks/Inventor add-in for manifold design.
+            MDTool (mdtool.dev) is neither of those — it is a browser-based <strong>Markdown converter</strong>{' '}
+            for turning Markdown into PDF, HTML, and Word documents, and back.
           </p>
 
           <h2>How MDTool is funded</h2>

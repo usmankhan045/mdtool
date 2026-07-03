@@ -6,7 +6,7 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Markdown to PDF Converter: Free & No Login',
+  title: 'Markdown to PDF Converter — Free Online, No Login',
   description: 'Convert Markdown to PDF instantly in your browser. Supports GFM, syntax-highlighted code, tables, images, and Mermaid diagrams. Free, no signup.',
   keywords: ['markdown to pdf', 'md to pdf', 'convert markdown to pdf', 'markdown pdf converter', 'github readme to pdf'],
   openGraph: {
@@ -95,7 +95,8 @@ export default function MarkdownToPdfPage() {
         name="Markdown to PDF Converter"
         url="/markdown-to-pdf"
         description="Convert Markdown to PDF instantly in your browser. Supports GitHub Flavored Markdown, code blocks with syntax highlighting, tables, images, and Mermaid diagrams."
-        dateModified="2026-06-24"
+        datePublished="2026-06-23"
+        dateModified="2026-07-03"
       />
       <StructuredData
         type="breadcrumb"
@@ -110,13 +111,13 @@ export default function MarkdownToPdfPage() {
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Free Markdown to PDF Converter
+              Free Online Markdown to PDF Converter
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
               Paste or upload Markdown and download a paginated PDF, with code highlighting, tables, and
               Mermaid diagrams included. No login, no watermark.
             </p>
-            <p className="text-xs text-blue-200/50">Updated June 24, 2026</p>
+            <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
           </div>
         </section>
 
@@ -146,7 +147,7 @@ export default function MarkdownToPdfPage() {
 
         {/* SEO Content */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to PDF</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Do You Convert Markdown to PDF?</h2>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
             <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file</li>
             <li>Choose a PDF theme: GitHub, Academic, Minimal, or Dark</li>
@@ -157,7 +158,7 @@ export default function MarkdownToPdfPage() {
 
         {/* Format-specific substance */}
         <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Some Markdown to PDF Converters Lose Formatting</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Do Some Markdown to PDF Converters Lose Formatting?</h2>
           <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
             <p>
               Two things separate a Markdown-to-PDF converter that &ldquo;technically works&rdquo; from one that
@@ -170,8 +171,10 @@ export default function MarkdownToPdfPage() {
               capture it as a page. Tools that generate the PDF through a different code path than the one used
               for the on-screen preview often skip that rendering step entirely, so the diagram block either
               disappears or prints as raw, uninterpreted text. MDTool initializes the Mermaid renderer in the
-              browser and waits for it to finish drawing the SVG before <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">html2pdf.js</code> captures the page,
-              so the diagram in your PDF is the same one you see in the live preview.
+              browser and waits for it to finish drawing the SVG before the PDF engine captures the page,
+              so the diagram in your PDF is the same one you see in the live preview. The PDF itself is built
+              with <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">pdfmake</code>, a true vector engine, so text stays selectable and searchable instead of
+              being rasterized into images.
             </p>
             <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
               <thead className="bg-gray-100">
@@ -228,8 +231,14 @@ export default function MarkdownToPdfPage() {
               <a href="/blog/best-markdown-to-pdf-converter" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Best Markdown to PDF Converters Compared →
               </a>
-              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown Syntax Cheatsheet →
+              </a>
+              <a href="/blog/markdown-to-pdf-code-blocks" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Fix Code Blocks in PDF Exports →
+              </a>
+              <a href="/blog/markdown-table-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Why Markdown Tables Break in PDFs →
               </a>
             </div>
           </div>

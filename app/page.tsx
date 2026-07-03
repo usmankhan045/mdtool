@@ -3,8 +3,8 @@ import Link from 'next/link';
 import StructuredData from '@/components/seo/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'MDTool: Free Developer Tools',
-  description: 'Free online developer tools. Convert Markdown to PDF, Markdown to HTML, and more. Fast, client-side, no login required.',
+  title: 'MDTool — Free Online Markdown Converter: MD to PDF, HTML & Word',
+  description: 'MDTool is a free online Markdown converter. Turn Markdown into PDF, HTML, and Word (and back) right in your browser — no login, no uploads, no watermarks.',
   alternates: { canonical: 'https://www.mdtool.dev' },
 };
 
@@ -53,6 +53,15 @@ const TOOLS = [
     title: 'Word to Markdown',
     description: 'Convert .docx Word documents to clean Markdown. Headings, tables, and lists convert automatically.',
     badge: null,
+  },
+  {
+    href: '/markdown-table-generator',
+    from: 'GRID',
+    to: 'MD',
+    icon: '⊞',
+    title: 'Markdown Table Generator',
+    description: 'Build tables in a visual grid: column alignment, Excel/CSV paste import, copy as Markdown or HTML.',
+    badge: 'New',
   },
 ];
 

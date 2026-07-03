@@ -7,7 +7,7 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'HTML to Markdown Converter: Paste, Upload, GFM | MDTool',
+  title: 'HTML to Markdown Converter — Free Online, GFM Output',
   description: 'Paste or upload .html and get clean, GFM Markdown instantly, entirely in your browser, nothing sent to a server. Free, no signup, no file limit.',
   keywords: ['html to markdown', 'convert html to markdown', 'html to md', 'html to github flavored markdown', 'html markdown converter'],
   openGraph: {
@@ -96,7 +96,7 @@ export default function HtmlToMarkdownPage() {
         url="/html-to-markdown"
         description="Convert HTML to clean Markdown instantly in your browser. Paste or upload, with GFM tables, code blocks, links, and lists."
         datePublished="2026-06-24"
-        dateModified="2026-06-24"
+        dateModified="2026-07-03"
         featureList={[
           'HTML to Markdown conversion',
           'GitHub Flavored Markdown (GFM) output',
@@ -118,13 +118,13 @@ export default function HtmlToMarkdownPage() {
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Free HTML to Markdown Converter: Paste or Upload, GFM Output
+              Free Online HTML to Markdown Converter: GFM Output
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
               Paste HTML or upload a .html file and get clean GitHub Flavored Markdown, with tables, fenced code
               blocks with language tags, nested lists, links, and images.
             </p>
-            <p className="text-xs text-blue-200/50">Updated June 24, 2026</p>
+            <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
           </div>
         </section>
 
@@ -304,7 +304,16 @@ export default function HtmlToMarkdownPage() {
               <Link href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown to PDF →
               </Link>
-              <Link href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/blog/clean-html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Clean Up Messy HTML to Markdown →
+              </Link>
+              <Link href="/blog/html-to-markdown-cms-migration" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                HTML to Markdown for CMS Migration →
+              </Link>
+              <Link href="/blog/html-to-markdown-github" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                HTML to Markdown for GitHub →
+              </Link>
+              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown Syntax Cheatsheet →
               </Link>
             </div>

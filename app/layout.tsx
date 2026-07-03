@@ -12,9 +12,9 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mdtool.dev'),
-  title: { default: 'MDTool: Free Developer Tools', template: '%s | MDTool' },
-  description: 'Free online developer tools. Convert Markdown to PDF, Markdown to HTML, and more. Fast, client-side, no login required.',
-  keywords: ['markdown to pdf', 'developer tools', 'md to pdf', 'markdown converter'],
+  title: { default: 'MDTool — Free Online Markdown Converter: MD to PDF, HTML & Word', template: '%s | MDTool' },
+  description: 'MDTool is a free online Markdown converter. Turn Markdown into PDF, HTML, and Word (and back) right in your browser — no login, no uploads, no watermarks.',
+  keywords: ['markdown converter', 'markdown to pdf', 'markdown to html', 'markdown to word', 'md to pdf', 'html to markdown', 'word to markdown', 'online markdown converter'],
   authors: [{ name: 'MDTool' }],
   creator: 'MDTool',
   openGraph: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.mdtool.dev',
     siteName: 'MDTool',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MDTool: Free Developer Tools' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MDTool — Free Online Markdown Converter' }],
   },
   twitter: {
     card: 'summary_large_image',

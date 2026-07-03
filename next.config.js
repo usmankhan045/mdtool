@@ -11,14 +11,19 @@ const nextConfig = {
       },
     ],
   },
-  // Silence Turbopack warning — html2pdf.js exclusion is handled via dynamic import (ssr:false)
   turbopack: {},
   // Allow browser-only conversion libs (dynamically imported with ssr:false) to work when using webpack build
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.externals = [...(config.externals || []), 'html2pdf.js', 'mammoth'];
+      config.externals = [...(config.externals || []), 'mammoth'];
     }
     return config;
+  },
+  async redirects() {
+    return [
+      // Cheat sheet promoted from blog post to permanent top-level reference hub
+      { source: '/blog/markdown-cheatsheet', destination: '/markdown-cheat-sheet', permanent: true },
+    ];
   },
 }
 module.exports = nextConfig

@@ -85,7 +85,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span>·</span>
             <span>{post.readingTime}</span>
             <span>·</span>
-            <span>By {post.author}</span>
+            <span>
+              By <a href="/about#author" className="text-blue-600 hover:underline">{post.author}</a>
+            </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
           <p className="text-xl text-gray-600">{post.description}</p>

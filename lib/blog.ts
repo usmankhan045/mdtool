@@ -68,7 +68,7 @@ export function getAllBlogPosts(): BlogPost[] {
         content,
         image: data.image || `/blog/${slug}.jpg`,
         imageAlt: data.imageAlt || data.title || slug,
-        author: data.author || 'MDTool Editorial Team',
+        author: data.author || 'Muhammad Usman',
         faqs: extractFaqs(content),
         ctaTool: data.ctaTool,
       };
@@ -95,7 +95,7 @@ export function getBlogPost(slug: string): BlogPost | null {
     content,
     image: data.image || `/blog/${slug}.jpg`,
     imageAlt: data.imageAlt || data.title || slug,
-    author: data.author || 'MDTool Editorial Team',
+    author: data.author || 'Muhammad Usman',
     faqs: extractFaqs(content),
     ctaTool: data.ctaTool,
   };

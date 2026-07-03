@@ -2,10 +2,11 @@
 title: "Markdown to DOCX: How to Generate a Real Word Document From Markdown"
 description: "Markdown to DOCX only converts cleanly when the output is genuine Office Open XML, not HTML wrapped in a Word shim. Here is how real conversion works."
 datePublished: "2026-06-24"
+dateModified: "2026-07-03"
 tags: ["markdown", "docx", "word", "office-open-xml", "developer-tools"]
 image: "/blog/markdown-to-docx.jpg"
 imageAlt: "Person typing on a laptop with a document editor open, representing writing and converting a document"
-author: "MDTool Editorial Team"
+author: "Muhammad Usman"
 ---
 
 <Callout type="info">
@@ -48,7 +49,7 @@ Because the conversion maps Markdown tokens directly to OOXML elements, the form
 
 Two things currently fall outside that mapping. **Mermaid diagrams and embedded images** aren't supported in the Word export. An image in a `.docx` file has to exist as a separate embedded file with its own relationship entry in the document's XML, a meaningfully different code path than rendering a diagram to a canvas. If your document needs diagrams to render, the [Markdown to PDF converter](/markdown-to-pdf) handles that case instead, since PDF and HTML output can both embed vector graphics directly. **Deeply nested sub-lists** are also a known current limitation: list items currently convert at a single, consistent indent level rather than preserving multiple nesting levels, so a deeply nested outline will need manual re-indenting in Word after conversion.
 
-For the complete syntax reference behind every element listed above, see the [Markdown cheatsheet](/blog/markdown-cheatsheet).
+For the complete syntax reference behind every element listed above, see the [Markdown cheatsheet](/markdown-cheat-sheet).
 
 ## What to Do if Formatting Looks Off in Word
 

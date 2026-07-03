@@ -6,7 +6,7 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Markdown to HTML Converter: Free & No Login',
+  title: 'Markdown to HTML Converter — Free Online, No Login',
   description: 'Convert Markdown to clean HTML instantly in your browser. Supports GFM, syntax-highlighted code, tables, and images. Copy or download the HTML. Free, no signup.',
   keywords: ['markdown to html', 'md to html', 'convert markdown to html', 'markdown html converter', 'markdown renderer'],
   openGraph: {
@@ -102,10 +102,11 @@ export default function MarkdownToHtmlPage() {
     <>
       <StructuredData
         type="tool"
+        datePublished="2026-06-23"
+        dateModified="2026-07-03"
         name="Markdown to HTML Converter"
         url="/markdown-to-html"
         description="Convert Markdown to clean HTML instantly in your browser. Supports GitHub Flavored Markdown, code blocks with syntax highlighting, tables, and images."
-        dateModified="2026-06-24"
         featureList={[
           'Markdown to HTML conversion',
           'GitHub Flavored Markdown support',
@@ -130,13 +131,13 @@ export default function MarkdownToHtmlPage() {
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Free Markdown to HTML Converter
+              Free Online Markdown to HTML Converter
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
               Paste or drop a .md file and get clean, semantic HTML, with live preview, code highlighting, and
               one-click copy or download.
             </p>
-            <p className="text-xs text-blue-200/50">Updated June 24, 2026 · Built and maintained by MDTool</p>
+            <p className="text-xs text-blue-200/50">Updated July 3, 2026 · Built and maintained by MDTool</p>
           </div>
         </section>
 
@@ -326,7 +327,7 @@ export default function MarkdownToHtmlPage() {
               <a href="/html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 HTML to Markdown →
               </a>
-              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown Syntax Cheatsheet →
               </a>
               <a href="/blog/markdown-to-html-guide" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">

@@ -10,6 +10,8 @@ const NAV_LINKS = [
   { href: '/markdown-to-word', label: 'MD → Word' },
   { href: '/html-to-markdown', label: 'HTML → MD' },
   { href: '/word-to-markdown', label: 'Word → MD' },
+  { href: '/markdown-table-generator', label: 'Tables' },
+  { href: '/markdown-cheat-sheet', label: 'Cheat Sheet' },
   { href: '/blog', label: 'Blog' },
 ];
 

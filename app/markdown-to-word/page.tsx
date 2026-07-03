@@ -6,8 +6,8 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Free Markdown to Word Converter: Real .docx, No Signup',
-  description: 'Convert Markdown to a real, editable .docx document free, with no signup. Opens in Word, Google Docs, and LibreOffice. Try it now.',
+  title: 'Markdown to Word Converter — Free Online, Real .docx',
+  description: 'Convert Markdown to DOCX online, free. Get a real, editable Word document that opens in Word, Google Docs, and LibreOffice. No signup, no watermark.',
   keywords: ['markdown to word', 'md to word', 'markdown to docx', 'convert markdown to word', 'markdown word converter'],
   openGraph: {
     title: 'Free Markdown to Word Converter: Real .docx, No Signup',
@@ -86,10 +86,11 @@ export default function MarkdownToWordPage() {
     <>
       <StructuredData
         type="tool"
+        datePublished="2026-06-23"
+        dateModified="2026-07-03"
         name="Markdown to Word Converter"
         url="/markdown-to-word"
         description="Convert Markdown to a real, editable .docx Word document instantly in your browser. Supports headings, tables, lists, and code blocks."
-        dateModified="2026-06-24"
         featureList={[
           'Markdown to editable .docx conversion',
           'Tables, lists, and headings preserved',
@@ -111,13 +112,13 @@ export default function MarkdownToWordPage() {
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Free Markdown to Word Converter: Real .docx, No Signup
+              Free Online Markdown to Word Converter: Real .docx
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
               Turn Markdown into a real, editable .docx that opens in Word, Google Docs, and LibreOffice.
               No login, no watermark, no limits.
             </p>
-            <p className="text-xs text-blue-200/50">Updated June 24, 2026</p>
+            <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
           </div>
         </section>
 
@@ -297,7 +298,16 @@ export default function MarkdownToWordPage() {
               <a href="/word-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Word to Markdown →
               </a>
-              <a href="/blog/markdown-cheatsheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-resume-to-word" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Markdown Resume to Word Guide →
+              </a>
+              <a href="/blog/markdown-to-docx" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                How Markdown to DOCX Works →
+              </a>
+              <a href="/blog/markdown-to-word-documentation" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Technical Docs: Markdown to Word →
+              </a>
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown Syntax Cheatsheet →
               </a>
             </div>

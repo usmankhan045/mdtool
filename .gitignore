@@ -43,3 +43,12 @@ next-env.d.ts
 # next-sitemap generated files (built at deploy time)
 /public/sitemap*.xml
 /public/robots.txt
+
+# Internal SEO working artifacts (not part of the app)
+cluster-*/
+cluster-*.html
+cluster-*.json
+cluster-*.md
+GEO-ANALYSIS.md
+SCHEMA-REPORT.md
+generated-schema.json
