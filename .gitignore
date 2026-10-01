@@ -52,3 +52,8 @@ cluster-*.md
 GEO-ANALYSIS.md
 SCHEMA-REPORT.md
 generated-schema.json
+
+# Private / local-only files (search console exports, outreach notes, originals)
+*.csv
+docs/outreach/
+docs/profile.png
