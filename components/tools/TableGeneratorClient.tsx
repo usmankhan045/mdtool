@@ -114,7 +114,7 @@ export default function TableGeneratorClient() {
       {showImport && (
         <div className="bg-white rounded-xl border border-blue-200 shadow-sm p-4">
           <p className="text-sm text-gray-600 mb-2">
-            Paste cells copied from Excel or Google Sheets (tab-separated), or CSV data — the grid fills automatically.
+            Paste cells copied from Excel or Google Sheets (tab-separated), or CSV data, and the grid fills automatically.
           </p>
           <textarea
             value={importText}

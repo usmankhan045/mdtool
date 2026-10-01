@@ -6,7 +6,7 @@ interface Props {
 
 /**
  * Inline SVG (not a raster <img>) so it ships with zero extra requests and
- * stays crisp at any size — but still counts as real visual content for
+ * stays crisp at any size - but still counts as real visual content for
  * multi-modal/AI-citation signals, with full alt-text via role="img".
  *
  * Scales to its container (w-full up to max 360px) and the wide label boxes

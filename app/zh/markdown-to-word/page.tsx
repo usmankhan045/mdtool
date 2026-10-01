@@ -113,7 +113,7 @@ export default function MarkdownToWordZhPage() {
         ]}
       />
 
-      <main lang="zh-Hans" className="min-h-screen bg-gray-50">
+      <main lang="zh-Hans" className="min-h-screen bg-page">
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">

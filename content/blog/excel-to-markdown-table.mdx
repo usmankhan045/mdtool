@@ -1,6 +1,6 @@
 ---
 title: "Excel to Markdown Table: Convert Spreadsheets Without Add-ins"
-description: "Copy cells from Excel or Google Sheets and turn them into a clean Markdown table in seconds — no add-ins, no uploads. Here's the workflow, what survives conversion, and the fixes worth knowing."
+description: "Copy cells from Excel or Google Sheets and turn them into a clean Markdown table in seconds, no add-ins, no uploads. Here's the workflow, what survives conversion, and the fixes worth knowing."
 datePublished: "2026-07-03"
 dateModified: "2026-07-03"
 tags: ["markdown", "tables", "excel", "google-sheets", "developer-tools"]
@@ -13,13 +13,13 @@ ctaTool:
   description: "Paste your Excel or Sheets cells and copy a clean Markdown table right now. Free, no signup, nothing uploaded."
 ---
 
-Converting an Excel or Google Sheets table to Markdown takes three steps: select and copy the cells in your spreadsheet, paste them into a [Markdown table generator](/markdown-table-generator), and copy the generated Markdown. Spreadsheets place copied cells on the clipboard as tab-separated text, so a converter can rebuild the rows and columns exactly — no add-in, export step, or upload required.
+Converting an Excel or Google Sheets table to Markdown takes three steps: select and copy the cells in your spreadsheet, paste them into a [Markdown table generator](/markdown-table-generator), and copy the generated Markdown. Spreadsheets place copied cells on the clipboard as tab-separated text, so a converter can rebuild the rows and columns exactly, with no add-in, export step, or upload required.
 
 This guide covers that workflow end to end: why the clipboard trick works, what survives the conversion (and what doesn't), and how to fix the three things that most often break spreadsheet-sourced tables in Markdown.
 
 ## Why Copy-Paste Works: The Tab-Separated Clipboard
 
-When you copy a range of cells in Excel, Google Sheets, LibreOffice Calc, or Numbers, the spreadsheet writes two versions to your clipboard: a rich one (HTML) and a plain-text one. The plain-text version separates columns with tab characters and rows with newlines — a format called TSV (tab-separated values).
+When you copy a range of cells in Excel, Google Sheets, LibreOffice Calc, or Numbers, the spreadsheet writes two versions to your clipboard: a rich one (HTML) and a plain-text one. The plain-text version separates columns with tab characters and rows with newlines, a format called TSV (tab-separated values).
 
 That plain-text version is what a Markdown table generator reads. Each tab becomes a column boundary, each line becomes a row, and the first row is treated as the header. Because tabs almost never appear *inside* spreadsheet cell content, TSV parsing is far more reliable than CSV parsing, where commas inside values (like "1,000" or "Portland, OR") routinely split cells in the wrong place.
 
@@ -27,12 +27,12 @@ The practical consequence: **you don't need an Excel add-in or a file exporter**
 
 ## The Workflow, Step by Step
 
-1. **Select the cells** in Excel or Google Sheets — include the header row.
+1. **Select the cells** in Excel or Google Sheets (include the header row).
 2. **Copy** them (Ctrl+C / Cmd+C).
 3. Open the [Markdown Table Generator](/markdown-table-generator) and click **Paste from Excel / CSV**.
-4. **Paste** — the grid fills with your data, first row as the header.
+4. **Paste**. The grid fills with your data, first row as the header.
 5. Adjust anything that needs it: click the alignment control above a column to align it left, center, or right (numbers usually read better right-aligned).
-6. **Copy the output** as Markdown — or flip the toggle to HTML if the destination is a web page or CMS rather than a README.
+6. **Copy the output** as Markdown, or flip the toggle to HTML if the destination is a web page or CMS rather than a README.
 
 The result is a GitHub Flavored Markdown table with padded columns, so the raw text stays readable in a code editor:
 
@@ -43,9 +43,9 @@ The result is a GitHub Flavored Markdown table with padded columns, so the raw t
 | Generator |     $8,100 |    31% |
 ```
 
-Everything happens in the browser. The cells you paste are parsed locally and never uploaded, which matters more for spreadsheets than for most documents — financial data, customer lists, and internal metrics are exactly the content you don't want passing through a stranger's server.
+Everything happens in the browser. The cells you paste are parsed locally and never uploaded, which matters more for spreadsheets than for most documents: financial data, customer lists, and internal metrics are exactly the content you don't want passing through a stranger's server.
 
-## What Survives the Conversion — and What Doesn't
+## What Survives the Conversion (and What Doesn't)
 
 Markdown tables are intentionally simpler than spreadsheets, so the conversion keeps the content but drops spreadsheet-specific machinery:
 
@@ -54,26 +54,26 @@ Markdown tables are intentionally simpler than spreadsheets, so the conversion k
 | Cell text and numbers | Preserved exactly |
 | Header row | Becomes the Markdown header |
 | Column order | Preserved |
-| **Formulas** | Only the computed value carries over — `=SUM(B2:B9)` pastes as its result |
-| **Cell formatting** (colors, borders, fonts) | Dropped — Markdown tables have no styling syntax |
-| **Merged cells** | Not supported — the value lands in one cell, the rest are empty |
+| **Formulas** | Only the computed value carries over: `=SUM(B2:B9)` pastes as its result |
+| **Cell formatting** (colors, borders, fonts) | Dropped. Markdown tables have no styling syntax |
+| **Merged cells** | Not supported. The value lands in one cell, the rest are empty |
 | **Multiple lines in a cell** | Converted to `<br>`, which GitHub renders correctly |
 
-If you need merged cells or styling, generate the HTML output instead and edit the markup — Markdown's table syntax has no colspan or style attributes, and no generator can add what the format doesn't support. The [Markdown table syntax guide](/markdown-cheat-sheet/tables) covers these limits in detail.
+If you need merged cells or styling, generate the HTML output instead and edit the markup. Markdown's table syntax has no colspan or style attributes, and no generator can add what the format doesn't support. The [Markdown table syntax guide](/markdown-cheat-sheet/tables) covers these limits in detail.
 
 ## The Three Fixes You'll Actually Need
 
-**1. Numbers columns look ragged.** Spreadsheets right-align numbers automatically; Markdown defaults to left. After pasting, set numeric columns to right alignment — in the generated syntax that's a trailing colon in the separator row (`---:`), and it makes financial or metric tables dramatically easier to scan.
+**1. Numbers columns look ragged.** Spreadsheets right-align numbers automatically; Markdown defaults to left. After pasting, set numeric columns to right alignment. In the generated syntax that's a trailing colon in the separator row (`---:`), and it makes financial or metric tables dramatically easier to scan.
 
 **2. Pipe characters in cell content.** A cell containing `|` would break the table's column structure. A good generator escapes them as `\|` automatically; if you're converting by hand, this is the first thing to check when a table renders with misplaced columns.
 
-**3. Thousands separators split cells in CSV.** If you're importing a *CSV file* rather than pasting copied cells, values like `1,000` split into two columns because the comma is the delimiter. The fix is to copy the cells from the spreadsheet directly (tab-separated) instead of exporting to CSV first — one of several reasons paste-from-spreadsheet beats the export route.
+**3. Thousands separators split cells in CSV.** If you're importing a *CSV file* rather than pasting copied cells, values like `1,000` split into two columns because the comma is the delimiter. The fix is to copy the cells from the spreadsheet directly (tab-separated) instead of exporting to CSV first, one of several reasons paste-from-spreadsheet beats the export route.
 
 ## When You Need More Than a Table
 
-A table generator is the right tool when the table *is* the content — a comparison in a README, benchmark results in an issue, a pricing grid in documentation. When the table is embedded in a larger document, convert the whole document instead:
+A table generator is the right tool when the table *is* the content: a comparison in a README, benchmark results in an issue, a pricing grid in documentation. When the table is embedded in a larger document, convert the whole document instead:
 
-- A full Word document with tables in it → [Word to Markdown converter](/word-to-markdown) — tables convert along with headings, lists, and links, as covered in the [DOCX to Markdown guide](/blog/docx-to-markdown).
+- A full Word document with tables in it → [Word to Markdown converter](/word-to-markdown). Tables convert along with headings, lists, and links, as covered in the [DOCX to Markdown guide](/blog/docx-to-markdown).
 - A finished Markdown document going the other way, into a PDF → the [Markdown to PDF converter](/markdown-to-pdf) renders GFM tables natively. If your tables have broken in PDF exports before, [this guide explains why](/blog/markdown-table-pdf).
 - Markdown tables destined for a web page → the [Markdown to HTML converter](/markdown-to-html) turns them into real `<table>` markup with `thead` and `tbody`.
 
@@ -89,12 +89,12 @@ Yes, identically. Google Sheets, LibreOffice Calc, and Apple Numbers all copy se
 
 **Q: Do Excel formulas convert to Markdown?**
 
-No — only the computed values. The clipboard's plain-text version contains what the cell displays, not the formula behind it. A cell showing 42 from `=A1*2` pastes as 42.
+No, only the computed values. The clipboard's plain-text version contains what the cell displays, not the formula behind it. A cell showing 42 from `=A1*2` pastes as 42.
 
 **Q: Is my spreadsheet data uploaded when I convert it?**
 
-Not with MDTool. The paste import and table generation run entirely in your browser — the data never leaves your device, which you can verify by watching the Network tab in your browser's developer tools while converting.
+Not with MDTool. The paste import and table generation run entirely in your browser. The data never leaves your device, which you can verify by watching the Network tab in your browser's developer tools while converting.
 
 **Q: How do I keep merged cells from my spreadsheet?**
 
-Markdown tables can't represent merged cells. Switch the generator's output to HTML and add `colspan`/`rowspan` attributes by hand, or restructure the table so each cell holds its own value — usually the better option for READMEs.
+Markdown tables can't represent merged cells. Switch the generator's output to HTML and add `colspan`/`rowspan` attributes by hand, or restructure the table so each cell holds its own value, usually the better option for READMEs.

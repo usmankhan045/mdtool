@@ -4,7 +4,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: '*', allow: '/' },
-      // Explicitly welcome AI crawlers — MDTool wants to be citable in AI answers.
+      // Explicitly welcome AI crawlers - MDTool wants to be citable in AI answers.
       { userAgent: 'GPTBot', allow: '/' },
       { userAgent: 'OAI-SearchBot', allow: '/' },
       { userAgent: 'ChatGPT-User', allow: '/' },

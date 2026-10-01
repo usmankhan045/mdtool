@@ -1,4 +1,4 @@
-// PDF generation via pdfmake — a TRUE vector PDF engine.
+// PDF generation via pdfmake - a TRUE vector PDF engine.
 //
 // Why pdfmake (not html2canvas/html2pdf): html2canvas rasterises the page into
 // an image, which makes long documents blurry, drops heading word-spacing, and
@@ -19,7 +19,7 @@
 //   3. tree post-pass: code blocks boxed with a background, diagram/image sizing
 //   4. pdfmake -> Blob -> download
 //
-// IMPORTANT: pdfmake is browser-only and heavy — always dynamic-import it inside
+// IMPORTANT: pdfmake is browser-only and heavy - always dynamic-import it inside
 // the function so SSR never touches it.
 
 import { applyEmojiFont } from './emoji';
@@ -236,7 +236,7 @@ export function mermaidThemeFor(theme: ThemeId): 'default' | 'dark' | 'neutral' 
 function buildDefaultStyles(t: ThemeTokens) {
   // NOTE: every value here is fed through JSON.parse(JSON.stringify(value)) by
   // html-to-pdfmake, so an `undefined` value throws "undefined is not valid
-  // JSON". Never include a key whose value may be undefined — spread it in only
+  // JSON". Never include a key whose value may be undefined - spread it in only
   // when set (see h1's alignment below).
   return {
     h1: { fontSize: 25, bold: true, color: t.headingColor, margin: [0, 14, 0, 8], ...(t.h1Align ? { alignment: t.h1Align } : {}) },
@@ -497,7 +497,7 @@ function preparePageBreaks(doc: Document) {
 
 // pdfmake never breaks a line in the middle of an unbroken run of characters, so
 // long tokens (URLs, paths, identifiers like `x:topposts:reminder-apps`) force
-// it into pathologically slow layout — minutes on a large doc. We insert a
+// it into pathologically slow layout - minutes on a large doc. We insert a
 // zero-width space after every long run of non-space characters so pdfmake has a
 // legal break point. Only TEXT nodes are touched; SVG text and Courier code are
 // skipped (Courier has no zero-width-space glyph).
@@ -705,11 +705,11 @@ export async function generatePdf(
 
   log('start (vector/pdfmake)', { theme, pageSize, htmlLength: htmlContent.length });
 
-  // Dynamic import — keep pdfmake out of the SSR/bundle entry.
+  // Dynamic import - keep pdfmake out of the SSR/bundle entry.
   const [pdfMakeMod, vfsMod, courierMod, htmlToPdfmakeMod] = await Promise.all([
     import('pdfmake/build/pdfmake'),
     import('pdfmake/build/vfs_fonts'),
-    // @ts-expect-error — no type declarations for the standard-font container
+    // @ts-expect-error - no type declarations for the standard-font container
     import('pdfmake/build/standard-fonts/Courier'),
     import('html-to-pdfmake'),
   ]);
@@ -720,7 +720,7 @@ export async function generatePdf(
   // vfs_fonts exports the font file-map directly (module.exports = vfs); under
   // ESM interop it lands on `.default`.
   const vfs = vfsRaw.default ?? vfsRaw.vfs ?? vfsRaw;
-  // pdfmake 0.3 registers fonts via addVirtualFileSystem() — assigning
+  // pdfmake 0.3 registers fonts via addVirtualFileSystem() - assigning
   // `pdfMake.vfs` (the 0.2 API) is ignored, so Roboto-Regular.ttf isn't found.
   if (typeof pdfMake.addVirtualFileSystem === 'function') {
     pdfMake.addVirtualFileSystem(vfs);
@@ -812,7 +812,7 @@ export async function generatePdf(
   try {
     blob = await pdfMake.createPdf(makeDoc(built.content)).getBlob();
   } catch (err) {
-    // A diagram SVG pdfmake can't draw is the most likely culprit — retry once
+    // A diagram SVG pdfmake can't draw is the most likely culprit - retry once
     // with diagrams rasterised to PNG before giving up.
     if (built.diagrams === 0) {
       log('createPdf FAILED', err);
@@ -832,5 +832,5 @@ export async function generatePdf(
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
-  log('done — downloaded', filename);
+  log('done - downloaded', filename);
 }

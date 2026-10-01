@@ -1,7 +1,7 @@
 import { marked, Renderer } from 'marked';
 import hljs from 'highlight.js/lib/core';
 
-// Register only the languages we need — keeps bundle size small
+// Register only the languages we need - keeps bundle size small
 import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
 import python from 'highlight.js/lib/languages/python';

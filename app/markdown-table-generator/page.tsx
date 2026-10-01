@@ -39,7 +39,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I convert a Markdown table to an HTML table?',
-    a: 'Yes. Switch the output toggle to HTML and the same table is rendered as clean <table> markup with thead, tbody, and per-column text-align styles — ready to paste into a page or CMS.',
+    a: 'Yes. Switch the output toggle to HTML and the same table is rendered as clean <table> markup with thead, tbody, and per-column text-align styles, ready to paste into a page or CMS.',
     text: 'Yes. Switch the output toggle to HTML and the same table is rendered as clean table markup with thead, tbody, and per-column text-align styles.',
   },
   {
@@ -49,13 +49,13 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I merge cells or use multiple lines in a cell?',
-    a: 'Markdown tables have no colspan/rowspan, so cells cannot be merged — use the HTML output if you need that and edit the markup. For a line break inside a cell, the generator converts newlines to <br>, which GitHub renders correctly.',
+    a: 'Markdown tables have no colspan/rowspan, so cells cannot be merged. Use the HTML output if you need that and edit the markup. For a line break inside a cell, the generator converts newlines to <br>, which GitHub renders correctly.',
     text: 'Markdown tables have no colspan/rowspan, so cells cannot be merged. For a line break inside a cell, the generator converts newlines to <br>, which GitHub renders correctly.',
   },
   {
     q: 'Is my table data uploaded anywhere?',
-    a: 'No. The generator runs entirely in your browser — nothing you type or paste is sent to a server.',
-    text: 'No. The generator runs entirely in your browser — nothing you type or paste is sent to a server.',
+    a: 'No. The generator runs entirely in your browser. Nothing you type or paste is sent to a server.',
+    text: 'No. The generator runs entirely in your browser. Nothing you type or paste is sent to a server.',
   },
 ];
 
@@ -87,15 +87,15 @@ export default function MarkdownTableGeneratorPage() {
         ]}
       />
 
-      <main className="min-h-screen bg-gray-50">
-        {/* Hero — title over the live tool */}
+      <main className="min-h-screen bg-page">
+        {/* Hero - title over the live tool */}
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
               Free Online Markdown Table Generator
             </h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
-              Build tables in a visual grid — no hand-typed pipes. Set column alignment, paste data
+              Build tables in a visual grid, no hand-typed pipes. Set column alignment, paste data
               straight from Excel or Google Sheets, and copy clean Markdown or HTML.
             </p>
             <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
@@ -113,7 +113,7 @@ export default function MarkdownTableGeneratorPage() {
             <strong>A Markdown table generator</strong> writes the pipe-and-hyphen table syntax for you:
             you edit cells in a familiar grid, and the tool produces a GitHub Flavored Markdown table
             with aligned columns, escaped pipe characters, and a correct separator row. That matters
-            because table syntax is the most error-prone part of Markdown — a missing pipe or a
+            because table syntax is the most error-prone part of Markdown: a missing pipe or a
             malformed separator row silently turns the whole table into plain text. Everything runs in
             your browser; nothing you type or paste is uploaded.
           </p>
@@ -129,7 +129,7 @@ export default function MarkdownTableGeneratorPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Do You Generate a Markdown Table?</h2>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
             <li>Set the size with <strong>+ Row</strong> / <strong>+ Column</strong>, or click <strong>Paste from Excel / CSV</strong> to import existing data</li>
-            <li>Type your content into the grid cells — the first row is the header</li>
+            <li>Type your content into the grid cells (the first row is the header)</li>
             <li>Click the alignment buttons (⇤ ↔ ⇥) above any column to align it left, center, or right</li>
             <li>Choose <strong>Markdown</strong> or <strong>HTML</strong> output and click <strong>Copy</strong></li>
           </ol>
@@ -142,7 +142,7 @@ export default function MarkdownTableGeneratorPage() {
             <p>
               Select the cells in Excel or Google Sheets, copy them, click <strong>Paste from Excel / CSV</strong>{' '}
               above, and paste. Spreadsheets copy cells as tab-separated text, so each tab becomes a column
-              boundary and each line a row — the first row is treated as the header. The importer also accepts
+              boundary and each line a row. The first row is treated as the header. The importer also accepts
               comma-separated (CSV) data when no tabs are present.
             </p>
             <p>
@@ -161,7 +161,7 @@ export default function MarkdownTableGeneratorPage() {
         </section>
 
         {/* Related */}
-        <section className="bg-white border-t border-gray-100 px-4 py-8">
+        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">

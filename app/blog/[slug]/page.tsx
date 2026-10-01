@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           />
         </div>
 
-        {/* Ad Slot — Top of article */}
+        {/* Ad Slot - Top of article */}
         <AdSlot slotId="blog-top" format="horizontal" />
 
         {/* Article Content */}
@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <AuthorBox datePublished={post.datePublished} dateModified={post.dateModified} />
 
-        {/* Ad Slot — End of article */}
+        {/* Ad Slot - End of article */}
         <div className="mt-8">
           <AdSlot slotId="blog-bottom" format="horizontal" />
         </div>

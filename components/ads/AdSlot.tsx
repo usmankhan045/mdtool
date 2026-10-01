@@ -49,7 +49,7 @@ export default function AdSlot({ slotId, format, className = '', adSlotNumber }:
     }
   }, [adsenseId, adSlotNumber]);
 
-  // No real AdSense publisher/slot ID configured yet — render nothing rather than
+  // No real AdSense publisher/slot ID configured yet - render nothing rather than
   // ship a non-functional placeholder ad unit to production.
   if (!adsenseId || !adSlotNumber) return null;
 

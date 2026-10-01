@@ -20,8 +20,8 @@ export default function PrivacyPage() {
         ]}
       />
 
-      <main className="min-h-screen bg-gray-50">
-        <section className="bg-white border-b border-gray-200 px-4 py-10">
+      <main className="min-h-screen bg-page">
+        <section className="bg-page-soft border-b border-gray-200/70 px-4 py-10">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
             <p className="text-gray-500">Last updated: June 24, 2026</p>

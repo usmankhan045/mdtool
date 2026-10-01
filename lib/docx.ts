@@ -11,7 +11,7 @@ interface InlineMarks {
 const CODE_FONT = 'Courier New';
 const ORDERED_LIST_REF = 'mdtool-ordered-list';
 
-// CSS approximation of the generated .docx's look — used by WordPreview.tsx
+// CSS approximation of the generated .docx's look - used by WordPreview.tsx
 // for the live preview iframe. The real export below does not use HTML/CSS
 // at all; this is purely a visual stand-in.
 export const DOCX_STYLES = `
@@ -34,7 +34,7 @@ export const DOCX_STYLES = `
 `;
 
 // Builds a genuine OOXML (.docx) document from Markdown source via marked's
-// token AST — NOT from rendered HTML. Libraries that wrap HTML in a Word
+// token AST - NOT from rendered HTML. Libraries that wrap HTML in a Word
 // "altChunk"/MHTML shim (e.g. html-docx-js) produce files where the visible
 // content lives outside <w:body>, so any reader other than Word itself
 // (Google Docs, LibreOffice, mammoth.js, etc.) sees a blank document.

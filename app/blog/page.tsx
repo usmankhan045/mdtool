@@ -57,9 +57,9 @@ export default function BlogIndexPage() {
         ]}
       />
 
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-page">
         {/* Header */}
-        <section className="bg-white border-b border-gray-200 px-4 py-10">
+        <section className="bg-page-soft border-b border-gray-200/70 px-4 py-10">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{TITLE}</h1>
             <p className="text-lg text-gray-600">

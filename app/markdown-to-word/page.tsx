@@ -113,8 +113,8 @@ export default function MarkdownToWordPage() {
         ]}
       />
 
-      <main className="min-h-screen bg-gray-50">
-        {/* Hero — title over the live converter */}
+      <main className="min-h-screen bg-page">
+        {/* Hero - title over the live converter */}
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
@@ -128,7 +128,7 @@ export default function MarkdownToWordPage() {
           </div>
         </section>
 
-        {/* The tool — lifted into the hero band so it's the first thing you reach */}
+        {/* The tool - lifted into the hero band so it's the first thing you reach */}
         <section className="max-w-6xl mx-auto px-4 -mt-10 relative z-10">
           <ToolClient />
         </section>
@@ -147,7 +147,7 @@ export default function MarkdownToWordPage() {
           </div>
         </section>
 
-        {/* Ad Slot — Between tool and FAQ */}
+        {/* Ad Slot - Between tool and FAQ */}
         <div className="max-w-6xl mx-auto px-4">
           <AdSlot slotId="tool-below" format="horizontal" />
         </div>
@@ -291,7 +291,7 @@ export default function MarkdownToWordPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-white border-t border-gray-100 px-4 py-8">
+        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">

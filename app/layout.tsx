@@ -10,7 +10,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
-// Search-engine ownership verification codes. Each is optional — set the env
+// Search-engine ownership verification codes. Each is optional - set the env
 // var to the code the webmaster console gives you and the matching <meta> tag
 // renders automatically; leave it unset and no tag is emitted.
 //   NEXT_PUBLIC_BING_VERIFICATION   → Bing Webmaster Tools  (msvalidate.01)
@@ -22,8 +22,8 @@ const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mdtool.dev'),
-  title: { default: 'MDTool — Free Online Markdown Converter: MD to PDF, HTML & Word', template: '%s | MDTool' },
-  description: 'MDTool is a free online Markdown converter. Turn Markdown into PDF, HTML, and Word (and back) right in your browser — no login, no uploads, no watermarks.',
+  title: { default: 'MDTool - Free Online Markdown Converter: MD to PDF, HTML & Word', template: '%s | MDTool' },
+  description: 'MDTool is a free online Markdown converter. Turn Markdown into PDF, HTML, and Word (and back) right in your browser. No login, no uploads, no watermarks.',
   authors: [{ name: 'MDTool' }],
   creator: 'MDTool',
   verification: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.mdtool.dev',
     siteName: 'MDTool',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MDTool — Free Online Markdown Converter' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MDTool - Free Online Markdown Converter' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,7 +47,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  // GA4 measurement ID for mdtool.dev (public by design; env var can override it).
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-N5NLCET100';
 
   return (
     <html lang="en">

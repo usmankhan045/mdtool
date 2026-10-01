@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Vercel preview/branch deployments (*.vercel.app) must never be indexed —
+// Vercel preview/branch deployments (*.vercel.app) must never be indexed -
 // only www.mdtool.dev is the canonical, indexable host.
 export function proxy(request: NextRequest) {
   const host = request.headers.get('host') || '';

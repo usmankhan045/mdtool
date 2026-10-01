@@ -111,7 +111,7 @@ export async function renderMermaidInHtml(
 
 // Presentation properties copied from computed CSS onto SVG attributes. Mermaid
 // styles its diagrams with a <style> block + classes, which pdfmake's SVG renderer
-// (svg-to-pdfkit) ignores — so for the PDF we bake the computed values in.
+// (svg-to-pdfkit) ignores - so for the PDF we bake the computed values in.
 const SVG_PROPS = [
   'fill',
   'fill-opacity',

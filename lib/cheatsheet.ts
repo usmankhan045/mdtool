@@ -18,7 +18,7 @@ export interface GuideTopic {
   /** <title> tag (template appends "| MDTool") */
   metaTitle: string;
   metaDescription: string;
-  /** Answer-first opening — the direct answer to the query, quotable by AI engines */
+  /** Answer-first opening - the direct answer to the query, quotable by AI engines */
   answer: string;
   sections: SyntaxSection[];
   faqs: { q: string; a: string }[];
@@ -32,7 +32,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
   {
     slug: 'headings',
     title: 'Markdown Headings',
-    metaTitle: 'Markdown Headings — H1 to H6 Syntax',
+    metaTitle: 'Markdown Headings: H1 to H6 Syntax',
     metaDescription:
       'How to write headings in Markdown: # for H1 through ###### for H6, plus the alternate ===/--- syntax, best practices, and common mistakes.',
     answer:
@@ -50,7 +50,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Best practices',
-        body: 'Use exactly one H1 per document, keep levels sequential (do not jump from H2 to H4), and always include the space after the hashes — "#Heading" without a space is not recognized by many parsers, including GitHub.',
+        body: 'Use exactly one H1 per document, keep levels sequential (do not jump from H2 to H4), and always include the space after the hashes: "#Heading" without a space is not recognized by many parsers, including GitHub.',
         note: 'GitHub automatically generates anchor links from headings: "## My Section" becomes #my-section.',
       },
     ],
@@ -61,7 +61,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         q: 'How many heading levels does Markdown support?',
-        a: 'Six levels, H1 through H6, written with one to six hash characters. Levels beyond six are not supported — a line starting with seven hashes renders as plain text.',
+        a: 'Six levels, H1 through H6, written with one to six hash characters. Levels beyond six are not supported: a line starting with seven hashes renders as plain text.',
       },
     ],
     relatedTool: { href: '/markdown-to-html', label: 'Markdown to HTML Converter' },
@@ -146,7 +146,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Ampersands, parentheses and special characters in URLs',
-        body: 'Query strings with & work as-is inside a Markdown link — you do not need to write &amp;. Parentheses are fine when balanced, which matters for Wikipedia-style URLs; an unbalanced one must be escaped with a backslash or encoded as %28 or %29. An unbalanced square bracket inside the link text needs escaping too.',
+        body: 'Query strings with & work as-is inside a Markdown link. You do not need to write &amp;. Parentheses are fine when balanced, which matters for Wikipedia-style URLs; an unbalanced one must be escaped with a backslash or encoded as %28 or %29. An unbalanced square bracket inside the link text needs escaping too.',
         code: '[Search](https://example.com/search?q=markdown&page=2)\n[Wiki](https://en.wikipedia.org/wiki/Mercury_(planet))\n[Odd URL](https://example.com/a%29b)\n[Read the \\[draft notes](notes.md)',
       },
       {
@@ -183,7 +183,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
     sections: [
       {
         heading: 'Basic image syntax',
-        body: 'The alt text describes the image for screen readers and shows when the image fails to load — never leave it empty.',
+        body: 'The alt text describes the image for screen readers and shows when the image fails to load, so never leave it empty.',
         code: '![Diagram of the conversion pipeline](/images/pipeline.png)\n![Logo](logo.svg "MDTool logo")',
       },
       {
@@ -198,9 +198,9 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Image size by platform',
-        body: 'Some editors add their own size syntax on top of Markdown. Obsidian takes a width after a pipe in the alt text or the embed, optionally with a height; GitLab accepts an attribute block after the image. These only work on their own platform — for anything shared, the HTML img tag with a width attribute is the portable choice. Set only the width so the height scales proportionally.',
+        body: 'Some editors add their own size syntax on top of Markdown. Obsidian takes a width after a pipe in the alt text or the embed, optionally with a height; GitLab accepts an attribute block after the image. These only work on their own platform. For anything shared, the HTML img tag with a width attribute is the portable choice. Set only the width so the height scales proportionally.',
         code: '<!-- Obsidian -->\n![Screenshot|300](screenshot.png)\n![[screenshot.png|300]]\n![[screenshot.png|640x480]]\n\n<!-- GitLab -->\n![Screenshot](screenshot.png){width=300}\n\n<!-- GitHub and everywhere HTML is allowed -->\n<img src="screenshot.png" alt="Screenshot" width="300">',
-        note: 'GitHub strips the style attribute, so style="width: 300px" has no effect in a README — use the width attribute instead.',
+        note: 'GitHub strips the style attribute, so style="width: 300px" has no effect in a README. Use the width attribute instead.',
       },
       {
         heading: 'Images inside tables',
@@ -221,7 +221,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
     faqs: [
       {
         q: 'How do I resize an image in Markdown?',
-        a: 'Standard Markdown has no size syntax. Use an inline HTML img tag with a width attribute — GitHub, GitLab, and most static site generators render it.',
+        a: 'Standard Markdown has no size syntax. Use an inline HTML img tag with a width attribute. GitHub, GitLab, and most static site generators render it.',
       },
       {
         q: 'How do I resize an image in Obsidian?',
@@ -255,12 +255,12 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Ordered lists',
-        body: 'The numbers do not have to be sequential — parsers renumber automatically. Writing "1." for every item is a common trick that keeps diffs clean when reordering.',
+        body: 'The numbers do not have to be sequential, since parsers renumber automatically. Writing "1." for every item is a common trick that keeps diffs clean when reordering.',
         code: '1. Install the CLI\n1. Run the converter\n1. Download the PDF',
       },
       {
         heading: 'Nested lists',
-        body: 'Indent nested items so they align with the first character of the parent item text — 2 spaces for "-" lists, 3 for "1." lists. Four spaces always works in GFM.',
+        body: 'Indent nested items so they align with the first character of the parent item text: 2 spaces for "-" lists, 3 for "1." lists. Four spaces always works in GFM.',
         code: '- Fruits\n  - Apples\n  - Oranges\n- Vegetables\n  1. Carrots\n  2. Peas',
       },
       {
@@ -288,7 +288,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
     faqs: [
       {
         q: 'Why is my nested Markdown list not rendering?',
-        a: 'Insufficient indentation. Nested items must be indented enough to align with the parent item content — when in doubt, use four spaces. Tabs mixed with spaces are another frequent culprit.',
+        a: 'Insufficient indentation. Nested items must be indented enough to align with the parent item content. When in doubt, use four spaces. Tabs mixed with spaces are another frequent culprit.',
       },
       {
         q: 'How do I add a paragraph inside a list item?',
@@ -321,17 +321,17 @@ export const GUIDE_TOPICS: GuideTopic[] = [
     sections: [
       {
         heading: 'Task list syntax',
-        body: 'The space inside the empty brackets is required — "- []" without it will not render as a checkbox on GitHub.',
+        body: 'The space inside the empty brackets is required: "- []" without it will not render as a checkbox on GitHub.',
         code: '- [ ] Write the report\n- [x] Convert it to PDF\n- [ ] Send for review',
       },
       {
         heading: 'Where checkboxes work',
-        body: 'Task lists are a GFM extension, not core Markdown. They render on GitHub (issues, PRs, READMEs), GitLab, Obsidian, Notion, and in MDTool converters — but not in strict CommonMark parsers.',
-        note: 'On GitHub issues and PRs, checkboxes are interactive — clicking them updates the source. In READMEs they render as static checked/unchecked boxes.',
+        body: 'Task lists are a GFM extension, not core Markdown. They render on GitHub (issues, PRs, READMEs), GitLab, Obsidian, Notion, and in MDTool converters, but not in strict CommonMark parsers.',
+        note: 'On GitHub issues and PRs, checkboxes are interactive: clicking them updates the source. In READMEs they render as static checked/unchecked boxes.',
       },
       {
         heading: 'Why isn’t my checkbox rendering?',
-        body: 'Work through four checks. First, the brackets need a space inside them: "[ ]", not "[]". Second, the brackets must follow a list marker and a space — "- [ ]", "* [ ]" and "1. [ ]" all work, but a bare "[ ]" at the start of a line is just text. Third, some parsers need a blank line between a paragraph and the list that follows it, so add one. Fourth, check that your platform supports task lists at all: VS Code’s built-in preview, Reddit, Discord and strict CommonMark parsers show the brackets literally.',
+        body: 'Work through four checks. First, the brackets need a space inside them: "[ ]", not "[]". Second, the brackets must follow a list marker and a space: "- [ ]", "* [ ]" and "1. [ ]" all work, but a bare "[ ]" at the start of a line is just text. Third, some parsers need a blank line between a paragraph and the list that follows it, so add one. Fourth, check that your platform supports task lists at all: VS Code’s built-in preview, Reddit, Discord and strict CommonMark parsers show the brackets literally.',
         code: '- [] Broken: no space inside the brackets\n-[ ] Broken: no space after the hyphen\n[ ] Broken: no list marker\n\nSome intro text.\n\n- [ ] Works: list marker, space, [ ], space\n* [ ] Works with asterisks too\n1. [ ] And in numbered lists',
       },
       {
@@ -363,7 +363,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         q: 'Do Markdown checkboxes convert to PDF and Word?',
-        a: 'Yes — MDTool renders task list items as checked/unchecked boxes in both its PDF and Word converters.',
+        a: 'Yes. MDTool renders task list items as checked/unchecked boxes in both its PDF and Word converters.',
       },
       {
         q: 'Should I write [x] or [X] for a checked box?',
@@ -380,7 +380,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
   {
     slug: 'tables',
     title: 'Markdown Tables',
-    metaTitle: 'Markdown Table — Syntax, Alignment & Examples',
+    metaTitle: 'Markdown Table: Syntax, Alignment & Examples',
     metaDescription:
       'How to create tables in Markdown: pipe and hyphen syntax, column alignment with colons, formatting inside cells, and why tables break in some converters.',
     answer:
@@ -398,22 +398,22 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'What can go inside a cell',
-        body: 'Inline formatting works: bold, italic, code, links, and images. Block elements do not — you cannot put lists, headings, or multi-line paragraphs in a Markdown table cell. Use <br> for a manual line break inside a cell.',
-        note: 'Tables are a GFM extension. Strict CommonMark parsers render them as plain text — one of the most common reasons tables "break" after conversion.',
+        body: 'Inline formatting works: bold, italic, code, links, and images. Block elements do not: you cannot put lists, headings, or multi-line paragraphs in a Markdown table cell. Use <br> for a manual line break inside a cell.',
+        note: 'Tables are a GFM extension. Strict CommonMark parsers render them as plain text, one of the most common reasons tables "break" after conversion.',
       },
     ],
     faqs: [
       {
         q: 'How do I merge cells in a Markdown table?',
-        a: 'You cannot — Markdown tables have no colspan or rowspan. If you need merged cells, write the table in HTML instead; most renderers accept inline HTML tables.',
+        a: 'You cannot. Markdown tables have no colspan or rowspan. If you need merged cells, write the table in HTML instead; most renderers accept inline HTML tables.',
       },
       {
         q: 'How do I convert a Markdown table to HTML?',
-        a: 'Paste the table into MDTool’s Markdown to HTML converter — GFM tables convert to real <table> markup with thead and tbody. Or build the table in the Markdown Table Generator and switch its output toggle to HTML.',
+        a: 'Paste the table into MDTool’s Markdown to HTML converter. GFM tables convert to real <table> markup with thead and tbody. Or build the table in the Markdown Table Generator and switch its output toggle to HTML.',
       },
       {
         q: 'Is there a tool that writes Markdown table syntax for me?',
-        a: 'Yes — MDTool’s free Markdown Table Generator gives you a visual grid editor with per-column alignment and Excel/CSV paste import, and outputs the finished table as Markdown or HTML.',
+        a: 'Yes. MDTool’s free Markdown Table Generator gives you a visual grid editor with per-column alignment and Excel/CSV paste import, and outputs the finished table as Markdown or HTML.',
       },
       {
         q: 'Why does my Markdown table break in PDF exports?',
@@ -426,7 +426,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
   {
     slug: 'code-blocks',
     title: 'Markdown Code Blocks',
-    metaTitle: 'Markdown Code Block — Fenced Code & Syntax Highlighting',
+    metaTitle: 'Markdown Code Block: Fenced Code & Syntax Highlighting',
     metaDescription:
       'How to write code in Markdown: inline code with backticks, fenced code blocks with triple backticks, language tags for syntax highlighting, and escaping backticks.',
     answer:
@@ -463,7 +463,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
   {
     slug: 'blockquotes',
     title: 'Markdown Blockquotes',
-    metaTitle: 'Markdown Blockquote — Quote Syntax',
+    metaTitle: 'Markdown Blockquote: Quote Syntax',
     metaDescription:
       'How to write blockquotes in Markdown: the > prefix, multi-paragraph quotes, nested quotes, and GitHub alert callouts (NOTE, WARNING, TIP).',
     answer:
@@ -476,7 +476,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Nested quotes',
-        body: 'Stack the markers to nest one quote inside another — useful for quoting email threads.',
+        body: 'Stack the markers to nest one quote inside another, useful for quoting email threads.',
         code: '> Outer quote\n>> Nested reply',
       },
       {
@@ -493,7 +493,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       {
         heading: 'Quotes with attribution',
         body: 'Markdown has no citation syntax. The common convention is a final line starting with an em dash, separated from the quote by a > line so it renders as its own paragraph. Where HTML is allowed, wrap the source in a <cite> tag for semantic markup.',
-        code: '> Simplicity is prerequisite for reliability.\n>\n> — Edsger W. Dijkstra',
+        code: '> Simplicity is prerequisite for reliability.\n>\n> Edsger W. Dijkstra',
       },
       {
         heading: 'Lazy continuation lines',
@@ -508,7 +508,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
           rows: [
             ['GitHub, GitLab', '> text', 'Also used for alert callouts'],
             ['Obsidian', '> text', '> [!type] turns a quote into a callout'],
-            ['VS Code preview', '> text', '—'],
+            ['VS Code preview', '> text', '-'],
             ['Notion', '" then space', 'Typing > then space creates a toggle, not a quote'],
             ['Reddit', '> text', 'Blank line needed to end the quote'],
             ['Discord', '> one line, >>> rest of message', 'No nesting'],
@@ -553,7 +553,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       {
         heading: 'Strikethrough syntax',
         body: 'Double tildes are the portable form. The GFM spec also accepts single tildes, but many other parsers only recognize the pair, so always use two.',
-        code: '~~This price is outdated.~~ New price: $0 — MDTool is free.',
+        code: '~~This price is outdated.~~ New price: $0. MDTool is free.',
       },
       {
         heading: 'Compatibility',
@@ -566,18 +566,18 @@ export const GUIDE_TOPICS: GuideTopic[] = [
           headers: ['Platform', 'Syntax', 'Note'],
           rows: [
             ['GitHub', '~~text~~ (or ~text~)', 'Renders as <del>'],
-            ['GitLab', '~~text~~', '—'],
+            ['GitLab', '~~text~~', '-'],
             ['Obsidian', '~~text~~', 'Also has a "Toggle strikethrough" command'],
             ['VS Code preview', '~~text~~', 'Double tildes only'],
             ['Notion', '~text~ while typing', 'Or Cmd/Ctrl+Shift+S'],
-            ['Reddit, Discord', '~~text~~', '—'],
+            ['Reddit, Discord', '~~text~~', '-'],
             ['Slack', '~text~', 'Uses single tildes'],
           ],
         },
       },
       {
         heading: 'HTML alternatives: <del> and <s>',
-        body: 'Where inline HTML is allowed — including GitHub — you can write the tags directly. <del> marks content that was removed, such as an edit in a changelog, and is what ~~ produces. <s> marks text that is no longer accurate or relevant, like an old price. Both look the same; the difference is meaning for screen readers and search engines. Pair <del> with <ins> to show a replacement.',
+        body: 'Where inline HTML is allowed (including GitHub), you can write the tags directly. <del> marks content that was removed, such as an edit in a changelog, and is what ~~ produces. <s> marks text that is no longer accurate or relevant, like an old price. Both look the same; the difference is meaning for screen readers and search engines. Pair <del> with <ins> to show a replacement.',
         code: 'Deadline: <del>Friday</del> <ins>Monday</ins>\nPrice: <s>$49</s> Free',
       },
       {
@@ -587,7 +587,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Combining with bold, italic and code',
-        body: 'Strikethrough nests with other emphasis. Put the tildes inside the asterisks or the other way round — both render. Inside inline code, tildes are shown literally, so wrap the code span instead.',
+        body: 'Strikethrough nests with other emphasis. Put the tildes inside the asterisks or the other way round, and both render. Inside inline code, tildes are shown literally, so wrap the code span instead.',
         code: '**~~bold and struck~~**\n*~~italic and struck~~*\n~~`deprecatedFunction()`~~',
       },
     ],
@@ -615,11 +615,11 @@ export const GUIDE_TOPICS: GuideTopic[] = [
   {
     slug: 'line-breaks',
     title: 'Line Breaks in Markdown',
-    metaTitle: 'Markdown Line Break & New Line — Syntax',
+    metaTitle: 'Markdown Line Break & New Line Syntax',
     metaDescription:
       'How to force a new line in Markdown: two trailing spaces, a backslash, or <br>. Why single newlines collapse into one paragraph and how renderers differ.',
     answer:
-      'Force a line break in Markdown by ending the line with two spaces, or with a backslash, or by inserting the HTML tag <br>. A single newline alone does not break the line — it joins into the same paragraph.',
+      'Force a line break in Markdown by ending the line with two spaces, or with a backslash, or by inserting the HTML tag <br>. A single newline alone does not break the line. It joins into the same paragraph.',
     sections: [
       {
         heading: 'The three ways to break a line',
@@ -628,7 +628,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Paragraphs vs line breaks',
-        body: 'A blank line starts a new paragraph (with vertical spacing). A line break keeps the text in the same paragraph on a new line. Single newlines in the source are collapsed to a space in standard Markdown — although some renderers (Obsidian, many chat apps) treat every newline as a break.',
+        body: 'A blank line starts a new paragraph (with vertical spacing). A line break keeps the text in the same paragraph on a new line. Single newlines in the source are collapsed to a space in standard Markdown, although some renderers (Obsidian, many chat apps) treat every newline as a break.',
       },
       {
         heading: 'How each platform treats a single newline',
@@ -648,7 +648,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Line breaks inside a table cell',
-        body: 'A table row must stay on one source line, so trailing spaces and backslash breaks cannot work there. Use the <br> tag inside the cell — GitHub, GitLab and most GFM renderers accept it.',
+        body: 'A table row must stay on one source line, so trailing spaces and backslash breaks cannot work there. Use the <br> tag inside the cell. GitHub, GitLab and most GFM renderers accept it.',
         code: '| Step | Details |\n|------|---------|\n| Install | Download the file<br>Run the installer |',
       },
       {
@@ -690,20 +690,20 @@ export const GUIDE_TOPICS: GuideTopic[] = [
   {
     slug: 'definition-lists',
     title: 'Markdown Definition Lists',
-    metaTitle: 'Markdown Definition List — Term & Description Syntax',
+    metaTitle: 'Markdown Definition List: Term & Description Syntax',
     metaDescription:
       'How to write definition lists in Markdown: the term-plus-colon syntax, which parsers support it (and that GitHub does not), plus portable alternatives.',
     answer:
-      'Write a definition list in Markdown (where supported) by putting the term on one line and each definition on the next line prefixed with a colon and space. GitHub does not support this syntax — use bold terms with indented text as a portable fallback.',
+      'Write a definition list in Markdown (where supported) by putting the term on one line and each definition on the next line prefixed with a colon and space. GitHub does not support this syntax, so use bold terms with indented text as a portable fallback.',
     sections: [
       {
         heading: 'Definition list syntax',
-        body: 'This is a Markdown Extra / PHP Markdown extension, supported by Pandoc, Python-Markdown, and some static site generators — but not by GitHub Flavored Markdown or CommonMark.',
+        body: 'This is a Markdown Extra / PHP Markdown extension, supported by Pandoc, Python-Markdown, and some static site generators, but not by GitHub Flavored Markdown or CommonMark.',
         code: 'Markdown\n: A plain-text formatting syntax created in 2004.\n\nGFM\n: GitHub Flavored Markdown, GitHub’s superset of CommonMark.',
       },
       {
         heading: 'Portable alternative',
-        body: 'For GitHub READMEs and maximum compatibility, fake it with bold terms — it renders acceptably everywhere.',
+        body: 'For GitHub READMEs and maximum compatibility, fake it with bold terms, which renders acceptably everywhere.',
         code: '**Markdown**  \nA plain-text formatting syntax created in 2004.\n\n**GFM**  \nGitHub’s superset of CommonMark.',
       },
       {
@@ -713,7 +713,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Multiple terms and multiple definitions',
-        body: 'In parsers that support the colon syntax, a term can have several definitions — one colon line each — and PHP Markdown Extra also lets several terms share one definition by stacking them. Pandoc additionally accepts a tilde as the marker, and lets a definition span several paragraphs when the extra paragraphs are indented.',
+        body: 'In parsers that support the colon syntax, a term can have several definitions (one colon line each), and PHP Markdown Extra also lets several terms share one definition by stacking them. Pandoc additionally accepts a tilde as the marker, and lets a definition span several paragraphs when the extra paragraphs are indented.',
         code: 'Converter\n: A tool that changes a file from one format to another.\n: In MDTool, a page such as Markdown to PDF.\n\nPDF\nPortable Document Format\n: A fixed-layout file format for sharing documents.',
       },
       {
@@ -725,7 +725,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
             ['Pandoc', 'Yes', 'definition_lists extension, on by default'],
             ['PHP Markdown Extra', 'Yes', 'Where the syntax comes from'],
             ['Hugo (Goldmark)', 'Yes', 'Enabled by default'],
-            ['Jekyll (kramdown)', 'Yes', '—'],
+            ['Jekyll (kramdown)', 'Yes', '-'],
             ['MkDocs, Python-Markdown', 'With def_list extension', 'Add it to markdown_extensions'],
             ['GitHub, GitLab', 'No', 'Use <dl> HTML or bold terms'],
             ['Obsidian, VS Code preview', 'No', 'Plugins can add it'],
@@ -772,7 +772,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Which alert type to use',
-        body: 'The five types form a rough scale of urgency. Pick the lowest level that fits — a README where everything is a WARNING trains readers to skip all of them.',
+        body: 'The five types form a rough scale of urgency. Pick the lowest level that fits. A README where everything is a WARNING trains readers to skip all of them.',
         table: {
           headers: ['Type', 'Color on GitHub', 'Use it for'],
           rows: [
@@ -791,12 +791,12 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'GitLab alerts and custom titles',
-        body: 'GitLab added the same five alert types in GitLab 17.10. Unlike GitHub, GitLab lets you override the title by writing text on the same line as the type. On GitHub, keep the marker alone on its line — extra text there stops the blockquote from becoming an alert.',
+        body: 'GitLab added the same five alert types in GitLab 17.10. Unlike GitHub, GitLab lets you override the title by writing text on the same line as the type. On GitHub, keep the marker alone on its line, because extra text there stops the blockquote from becoming an alert.',
         code: '> [!warning] Data deletion\n> The following steps make your data unrecoverable.',
       },
       {
         heading: 'Portable fallback: a blockquote with a bold label',
-        body: 'Renderers without alert support — VS Code’s built-in preview, Reddit, Discord and most PDF and Word converters — show "[!NOTE]" as literal text inside an ordinary quote. When a document has to look right everywhere, write the label yourself. It reads naturally on every platform and still stands out visually.',
+        body: 'Renderers without alert support (VS Code’s built-in preview, Reddit, Discord and most PDF and Word converters) show "[!NOTE]" as literal text inside an ordinary quote. When a document has to look right everywhere, write the label yourself. It reads naturally on every platform and still stands out visually.',
         code: '> **Note:** The converter runs entirely in your browser.\n\n> **Warning:** Back up the file before running the script.',
       },
       {
@@ -838,7 +838,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         q: 'How do I make a collapsible callout?',
-        a: 'In Obsidian, add a minus sign after the type: "> [!note]- Title". GitHub alerts cannot collapse, so on GitHub use an HTML <details> and <summary> block instead — see the collapsible sections guide.',
+        a: 'In Obsidian, add a minus sign after the type: "> [!note]- Title". GitHub alerts cannot collapse, so on GitHub use an HTML <details> and <summary> block instead. See the collapsible sections guide.',
       },
     ],
     relatedTool: { href: '/markdown-to-html', label: 'Markdown to HTML Converter' },
@@ -870,12 +870,12 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Code blocks and nested sections',
-        body: 'Fenced code blocks work inside details as long as they are surrounded by blank lines. Sections can also be nested, which is handy for long changelogs or FAQ lists in a README. Do not indent the content by four spaces — indentation turns it into an indented code block.',
+        body: 'Fenced code blocks work inside details as long as they are surrounded by blank lines. Sections can also be nested, which is handy for long changelogs or FAQ lists in a README. Do not indent the content by four spaces, because indentation turns it into an indented code block.',
         code: '<details>\n<summary>Show the config</summary>\n\n```json\n{ "theme": "github", "pageSize": "a4" }\n```\n\n<details>\n<summary>Advanced options</summary>\n\nNested content.\n\n</details>\n\n</details>',
       },
       {
         heading: 'When to collapse content',
-        body: 'Collapsible sections keep a README or issue scannable without deleting detail. Good candidates are long logs and stack traces in bug reports, full configuration files, optional platform-specific install steps, screenshots that support but do not drive the text, and the answers in an FAQ. Keep anything a reader needs on a first pass — the summary, the quick-start command, warnings — visible, because many readers never expand a section.',
+        body: 'Collapsible sections keep a README or issue scannable without deleting detail. Good candidates are long logs and stack traces in bug reports, full configuration files, optional platform-specific install steps, screenshots that support but do not drive the text, and the answers in an FAQ. Keep anything a reader needs on a first pass (the summary, the quick-start command, warnings) visible, because many readers never expand a section.',
         code: '<details>\n<summary>Full error log</summary>\n\n```text\nError: ENOENT: no such file or directory\n    at Object.openSync (node:fs:601:3)\n```\n\n</details>',
       },
       {
@@ -884,14 +884,14 @@ export const GUIDE_TOPICS: GuideTopic[] = [
         table: {
           headers: ['Platform', 'details/summary', 'Alternative'],
           rows: [
-            ['GitHub', 'Yes: READMEs, issues, PRs, comments, wikis', '—'],
-            ['GitLab', 'Yes, Markdown inside with blank lines', '—'],
+            ['GitHub', 'Yes: READMEs, issues, PRs, comments, wikis', '-'],
+            ['GitLab', 'Yes, Markdown inside with blank lines', '-'],
             ['Obsidian', 'Renders, but Markdown inside HTML is not processed', 'Foldable callout: > [!note]-'],
-            ['VS Code preview', 'Yes', '—'],
+            ['VS Code preview', 'Yes', '-'],
             ['Notion', 'No HTML', 'Toggle block: type > then space'],
             ['Reddit', 'No HTML', 'Spoiler: >!hidden text!<'],
             ['Discord', 'No HTML', 'Spoiler: ||hidden text||'],
-            ['Hugo', 'Only with markup.goldmark.renderer.unsafe = true', '—'],
+            ['Hugo', 'Only with markup.goldmark.renderer.unsafe = true', '-'],
           ],
         },
       },
@@ -967,7 +967,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'Backticks inside code',
-        body: 'Backslash escapes do not work inside code spans — the backslash is shown as-is. To show a backtick inside inline code, wrap the code in two backticks with spaces inside. To show a fenced block inside a code block, use a longer fence on the outside.',
+        body: 'Backslash escapes do not work inside code spans. The backslash is shown as-is. To show a backtick inside inline code, wrap the code in two backticks with spaces inside. To show a fenced block inside a code block, use a longer fence on the outside.',
         code: '`` `backtick` ``\n\n````markdown\n```js\nconsole.log("fenced");\n```\n````',
       },
       {
@@ -982,10 +982,10 @@ export const GUIDE_TOPICS: GuideTopic[] = [
           headers: ['Platform', 'Backslash escapes', 'Note'],
           rows: [
             ['GitHub', 'Yes', 'Not applied in issue and pull request titles'],
-            ['GitLab', 'Yes', '—'],
+            ['GitLab', 'Yes', '-'],
             ['Obsidian', 'Yes', 'Also needed for # tags you do not want tagged'],
-            ['VS Code preview', 'Yes', '—'],
-            ['Reddit', 'Yes', '—'],
+            ['VS Code preview', 'Yes', '-'],
+            ['Reddit', 'Yes', '-'],
             ['Discord', 'Yes', 'e.g. \\*\\*not bold\\*\\*'],
           ],
         },
@@ -1006,7 +1006,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         q: 'Why does my backslash show up inside code?',
-        a: 'Backslash escapes do not work in code spans or code blocks — everything inside is literal, including the backslash. Remove it; inside code you never need to escape Markdown characters.',
+        a: 'Backslash escapes do not work in code spans or code blocks. Everything inside is literal, including the backslash. Remove it; inside code you never need to escape Markdown characters.',
       },
     ],
     relatedTool: { href: '/markdown-to-html', label: 'Markdown to HTML Converter' },
@@ -1043,12 +1043,12 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         heading: 'When to use a divider',
-        body: 'Use a rule for a change of topic that does not deserve a heading of its own: between a README’s badges and its body, before a footer or license note, between entries in a changelog or between letters in a single long note. If the new part has a name, a heading is better — it creates an anchor link and an entry in generated tables of contents, which a rule does not. In slide tools built on Markdown, such as Marp, a --- line separates slides.',
+        body: 'Use a rule for a change of topic that does not deserve a heading of its own: between a README’s badges and its body, before a footer or license note, between entries in a changelog or between letters in a single long note. If the new part has a name, a heading is better because it creates an anchor link and an entry in generated tables of contents, which a rule does not. In slide tools built on Markdown, such as Marp, a --- line separates slides.',
         code: '![Build](badge.svg) ![License](license.svg)\n\n---\n\nMDTool converts Markdown to PDF, HTML and Word.\n\n***\n\nReleased under the MIT License.',
       },
       {
         heading: 'Horizontal rules are not page breaks',
-        body: 'A rule is a visual line, not a print instruction. When you convert Markdown to PDF, --- draws a line and the content continues on the same page. To force a new page, use a page break marker instead — see the page breaks guide.',
+        body: 'A rule is a visual line, not a print instruction. When you convert Markdown to PDF, --- draws a line and the content continues on the same page. To force a new page, use a page break marker instead. See the page breaks guide.',
       },
       {
         heading: 'Where horizontal rules work',
@@ -1059,7 +1059,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
             ['GitHub', 'Yes', '--- at the top of a file is front matter'],
             ['GitLab', 'Yes', '---, *** or ___'],
             ['Obsidian', 'Yes', '--- at the top of a note starts Properties'],
-            ['VS Code preview', 'Yes', '—'],
+            ['VS Code preview', 'Yes', '-'],
             ['Notion', 'Yes', 'Typing --- creates a divider block'],
             ['Reddit', 'Yes', 'Three or more -, * or _'],
             ['Discord', 'No', 'Shows the characters literally'],
@@ -1095,7 +1095,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
     metaDescription:
       'Add a page break in Markdown for PDF export with <!-- pagebreak -->, \\pagebreak, \\newpage or a page-break div, plus Pandoc, VS Code and Typora conventions.',
     answer:
-      'Markdown has no native page break syntax, because it was designed for the screen rather than the printed page. To start a new page in a PDF, put a converter-specific marker on its own line — most commonly the HTML <div style="page-break-after: always;"></div>, which MDTool and HTML-to-PDF exporters honor. Pandoc users write \\newpage instead.',
+      'Markdown has no native page break syntax, because it was designed for the screen rather than the printed page. To start a new page in a PDF, put a converter-specific marker on its own line, most commonly the HTML <div style="page-break-after: always;"></div>, which MDTool and HTML-to-PDF exporters honor. Pandoc users write \\newpage instead.',
     sections: [
       {
         heading: 'Page breaks in MDTool’s PDF converter',
@@ -1147,7 +1147,7 @@ export const GUIDE_TOPICS: GuideTopic[] = [
       },
       {
         q: 'Why does \\newpage show up as text on GitHub?',
-        a: 'GitHub renders Markdown for the web and has no concept of pages, so LaTeX commands are shown as plain text. Use <!-- pagebreak --> or the page-break div instead if the file is also viewed on GitHub — both are invisible there.',
+        a: 'GitHub renders Markdown for the web and has no concept of pages, so LaTeX commands are shown as plain text. Use <!-- pagebreak --> or the page-break div instead if the file is also viewed on GitHub, since both are invisible there.',
       },
       {
         q: 'How do I add a Seitenumbruch (page break) in Markdown?',

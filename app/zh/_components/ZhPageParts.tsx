@@ -43,7 +43,7 @@ export function UiLanguageNote({ className = 'text-sm text-blue-100/70 mb-2' }: 
 
 export function RelatedLinks({ links }: { links: { href: string; label: string }[] }) {
   return (
-    <section className="bg-white border-t border-gray-100 px-4 py-8">
+    <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-lg font-semibold text-gray-700 mb-4">相关工具与文章：</h2>
         <div className="flex flex-wrap gap-3">

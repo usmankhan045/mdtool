@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ThemeId, mermaidThemeFor } from '@/lib/pdf';
 
-// Minimal inline CSS for each theme (preview only — not the full PDF CSS)
+// Minimal inline CSS for each theme (preview only - not the full PDF CSS)
 const PREVIEW_STYLES: Record<ThemeId, string> = {
   github: 'font-family: -apple-system, sans-serif; color: #24292e; line-height: 1.6;',
   academic: 'font-family: Georgia, serif; color: #000; line-height: 1.8;',

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-// One-line quick reference — the "above the fold" answer for the cheat-sheet query.
+// One-line quick reference - the "above the fold" answer for the cheat-sheet query.
 const QUICK_REF: { element: string; syntax: string; slug?: string }[] = [
   { element: 'Heading', syntax: '# H1  ## H2  ### H3', slug: 'headings' },
   { element: 'Bold', syntax: '**bold text**', slug: 'bold-and-italic' },
@@ -47,7 +47,7 @@ const FAQS = [
   },
   {
     q: 'What is the difference between Markdown and GitHub Flavored Markdown (GFM)?',
-    a: 'GFM is GitHub’s superset of CommonMark. It adds tables, task-list checkboxes, strikethrough, autolinks, and fenced code blocks with syntax highlighting — the elements most developers consider "normal Markdown" today.',
+    a: 'GFM is GitHub’s superset of CommonMark. It adds tables, task-list checkboxes, strikethrough, autolinks, and fenced code blocks with syntax highlighting: the elements most developers consider "normal Markdown" today.',
   },
   {
     q: 'What file extension do Markdown files use?',
@@ -55,7 +55,7 @@ const FAQS = [
   },
   {
     q: 'How do I convert a Markdown file to PDF or Word?',
-    a: 'Paste the Markdown into a converter like MDTool’s Markdown to PDF or Markdown to Word tool — both run free in the browser with no signup, and preserve tables, checkboxes, and code blocks.',
+    a: 'Paste the Markdown into a converter like MDTool’s Markdown to PDF or Markdown to Word tool. Both run free in the browser with no signup, and preserve tables, checkboxes, and code blocks.',
   },
 ];
 
@@ -79,19 +79,19 @@ export default function MarkdownCheatSheetPage() {
       />
       <StructuredData type="faq" faqs={FAQS} />
 
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-page">
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-5xl mx-auto px-4 pt-10 pb-12">
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Markdown Cheat Sheet with Examples</h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl leading-relaxed">
-              Every Markdown syntax element on one page — core Markdown plus the GitHub Flavored
-              Markdown extensions — with a dedicated deep-dive guide for each element.
+              Every Markdown syntax element on one page (core Markdown plus the GitHub Flavored
+              Markdown extensions), with a dedicated deep-dive guide for each element.
             </p>
             <p className="mt-3 text-xs text-blue-200/50">Updated <time dateTime="2026-10-01">October 1, 2026</time></p>
           </div>
         </section>
 
-        {/* Quick reference table — the answer-first artifact */}
+        {/* Quick reference table - the answer-first artifact */}
         <section className="max-w-5xl mx-auto px-4 py-10">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Quick Reference</h2>
           <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
@@ -116,7 +116,7 @@ export default function MarkdownCheatSheetPage() {
                           Details →
                         </Link>
                       ) : (
-                        <span className="text-gray-300">—</span>
+                        <span className="text-gray-300">-</span>
                       )}
                     </td>
                   </tr>
@@ -163,7 +163,7 @@ export default function MarkdownCheatSheetPage() {
         </section>
 
         {/* Converters CTA */}
-        <section className="bg-white border-t border-gray-100 px-4 py-8">
+        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-lg font-semibold text-gray-700 mb-4">Put the syntax to work:</h2>
             <div className="flex flex-wrap gap-3">

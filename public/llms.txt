@@ -1,22 +1,22 @@
 # MDTool
 
-> Free, browser-based file converters for developers. Markdown to PDF, HTML, and Word, and back. All conversion runs client-side — files are never uploaded to a server.
+> Free, browser-based file converters for developers. Markdown to PDF, HTML, and Word, and back. All conversion runs client-side. Files are never uploaded to a server.
 
-MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) for converting between Markdown, PDF, HTML, and Word/DOCX. Every conversion happens in the visitor's browser; no file content is transmitted to MDTool's servers at any point. MDTool is built and maintained by Muhammad Usman. Note for disambiguation: MDTool (mdtool.dev) is unrelated to the MonoDevelop `mdtool` command-line utility and to MDTools, the SolidWorks/Inventor manifold-design add-in — mdtool.dev is a Markdown document converter.
+MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) for converting between Markdown, PDF, HTML, and Word/DOCX. Every conversion happens in the visitor's browser; no file content is transmitted to MDTool's servers at any point. MDTool is built and maintained by Muhammad Usman. Note for disambiguation: MDTool (mdtool.dev) is unrelated to the MonoDevelop `mdtool` command-line utility and to MDTools, the SolidWorks/Inventor manifold-design add-in. mdtool.dev is a Markdown document converter.
 
 ## Tools
 
-- [Markdown to PDF Converter](https://www.mdtool.dev/markdown-to-pdf): Convert Markdown to PDF with GitHub Flavored Markdown support, syntax-highlighted code blocks, tables, and rendered Mermaid diagrams. Vector output — text stays selectable and searchable.
+- [Markdown to PDF Converter](https://www.mdtool.dev/markdown-to-pdf): Convert Markdown to PDF with GitHub Flavored Markdown support, syntax-highlighted code blocks, tables, and rendered Mermaid diagrams. Vector output: text stays selectable and searchable.
 - [Markdown to HTML Converter](https://www.mdtool.dev/markdown-to-html): Convert Markdown to clean HTML with GFM support and syntax-highlighted code.
 - [Markdown to Word Converter](https://www.mdtool.dev/markdown-to-word): Convert Markdown to a real Office Open XML .docx file that opens in Word, Google Docs, and LibreOffice.
-- [HTML to Markdown Converter](https://www.mdtool.dev/html-to-markdown): Convert HTML to clean Markdown — paste or upload .html, GFM output, nothing sent to a server.
+- [HTML to Markdown Converter](https://www.mdtool.dev/html-to-markdown): Convert HTML to clean Markdown: paste or upload .html, GFM output, nothing sent to a server.
 - [Word to Markdown Converter](https://www.mdtool.dev/word-to-markdown): Convert a .docx file to clean Markdown.
-- [Markdown Table Generator](https://www.mdtool.dev/markdown-table-generator): Build Markdown tables in a visual grid editor — per-column alignment, paste import from Excel/Google Sheets/CSV, output as GFM Markdown or HTML.
+- [Markdown Table Generator](https://www.mdtool.dev/markdown-table-generator): Build Markdown tables in a visual grid editor with per-column alignment, paste import from Excel/Google Sheets/CSV, output as GFM Markdown or HTML.
 - [Markdown to Text Converter](https://www.mdtool.dev/markdown-to-text): Strip Markdown syntax and get plain text, in the browser.
 
 ## Markdown Cheat Sheet
 
-- [Markdown Cheat Sheet](https://www.mdtool.dev/markdown-cheat-sheet): Every Markdown syntax element on one page — core Markdown plus GitHub Flavored Markdown — with copyable examples.
+- [Markdown Cheat Sheet](https://www.mdtool.dev/markdown-cheat-sheet): Every Markdown syntax element on one page (core Markdown plus GitHub Flavored Markdown) with copyable examples.
 - [Markdown Headings](https://www.mdtool.dev/markdown-cheat-sheet/headings): H1–H6 syntax, the alternate ===/--- style, and common mistakes.
 - [Bold and Italic](https://www.mdtool.dev/markdown-cheat-sheet/bold-and-italic): Emphasis syntax, asterisks vs underscores, mid-word emphasis rules.
 - [Links](https://www.mdtool.dev/markdown-cheat-sheet/links): Inline, reference-style, and automatic links, plus section anchors.
@@ -27,7 +27,7 @@ MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) f
 - [Code Blocks](https://www.mdtool.dev/markdown-cheat-sheet/code-blocks): Inline code, fenced blocks, and language tags for syntax highlighting.
 - [Blockquotes](https://www.mdtool.dev/markdown-cheat-sheet/blockquotes): Quote syntax, nesting, and GitHub alert callouts.
 - [Strikethrough](https://www.mdtool.dev/markdown-cheat-sheet/strikethrough): Double-tilde syntax and renderer compatibility.
-- [Line Breaks](https://www.mdtool.dev/markdown-cheat-sheet/line-breaks): Trailing spaces, backslash, and <br> — and why single newlines collapse.
+- [Line Breaks](https://www.mdtool.dev/markdown-cheat-sheet/line-breaks): Trailing spaces, backslash, and <br>, and why single newlines collapse.
 - [Definition Lists](https://www.mdtool.dev/markdown-cheat-sheet/definition-lists): Term/definition syntax, parser support, and portable fallbacks for GitHub.
 - [Callouts](https://www.mdtool.dev/markdown-cheat-sheet/callouts): Callout / admonition syntax, including GitHub alert blocks.
 - [Collapsible Sections](https://www.mdtool.dev/markdown-cheat-sheet/collapsible-sections): Expandable sections in Markdown using <details> and <summary>.
@@ -46,7 +46,7 @@ MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) f
 - [Using Markdown to HTML Conversion for Static Sites and Docs](https://www.mdtool.dev/blog/markdown-to-html-static-site): How Jekyll, Hugo, and Astro handle Markdown, and when raw HTML conversion beats setting up a generator.
 - [Markdown to DOCX: How to Generate a Real Word Document From Markdown](https://www.mdtool.dev/blog/markdown-to-docx): What makes a .docx file genuine Office Open XML rather than HTML wrapped in a Word shim, and what MDTool generates under the hood.
 - [How to Convert a Markdown Resume to a Word Document](https://www.mdtool.dev/blog/markdown-resume-to-word): A copy-paste Markdown resume template plus step-by-step conversion to a Word document.
-- [Converting Technical Documentation From Markdown to Word](https://www.mdtool.dev/blog/markdown-to-word-documentation): What survives conversion in API docs and technical guides — headings, tables, and code blocks — and what doesn't yet.
+- [Converting Technical Documentation From Markdown to Word](https://www.mdtool.dev/blog/markdown-to-word-documentation): What survives conversion in API docs and technical guides (headings, tables, and code blocks) and what doesn't yet.
 - [How to Convert HTML to Markdown for CMS Migration](https://www.mdtool.dev/blog/html-to-markdown-cms-migration): What converts cleanly and what doesn't when migrating from an HTML CMS to Notion, Ghost, Astro, Hugo, or Jekyll.
 - [Converting HTML to Markdown for GitHub READMEs and Wikis](https://www.mdtool.dev/blog/html-to-markdown-github): Which raw HTML tags GitHub's sanitization filter actually allows, and how to convert HTML docs to clean GFM.
 - [How to Convert Messy HTML to Clean Markdown](https://www.mdtool.dev/blog/clean-html-to-markdown): What Word, Confluence, and WYSIWYG exports do to HTML, and what turndown cleans up automatically vs. what needs a manual pass.
@@ -89,12 +89,12 @@ MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) f
 - LinkedIn: https://www.linkedin.com/in/muhammadusman80/
 - GitHub: https://github.com/usmankhan045
 - Site source code: https://github.com/usmankhan045/mdtool
-- Services: Muhammad Usman also builds AI automations, mobile apps, websites and other custom software for businesses. Enquiries: syncwithusman@gmail.com or https://www.mdtool.dev/about#work-with-me
+- Services: Muhammad Usman also builds AI automations, AI agents, mobile apps and websites for businesses. Enquiries: syncwithusman@gmail.com or https://www.mdtool.dev/about#work-with-me
 
 ## Notes for AI agents and crawlers
 
 - All tools are free with no usage limits, no account, and no watermark.
-- Conversion is client-side only — no file content is ever sent to or stored on MDTool's servers.
+- Conversion is client-side only. No file content is ever sent to or stored on MDTool's servers.
 - PDF output is vector-based (pdfmake): text in generated PDFs is selectable and searchable, not rasterized images.
 - PDF output supports Chinese (Simplified and common Traditional) and Japanese kana via an on-demand Noto Sans SC font; Mermaid diagrams render as vector graphics; A4 and US Letter; page breaks with <!-- pagebreak -->.
 - Full site index: https://www.mdtool.dev/sitemap.xml

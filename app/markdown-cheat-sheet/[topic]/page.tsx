@@ -62,7 +62,7 @@ export default async function GuideTopicPage({ params }: { params: Promise<{ top
       />
       <StructuredData type="faq" faqs={topic.faqs} />
 
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-page">
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-3xl mx-auto px-4 pt-10 pb-12">
             <nav className="text-xs text-blue-200/60 mb-3">
@@ -141,7 +141,7 @@ export default async function GuideTopicPage({ params }: { params: Promise<{ top
             <h2 className="font-semibold text-blue-900 mb-2 text-base">Try it live</h2>
             <p className="text-blue-800 text-sm mb-4">
               Paste this syntax into the free {topic.relatedTool.label.toLowerCase()} and see the rendered
-              output instantly — no signup, everything runs in your browser.
+              output instantly. No signup, and everything runs in your browser.
             </p>
             <a
               href={topic.relatedTool.href}

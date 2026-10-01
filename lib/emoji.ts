@@ -1,7 +1,7 @@
 // Text sanitisation for the generated PDF.
 //
 // pdfmake renders from the embedded font's outlines only, and its bundled Roboto is
-// a SUBSET with no emoji and no arrows/dingbats — so those characters come out as
+// a SUBSET with no emoji and no arrows/dingbats - so those characters come out as
 // "tofu" rectangles (□). We fix that in two passes over every text string:
 //
 //   1. Convert known, meaningful-but-missing symbols to ASCII that Roboto CAN render
@@ -45,7 +45,7 @@ const SYMBOL_RE = new RegExp(
 
 // A single emoji unit: ZWJ sequences (👨‍👩‍👧), regional-indicator flags (🇵🇰),
 // keycaps (#️⃣), and standalone pictographs (🟢 ☀ ✅). Based on Extended_Pictographic
-// — NOT \p{Emoji} — so bare digits / '#' / '*' are never matched. Non-capturing so
+// - NOT \p{Emoji} - so bare digits / '#' / '*' are never matched. Non-capturing so
 // it can be embedded in the sequence regex below without shifting capture indices.
 const ATOM =
   '(?:\\p{RI}\\p{RI}' +

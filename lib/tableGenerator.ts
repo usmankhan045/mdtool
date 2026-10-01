@@ -1,4 +1,4 @@
-// Pure logic for the Markdown Table Generator — grid state in, GFM/HTML out.
+// Pure logic for the Markdown Table Generator - grid state in, GFM/HTML out.
 
 export type ColAlign = 'left' | 'center' | 'right';
 

@@ -99,7 +99,7 @@ async function convertMarkdownToPDF(markdownContent) {
     </html>
   `;
 
-  // Use html2pdf.js (browser only — never run server-side)
+  // Use html2pdf.js (browser only - never run server-side)
   const html2pdf = (await import("html2pdf.js")).default;
   return html2pdf()
     .set({ margin: 10, filename: "output.pdf", html2canvas: { scale: 2 } })

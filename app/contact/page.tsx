@@ -20,8 +20,8 @@ export default function ContactPage() {
         ]}
       />
 
-      <main className="min-h-screen bg-gray-50">
-        <section className="bg-white border-b border-gray-200 px-4 py-10">
+      <main className="min-h-screen bg-page">
+        <section className="bg-page-soft border-b border-gray-200/70 px-4 py-10">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Contact</h1>
             <p className="text-lg text-gray-600">Bug reports, feature requests, or general questions.</p>
