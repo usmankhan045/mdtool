@@ -6,9 +6,9 @@ import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
 
 export const metadata: Metadata = {
-  title: 'Markdown Table Generator — Free Online, Copy & Paste',
+  title: 'Markdown Table Generator: Free, Copy & Paste',
   description:
-    'Generate Markdown tables visually: edit cells in a grid, set column alignment, paste data straight from Excel or Google Sheets, and copy clean GFM or HTML table code.',
+    'Generate Markdown tables visually: edit cells in a grid, set alignment, paste data from Excel or Google Sheets, and copy clean GFM or HTML table code.',
   keywords: ['markdown table generator', 'markdown table', 'table to markdown', 'markdown table maker', 'excel to markdown table', 'markdown table to html'],
   openGraph: {
     title: 'Free Markdown Table Generator | MDTool',
@@ -170,6 +170,9 @@ export default function MarkdownTableGeneratorPage() {
               </Link>
               <Link href="/blog/markdown-table-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Why Tables Break in PDF Exports →
+              </Link>
+              <Link href="/blog/excel-to-markdown-table" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+                Excel to Markdown Table Guide →
               </Link>
               <Link href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
                 Markdown to HTML Converter →

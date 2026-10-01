@@ -1,16 +1,31 @@
 name: Notify IndexNow
 
-# Pings Bing/Yandex/Naver via IndexNow whenever a push to main lands, so
-# non-Google search engines find new/changed pages without waiting for
-# their next crawl. The IndexNow key is public by design (it's served at
-# /<key>.txt for verification), so no secret is needed here.
+# Pings Bing/Yandex/Naver/Seznam via IndexNow once Vercel reports a successful
+# Production deployment, so the URLs we submit are already live. (A push-to-main
+# trigger fired before Vercel finished building, so engines could fetch the old
+# page.) Only URLs whose sitemap <lastmod> is within the last 7 days are sent;
+# run manually with "submit all" checked to resubmit every URL.
+# The IndexNow key is public by design (served at /<key>.txt), so no secret is needed.
 on:
-  push:
-    branches: [main]
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Submit every sitemap URL, not just the ones changed in the last 7 days'
+        type: boolean
+        default: false
 
 jobs:
   notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       startsWith(github.event.deployment.environment, 'Production'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: node scripts/submit-indexnow.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Submit changed URLs to IndexNow
+        run: node scripts/submit-indexnow.js ${{ inputs.all && '--all' || '' }}

@@ -10,13 +10,27 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
+// Search-engine ownership verification codes. Each is optional — set the env
+// var to the code the webmaster console gives you and the matching <meta> tag
+// renders automatically; leave it unset and no tag is emitted.
+//   NEXT_PUBLIC_BING_VERIFICATION   → Bing Webmaster Tools  (msvalidate.01)
+//   NEXT_PUBLIC_YANDEX_VERIFICATION → Yandex Webmaster       (yandex-verification)
+//   NEXT_PUBLIC_GOOGLE_VERIFICATION → Google Search Console  (only needed if not verified via DNS)
+const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
+const yandexVerification = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION;
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mdtool.dev'),
   title: { default: 'MDTool — Free Online Markdown Converter: MD to PDF, HTML & Word', template: '%s | MDTool' },
   description: 'MDTool is a free online Markdown converter. Turn Markdown into PDF, HTML, and Word (and back) right in your browser — no login, no uploads, no watermarks.',
-  keywords: ['markdown converter', 'markdown to pdf', 'markdown to html', 'markdown to word', 'md to pdf', 'html to markdown', 'word to markdown', 'online markdown converter'],
   authors: [{ name: 'MDTool' }],
   creator: 'MDTool',
+  verification: {
+    ...(googleVerification ? { google: googleVerification } : {}),
+    ...(yandexVerification ? { yandex: yandexVerification } : {}),
+    ...(bingVerification ? { other: { 'msvalidate.01': bingVerification } } : {}),
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -40,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {adsenseId && <link rel="preconnect" href="https://pagead2.googlesyndication.com" />}
         {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
+        {/* AdSense waits until the browser is idle after load, so it never competes with LCP/INP. */}
         {adsenseId && (
           <Script
             async
@@ -54,7 +69,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         {children}
         <Footer />
+        {/* @next/third-parties loads gtag.js with next/script's default afterInteractive strategy. */}
         {gaId && <GoogleAnalytics gaId={gaId} />}
+        {/* Localized pages (/es, /zh, non-English posts) mark their content with
+            lang="…" on <main>/<article>; mirror it onto <html> for crawlers and
+            screen readers. Pages stay static; Vercel also sends Content-Language. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var e=document.querySelector('main[lang],article[lang]');if(e&&e.lang)document.documentElement.lang=e.lang;})();",
+          }}
+        />
       </body>
     </html>
   );

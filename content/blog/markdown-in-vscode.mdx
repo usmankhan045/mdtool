@@ -1,0 +1,146 @@
+---
+title: "Markdown in VS Code: Preview, Shortcuts, Export"
+description: "Use Markdown in VS Code: the built-in preview, keyboard shortcuts, the 3 extensions worth installing, exporting to PDF and Word, plus a syntax cheat sheet."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "vscode", "cheat-sheet", "developer-tools", "pdf"]
+image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Laptop on a desk showing source code in a dark-themed code editor"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Open Markdown to PDF Converter →"
+  description: "Paste the Markdown you wrote in VS Code and download a themed PDF with highlighted code and Mermaid diagrams. No extension, no upload."
+---
+
+VS Code edits and previews Markdown with no extensions. Press **Ctrl+Shift+V** (Mac: **Shift+Cmd+V**) to open the preview, or **Ctrl+K V** (Mac: **Cmd+K V**) to open it side by side. For formatting shortcuts and linting, add Markdown All in One and markdownlint. VS Code can't export PDF or Word on its own; use an extension or a converter.
+
+Below are the built-in features most people miss, the shortcuts worth memorizing, three extensions, the export options, and a syntax cheat table you can keep open next to the editor.
+
+## How do you preview Markdown in VS Code?
+
+Open any `.md` file and use one of the two commands from the [official VS Code Markdown docs](https://code.visualstudio.com/docs/languages/markdown):
+
+| Action | Windows / Linux | macOS |
+|--------|-----------------|-------|
+| Toggle preview in the same tab | Ctrl+Shift+V | Shift+Cmd+V |
+| Open preview to the side | Ctrl+K V | Cmd+K V |
+| Go to a heading in this file | Ctrl+Shift+O | Shift+Cmd+O |
+| Go to a heading in the workspace | Ctrl+T | Cmd+T |
+| Expand / shrink selection | Shift+Alt+Right / Left | Shift+Ctrl+Cmd+Right / Left |
+| Rename a heading and update links to it | F2 | F2 |
+
+The side preview scrolls with the editor. If that gets in the way, turn off `markdown.preview.scrollPreviewWithEditor` or `markdown.preview.scrollEditorWithPreview` in Settings.
+
+## What Markdown features does VS Code have built in?
+
+A few built-in features save more time than any extension:
+
+- **Outline view.** The Outline panel in the Explorer shows your heading tree, which is the quickest way to check heading levels in a long document.
+- **Paste and drop images.** Drop or paste an image from outside the workspace and VS Code copies it into the workspace and inserts the Markdown link. The `markdown.copyFiles.destination` setting controls where the file goes.
+- **Link validation.** Set `"markdown.validate.enabled": true` and VS Code flags links to missing files, headings and reference definitions.
+- **Path completions.** Type `](` and VS Code suggests files and headings, so you don't mistype relative paths.
+
+## Which Markdown extensions are worth installing in VS Code?
+
+Three extensions cover what most people need.
+
+### Markdown All in One
+
+[Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) (`yzhang.markdown-all-in-one`) adds formatting shortcuts, list editing, a table formatter, and a **Create Table of Contents** command that updates the TOC on save. Its shortcuts:
+
+| Shortcut | What it does |
+|----------|--------------|
+| Ctrl/Cmd+B | Toggle bold |
+| Ctrl/Cmd+I | Toggle italic |
+| Alt+S | Toggle strikethrough |
+| Ctrl+Shift+] | Raise heading level |
+| Ctrl+Shift+[ | Lower heading level |
+| Ctrl/Cmd+M | Toggle math environment |
+| Alt+C | Check or uncheck a task list item |
+
+It also adds **Markdown: Print current document to HTML**, which is handy when you need a quick HTML file.
+
+### markdownlint
+
+[markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) underlines style problems as you type: inconsistent heading styles, bad list indentation, trailing spaces, missing blank lines around code fences. Put a `.markdownlint.json` in the project root to tune the rules for a team:
+
+```json
+{
+  "MD003": { "style": "atx" },
+  "MD007": { "indent": 2 },
+  "MD013": false
+}
+```
+
+Every rule is on by default except MD013 (line length). Press **Ctrl+.** on a warning for a quick fix, or run **Format Document** to fix every auto-fixable issue at once.
+
+### Markdown PDF
+
+[Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) (`yzane.markdown-pdf`) exports the current file to PDF, HTML, PNG or JPEG from the Command Palette. It prints through Chromium: it uses an installed Chrome, Edge or Chromium if it finds one, and otherwise downloads a managed Chromium the first time you export. It supports Mermaid diagrams and page breaks with `<div class="page"></div>`.
+
+## How do you export Markdown from VS Code to PDF?
+
+You have two routes.
+
+**With the Markdown PDF extension:** open the `.md` file, press **Ctrl+Shift+P** (Mac: **Cmd+Shift+P**), and run **Markdown PDF: Export (pdf)**. The PDF is saved next to the source file. Set the paper size with `markdown-pdf.format` (A4, Letter and so on) and turn the header and footer on or off with `markdown-pdf.displayHeaderFooter`.
+
+**Without an extension:** copy the file contents and paste them into [MDTool's Markdown to PDF converter](/markdown-to-pdf). Pick a theme (GitHub, Academic, Minimal or Dark), choose A4 or Letter, and download. Code blocks keep syntax highlighting, Mermaid diagrams are rendered, and page breaks work with `<!-- pagebreak -->`, `\pagebreak`, `\newpage` or `<div class="page-break"></div>`. It's useful on a work laptop where you can't install extensions or let one download Chromium, and it runs entirely in the browser, so the file isn't uploaded.
+
+One difference to know: MDTool doesn't draw emoji in the PDF, while a Chromium-based export usually does. If your notes depend on emoji, use the extension.
+
+## How do you export Markdown from VS Code to Word?
+
+VS Code has no Word export, and neither do the three extensions above. Two options work:
+
+1. **Pandoc** from the integrated terminal: `pandoc notes.md -o notes.docx`. Add `--reference-doc=template.docx` to reuse your company's Word styles. See the [Pandoc manual](https://pandoc.org/MANUAL.html) for the options.
+2. **[MDTool's Markdown to Word converter](/markdown-to-word)**: paste the Markdown and download a real `.docx` with native Heading 1 to Heading 6 styles, so Word's navigation pane and table of contents work. Mermaid diagrams and images aren't included in the Word file yet, so for diagram-heavy docs use the PDF export or Pandoc.
+
+## What is the Markdown syntax? (VS Code cheat sheet)
+
+Keep this next to your editor. Everything here renders in VS Code's built-in preview, which follows CommonMark and supports GitHub-style tables, task lists and strikethrough.
+
+| Element | Markdown | Notes |
+|---------|----------|-------|
+| Heading 1 to 6 | `# H1` to `###### H6` | Space after the `#` |
+| Bold | `**bold**` | Ctrl/Cmd+B with Markdown All in One |
+| Italic | `*italic*` | Ctrl/Cmd+I |
+| Strikethrough | `~~text~~` | Alt+S |
+| Inline code | `` `code` `` | |
+| Code block | ` ```js ` … ` ``` ` | Language tag enables highlighting |
+| Link | `[text](https://example.com)` | Type `](` for path completions |
+| Image | `![alt text](images/pic.png)` | Paste an image to insert this |
+| Bulleted list | `- item` | Indent 2 spaces to nest |
+| Numbered list | `1. item` | |
+| Task list | `- [ ] todo` / `- [x] done` | Alt+C toggles |
+| Blockquote | `> quoted text` | |
+| Horizontal rule | `---` | Blank line above it |
+| Table | `\| A \| B \|` then `\|---\|---\|` | Format with the table formatter |
+| Escape a character | `\*not italic\*` | Backslash before the symbol |
+| Line break | End a line with two spaces | Or use a blank line for a new paragraph |
+
+For the full reference with examples, see the [Markdown cheat sheet](/markdown-cheat-sheet), or grab the [printable one-page Markdown cheat sheet](/blog/printable-markdown-cheat-sheet) if you want it on paper.
+
+<EmbeddedTool />
+
+## Frequently Asked Questions
+
+**Q: What is the shortcut for Markdown preview in VS Code?**
+
+Ctrl+Shift+V on Windows and Linux, Shift+Cmd+V on macOS. To open the preview beside the editor instead of replacing it, press Ctrl+K and then V (Cmd+K then V on macOS).
+
+**Q: Can VS Code export Markdown to PDF without an extension?**
+
+No. The built-in Markdown support covers editing and preview only. Install the Markdown PDF extension, run Pandoc from the terminal, or paste the file into a browser converter such as MDTool.
+
+**Q: Why doesn't my Markdown table render in the VS Code preview?**
+
+Check for a header separator row (`|---|---|`) directly under the header, a blank line before the table, and the same number of cells in every row. A missing separator is the most common cause.
+
+**Q: Which VS Code extension is best for Markdown?**
+
+Markdown All in One for shortcuts, lists and tables of contents, plus markdownlint for consistent style. Add Markdown PDF only if you export often and are fine with it using or downloading Chromium.
+
+**Q: How do I make VS Code's Markdown preview look like GitHub?**
+
+The built-in preview is already close for most content. The main gap is GitHub-only syntax such as `> [!NOTE]` alerts. If the final destination is a PDF, MDTool's GitHub theme gives you a GitHub-like look without changing VS Code at all.

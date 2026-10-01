@@ -6,7 +6,7 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Word to Markdown Converter — Free Online, No Upload',
+  title: 'Word to Markdown Converter Online (DOCX to MD), Free',
   description: 'Convert .docx Word documents to clean Markdown instantly in your browser. Headings, tables, lists, bold, italic, and links convert automatically. Free, no signup, no file size limit.',
   keywords: ['word to markdown', 'docx to markdown', 'docx to md', 'convert word to markdown', 'word markdown converter'],
   openGraph: {
@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.mdtool.dev/word-to-markdown',
+    languages: {
+      en: 'https://www.mdtool.dev/word-to-markdown',
+      es: 'https://www.mdtool.dev/es/word-to-markdown',
+      'x-default': 'https://www.mdtool.dev/word-to-markdown',
+    },
   },
 };
 
@@ -32,7 +37,7 @@ const FAQ_ITEMS = [
         standard). Legacy .doc files (Word 97 to 2003 binary format) are not supported. Open the file in Word and use File → Save As → .docx first.
       </>
     ),
-    text: 'Modern .docx files (Word 2007 and later, the ECMA-376 Office Open XML standard) are supported. Legacy .doc files are not; save as .docx first.',
+    text: 'Modern .docx files (Word 2007 and later, the ECMA-376 Office Open XML standard). Legacy .doc files (Word 97 to 2003 binary format) are not supported. Open the file in Word and use File → Save As → .docx first.',
   },
   {
     q: 'Is my Word document uploaded to a server?',
@@ -46,8 +51,8 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What happens to images in the Word document?',
-    a: 'Embedded images are not extracted in the current version; the converter outputs text content and structure only. Plan to re-add images manually after conversion. For image-heavy documents, Pandoc with the --extract-media flag is the better tool.',
-    text: 'Embedded images are not extracted. Only text content and structure convert. Re-add images manually after conversion, or use Pandoc with --extract-media for image-heavy documents.',
+    a: 'Embedded images are kept, but inline: each one becomes a Markdown image with a base64 data: URI, so the .md file contains the picture itself and can get large. Many platforms, GitHub READMEs included, do not display data: URI images, so for those, save the images as files and point the links at them. For image-heavy documents, Pandoc with the --extract-media flag is the better tool.',
+    text: 'Embedded images are kept inline as base64 data: URIs, which makes the .md file large and does not display on platforms such as GitHub READMEs. Save images as files and relink them, or use Pandoc with --extract-media for image-heavy documents.',
   },
   {
     q: 'Does it handle tracked changes and comments?',
@@ -65,7 +70,7 @@ const FAQ_ITEMS = [
         with the GFM plugin, so tables render as pipe tables, code blocks use fenced syntax (``` triple backticks), and lists use the dash-space (- item) format that renders correctly on GitHub, GitLab, Obsidian, and most static site generators.
       </>
     ),
-    text: 'GitHub Flavored Markdown (GFM). Pipe tables, fenced code blocks, and dash-space list syntax, compatible with GitHub, GitLab, Obsidian, Jekyll, and Hugo.',
+    text: 'GitHub Flavored Markdown (GFM). The converter uses turndown with the GFM plugin, so tables render as pipe tables, code blocks use fenced syntax (``` triple backticks), and lists use the dash-space (- item) format that renders correctly on GitHub, GitLab, Obsidian, and most static site generators.',
   },
   {
     q: 'Can I use it for large documents?',
@@ -97,7 +102,7 @@ export default function WordToMarkdownPage() {
         name="Word to Markdown Converter"
         url="/word-to-markdown"
         description="Convert .docx Word documents to clean Markdown instantly in your browser. Headings, tables, lists, bold, italic, and links convert automatically. Free, no signup, no file size limit."
-        datePublished="2025-01-01"
+        datePublished="2026-06-25"
         dateModified="2026-06-25"
         featureList={[
           'Word (.docx) to GitHub Flavored Markdown conversion',
@@ -235,8 +240,8 @@ export default function WordToMarkdownPage() {
               </tr>
               <tr className="border-t border-gray-200 bg-gray-50">
                 <td className="px-3 py-2 font-medium">Embedded images</td>
-                <td className="px-3 py-2">Not included</td>
-                <td className="px-3 py-2 text-red-600">❌ Not extracted</td>
+                <td className="px-3 py-2">Inline base64 data: URI image</td>
+                <td className="px-3 py-2 text-amber-700">⚠️ Kept, but bulky</td>
               </tr>
               <tr className="border-t border-gray-200">
                 <td className="px-3 py-2 font-medium">Tracked changes, comments</td>
@@ -255,9 +260,11 @@ export default function WordToMarkdownPage() {
             </p>
             <ul className="list-disc list-inside space-y-2 pl-2">
               <li>
-                <strong>Embedded images</strong>: Not extracted. Images disappear from the output because
-                mammoth.js does not base64-encode or reference embedded media by default. Re-add images
-                manually after conversion. If preserving images matters, use Pandoc with{' '}
+                <strong>Embedded images</strong>: Kept inline. mammoth.js embeds each image as a base64{' '}
+                <code className="text-sm bg-gray-100 px-1 rounded">data:</code> URI, so the picture travels inside
+                the .md file, which can make it very large. GitHub READMEs and several other platforms don&apos;t
+                display data: URI images, so save the images as files and relink them. If you want image files
+                extracted automatically, use Pandoc with{' '}
                 <code className="text-sm bg-gray-100 px-1 rounded">--extract-media</code> instead.
               </li>
               <li>
@@ -353,6 +360,47 @@ export default function WordToMarkdownPage() {
               are open-source MIT-licensed projects. You can verify the behavior, inspect the source,
               or use the libraries directly in your own projects. MDTool bundles them into a drag-and-drop
               interface so you don&apos;t need Node.js or a command line to get a quick conversion done.
+            </p>
+          </div>
+        </section>
+
+        {/* Legacy .doc and Google Docs */}
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What About .doc and Google Docs Files?</h2>
+          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+            <p>
+              <strong>Legacy .doc files</strong> (the Word 97 to 2003 binary format) can&apos;t be read
+              directly; the converter only understands the XML-based .docx format. Converting one takes
+              a few seconds:
+            </p>
+            <ul className="list-disc list-inside space-y-2 pl-2">
+              <li>
+                In <strong>Microsoft Word</strong>, open the .doc file and choose{' '}
+                <strong>File → Save As</strong>, then pick <strong>Word Document (.docx)</strong>
+              </li>
+              <li>
+                In <strong>LibreOffice Writer</strong> (free), open the file and choose{' '}
+                <strong>File → Save As</strong> with the <strong>Word 2007-365 (.docx)</strong> file type
+              </li>
+              <li>
+                Without either program, upload the .doc to <strong>Google Drive</strong>, open it in Google
+                Docs, and download it as .docx (next point)
+              </li>
+            </ul>
+            <p>
+              Then drop the new .docx onto the converter above.
+            </p>
+            <p>
+              <strong>Google Docs</strong> documents aren&apos;t files on your computer, so download one
+              first: in the document, choose <strong>File → Download → Microsoft Word (.docx)</strong>, then
+              drop the downloaded file onto the converter. Google Docs also has a built-in{' '}
+              <strong>File → Download → Markdown (.md)</strong> option,{' '}
+              <a href="https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                added in 2024
+              </a>
+              , which is the quickest route for a simple document. Going through .docx and MDTool gives you
+              GitHub Flavored Markdown with pipe tables and dash-style lists, and lets you review and copy
+              the result before saving it.
             </p>
           </div>
         </section>

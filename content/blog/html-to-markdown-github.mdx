@@ -7,13 +7,17 @@ tags: ["html", "markdown", "github", "developer-tools"]
 image: "/blog/html-to-markdown-github.jpg"
 imageAlt: "Code editor showing a project file tree alongside a Git commit history with branch merges"
 author: "Muhammad Usman"
+ctaTool:
+  href: "/html-to-markdown"
+  label: "Open HTML to Markdown Converter →"
+  description: "Paste HTML and get clean GitHub-flavored Markdown instantly. Runs in your browser, nothing uploaded."
 ---
 
 ## Why GitHub Prefers Markdown Over HTML in READMEs
 
 GitHub renders READMEs and wiki pages through GitHub Flavored Markdown (GFM), and while it does allow some raw HTML to pass through, it sanitizes that HTML aggressively for security, stripping `<script>` tags, inline style attributes, and class/id attributes even on tags it otherwise permits. Markdown, by contrast, is GitHub's first-class format: every GFM extension (tables, task lists, autolinks) is built to render predictably across the whole platform, since public READMEs, wiki pages, issues, pull requests, and comments all share the same renderer.
 
-There are two practical reasons this matters beyond security. The first is portability: a Markdown README renders consistently on GitHub, GitLab, npm, and PyPI, while raw HTML may not render the same way (or at all) when the same content is mirrored on a different platform. The second is diffability: Markdown's plain-text nature produces clean, readable diffs in pull requests, while HTML's nested tags and attributes turn a small content edit into a noisy diff that's harder to review. For how GFM itself differs from the CommonMark baseline, see [GitHub Flavored Markdown vs. standard Markdown](/blog/github-flavored-markdown-vs-standard-markdown).
+There are two practical reasons this matters beyond security. The first is portability: a Markdown README renders consistently on GitHub, GitLab, npm, and PyPI, while raw HTML may not render the same way (or at all) when the same content is mirrored on a different platform. The second is diffability: Markdown's plain-text nature produces clean, readable diffs in pull requests, while HTML's nested tags and attributes turn a small content edit into a noisy diff that's harder to review. For how GFM itself differs from the CommonMark baseline, see the official [GitHub Flavored Markdown spec](https://github.github.com/gfm/).
 
 ## What HTML GitHub Actually Renders (Limited Subset)
 

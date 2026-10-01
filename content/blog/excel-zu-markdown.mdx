@@ -1,0 +1,133 @@
+---
+title: "Excel-Tabelle in Markdown umwandeln"
+description: "Excel-Tabelle in Markdown umwandeln: Zellen kopieren, im Generator einfügen, Spalten ausrichten. Mit Lösungen für Pipes, Umbrüche und Semikolon-CSV."
+lang: "de"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "excel", "tables", "google-sheets", "csv"]
+image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Aufgeklappter Laptop auf einem Sofa, der Bildschirm zeigt Diagramme und eine Tabellenauswertung"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-table-generator"
+  label: "Markdown-Tabellengenerator öffnen →"
+  description: "Zellen aus Excel einfügen, Spalten ausrichten, Markdown kopieren. Kostenlos, ohne Anmeldung, alles bleibt in deinem Browser."
+---
+
+Um eine Excel-Tabelle in Markdown umzuwandeln, markierst du den Zellbereich, kopierst ihn mit Strg+C und fügst ihn im [Markdown-Tabellengenerator](/markdown-table-generator) unter **Paste from Excel / CSV** ein. Die erste Zeile wird zur Kopfzeile, Pipe-Zeichen werden automatisch maskiert, und das fertige Markdown kopierst du mit einem Klick.
+
+Von Hand ist das mühsam: Jede Zelle braucht ein `|` davor und danach, unter der Kopfzeile muss eine Trennzeile aus Bindestrichen stehen, und bei zwanzig Zeilen verzählt man sich garantiert einmal. Ein Generator nimmt dir genau diese Fleißarbeit ab.
+
+## Warum kann man Excel nicht direkt in Markdown einfügen?
+
+Wenn du in Excel Zellen kopierst, landet in der Zwischenablage neben der formatierten Version auch reiner Text. Darin sind die Spalten durch Tabulatoren getrennt und die Zeilen durch Zeilenumbrüche. Fügst du das in eine `.md`-Datei ein, siehst du nur Text mit unregelmäßigen Abständen.
+
+Eine Markdown-Tabelle sieht dagegen so aus, wie es die [GitHub-Dokumentation zu Tabellen](https://docs.github.com/de/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables) beschreibt: Zellen werden durch senkrechte Striche getrennt, und unter der Kopfzeile steht eine Trennzeile aus Bindestrichen. Der Tabellengenerator übersetzt das eine Format in das andere.
+
+## Wie funktioniert Copy & Paste aus Excel?
+
+Die Oberfläche des Generators ist auf Englisch, aber die wenigen Buttons sind eindeutig benannt.
+
+1. Markiere in Excel den gewünschten Bereich **einschließlich der Überschriftenzeile** und drücke Strg+C (auf dem Mac Cmd+C).
+2. Öffne den [Markdown-Tabellengenerator](/markdown-table-generator).
+3. Klicke auf **Paste from Excel / CSV**. Es öffnet sich ein Textfeld.
+4. Füge die Zellen mit Strg+V ein und klicke auf **Import into grid**.
+5. Das Raster füllt sich. Einzelne Zellen kannst du dort direkt nachbearbeiten, mit **+ Row** und **+ Column** erweitern oder mit **− Row** und **− Column** kürzen.
+6. Lege über die Buttons über jeder Spalte die Ausrichtung fest (mehr dazu im nächsten Abschnitt).
+7. Klicke rechts im Bereich **Output** auf **Copy**. Wenn du statt Markdown eine HTML-Tabelle brauchst, schalte vorher auf **HTML** um.
+
+Ein Beispiel: Diese drei Spalten aus Excel
+
+```text
+Artikel	Preis	Bestand
+Tastatur	49,90 €	120
+Maus | kabellos	24,50 €	85
+Monitor 27 Zoll	219,00 €	12
+```
+
+werden mit rechtsbündigem Preis und Bestand zu dieser Tabelle:
+
+```markdown
+| Artikel          |    Preis | Bestand |
+| ---------------- | -------: | ------: |
+| Tastatur         |  49,90 € |     120 |
+| Maus \| kabellos |  24,50 € |      85 |
+| Monitor 27 Zoll  | 219,00 € |      12 |
+```
+
+Excel kopiert übrigens die angezeigten Werte. Ein Preis im Format `49,90 €` kommt also genau so an, mit Komma und Eurozeichen. Steht in einer Zelle eine Formel, landet ihr Ergebnis in der Tabelle, nicht die Formel selbst.
+
+Das Ganze funktioniert identisch mit Google Tabellen und LibreOffice Calc, denn auch dort enthält die Zwischenablage tabulatorgetrennten Text. Beim Import übernimmt der Generator bis zu 30 Spalten und 200 Zeilen. Alles läuft lokal im Browser, deine Zahlen werden nirgendwohin hochgeladen.
+
+## Wie richtest du Spalten in Markdown aus?
+
+Die Ausrichtung steckt in der Trennzeile unter der Kopfzeile. Doppelpunkte an den Bindestrichen legen fest, wohin der Inhalt rückt:
+
+| Trennzeile | Ausrichtung | Typische Verwendung |
+|---|---|---|
+| `---` | linksbündig (Standard) | Text, Namen, Beschreibungen |
+| `:---` | linksbündig, ausdrücklich | wie oben |
+| `:---:` | zentriert | Status, Ja/Nein, kurze Kürzel |
+| `---:` | rechtsbündig | Preise, Mengen, Prozentwerte |
+
+Im Generator musst du die Doppelpunkte nicht selbst tippen. Über jeder Spalte sitzt ein kleiner Button, der bei jedem Klick zwischen **left**, **center** und **right** wechselt. Zahlen solltest du rechtsbündig setzen, dann stehen die Beträge bündig am rechten Rand und lassen sich leichter vergleichen.
+
+Beachte: Die Ausrichtung zeigt sich erst in der gerenderten Ansicht, etwa auf GitHub, in Obsidian oder in einem PDF. Dass der Generator auch den Quelltext mit Leerzeichen sauber auffüllt, ist reine Kosmetik für alle, die die Datei im Editor lesen.
+
+## Was passiert mit Pipes und Zeilenumbrüchen in Zellen?
+
+Hier entstehen die meisten kaputten Markdown-Tabellen.
+
+**Pipe-Zeichen.** Ein `|` im Zellinhalt würde die Zelle in zwei teilen. Die GitHub-Dokumentation empfiehlt, einen Backslash davorzusetzen: `\|`. Der Generator erledigt das automatisch, wie die Zeile mit der Maus im Beispiel zeigt. Wer von Hand tippt: Auf einer deutschen Tastatur erzeugst du das Pipe-Zeichen unter Windows mit AltGr und der Taste `<`, auf dem Mac mit Wahltaste + 7. Weitere Zeichen, die maskiert werden müssen, listet der [Spickzettel zum Maskieren](/markdown-cheat-sheet/escaping-characters).
+
+**Zeilenumbrüche in Zellen.** In Excel fügst du mit **Alt+Eingabe** einen Umbruch innerhalb einer Zelle ein (siehe [Microsoft-Hilfe](https://support.microsoft.com/de-de/office/beginnen-einer-neuen-textzeile-in-einer-zelle-in-excel-33e41eab-8b5e-4193-93d6-9a06ecf812b3)). Markdown-Tabellen erlauben aber nur eine Zeile pro Tabellenzeile, und beim Einfügen zerreißt so ein Umbruch die Zeile. Ersetze die Umbrüche vor dem Kopieren in einer Hilfsspalte durch HTML-Umbrüche:
+
+```text
+=WECHSELN(A2;ZEICHEN(10);"<br>")
+```
+
+Die meisten Renderer, darunter GitHub, zeigen `<br>` in einer Tabellenzelle als Zeilenumbruch an. Wenn du keinen Umbruch brauchst, ersetze `"<br>"` einfach durch `" "`.
+
+**Verbundene Zellen.** Markdown kennt keine verbundenen Zellen. Der Inhalt landet in der ersten Spalte des Bereichs, die übrigen bleiben leer. Hebe die Verbindung vorher auf und verteile den Text bewusst.
+
+**Leere Zeilen.** Komplett leere Zeilen im kopierten Bereich überspringt der Import. Wenn du eine Leerzeile als Trenner brauchst, füge sie im Raster mit **+ Row** wieder ein.
+
+## Warum funktioniert meine CSV-Datei nicht?
+
+Der Generator versteht auch CSV, allerdings mit Komma als Trennzeichen. Eine deutsche Excel-Installation speichert CSV-Dateien dagegen üblicherweise mit Semikolon, weil das Komma als Dezimalzeichen belegt ist. Fügst du so eine Datei ein, landet jede Zeile in einer einzigen Zelle.
+
+Die einfachste Lösung ist, die CSV gar nicht erst zu verwenden: Öffne sie in Excel, markiere die Zellen und kopiere sie wie oben beschrieben. In der Zwischenablage stehen dann Tabulatoren, und die erkennt der Generator unabhängig von der Spracheinstellung.
+
+## Welche Wege gibt es im Vergleich?
+
+| Methode | Aufwand | Pipes maskiert | Ausrichtung |
+|---|---|---|---|
+| Von Hand tippen | hoch, fehleranfällig | selbst darauf achten | selbst setzen |
+| Tabellengenerator mit Copy & Paste | gering | automatisch | per Klick |
+| CSV aus deutschem Excel | gering, aber Semikolon-Problem | automatisch | per Klick |
+
+Mehr zur Syntax steht im [Spickzettel zu Markdown-Tabellen](/markdown-cheat-sheet/tables). Eine englische Anleitung mit weiteren Wegen, etwa über Formeln oder Editor-Erweiterungen, findest du im Artikel [Excel to Markdown Table](/blog/excel-to-markdown-table).
+
+Und wenn die Tabelle nicht in eine README, sondern in ein Dokument soll: Füge das Markdown in den [Markdown-zu-PDF-Konverter](/markdown-to-pdf) ein. Dort wird die Tabelle mit Rahmen und Kopfzeile gerendert, wahlweise im A4- oder Letter-Format.
+
+## Häufig gestellte Fragen
+
+**F: Funktioniert das auch mit Google Tabellen?**
+
+Ja. Google Tabellen legt beim Kopieren ebenfalls tabulatorgetrennten Text in die Zwischenablage. Du gehst genauso vor wie bei Excel: markieren, kopieren, unter **Paste from Excel / CSV** einfügen.
+
+**F: Wie schreibe ich ein Pipe-Zeichen in eine Markdown-Tabelle?**
+
+Mit einem Backslash davor: `\|`. Der Tabellengenerator setzt ihn automatisch, wenn eine Zelle ein Pipe-Zeichen enthält.
+
+**F: Werden Excel-Formeln übernommen?**
+
+Nein, nur die berechneten Ergebnisse, und zwar so formatiert, wie sie in Excel angezeigt werden. Markdown-Tabellen enthalten reinen Text und können nicht rechnen.
+
+**F: Gibt es eine Größenbegrenzung?**
+
+Beim Import übernimmt der Generator bis zu 30 Spalten und 200 Zeilen. Größere Tabellen sind in Markdown ohnehin schwer lesbar. Teile sie besser auf oder verlinke die Originaldatei.
+
+**F: Kostet der Tabellengenerator etwas?**
+
+Nein. Er ist kostenlos, braucht keine Anmeldung, und die Daten bleiben in deinem Browser. Die Oberfläche ist auf Englisch, die Bedienung beschränkt sich aber auf Einfügen, Ausrichten und Kopieren.

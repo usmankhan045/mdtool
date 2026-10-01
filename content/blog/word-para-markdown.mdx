@@ -1,0 +1,116 @@
+---
+title: "Converter Word para Markdown (.docx para .md)"
+description: "Transforme um documento do Word em Markdown limpo, com títulos, listas, tabelas e links. Veja o passo a passo no navegador, no Google Docs e com o Pandoc."
+lang: "pt"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "word", "docx", "portugues", "conversao"]
+image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Notebook aberto sobre mesa de madeira ao lado de uma caneca, uma caneta e um caderno"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/word-to-markdown"
+  label: "Abrir o conversor de Word para Markdown →"
+  description: "Arraste seu .docx e copie o Markdown na hora. Grátis, sem cadastro e sem enviar o documento para nenhum servidor."
+---
+
+Para converter Word em Markdown, salve o documento como `.docx`, arraste o arquivo para um conversor como o MDTool e copie o resultado ou baixe o `.md`. Títulos com estilo **Título 1**, **Título 2** etc. viram `#` e `##`, e listas, tabelas, links e negrito são preservados. O Google Docs e o Pandoc também fazem essa conversão.
+
+Muita documentação nasce no Word e precisa ir parar em outro lugar: um README no GitHub, uma base de conhecimento em Markdown, um cofre do Obsidian, um site estático. Copiar e colar não resolve, porque o texto chega sem estrutura ou cheio de formatação invisível. Um conversor lê os estilos do documento e escreve a sintaxe certa.
+
+## Como converter um arquivo .docx em Markdown no navegador?
+
+O [conversor de Word para Markdown do MDTool](/word-to-markdown) faz isso sem instalar nada:
+
+1. Abra a ferramenta. A interface está em inglês, mas o fluxo é direto.
+2. Arraste o arquivo `.docx` para a área **Drag and drop a .docx file here** ou clique para escolher o arquivo.
+3. O Markdown aparece no painel da direita, no padrão GitHub Flavored Markdown (GFM).
+4. Clique em **Copy** para copiar ou em **Download .md** para baixar o arquivo.
+
+O documento é lido pelo seu navegador e não sai do computador. Isso faz diferença quando o arquivo é um contrato, um relatório interno ou qualquer coisa que você não mandaria por e-mail para um desconhecido. Não há cadastro, limite de uso nem marca d'água.
+
+## O que acontece com cada elemento do Word?
+
+O conversor olha para os **estilos** que o Word aplicou, não para a aparência do texto. Um parágrafo em negrito e fonte 18 continua sendo um parágrafo; um parágrafo com estilo **Título 2** vira `##`.
+
+| No Word | No Markdown |
+|---|---|
+| Estilo Título 1, Título 2, Título 3 | `#`, `##`, `###` |
+| Negrito e itálico | `**negrito**` e `_itálico_` |
+| Listas com marcadores e numeradas | `-` e `1.` |
+| Tabelas | Tabelas GFM com pipes |
+| Hiperlinks | `[texto](https://...)` |
+| Imagens | Embutidas no próprio texto em base64 (`data:image/...`) |
+| Notas de rodapé | Viram uma lista numerada no fim, com links `[1]` |
+| Cores, fontes e realce | Descartados (Markdown não tem equivalente) |
+
+A tabela mostra o ponto que mais pega gente desprevenida: se o documento foi formatado "no olho", com fonte grande e negrito em vez de estilos, os títulos não serão reconhecidos.
+
+## Como preparar o documento antes de converter?
+
+Cinco minutos no Word poupam meia hora de limpeza depois:
+
+- **Aplique estilos de título.** Selecione cada título e escolha **Título 1**, **Título 2** ou **Título 3** na galeria de Estilos da guia **Página Inicial**. A [ajuda da Microsoft sobre títulos](https://support.microsoft.com/pt-br/office/adicionar-um-t%C3%ADtulo-a-um-documento-do-word-3eb8b917-56dc-4a17-891a-a026b2c790f2) mostra o processo com imagens.
+- **Aceite as alterações controladas.** Na guia **Revisão**, use **Aceitar > Aceitar Todas as Alterações**. Comentários e revisões pendentes não fazem sentido em Markdown.
+- **Use listas de verdade.** Linhas que começam com um hífen digitado à mão nem sempre são reconhecidas como lista. Use os botões de marcadores ou numeração.
+- **Simplifique as tabelas.** Markdown não tem células mescladas. Se a tabela tem mesclagem, desfaça antes ou aceite que ela vai sair achatada.
+- **Decida o que fazer com as imagens.** Elas vêm embutidas no Markdown como texto base64, o que funciona mas deixa o arquivo enorme e difícil de editar. Para um repositório, é melhor salvar cada imagem (clique com o botão direito > **Salvar como Imagem**) e trocar o trecho base64 por `![descrição](imagens/figura.png)`.
+
+## E se o arquivo for .doc, do Word antigo?
+
+O formato `.doc` (Word 97-2003) é binário e não é aceito pelo conversor. A solução leva dez segundos: abra o arquivo no Word, vá em **Arquivo > Salvar como**, escolha **Documento do Word (*.docx)** em **Salvar como tipo** e salve. Depois é só converter o `.docx` novo.
+
+No LibreOffice Writer o caminho é parecido: **Arquivo > Salvar como** e o formato Word 2007-365 (.docx).
+
+## Dá para converter Word em Markdown pelo Google Docs?
+
+Dá. O Google Docs ganhou suporte a Markdown e consegue exportar direto. Envie o `.docx` para o Google Drive, abra com o Google Docs e use **Arquivo > Fazer download > Markdown (.md)**. A [ajuda oficial do Google](https://support.google.com/docs/answer/12014036?hl=pt-BR) descreve também a opção **Copiar como Markdown**, no menu do botão direito, e como ativar a conversão automática em **Ferramentas > Preferências > Ativar Markdown**.
+
+É uma boa alternativa se o documento já mora no Drive. A desvantagem é que o arquivo precisa ser enviado para a sua conta Google.
+
+## E com o Pandoc, pela linha de comando?
+
+O [Pandoc](https://pandoc.org/MANUAL.html) converte `.docx` para Markdown e é a melhor opção para muitos arquivos de uma vez:
+
+```bash
+pandoc relatorio.docx -t gfm -o relatorio.md
+```
+
+A opção `-t gfm` gera GitHub Flavored Markdown. Se quiser também as imagens, acrescente `--extract-media=imagens`, e o Pandoc salva cada imagem em uma pasta e já escreve os links no `.md`. Para converter uma pasta inteira, um laço no terminal resolve.
+
+## Qual opção usar?
+
+| Situação | Melhor caminho |
+|---|---|
+| Um documento, rápido, com conteúdo sensível | MDTool no navegador |
+| Documento já está no Google Drive | Google Docs: Fazer download > Markdown |
+| Muitos arquivos ou precisa das imagens | Pandoc com `--extract-media` |
+| Arquivo `.doc` antigo | Salvar como `.docx` primeiro |
+
+## E o caminho inverso, de Markdown (md) para docx?
+
+Também é comum: você escreve em Markdown e alguém pede "manda em Word". O [conversor de Markdown para Word](/markdown-to-word) gera um `.docx` real, com títulos no estilo **Título 1**, **Título 2** etc. quando aberto no Word em português, além de tabelas e listas. Assim o sumário automático do Word funciona sem ajuste. Diagramas Mermaid e imagens não entram no arquivo do Word; se precisar deles, gere um PDF.
+
+Para revisar a sintaxe depois da conversão, a [colinha de tabelas em Markdown](/markdown-cheat-sheet/tables) ajuda a acertar alinhamento e colunas.
+
+## Perguntas frequentes
+
+**P: Converter Word para Markdown online é seguro?**
+
+No MDTool, sim: o arquivo é processado no próprio navegador e não é enviado para servidor nenhum. Em outros conversores online, confira se há upload antes de usar documentos confidenciais.
+
+**P: Por que meus títulos viraram texto normal no Markdown?**
+
+Porque provavelmente foram formatados só com fonte maior e negrito. O conversor reconhece os estilos Título 1, Título 2 etc. Aplique esses estilos no Word e converta de novo.
+
+**P: As imagens do Word vão junto para o Markdown?**
+
+No MDTool, elas vêm embutidas no texto como base64, sem arquivos separados. Se preferir imagens em uma pasta, com links curtos no `.md`, use o Pandoc com `--extract-media`.
+
+**P: Consigo converter .doc direto?**
+
+Não. Abra o arquivo no Word ou no LibreOffice, salve como `.docx` e converta esse arquivo.
+
+**P: O Markdown gerado funciona no GitHub?**
+
+Sim. A saída segue o GitHub Flavored Markdown, então títulos, tabelas e listas aparecem formatados no GitHub, no GitLab e na maioria dos editores, como VS Code e Obsidian.

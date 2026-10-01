@@ -7,21 +7,111 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), camera=(), microphone=(), interest-cohort=()" },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), camera=(), microphone=(), interest-cohort=()"
+        },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://pagead2.googlesyndication.com https://*.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://*.googlesyndication.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' blob: https: data: https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://pagead2.googlesyndication.com https://*.googlesyndication.com; worker-src 'self' blob:; frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
         }
       ]
     },
     {
-      "source": "/(.*)\\.(svg|png|jpg|jpeg|webp|ico|woff|woff2)",
+      "source": "/(.*)\\.(svg|png|jpg|jpeg|webp|ico|woff|woff2|ttf)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/es/(.*)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "es"
+        }
+      ]
+    },
+    {
+      "source": "/zh/(.*)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "zh-Hans"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(excel-zu-markdown|html-zu-markdown|markdown-durchstreichen|word-zu-markdown)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "de"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(convertir-markdown-en-pdf|convertir-markdown-en-word)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "fr"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(checkbox-em-markdown|markdown-para-pdf|word-para-markdown)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "pt"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(markdown-v-word)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "ru"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(markdown-zhuan-word)",
+      "headers": [
+        {
+          "key": "Content-Language",
+          "value": "zh-Hans"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

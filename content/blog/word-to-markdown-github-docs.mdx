@@ -1,8 +1,8 @@
 ---
-title: "Migrating Word Documents to Markdown for GitHub and Docs Sites"
-description: "Moving content from Word into a GitHub repo, wiki, or static site generator? Here's the conversion workflow, the post-conversion fixes that matter, and the GitHub-specific quirks to watch for."
+title: "Word to Markdown for GitHub Docs: Free Converter"
+description: "Moving Word content into a GitHub repo, wiki or static site? The conversion workflow, the fixes that matter afterwards, and the GitHub quirks to watch for."
 datePublished: "2026-06-25"
-dateModified: "2026-06-25"
+dateModified: "2026-10-01"
 tags: ["github", "markdown", "word", "docx", "documentation", "developer-tools"]
 image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?fm=jpg&q=80&w=1200&h=630&fit=crop"
 imageAlt: "Laptop computer displaying lines of code on a dark screen, representing a developer documentation workflow"
@@ -45,7 +45,7 @@ Fix: Audit the heading structure and promote headings correctly. The document sh
 
 ### Images
 
-Word embeds images as binary objects inside the `.docx` ZIP archive. The converter does not extract them, so the `.md` output contains only text, with images absent. Re-add images manually:
+Word embeds images as binary objects inside the `.docx` ZIP archive. The converter keeps them inline as base64 `data:` URIs (`![](data:image/png;base64,...)`), which GitHub does not display in READMEs and which bloats the file. Replace them with real image files:
 
 1. Extract images from the Word document (right-click each image → Save as Picture, or use Pandoc's `--extract-media=./assets` flag to extract all images at once)
 2. Commit the image files to a subfolder in the repository: `git add assets/` alongside the `.md` file. **This step is the most commonly missed**, because the images exist on disk but aren't staged.
@@ -119,7 +119,7 @@ Wiki pages live in a separate git repository and have their own URL structure (`
 
 **Q: Should I use MDTool or Pandoc for converting Word docs destined for GitHub?**
 
-MDTool is faster for one-off conversions: drag, drop, download, commit. Pandoc's `--extract-media=./assets` flag is better when images need to be extracted alongside the text, since MDTool doesn't extract embedded images. For bulk migrations of many files, a Pandoc shell loop or [Microsoft MarkItDown](https://github.com/microsoft/markitdown) Python library handles batches more efficiently.
+MDTool is faster for one-off conversions: drag, drop, download, commit. Pandoc's `--extract-media=./assets` flag is better when images need to be extracted alongside the text, since MDTool keeps embedded images inline as base64 rather than extracting them to files. For bulk migrations of many files, a Pandoc shell loop or [Microsoft MarkItDown](https://github.com/microsoft/markitdown) Python library handles batches more efficiently.
 
 **Q: Do I need to add YAML frontmatter for GitHub READMEs?**
 

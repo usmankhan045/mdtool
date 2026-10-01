@@ -1,0 +1,167 @@
+---
+title: "HTML zu Markdown konvertieren: online & per CLI"
+description: "HTML in Markdown umwandeln: Online-Konverter im Browser, was mit Tabellen, Links und Code passiert, unsauberes HTML bereinigen, plus pandoc und turndown."
+lang: "de"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "html", "cms-migration", "pandoc", "turndown"]
+image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Bildschirm mit farbig hervorgehobenem HTML- und SVG-Quelltext in einem Code-Editor"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/html-to-markdown"
+  label: "HTML-zu-Markdown-Konverter öffnen →"
+  description: "HTML einfügen, sauberes Markdown kopieren. Kostenlos, ohne Anmeldung, und dein Quelltext verlässt den Browser nicht."
+---
+
+Um HTML in Markdown umzuwandeln, fügst du den Quelltext in einen Konverter wie den [HTML-zu-Markdown-Konverter von MDTool](/html-to-markdown) ein und kopierst das Ergebnis. Überschriften, Links, Listen, Tabellen und Codeblöcke werden zu GitHub Flavored Markdown. Für viele Dateien auf einmal eignen sich pandoc oder ein kurzes Node-Skript mit turndown.
+
+Der typische Anlass ist eine Migration: Alte Blogartikel aus WordPress sollen in einen Static-Site-Generator, Confluence-Seiten in ein Git-Repository oder eine Dokumentation in Obsidian. In allen Fällen willst du am Ende Text, den man lesen, versionieren und diffen kann, statt verschachtelter `div`-Container mit Inline-Styles.
+
+## Wie funktioniert der Online-Konverter?
+
+Die Oberfläche von MDTool ist auf Englisch, besteht aber nur aus zwei Feldern und einer Handvoll Buttons. Du findest dich in Sekunden zurecht.
+
+1. Öffne den [HTML-zu-Markdown-Konverter](/html-to-markdown).
+2. Füge dein HTML in das linke Feld **HTML Input** ein. Alternativ lädst du über **Upload .html** eine `.html`- oder `.htm`-Datei oder ziehst sie per Drag & Drop in das Feld.
+3. Rechts erscheint das Markdown sofort, ohne extra Klick.
+4. Übernimm das Ergebnis mit **Copy** in die Zwischenablage oder speichere es mit **Download .md** als Datei.
+
+Die Umwandlung läuft vollständig im Browser. Unter der Haube arbeiten die Open-Source-Bibliothek [turndown](https://github.com/mixmark-io/turndown) und ihr GFM-Plugin, es wird nichts auf einen Server hochgeladen. Das ist praktisch, wenn du interne Wiki-Seiten oder Inhalte mit Kundendaten konvertierst, die nicht bei einem fremden Dienst landen sollen. Der Konverter ist kostenlos, ohne Anmeldung und ohne Wasserzeichen.
+
+Woher bekommst du das HTML? Bei einer einzelnen Webseite reicht im Browser ein Rechtsklick und **Seitenquelltext anzeigen**. Meist ist es aber sinnvoller, nur den eigentlichen Artikel zu kopieren: Öffne mit F12 die Entwicklertools, markiere das `article`- oder `main`-Element und kopiere dessen äußeres HTML. So bleiben Navigation, Cookie-Banner und Footer draußen.
+
+## Was wird umgewandelt und was nicht?
+
+Die meisten Elemente haben eine direkte Entsprechung in Markdown. Interessant sind die Ausnahmen, denn genau dort entsteht später Nacharbeit.
+
+| HTML | Ergebnis in Markdown | Hinweis |
+|---|---|---|
+| `h1` bis `h6` | `#` bis `######` | ATX-Stil, also mit Rauten |
+| `strong`, `b` | `**fett**` | |
+| `em`, `i` | `_kursiv_` | Unterstrich statt Sternchen |
+| `a href` | `[Text](URL)` | Links bleiben inline |
+| `ul`, `ol` | `-` bzw. `1.` | Verschachtelung bleibt erhalten |
+| `pre` mit `code class="language-js"` | Codeblock mit ` ```js ` | Die Sprache bleibt erhalten |
+| `table` mit `thead` oder `th`-Kopfzeile | GFM-Tabelle mit Pipes | |
+| `table` ohne Kopfzeile | bleibt als HTML stehen | siehe unten |
+| `del`, `s` | `~Text~` | GFM-Durchstreichung |
+| `br` | zwei Leerzeichen und Zeilenumbruch | |
+| `img` | `![Alt-Text](Pfad)` | Bild wird nur verlinkt, nicht kopiert |
+| `span`, `div`, `style`-Attribute | entfallen, Text bleibt | |
+| `script`, `style` | Inhalt bleibt als Text stehen | vorher entfernen |
+
+Zwei Zeilen dieser Tabelle verdienen eine Erklärung.
+
+**Tabellen ohne Kopfzeile.** Eine Markdown-Tabelle braucht laut [GitHub-Dokumentation zu Tabellen](https://docs.github.com/de/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables) immer eine Kopfzeile, gefolgt von einer Trennzeile aus Bindestrichen. Wenn die erste Zeile deiner HTML-Tabelle aus normalen `td`-Zellen besteht, kann turndown nicht wissen, was die Spaltenüberschriften sind, und lässt die Tabelle bewusst als HTML stehen. Die Lösung: Mach aus den Zellen der ersten Zeile `th`-Zellen oder setze die Zeile in ein `thead`. Danach entsteht eine saubere Pipe-Tabelle. Mehr zur Tabellensyntax findest du im [Spickzettel zu Markdown-Tabellen](/markdown-cheat-sheet/tables).
+
+**Skripte und Styles.** Der Inhalt von `script`- und `style`-Blöcken ist für turndown einfach Text und landet deshalb mitten im Markdown. Lösche diese Blöcke vor dem Einfügen, oder kopiere wie oben beschrieben nur den Artikelbereich.
+
+## Wie bereinigst du unsauberes HTML vorher?
+
+HTML aus WYSIWYG-Editoren, aus Word oder aus alten CMS-Exporten ist selten sauber. Typisch sind leere `span`-Elemente, Inline-Styles in jedem Absatz, `&nbsp;` statt Leerzeichen und Absätze innerhalb von Tabellenzellen. Ein Beispiel:
+
+```html
+<div class="wp-block-group" style="margin-top:20px">
+  <p style="font-family:Arial"><span style="color:#333"><b>Hinweis:</b></span>&nbsp;Bitte <a href="/kontakt">Kontakt</a> aufnehmen.</p>
+  <script>trackPageview();</script>
+</div>
+```
+
+Ohne das `script`-Element wird daraus:
+
+```markdown
+**Hinweis:** Bitte [Kontakt](/kontakt) aufnehmen.
+```
+
+Die Styles und Wrapper verschwinden von selbst. Absätze in Tabellenzellen, die Word und Google Docs gern erzeugen, behandelt MDTool gesondert, damit keine Leerzeilen die Tabelle zerreißen. Für den Rest hat sich diese Reihenfolge bewährt:
+
+1. **Nur den Inhalt kopieren:** Header, Navigation, Sidebar und Footer weglassen.
+2. **Skripte und Styles löschen:** alle `script`- und `style`-Blöcke entfernen.
+3. **Tabellenköpfe prüfen:** die erste Zeile jeder Tabelle muss aus `th`-Zellen bestehen.
+4. **Relative Links prüfen:** `/kontakt` funktioniert nur auf der alten Domain. Ersetze relative Pfade bei Bedarf durch absolute URLs.
+5. **Bilder separat sichern:** Der Konverter übernimmt nur den Pfad. Die Bilddateien musst du selbst herunterladen und neben die `.md`-Datei legen.
+
+Eine ausführlichere Anleitung für besonders verbautes HTML gibt es im englischen Artikel [Clean HTML to Markdown](/blog/clean-html-to-markdown), und für ganze Websites den Leitfaden zur [CMS-Migration](/blog/html-to-markdown-cms-migration).
+
+## Welche Alternativen gibt es für die Kommandozeile?
+
+Der Online-Konverter ist ideal für einzelne Seiten. Sobald du Dutzende Dateien umwandeln oder den Schritt in ein Build-Skript einbauen willst, ist die Kommandozeile schneller.
+
+### pandoc
+
+[pandoc](https://pandoc.org/MANUAL.html) liest HTML und schreibt GitHub Flavored Markdown mit dem Ausgabeformat `gfm`:
+
+```bash
+pandoc seite.html -f html -t gfm --wrap=none -o seite.md
+```
+
+`--wrap=none` verhindert, dass pandoc lange Absätze nach 72 Zeichen umbricht, was sonst jeden Diff unübersichtlich macht. Pandoc schreibt Elemente, die sich nicht in Markdown ausdrücken lassen, standardmäßig als Roh-HTML ins Ergebnis. Mit `-t gfm-raw_html` unterdrückst du das. Was sich nicht in Markdown ausdrücken lässt, fällt dann allerdings ersatzlos weg.
+
+Für einen ganzen Ordner reicht eine Schleife in der Bash:
+
+```bash
+for f in *.html; do
+  pandoc "$f" -f html -t gfm --wrap=none -o "${f%.html}.md"
+done
+```
+
+### turndown mit Node.js
+
+turndown ist dieselbe Bibliothek, die auch im Browser-Tool steckt. Ein offizielles CLI gibt es nicht, aber ein Skript mit wenigen Zeilen erledigt dieselbe Arbeit und lässt sich anpassen:
+
+```bash
+npm install turndown turndown-plugin-gfm
+```
+
+```js
+// konvertieren.mjs
+import { readFileSync, writeFileSync } from 'node:fs';
+import TurndownService from 'turndown';
+import { gfm } from 'turndown-plugin-gfm';
+
+const td = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced', bulletListMarker: '-' });
+td.use(gfm);
+td.remove(['script', 'style', 'nav']);
+
+const html = readFileSync(process.argv[2], 'utf8');
+writeFileSync(process.argv[3], td.turndown(html));
+```
+
+Aufruf: `node konvertieren.mjs seite.html seite.md`. Der Vorteil gegenüber dem Online-Tool ist `td.remove()`: Damit verschwinden Skripte, Styles und Navigation samt Inhalt automatisch.
+
+### Welcher Weg passt zu dir?
+
+| Kriterium | MDTool online | pandoc | turndown-Skript |
+|---|---|---|---|
+| Installation | keine | pandoc installieren | Node.js und npm |
+| Einzelne Seite | sehr schnell | schnell | schnell |
+| Viele Dateien | eine nach der anderen | Schleife | Schleife |
+| Daten bleiben lokal | ja, im Browser | ja | ja |
+| Elemente gezielt entfernen | vorher von Hand | eingeschränkt | mit `remove()` |
+
+## Was machst du mit dem fertigen Markdown?
+
+Meist geht es direkt ins Repository oder in den Static-Site-Generator. Wenn du aus dem Ergebnis ein Dokument zum Weitergeben brauchst, kannst du das Markdown im [Markdown-zu-PDF-Konverter](/markdown-to-pdf) einfügen und mit Syntaxhervorhebung und sauberen Tabellen als PDF herunterladen.
+
+## Häufig gestellte Fragen
+
+**F: Ist der HTML-zu-Markdown-Konverter kostenlos?**
+
+Ja. Der Konverter von MDTool ist kostenlos, braucht keine Anmeldung und setzt kein Wasserzeichen. Die Oberfläche ist auf Englisch, die Bedienung beschränkt sich aber auf Einfügen und Kopieren.
+
+**F: Wird mein HTML auf einen Server hochgeladen?**
+
+Nein. Die Umwandlung passiert vollständig in deinem Browser mit turndown. Der Quelltext verlässt deinen Rechner nicht.
+
+**F: Warum steht meine Tabelle nach der Umwandlung noch als HTML da?**
+
+Weil die Tabelle keine Kopfzeile hat. Markdown-Tabellen brauchen immer eine Überschriftenzeile. Ändere die Zellen der ersten Zeile von `td` zu `th` oder setze sie in ein `thead`, dann entsteht eine Pipe-Tabelle.
+
+**F: Kann ich eine komplette Website in Markdown umwandeln?**
+
+Mit dem Online-Tool nur Seite für Seite. Für ganze Websites ist pandoc in einer Schleife oder ein turndown-Skript besser geeignet. Plane zusätzlich Zeit ein, um Bilder herunterzuladen und relative Links anzupassen.
+
+**F: Bleiben Bilder bei der Umwandlung erhalten?**
+
+Nur als Verweis. Aus einem `img`-Element wird `![Alt-Text](Pfad)`. Die Bilddatei selbst musst du separat speichern und den Pfad bei Bedarf anpassen.

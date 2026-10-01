@@ -1,0 +1,128 @@
+---
+title: "Checkbox em Markdown: sintaxe e atalhos"
+description: "Como fazer checkbox em Markdown com - [ ] e - [x], onde funciona (GitHub, Obsidian, VS Code, Notion), atalhos de teclado e por que às vezes não aparece."
+lang: "pt"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "checkbox", "lista-de-tarefas", "portugues", "obsidian"]
+image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Mão segurando uma caneta e marcando itens de uma lista de tarefas em um caderno quadriculado"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Converter minha lista em PDF →"
+  description: "Cole sua lista de tarefas em Markdown e baixe um PDF com as caixas [ ] e [x] alinhadas. Grátis, sem cadastro e sem upload."
+---
+
+Checkbox em Markdown se escreve com hífen, espaço e colchetes: `- [ ]` para uma tarefa em aberto e `- [x]` para uma tarefa concluída. É a chamada lista de tarefas (task list) do GitHub Flavored Markdown. Funciona no GitHub, GitLab, Obsidian e Typora; no VS Code, a pré-visualização pode precisar de extensão.
+
+Parece simples, e é, mas um espaço a menos basta para a caixa virar texto comum. Abaixo estão a sintaxe exata, onde ela funciona, os atalhos de cada editor e o que conferir quando o checkbox não aparece.
+
+## Como é checkbox em Markdown?
+
+Cada item é um item de lista normal com `[ ]` ou `[x]` logo depois do marcador:
+
+```markdown
+## Lançamento da versão 2.0
+
+- [x] Revisar o changelog
+- [x] Atualizar a documentação
+- [ ] Publicar no npm
+- [ ] Avisar o time de suporte
+```
+
+No GitHub, isso aparece como quatro caixas, duas marcadas. A regra completa, definida na [especificação do GFM](https://github.github.com/gfm/), é:
+
+1. Um marcador de lista (`-`, `*`, `+` ou número com ponto, como `1.`).
+2. Um espaço.
+3. Colchetes com um espaço dentro (`[ ]`) ou com `x` dentro (`[x]` ou `[X]`).
+4. Mais um espaço e o texto da tarefa.
+
+Também dá para aninhar tarefas, recuando o subitem:
+
+```markdown
+- [ ] Preparar apresentação
+  - [x] Coletar os números do trimestre
+  - [ ] Montar os slides
+```
+
+E listas numeradas aceitam checkbox do mesmo jeito: `1. [ ] Primeiro passo`.
+
+## Onde o checkbox em Markdown funciona?
+
+Task list não faz parte do Markdown original nem do CommonMark. É uma extensão, então cada plataforma decide se renderiza e se a caixa é clicável.
+
+| Plataforma | Renderiza a caixa? | Dá para marcar clicando? |
+|---|---|---|
+| GitHub (issues, pull requests, comentários) | Sim | Sim |
+| GitHub (arquivo `.md` no repositório) | Sim | Não, só editando o arquivo |
+| GitLab | Sim | Sim, em issues e merge requests |
+| Obsidian | Sim | Sim |
+| Typora | Sim | Sim |
+| VS Code | Com extensão (Markdown All in One ou Markdown Checkboxes) | Com extensão |
+| Notion | Usa bloco próprio de to-do | Sim |
+| WhatsApp, Slack, Discord | Não | Não |
+
+Dois detalhes que valem saber. A [documentação do GitHub](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) avisa que, se o texto da tarefa começar com parêntese, é preciso escapar: `- [ ] \(Opcional) Abrir issue de acompanhamento`. E o [Obsidian](https://obsidian.md/help/syntax) aceita qualquer caractere dentro dos colchetes para marcar a tarefa como concluída, como `[?]` ou `[-]`, o que alguns temas usam para mostrar ícones diferentes. Fora do Obsidian, use só `x`.
+
+No Notion a lógica é outra: ele não guarda Markdown, mas entende o atalho na hora de digitar e transforma em um bloco de to-do.
+
+## Qual é o atalho para criar checkbox?
+
+Os atalhos dependem do editor:
+
+| Editor | Atalho | O que faz |
+|---|---|---|
+| Obsidian | `Ctrl + L` (Windows/Linux) ou `Cmd + L` (Mac) | Alterna o estado do checkbox na linha |
+| VS Code + Markdown All in One | `Alt + C` (Windows/Linux) ou `Option + C` (Mac) | Marca e desmarca a tarefa |
+| Notion | Digitar `[]` e espaço | Cria um bloco de to-do |
+| Notion | `Ctrl + Shift + 4` (Windows) ou `Cmd + Option + 4` (Mac) | Transforma o bloco em to-do |
+
+No Obsidian, vale abrir a tela de atalhos (**Settings > Hotkeys**) e procurar por "checkbox": há também um comando que alterna entre texto, marcador e checkbox, sem atalho definido de fábrica. Os atalhos do Notion estão na [página oficial de atalhos de teclado](https://www.notion.com/help/keyboard-shortcuts).
+
+No GitHub não há atalho de teclado: você digita a sintaxe ou clica na caixa depois de publicar.
+
+## Por que meu checkbox não aparece?
+
+Quando o resultado é o texto `[ ]` em vez de uma caixa, a causa quase sempre é uma destas:
+
+- **Falta o espaço dentro dos colchetes.** `- []` não é checkbox. Precisa ser `- [ ]`, com espaço.
+- **Falta o espaço depois do colchete.** `- [ ]Tarefa` não funciona. Escreva `- [ ] Tarefa`.
+- **Falta o marcador de lista.** `[ ] Tarefa` sozinho, sem hífen, é só texto.
+- **O espaço não é um espaço.** Texto colado do Word ou de páginas web às vezes traz espaço inseparável. Apague e digite o espaço de novo.
+- **A plataforma não suporta task lists.** Se o visualizador segue apenas o CommonMark, a caixa não vai aparecer, por mais certa que esteja a sintaxe. Teste o mesmo trecho no GitHub para tirar a dúvida.
+- **Está dentro de um bloco de código.** Tudo entre crases triplas é exibido literalmente, de propósito.
+
+No VS Code, se a pré-visualização (`Ctrl + Shift + V`) mostrar os colchetes como texto, instale a extensão [Markdown Checkboxes](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-checkbox) ou a Markdown All in One.
+
+## E se eu quiser mostrar os colchetes sem virar checkbox?
+
+Escape o primeiro colchete com barra invertida: `- \[ ] isto não vira caixa`. É útil em tutoriais, quando você quer mostrar a sintaxe em vez do resultado. Outra opção é colocar o exemplo entre crases, como em `` `- [ ]` ``.
+
+## Como fica o checkbox ao exportar para PDF?
+
+Depende do conversor. No [conversor de Markdown para PDF do MDTool](/markdown-to-pdf), cada caixa vira `[ ]` ou `[x]` em fonte monoespaçada e negrito, alinhada no começo do item. Fica legível impresso e não depende de fonte com símbolo de caixa, que costuma virar um quadradinho vazio em PDF. A ferramenta tem interface em inglês, roda no navegador e não envia o arquivo para lugar nenhum.
+
+Para uma referência rápida de toda a sintaxe, inclusive variações por plataforma, veja a [colinha de checkboxes em Markdown](/markdown-cheat-sheet/checkboxes) e a de [listas](/markdown-cheat-sheet/lists).
+
+## Perguntas frequentes
+
+**P: Qual a diferença entre `[x]` e `[X]`?**
+
+Nenhuma no GitHub: a especificação do GFM aceita `x` minúsculo ou maiúsculo. Por costume, a maioria das pessoas usa minúsculo.
+
+**P: Dá para fazer checkbox em Markdown sem lista?**
+
+Não. A caixa só existe como parte de um item de lista, então o `[ ]` precisa vir depois de `-`, `*`, `+` ou de um número.
+
+**P: Checkbox em Markdown funciona no WhatsApp?**
+
+Não. O WhatsApp tem formatação própria (negrito, itálico, tachado), mas não tem lista de tarefas. Os colchetes aparecem como texto.
+
+**P: Como marcar o checkbox clicando no GitHub?**
+
+Em issues, pull requests e comentários, basta clicar na caixa se você tiver permissão de edição. Em arquivos `.md` do repositório, a caixa aparece desativada e só muda editando o arquivo.
+
+**P: Qual é o atalho de checkbox no Obsidian?**
+
+`Ctrl + L` no Windows e no Linux, `Cmd + L` no Mac. O atalho alterna o estado do checkbox na linha onde está o cursor.

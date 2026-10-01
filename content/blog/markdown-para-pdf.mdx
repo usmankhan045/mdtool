@@ -1,0 +1,129 @@
+---
+title: "Como converter Markdown em PDF: guia completo"
+description: "Converta Markdown para PDF no navegador, sem instalar nada: temas, A4, diagramas Mermaid e quebra de página. Compare também com Pandoc, VS Code e Typora."
+lang: "pt"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "pdf", "portugues", "conversao", "pandoc"]
+image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Pessoa de camisa social assinando com caneta um documento impresso sobre a mesa"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Abrir o conversor de Markdown para PDF →"
+  description: "Cole seu Markdown, escolha o tema e baixe o PDF. Grátis, sem cadastro, sem marca d'água e sem enviar o arquivo para nenhum servidor."
+---
+
+Para converter Markdown em PDF, cole o texto (ou arraste o arquivo `.md`) em um conversor online como o MDTool, escolha um tema e o tamanho da página e clique em baixar. Tudo roda no navegador, sem instalar nada. Se você prefere a linha de comando, o Pandoc faz o mesmo, mas exige um motor LaTeX instalado.
+
+Markdown é ótimo para escrever, mas pouca gente fora da área de tecnologia sabe abrir um arquivo `.md`. O PDF resolve isso: abre em qualquer celular, sai igual na impressora e não deixa ninguém mexer na formatação sem querer. A seguir estão os caminhos mais práticos, do mais rápido ao mais configurável.
+
+## Qual é o jeito mais rápido de converter Markdown em PDF?
+
+É usar um conversor que roda no navegador. Você não precisa instalar Python, LaTeX nem extensão nenhuma, e o resultado sai em segundos.
+
+O [conversor de Markdown para PDF do MDTool](/markdown-to-pdf) funciona assim:
+
+1. Abra a ferramenta. A interface está em inglês, mas são poucos botões.
+2. Cole o Markdown no painel da esquerda ou arraste o arquivo `.md` para ele. A pré-visualização aparece à direita.
+3. Em **Theme**, escolha entre GitHub, Academic, Minimal ou Dark.
+4. Em **Page**, escolha A4 (o padrão no Brasil) ou US Letter.
+5. Clique em **Download PDF (Free)**.
+
+O PDF gerado é vetorial: o texto pode ser selecionado e pesquisado, e não fica borrado quando você dá zoom. A conversão acontece inteira no seu computador. O arquivo não é enviado para servidor nenhum, o que importa quando o documento tem dado de cliente, contrato ou informação interna da empresa. Também não há cadastro nem marca d'água.
+
+## O que o PDF preserva do seu Markdown?
+
+A maior parte da sintaxe do [GitHub Flavored Markdown](https://github.github.com/gfm/) chega intacta. Vale conferir a tabela antes de converter um documento longo:
+
+| Elemento | Resultado no PDF |
+|---|---|
+| Títulos, negrito, itálico, links | Preservados |
+| Tabelas | Preservadas, com cabeçalho destacado |
+| Blocos de código | Com realce de sintaxe por linguagem |
+| Diagramas Mermaid | Renderizados como imagem vetorial |
+| Listas de tarefas `- [ ]` | Aparecem como `[ ]` e `[x]` |
+| Imagens por URL | Incluídas quando o servidor permite o download |
+| Emojis | Removidos (a fonte do PDF não tem esses caracteres) |
+| Notas de rodapé `[^1]` | Não são renderizadas |
+
+Se o seu texto depende de notas de rodapé, transforme-as em uma seção "Referências" no fim do documento antes de converter. E se você usa emoji como marcador visual (✅, ⚠️), troque por palavras ou por uma [lista de tarefas](/markdown-cheat-sheet/checkboxes).
+
+## Como forçar uma quebra de página no PDF?
+
+Markdown não tem sintaxe oficial para quebra de página, porque foi pensado para a web, onde página não existe. Cada ferramenta adotou a sua convenção. O MDTool aceita três, cada uma sozinha em uma linha:
+
+```markdown
+## Capítulo 1
+
+Texto do primeiro capítulo.
+
+<!-- pagebreak -->
+
+## Capítulo 2
+```
+
+Também funcionam `\pagebreak` e `\newpage`, que são os comandos que quem vem do LaTeX e do Pandoc já conhece. O comentário HTML tem uma vantagem: ele fica invisível no GitHub e em outros visualizadores, então o seu `.md` continua limpo. O guia de [quebra de página em Markdown](/markdown-cheat-sheet/page-breaks) mostra o que cada editor aceita.
+
+## Como converter Markdown em PDF com Pandoc?
+
+O [Pandoc](https://pandoc.org/MANUAL.html) é o conversor de documentos de linha de comando mais conhecido e é gratuito. O comando básico é este:
+
+```bash
+pandoc relatorio.md -o relatorio.pdf
+```
+
+Por padrão, o Pandoc gera o PDF via LaTeX, então você precisa de uma distribuição como TeX Live ou MiKTeX instalada. É uma instalação pesada, mas compensa se você precisa de controle fino: modelos próprios, sumário automático, numeração de seções, bibliografia com citações. Para acentos, `pdflatex` costuma funcionar bem; se aparecer erro com caracteres especiais, teste `--pdf-engine=xelatex`.
+
+Para um relatório de vez em quando, porém, instalar LaTeX inteiro é exagero.
+
+## E no VS Code ou no Typora?
+
+Os dois servem, com ressalvas:
+
+- **VS Code:** o editor não exporta PDF sozinho. A extensão [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) adiciona o comando `markdown-pdf: Export (pdf)` na paleta de comandos e usa o Chromium para gerar o arquivo. Ela baixa um Chromium próprio se não achar Chrome ou Edge na máquina.
+- **Typora:** exporta PDF nativamente em **Arquivo > Exportar > PDF** (**File > Export > PDF** com a interface em inglês). É um bom caminho se você já escreve nele, mas o Typora é pago depois do período de avaliação.
+
+Se você já vive dentro de um desses editores, use a exportação dele. Se só precisa transformar um arquivo em PDF agora, o navegador é mais rápido.
+
+## Qual método escolher?
+
+| Método | Instalação | Diagramas Mermaid | Melhor para |
+|---|---|---|---|
+| MDTool (navegador) | Nenhuma | Sim | Conversão rápida, documentos com dados sensíveis |
+| Pandoc + LaTeX | Pandoc e TeX Live/MiKTeX | Só com filtros extras | Teses, livros, automação |
+| VS Code + Markdown PDF | Extensão + Chromium | Depende da configuração | Quem já escreve no VS Code |
+| Typora | Aplicativo pago | Sim | Quem já escreve no Typora |
+
+Uma dica que vale para qualquer método: se o documento vai para alguém que precisa editar, PDF é o formato errado. Nesse caso, gere um `.docx` com o [conversor de Markdown para Word](/markdown-to-word), que cria títulos com o estilo **Título 1**, **Título 2** etc. de verdade, e a pessoa edita no Word normalmente.
+
+## Como deixar o PDF com cara de documento profissional?
+
+Algumas escolhas fazem mais diferença do que o tema:
+
+- **Comece com um único título `#`.** Ele vira o título do documento. Use `##` para as seções e `###` para subseções, sem pular nível.
+- **Mantenha as tabelas estreitas.** Tabela com oito colunas não cabe em A4 retrato. Se os dados são muitos, divida em duas tabelas. O [gerador de tabelas Markdown](/markdown-table-generator) ajuda a montar a sintaxe sem errar os pipes.
+- **Indique a linguagem nos blocos de código.** Escreva ` ```python ` em vez de só ` ``` ` para ativar o realce de sintaxe.
+- **Escolha o tema pelo público.** Academic para trabalho de faculdade e relatórios formais, GitHub para documentação técnica, Minimal para propostas e currículos. Dark fica bonito na tela, mas gasta muita tinta se alguém imprimir.
+
+## Perguntas frequentes
+
+**P: Converter Markdown em PDF online é seguro?**
+
+Depende da ferramenta. No MDTool, a conversão roda inteira no seu navegador e o conteúdo não é enviado para nenhum servidor. Em conversores que fazem upload do arquivo, leia a política de privacidade antes de usar com documentos confidenciais.
+
+**P: Preciso instalar alguma coisa para converter .md em PDF?**
+
+Não, se você usar um conversor no navegador. Pandoc exige o próprio Pandoc e uma distribuição LaTeX. O VS Code precisa de uma extensão, e o Typora é um aplicativo à parte.
+
+**P: Os acentos do português aparecem certinho no PDF?**
+
+Sim. A fonte usada pelo MDTool cobre os caracteres latinos acentuados, como ç, ã, é e ô. O que não aparece são emojis, que são removidos para não virarem quadradinhos.
+
+**P: Dá para converter um README do GitHub em PDF?**
+
+Dá. Copie o conteúdo bruto do `README.md` (botão Raw no GitHub) e cole no conversor. Imagens com caminho relativo, como `docs/img.png`, não carregam fora do repositório; troque por URLs completas antes de converter.
+
+**P: Como converter PDF de volta para Markdown?**
+
+Não existe conversão perfeita nesse sentido, porque o PDF guarda posição de texto e não estrutura. Se você ainda tiver a versão em Word, é melhor converter o `.docx` direto para Markdown, que preserva títulos, listas e tabelas.

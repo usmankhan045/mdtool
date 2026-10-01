@@ -1,0 +1,118 @@
+---
+title: "Markdown 转 Word：在线免费转换"
+description: "md 转 word 免费在线工具：在浏览器里把 Markdown 转成带“标题 1”样式的 .docx，也支持 Word 转 Markdown，文件不上传。"
+lang: "zh-Hans"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "word", "docx", "中文", "typora"]
+image: "https://images.unsplash.com/photo-1542435503-956c469947f6?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "白色桌面上的键盘、两支金色钢笔和一本打开的笔记本"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-word"
+  label: "打开 Markdown 转 Word 工具 →"
+  description: "粘贴 Markdown，一键下载可编辑的 .docx，标题自动套用 Word 标题样式。免费、无需注册、文件不上传服务器。"
+---
+
+在浏览器里打开 MDTool 的 Markdown 转 Word 工具，粘贴 .md 内容后点击下载，就能得到真正的 .docx：`#` 变成“标题 1”，`##` 变成“标题 2”，表格和列表可直接编辑。Word 转 Markdown 也能在线完成。
+
+平时用 Typora 或 VS Code 写 Markdown 很顺手，但交给领导、客户或者提交材料时，对方往往只认 Word。直接复制粘贴，标题会变成一堆 `#` 号，或者只是“加粗加大”的普通段落，导航窗格和自动目录都用不了。下面分别说明 md 转 word 和 word 转 markdown 的做法。
+
+## 怎么在线把 md 转成 word？
+
+打开 [MDTool 的 Markdown 转 Word 工具](/markdown-to-word)（界面是英文的，但只有几个按钮）：
+
+1. 把 Markdown 粘贴到左侧编辑区，或者直接把 .md 文件拖进去；
+2. 在右侧预览确认内容；
+3. 点击 **Download Word (Free)**，得到 .docx 文件；
+4. 用 Microsoft Word、WPS 或 LibreOffice 打开即可。
+
+整个转换在浏览器本地完成，文件不会上传到任何服务器，适合处理内部文档或含有个人信息的材料。免费，无需注册，没有水印。
+
+## 转换后哪些格式能保留？
+
+| Markdown 写法 | 在 Word 中的结果 |
+|---|---|
+| `#`、`##`、`###` | 标题 1、标题 2、标题 3 样式 |
+| `**加粗**`、`*斜体*` | 加粗、斜体 |
+| `-` 无序列表、`1.` 有序列表 | 项目符号列表、编号列表 |
+| 表格 | 可编辑的 Word 表格 |
+| 代码块 | 等宽字体（Courier New） |
+| 链接 | 可点击的超链接 |
+| Mermaid 图表、图片 | 不包含 |
+
+关键在第一行：生成的标题使用的是 Word 内置的标题样式，在中文版 Word 里显示为“标题 1”“标题 2”。所以打开文件后，可以在“视图”选项卡勾选“导航窗格”查看大纲，也可以在“引用 > 目录”里一键插入自动目录。想统一改标题字体，只要在“开始”选项卡的样式库里修改对应样式。微软的[添加标题帮助文档](https://support.microsoft.com/zh-cn/word/add-a-heading-in-a-word-document)对这套机制有详细说明。
+
+中文正文由 Word 使用系统里的中文字体显示，不会出现乱码。
+
+## 中文文档能直接转 PDF 吗？
+
+可以。[Markdown 转 PDF 工具](/markdown-to-pdf)检测到文档里有中文（或日文假名）时，会自动加载思源黑体（Noto Sans SC）字体，标题加粗、表格、列表和代码块里的中文都能正常显示，生成的 PDF 文字可以选中和搜索。字体文件约 6.5 MB，只在第一次转换中文文档时下载，之后由浏览器缓存；纯英文文档不会加载它。
+
+需要注意两点：字体覆盖 GB2312 全部汉字和常用繁体字，极少见的生僻字可能显示不出来；韩文暂不支持。如果文档需要套用固定的公司字体，仍然建议先转 Word，再在 Word 或 WPS 里通过“文件 > 另存为”导出 PDF。
+
+## Word 转 Markdown 怎么做？
+
+反方向用 [Word 转 Markdown 工具](/word-to-markdown)（繁体中文用户常搜的“word 轉 markdown”也是这个功能）：
+
+1. 把 .docx 文件拖到 **Drag and drop a .docx file here** 区域；
+2. 右侧会生成 GitHub 风格的 Markdown（GFM）；
+3. 点击 **Copy** 复制，或点击 **Download .md** 下载。
+
+转换依据的是 Word 的**样式**，而不是外观。用“标题 1”样式的段落会变成 `#`；只是手动调大字号、加粗的段落，仍然是普通段落。所以转换前最好先在“开始”选项卡里给标题套上标题样式，并在“审阅”选项卡中接受所有修订。
+
+另外有两点要知道：图片会以 base64 文本的形式直接嵌在 Markdown 里，文件会变大；脚注会变成文末的编号列表，正文中用 `[1]` 这样的链接对应。
+
+如果手上是老式的 .doc 文件（Word 97-2003 格式），需要先在 Word 里用“文件 > 另存为”保存成 .docx，再进行转换。
+
+## 用 Typora 或 VS Code 能转吗？
+
+可以，但都要借助 Pandoc：
+
+- **Typora**：菜单“文件 > 导出 > Word (.docx)”。根据 [Typora 官方文档](https://support.typora.io/Install-and-Use-Pandoc/)，Word 导出依赖 Pandoc，需要先安装 Pandoc 并重启 Typora。另外 Typora 是付费软件。
+- **VS Code**：没有内置的 Word 导出，常见做法是在终端里直接运行 Pandoc。
+
+[Pandoc](https://pandoc.org/MANUAL.html) 本身是免费的命令行工具，适合批量处理：
+
+```bash
+# Markdown 转 Word
+pandoc 报告.md -o 报告.docx
+
+# Word 转 Markdown，并把图片提取到文件夹
+pandoc 报告.docx -t gfm --extract-media=images -o 报告.md
+```
+
+需要套用公司模板时，可以加上 `--reference-doc=模板.docx`，生成的文档会沿用模板里的字体和样式。
+
+## 选哪种方法？
+
+| 场景 | 推荐方式 |
+|---|---|
+| 临时转一份，内容比较敏感 | MDTool 浏览器在线转换 |
+| 已经在用 Typora 写作 | Typora + Pandoc 导出 |
+| 批量转换或必须套公司模板 | Pandoc 命令行 |
+| 中文文档需要 PDF | 直接用 Markdown 转 PDF；需要公司字体时先转 Word |
+
+表格写法记不清的话，可以参考 [Markdown 表格速查](/markdown-cheat-sheet/tables)。
+
+## 常见问题
+
+**问：md 转 word 后中文会乱码吗？**
+
+不会。.docx 中的中文由 Word 或 WPS 使用系统中文字体显示，正常打开即可。
+
+**问：转换后的标题能生成自动目录吗？**
+
+能。标题使用的是 Word 内置的标题 1、标题 2 等样式，在“引用 > 目录”里可以直接插入目录。
+
+**问：Markdown 里的图片会带到 Word 里吗？**
+
+不会。MDTool 生成的 .docx 不包含图片和 Mermaid 图表，需要在 Word 中手动插入；如果要自动带上本地图片，可以改用 Pandoc。
+
+**问：文件会上传到服务器吗？**
+
+不会。Markdown 转 Word 和 Word 转 Markdown 都在浏览器本地完成，文件不会离开你的电脑。
+
+**问：WPS 能打开转换出来的文件吗？**
+
+能。生成的是标准 .docx 格式，WPS、Microsoft Word 和 LibreOffice 都可以打开和编辑。

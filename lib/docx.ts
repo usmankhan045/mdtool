@@ -41,6 +41,7 @@ export const DOCX_STYLES = `
 export async function generateDocx(markdown: string, filename = 'document.docx'): Promise<void> {
   const docx = await import('docx');
   const tokens = marked.lexer(markdown);
+  orderedListInstance = 0;
   const children = tokensToDocxElements(tokens, docx);
 
   const doc = new docx.Document({
@@ -48,15 +49,15 @@ export async function generateDocx(markdown: string, filename = 'document.docx')
       config: [
         {
           reference: ORDERED_LIST_REF,
-          levels: [
-            {
-              level: 0,
-              format: docx.LevelFormat.DECIMAL,
-              text: '%1.',
-              alignment: docx.AlignmentType.START,
-              style: { paragraph: { indent: { left: 360, hanging: 260 } } },
-            },
-          ],
+          // Nine levels so nested ordered lists keep their depth:
+          // 1. → a. → i. → 1. … each indented one step further.
+          levels: Array.from({ length: 9 }, (_, level) => ({
+            level,
+            format: [docx.LevelFormat.DECIMAL, docx.LevelFormat.LOWER_LETTER, docx.LevelFormat.LOWER_ROMAN][level % 3],
+            text: `%${level + 1}.`,
+            alignment: docx.AlignmentType.START,
+            style: { paragraph: { indent: { left: 360 * (level + 1), hanging: 260 } } },
+          })),
         },
       ],
     },
@@ -98,18 +99,7 @@ function tokensToDocxElements(tokens: Token[], docx: DocxModule): (InstanceType<
         break;
       }
       case 'list': {
-        const t = token as Tokens.List;
-        t.items.forEach((item, index) => {
-          elements.push(
-            new docx.Paragraph({
-              children: inlineToRuns(item.tokens, {}, docx),
-              ...(t.ordered
-                ? { numbering: { reference: ORDERED_LIST_REF, level: 0 } }
-                : { bullet: { level: 0 } }),
-            })
-          );
-          void index;
-        });
+        listToParagraphs(token as Tokens.List, 0, docx, elements);
         break;
       }
       case 'blockquote': {
@@ -188,6 +178,48 @@ function tokensToDocxElements(tokens: Token[], docx: DocxModule): (InstanceType<
   }
 
   return elements;
+}
+
+// Each ordered list gets its own numbering instance so a second list restarts
+// at 1 instead of continuing the previous list's count.
+let orderedListInstance = 0;
+
+// Emits one Word paragraph per list item and recurses into nested lists one
+// level deeper, so indentation (and numbering style) follows the Markdown.
+function listToParagraphs(
+  list: Tokens.List,
+  level: number,
+  docx: DocxModule,
+  out: (InstanceType<DocxModule['Paragraph']> | InstanceType<DocxModule['Table']>)[]
+): void {
+  const instance = list.ordered ? ++orderedListInstance : 0;
+  for (const item of list.items) {
+    const inline: Token[] = [];
+    const nested: Tokens.List[] = [];
+    for (const tk of item.tokens) {
+      if (tk.type === 'list') {
+        nested.push(tk as Tokens.List);
+      } else if (tk.type === 'checkbox') {
+        // rendered from item.checked below
+      } else if (tk.type === 'paragraph') {
+        // Loose list items wrap their text in paragraphs; keep inline formatting.
+        if (inline.length) inline.push({ type: 'br', raw: '' } as Token);
+        inline.push(...((tk as Tokens.Paragraph).tokens ?? []));
+      } else {
+        inline.push(tk);
+      }
+    }
+    const checkbox = item.task ? [makeRun(item.checked ? '\u2611 ' : '\u2610 ', {}, docx)] : [];
+    out.push(
+      new docx.Paragraph({
+        children: [...checkbox, ...inlineToRuns(inline, {}, docx)],
+        ...(list.ordered
+          ? { numbering: { reference: ORDERED_LIST_REF, level, instance } }
+          : { bullet: { level } }),
+      })
+    );
+    for (const child of nested) listToParagraphs(child, Math.min(level + 1, 8), docx, out);
+  }
 }
 
 function inlineToRuns(

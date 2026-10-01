@@ -1,0 +1,155 @@
+---
+title: "Markdown to Confluence and Jira: What Works"
+description: "Get Markdown into Confluence and Jira: what the Cloud editor converts, Markdown macros, ADF explained, Jira wiki markup vs Markdown, and the HTML route."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "confluence", "jira", "atlassian", "html", "documentation"]
+image: "https://images.unsplash.com/photo-1552664730-d307ca884978?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Team meeting around a table with laptops while a colleague arranges sticky notes on a whiteboard"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-html"
+  label: "Open Markdown to HTML Converter →"
+  description: "Render your Markdown, copy the formatted preview, and paste it into Confluence or Jira with headings, tables and code blocks intact. Nothing is uploaded."
+---
+
+Confluence Cloud and Jira Cloud don't store Markdown. They store Atlassian Document Format (ADF), a JSON format, and treat Markdown as typing shortcuts. To move a whole Markdown file in, render it to HTML, copy the formatted result, and paste it into the editor. For the API, convert Markdown to ADF with a library such as marklassian.
+
+The rest of this guide covers what the editors actually convert, where the Markdown macro fits, what ADF looks like, how Jira wiki markup differs from Markdown, and the HTML route step by step.
+
+## Does Confluence Cloud support Markdown?
+
+Partly. Atlassian documents Markdown in the Cloud editor as [autoformatting you type](https://support.atlassian.com/confluence-cloud/docs/available-markdown-commands/): the editor converts the syntax into rich text as you go, and the page keeps no Markdown source.
+
+| You type | Confluence Cloud converts it to |
+|----------|---------------------------------|
+| `**Bold**` | Bold text |
+| `*Italic*` | Italic text |
+| `~~Strikethrough~~` | Strikethrough |
+| `` `Code` `` | Inline code |
+| `#` to `######` then Space | Heading 1 to 6 |
+| `1.` then Space | Numbered list |
+| `*` then Space | Bulleted list |
+| `>` then Space | Quote |
+| ` ``` ` then Space | Code snippet block |
+| `---` then Space | Divider |
+| `[LinkTitle](http://a.com)` | Link |
+
+Two things are missing from that list: tables and bulk paste. Atlassian's Markdown docs don't mention pipe tables, and they don't document what happens when you paste a whole Markdown file. Pasted plain-text Markdown is often converted in practice, but results vary by browser and by where you copied it from, and tables and nested lists are the parts most likely to break. Treat raw paste as "try it, then check," not as a supported import.
+
+The older Cloud editor had an **Insert > Markup** dialog with a Markdown option. That dialog belongs to the legacy editor, and Atlassian's [wiki markup page](https://support.atlassian.com/confluence-cloud/docs/insert-confluence-wiki-markup/) is now labeled for the legacy editor only.
+
+## What is the Markdown macro in Confluence?
+
+Atlassian doesn't ship a Markdown macro in the current Cloud editor. Marketplace apps fill the gap. For example, Appfire's [Markdown for Confluence](https://appfire.atlassian.net/wiki/spaces/MARKDOWN) provides macros that render Markdown entered in the macro body, loaded from an attachment, or fetched from a URL.
+
+A macro is the right choice when the Markdown has a source of truth somewhere else, such as a README in a Git repository. The page shows the rendered file, and updates to the file show up without editing the page. The downside is that the content lives inside a macro: it isn't editable as normal Confluence text, and Confluence search and inline comments may not treat it like page content. For a one-time migration, converting to native content (below) is usually the better result.
+
+## What is Atlassian Document Format (ADF)?
+
+[ADF](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) is the JSON format Atlassian uses for rich text in its cloud products. A document is a tree: a root `doc` node with a `version`, block nodes (paragraphs, headings, lists, tables, code blocks, panels), inline nodes (text, mentions, emoji, dates, status), and marks on text (strong, em, code, link and others).
+
+"Hello **world**" in ADF looks like this:
+
+```json
+{
+  "version": 1,
+  "type": "doc",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "Hello " },
+        { "type": "text", "text": "world", "marks": [{ "type": "strong" }] }
+      ]
+    }
+  ]
+}
+```
+
+You meet ADF when you automate. The [Jira Cloud REST API v3](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/) uses ADF for issue descriptions, comments and other rich text fields, while v2 offers the same operations without ADF. In Confluence's REST API v2, page bodies can be read in `storage` (Confluence's XHTML-based [storage format](https://confluence.atlassian.com/doc/confluence-storage-format-790796544.html)) or `atlas_doc_format`.
+
+### How do you convert Markdown to ADF?
+
+Use a library instead of writing JSON by hand. [marklassian](https://www.npmjs.com/package/marklassian) is a small JavaScript package that converts headings, emphasis, links, images, code blocks with languages, nested lists, blockquotes, rules, tables and task lists:
+
+```javascript
+import { markdownToAdf } from 'marklassian';
+
+const adf = markdownToAdf('# Release notes\n\n- Fixed **login** bug');
+// Send `adf` as the "description" field in a Jira REST API v3 request.
+```
+
+`md-to-adf` on npm does the same job, and Atlassian publishes `@atlaskit/editor-markdown-transformer`, the transformer from its own editor packages, which pulls in more dependencies.
+
+## How is Jira wiki markup different from Markdown?
+
+Jira Server and Data Center and the Confluence legacy editor use wiki markup, an Atlassian syntax that predates Markdown. Jira Cloud's current editor uses Markdown-style shortcuts instead: Atlassian's [Jira Cloud docs](https://support.atlassian.com/jira-software-cloud/docs/markdown-and-keyboard-shortcuts/) say you can type Markdown and it converts to formatted content as you go.
+
+The two syntaxes clash in places. In wiki markup, `*text*` is bold, but in Markdown it's italic:
+
+| Element | Markdown | Jira / Confluence wiki markup |
+|---------|----------|-------------------------------|
+| Heading 1 | `# Title` | `h1. Title` |
+| Bold | `**bold**` | `*bold*` |
+| Italic | `*italic*` | `_italic_` |
+| Strikethrough | `~~text~~` | `-text-` |
+| Inline code | `` `code` `` | `{{code}}` |
+| Code block | ` ```java ` … ` ``` ` | `{code:java}` … `{code}` |
+| Link | `[text](https://url)` | `[text\|https://url]` |
+| Bulleted list | `- item` | `* item` |
+| Numbered list | `1. item` | `# item` |
+| Quote | `> text` | `bq. text` |
+| Table header | `\| A \| B \|` + `\|---\|---\|` | `\|\|A\|\|B\|\|` |
+
+The syntax reference comes from Atlassian's [Confluence wiki markup guide](https://confluence.atlassian.com/doc/confluence-wiki-markup-251003035.html). If you paste Markdown into a field that expects wiki markup, `#` headings become numbered list items and `**bold**` comes out wrong, so check which renderer the field uses first.
+
+## How do you paste Markdown into Confluence through HTML?
+
+This is the most reliable manual route, because rich text on the clipboard (HTML) is the normal input for Confluence's editor, the same thing it receives when you copy from a web page or a Word document. Tables and nested lists arrive as structure rather than as pipes and asterisks.
+
+1. Open the [Markdown to HTML converter](/markdown-to-html) and paste your Markdown.
+2. Switch the output panel to **Preview**. The Markdown is now rendered HTML: real headings, tables, lists and code blocks.
+3. Click inside the preview, select all of it (Ctrl+A / Cmd+A), and copy (Ctrl+C / Cmd+C). Your clipboard now holds formatted content, not Markdown symbols.
+4. In Confluence or Jira, put the cursor in the editor and paste. Headings arrive as Confluence headings and tables as native tables you can edit.
+5. Check the parts that don't always map one to one. Code blocks may arrive as plain preformatted text rather than Confluence code snippets; convert them if you want the language label and highlighting. Relative image paths won't resolve, so upload those images to the page.
+
+MDTool runs in your browser, so the document isn't uploaded anywhere on the way. That matters for internal specs and runbooks, which is exactly what most teams put in Confluence.
+
+If you're automating a migration instead, convert to ADF for Jira Cloud and either ADF or storage format for Confluence, and send it through the REST API.
+
+<EmbeddedTool />
+
+## Which method should you use?
+
+| Situation | Best route |
+|-----------|-----------|
+| A few lines while writing a page | Type Markdown shortcuts in the editor |
+| One document with tables or code | HTML route: render, copy the preview, paste |
+| A README that changes in Git | A Marketplace Markdown macro |
+| Many pages or a scripted migration | Markdown to ADF (or storage format) via the REST API |
+| Jira Data Center fields | Convert to wiki markup, or paste rendered HTML into the visual editor |
+
+For the reverse direction, exporting a Confluence page and cleaning it up as Markdown, see [HTML to Markdown for CMS migrations](/blog/html-to-markdown-cms-migration).
+
+## Frequently Asked Questions
+
+**Q: Can I paste Markdown directly into Confluence Cloud?**
+
+You can try. The Cloud editor converts Markdown syntax as you type and often converts pasted Markdown too, but Atlassian only documents the typing shortcuts. Tables are the usual casualty. For a reliable result, paste rendered HTML instead of raw Markdown.
+
+**Q: What is ADF in Jira?**
+
+ADF (Atlassian Document Format) is the JSON format Jira Cloud and Confluence Cloud use to store rich text. Jira's REST API v3 expects ADF for descriptions and comments, so Markdown must be converted to ADF before you send it.
+
+**Q: How do I convert Markdown to ADF?**
+
+Use a converter library. In JavaScript, `markdownToAdf()` from the marklassian package returns an ADF document from a Markdown string. Alternatives include md-to-adf and Atlassian's own editor-markdown-transformer package.
+
+**Q: Does Jira use Markdown or wiki markup?**
+
+Both, depending on the product. Jira Cloud's editor accepts Markdown-style shortcuts. Jira Server and Data Center use wiki markup, where `*text*` means bold and `h1.` makes a heading.
+
+**Q: Is there a free HTML to Confluence converter?**
+
+You don't need a plugin for a single document. Confluence converts pasted rich text on its own, so render your Markdown in a free tool like MDTool's Markdown to HTML converter, copy the preview, and paste it into the page.

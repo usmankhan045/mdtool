@@ -1,12 +1,35 @@
 ---
 title: "Markdown to PDF Code Blocks: Why They Break"
-description: "Discover why code blocks break in most Markdown to PDF converters and learn the exact steps to get syntax-highlighted, perfectly formatted code in your PDFs."
-datePublished: "2026-03-08"
-dateModified: "2026-07-03"
+description: "Why code blocks break when you convert Markdown to PDF, and how to get syntax-highlighted code and rendered Mermaid diagrams in your PDF, free online."
+datePublished: "2026-06-23"
+dateModified: "2026-10-01"
 tags: ["markdown", "pdf", "code-blocks", "developer-tools", "syntax-highlighting"]
 image: "/blog/markdown-to-pdf-code-blocks.jpg"
 imageAlt: "Blurred close-up of syntax-highlighted code on a dark screen"
 author: "Muhammad Usman"
+---
+
+## How do you convert Markdown to PDF with syntax highlighting for code blocks?
+
+Give every fenced code block a language tag (` ```python `, ` ```js `), paste the Markdown into a converter that highlights code in the PDF itself, and download. In [MDTool's Markdown to PDF converter](/markdown-to-pdf) that's three steps:
+
+1. Paste your Markdown. Check that each code fence names its language.
+2. Pick a theme: GitHub, Academic, Minimal or Dark. Each one has its own highlight palette, so keywords, strings, numbers and comments are colored differently in the PDF.
+3. Click **Download PDF**. Code keeps its indentation and colors, Mermaid blocks (` ```mermaid `) become real diagrams, and the whole conversion runs in your browser, so the code is never uploaded.
+
+| What you need | How MDTool handles it |
+|---------------|-----------------------|
+| Colored syntax | highlight.js tokens with a palette per theme |
+| Languages | JavaScript, TypeScript, Python, Bash, CSS, HTML/XML, JSON, YAML, SQL, Rust, Go, Dart |
+| Monospace font | Courier for code in standard Latin characters |
+| Indentation | Leading spaces preserved |
+| Long lines | Wrapped to the page instead of cut off |
+| Diagrams | ` ```mermaid ` blocks rendered as diagrams |
+| Selectable text | Yes: the PDF contains real text, not a screenshot |
+| Page breaks | `<!-- pagebreak -->`, `\pagebreak`, `\newpage` or `<div class="page-break"></div>` on its own line |
+
+If you need this in a script or CI job instead, MDTool has no CLI; see [Markdown to PDF with Python, Pandoc and Node](/blog/markdown-to-pdf-python-pandoc) for command-line options with highlighting.
+
 ---
 
 ## Why Code Blocks Are the Hardest Part of Markdown to PDF Conversion
@@ -54,7 +77,8 @@ A **correct PDF converter** preserves:
 Here's the full JavaScript snippet we'll use to test PDF output throughout this guide:
 
 ```javascript
-// MDTool API example — fetch and convert Markdown to PDF
+// Illustrative example: a minimal browser-side Markdown to PDF function.
+// (Not MDTool's own code; MDTool builds a vector PDF with pdfmake instead.)
 async function convertMarkdownToPDF(markdownContent) {
   // Parse Markdown into an HTML string
   const { marked } = await import("marked");
@@ -86,6 +110,8 @@ async function convertMarkdownToPDF(markdownContent) {
 
 Notice the three things that make this work: the `<pre>` element gets a background and padding, `code` gets a monospace font, and `html2pdf.js` is imported dynamically so it only ever runs in the browser, never on the server where `window` is undefined.
 
+The catch with this approach is that `html2pdf.js` takes a picture of the page with `html2canvas`. The code in the PDF is an image: you can't select or search it, and it blurs when you zoom. That's why MDTool switched to `pdfmake`, which writes the code into the PDF as real text, with the highlight colors applied to each token.
+
 ## Step-by-Step: Convert Markdown with Code Blocks to PDF
 
 ### Step 1: Paste Your Markdown
@@ -98,7 +124,7 @@ Open the converter below (or at [/markdown-to-pdf](/markdown-to-pdf)) and paste 
 ```
 ````
 
-Language identifiers like `javascript`, `python`, `bash`, `typescript`, and `json` enable syntax highlighting. Without one, the converter still preserves formatting, but coloring is skipped.
+Language identifiers like `javascript`, `python`, `bash`, `typescript`, and `json` enable syntax highlighting. Without one, the converter tries to guess the language, which works for common code but is less reliable, so tag your fences.
 
 ### Step 2: Check the Live Preview
 
@@ -112,11 +138,11 @@ If the preview looks right, the PDF will match, because the converter uses the s
 
 ### Step 3: Choose a Theme (Optional)
 
-Light themes (GitHub, Default) work best for printed PDFs because they use dark text on a white or light-gray code background, exactly what you'd expect on paper. Dark themes look great on screen but can waste toner and reduce readability when physically printed.
+Light themes (GitHub, Academic, Minimal) work best for printed PDFs because they use dark text on a white or light-gray code background, exactly what you'd expect on paper. Dark themes look great on screen but can waste toner and reduce readability when physically printed.
 
 ### Step 4: Download the PDF
 
-Click **Download PDF**. The conversion happens entirely in your browser using `html2pdf.js`, so your Markdown never leaves your machine, and no server processes it.
+Click **Download PDF**. The conversion happens entirely in your browser using `pdfmake`, so your Markdown never leaves your machine, and no server processes it.
 
 <Callout type="success">
   **Tip:** For technical documentation, use the GitHub theme. It matches the code block style developers already recognize from GitHub READMEs.
@@ -139,20 +165,23 @@ Fix: Add a language tag after the opening triple backtick. ` ```js ` instead of 
 **Problem: Indentation collapses to a single space**
 Fix: Use spaces, not tabs. Some PDF renderers collapse tab characters. Replace tabs with 2 or 4 spaces.
 
-**Problem: Code block background is white/invisible in the PDF**
-Fix: Use a theme other than "Minimal." The Minimal theme intentionally strips backgrounds for cleaner prose documents. Switch to GitHub or Default.
+**Problem: Code block background is hard to see when printed**
+Fix: Every theme gives code blocks a tinted background and a border, but the light themes use a very pale gray that some printers barely show. Academic has the darkest code border of the light themes. For on-screen reading, the Dark theme gives the strongest contrast.
+
+**Problem: A Mermaid diagram shows up as code**
+Fix: The fence must be tagged exactly ` ```mermaid `. If the diagram has a syntax error, the block stays as code; check the live preview, which shows the same result the PDF will.
 
 ## How MDTool Handles Code Blocks Differently
 
 Most online Markdown-to-PDF converters run on the server: they accept your Markdown, process it with a headless browser or a PDF library, and return a file. The problem is CSS support in these pipelines is inconsistent, especially for code blocks.
 
-MDTool takes a different approach. The entire conversion runs **client-side in your browser** using `html2pdf.js` with `html2canvas`. This means:
+MDTool takes a different approach. The entire conversion runs **client-side in your browser** using `pdfmake`. This means:
 
-1. **Full CSS fidelity**: the PDF is a snapshot of what you actually see in the preview
+1. **Real text, not a screenshot**: code in the PDF is selectable, searchable and sharp at any zoom
 2. **No data sent to a server**: your code stays on your machine
-3. **Consistent output**: what you see is exactly what you get
+3. **Consistent output**: the preview and the PDF come from the same rendered HTML, with highlight colors carried into the PDF and Mermaid diagrams drawn before the PDF is built
 
-This is especially important for code blocks, which rely on CSS properties (`white-space: pre`, `font-family: monospace`, `background-color`) that server-side PDF generators often discard.
+This is especially important for code blocks, which depend on whitespace, a monospace font and per-token colors that many converters discard.
 
 For GitHub READMEs specifically, check out our guide on [converting GitHub READMEs to PDF](/blog/github-readme-to-pdf). It covers badge handling and image-heavy READMEs alongside code blocks. If you need a refresher on fenced code block syntax itself, see the [Markdown cheatsheet](/markdown-cheat-sheet).
 
@@ -160,15 +189,15 @@ For GitHub READMEs specifically, check out our guide on [converting GitHub READM
 
 **Q: Does MDTool support syntax highlighting for all programming languages?**
 
-It supports the most common ones: JavaScript, TypeScript, Python, Bash, JSON, HTML, CSS, SQL, Go, Rust, and more. The underlying parser uses [`marked`](https://marked.js.org/) with [`highlight.js`](https://highlightjs.org/) for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved, and only color tokens are skipped.
+It supports JavaScript, TypeScript, Python, Bash, JSON, YAML, HTML/XML, CSS, SQL, Go, Rust and Dart. The underlying parser uses [`marked`](https://marked.js.org/) with [`highlight.js`](https://highlightjs.org/) for token coloring. If your language isn't highlighted, formatting (monospace font, background, indentation) is still preserved, and only color tokens are skipped.
 
 **Q: Will the code block look the same in the PDF as in the preview?**
 
-Yes. The PDF is generated from the same rendered HTML you see in the preview panel. There's no second render step that could lose styles.
+Very close. The PDF is built from the same rendered HTML you see in the preview, with the same token colors, indentation and diagrams. Fonts can differ slightly: code uses Courier in the PDF, and long lines wrap to fit the page.
 
 **Q: Can I convert a file with hundreds of lines of code?**
 
-Yes, with a caveat: very long files (10,000+ lines) can slow down the browser-side conversion because `html2canvas` captures the entire rendered page as an image. For large files, consider splitting them into sections or reducing the canvas scale in the settings.
+Yes. Because the PDF is built as text rather than as an image, long files stay small and sharp. Very large documents take longer to build in the browser, so for files with thousands of lines of code, split them into sections or use page breaks to keep each section readable.
 
 **Q: My code has backticks inside the code block. How do I escape them?**
 

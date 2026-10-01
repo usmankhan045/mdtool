@@ -45,7 +45,7 @@ const FAQ_ITEMS = [
         CSS classes baked in. Include a highlight.js stylesheet on your page (or use the &quot;Full document&quot; download, which links one automatically) to see colors.
       </>
     ),
-    text: 'Yes. Code blocks are rendered with highlight.js CSS classes baked in. Include a highlight.js stylesheet on your page to see colors.',
+    text: 'Yes. Code blocks are rendered with highlight.js CSS classes baked in. Include a highlight.js stylesheet on your page (or use the \"Full document\" download, which links one automatically) to see colors.',
   },
   {
     q: 'Is my Markdown sent to a server?',
@@ -83,7 +83,7 @@ const FAQ_ITEMS = [
         instead.
       </>
     ),
-    text: 'No. A mermaid code block is preserved as a labeled code block showing the raw syntax, not rendered into a visual diagram. For actual Mermaid diagram rendering, use the Markdown to PDF converter instead.',
+    text: 'No. A ```mermaid block is preserved as a labeled code block showing the raw syntax, not rendered into a visual diagram. For actual Mermaid diagram rendering, use the Markdown to PDF converter instead.',
   },
   {
     q: 'Are nested lists and blockquotes supported?',

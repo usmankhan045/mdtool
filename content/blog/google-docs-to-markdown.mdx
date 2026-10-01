@@ -1,0 +1,130 @@
+---
+title: "Google Docs to Markdown: 4 Methods Compared"
+description: "Convert Google Docs to Markdown with File → Download → Markdown, Copy as Markdown, the Docs to Markdown add-on, or a .docx export. Compare what each keeps."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "google-docs", "docx", "conversion", "developer-tools"]
+image: "https://images.unsplash.com/photo-1517842645767-c639042777db?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Open notebook with the word Notes handwritten on the page, a fountain pen and reading glasses"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/word-to-markdown"
+  label: "Open Word to Markdown Converter →"
+  description: "Download your Google Doc as .docx and convert it to clean GitHub Flavored Markdown in your browser. Free, no signup, no upload."
+---
+
+The quickest way to convert a Google Doc to Markdown is **File → Download → Markdown (.md)**, built into Google Docs since 2024. For part of a document, enable Markdown in **Tools → Preferences** and use **Copy as Markdown**. The Docs to Markdown add-on and a .docx export through a converter are the alternatives when images or tables matter.
+
+Each route produces slightly different Markdown. The native export is fine for most text documents, but it handles images in a way that surprises people, and tables with merged cells need a different tool. Here is how each method works and when to choose it.
+
+## Can Google Docs export Markdown directly?
+
+Yes. Google added Markdown export in July 2024, alongside Markdown import, and it is enabled by default for Workspace and personal accounts ([Google Workspace Updates](https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html)). The steps:
+
+1. Open the Google Doc.
+2. Click **File → Download → Markdown (.md)**.
+3. Your browser saves a `.md` file named after the document.
+
+Headings become `#` to `######`, bold and italic become `**` and `*`, lists and links convert, and tables become pipe tables. It is a whole-document export, so you get everything from the title to the last paragraph.
+
+**The image catch.** The native export embeds images inside the `.md` file as base64 data. Each image becomes a reference such as `![][image1]` in the text, with a long `[image1]: <data:image/png;base64,...>` definition at the bottom of the file. That keeps the file self-contained, but a single screenshot can add hundreds of kilobytes of encoded text. GitHub, static site generators and most code reviewers handle this badly, so for repositories you will usually want to extract the images to real files and replace the references with paths like `./images/diagram.png`.
+
+## How do you copy part of a doc as Markdown?
+
+When you only need a section, skip the file download:
+
+1. Go to **Tools → Preferences**, tick **Enable Markdown**, and click **OK**. This option is off by default ([Google Docs Editors Help](https://support.google.com/docs/answer/12014036)).
+2. Select the text you want.
+3. Right-click and choose **Copy as Markdown**.
+4. Paste into your editor, issue, pull request or chat.
+
+This is the method I use most for pasting a drafted section into a GitHub issue or a README. It keeps headings, emphasis, lists and links, and you avoid creating a file you'll delete a minute later.
+
+## What does the Docs to Markdown add-on do better?
+
+Before native export existed, the standard tool was **Docs to Markdown** (GD2md-html), a free add-on by Bean Road Communications, available on the [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/docs_to_markdown/700168918607). It is still useful because it makes different choices from the native export.
+
+To use it:
+
+1. Install it from the Marketplace (or **Extensions → Add-ons → Get add-ons** and search "Docs to Markdown").
+2. Open your doc and select **Extensions → Docs to Markdown → Convert**.
+3. A sidebar opens. Click **Markdown** (or **HTML**) to convert the whole document, or select a portion first to convert only that.
+4. Copy the output from the sidebar.
+
+Per the [project wiki](https://github.com/evbacher/gd2md-html/wiki), three behaviours set it apart:
+
+- **Tables convert to HTML tables**, including merged rows and columns. Pipe tables can't express merged cells, so this is the only route here that keeps them.
+- **Images become placeholders** with paths like `images/image1.png`, plus a warning. You move the image files yourself, which is what a repository wants anyway.
+- **Footnotes convert** to standard Markdown footnotes (`[^1]`).
+
+It also inserts warnings and alerts in the output where it couldn't convert something cleanly. Read them, then delete them before publishing.
+
+## When should you use the .docx route?
+
+The fourth method goes through Word format:
+
+1. In Google Docs, click **File → Download → Microsoft Word (.docx)**.
+2. Open MDTool's [Word to Markdown converter](/word-to-markdown) and drop the `.docx` file in.
+3. Copy or download the Markdown.
+
+The converter reads the file with mammoth.js, which maps Word's named styles to structure, then turndown renders GitHub Flavored Markdown. Everything happens in your browser, so the file is never uploaded anywhere. That matters for contracts, internal specs or anything you wouldn't paste into a random web form.
+
+Choose this route when you want GFM-specific output (dash bullets, fenced code, pipe tables) that drops straight into a GitHub repository or an Obsidian vault, or when you already have a `.docx` from someone else. The trade-offs are documented in [DOCX to Markdown](/blog/docx-to-markdown): embedded images stay inline as base64 `data:` links rather than separate files, merged table cells are flattened, and footnotes become a numbered list at the end.
+
+## Which Google Docs to Markdown method is best?
+
+| | File → Download → Markdown | Copy as Markdown | Docs to Markdown add-on | .docx + MDTool |
+|---|---|---|---|---|
+| Setup | None | Enable Markdown once | Install add-on | None |
+| Scope | Whole doc | Selection | Whole doc or selection | Whole doc |
+| Headings | `#` to `######` | `#` to `######` | `#` to `######` | `#` to `######` |
+| Tables | Pipe tables | Pipe tables | HTML tables, merged cells kept | Pipe tables, merges flattened |
+| Images | Embedded as base64 | Not useful for images | Placeholder paths to fill in | Inline base64 |
+| Footnotes | Check output | Check output | Markdown footnotes | Numbered list at the end |
+| Privacy | Stays in Google | Stays in Google | Runs in Docs | Runs in your browser |
+
+My defaults: **Copy as Markdown** for a section, **File → Download** for a text-heavy doc, the **add-on** when tables have merged cells or there are footnotes, and the **.docx route** when the doc came to me as a Word file or I want output shaped for GitHub.
+
+## What about Google Sheets to Markdown?
+
+Google Sheets has no Markdown download option. The clean workaround uses the clipboard:
+
+1. Select the cells, including the header row, and copy them (**Ctrl+C** or **Cmd+C**).
+2. Paste into the [Markdown table generator](/markdown-table-generator).
+3. Copy the generated pipe table.
+
+This works because Sheets places copied cells on the clipboard as tab-separated text, which a table generator can split into columns reliably. The full workflow, including how to handle pipes and line breaks inside cells, is in [Excel to Markdown Table](/blog/excel-to-markdown-table); it applies to Sheets unchanged.
+
+## How do you clean up the Markdown afterwards?
+
+Whatever route you take, a two-minute pass prevents most problems:
+
+1. **Check heading levels.** If the doc uses both the Title style and Heading 1, look at how the top of the file exported. Most READMEs and docs sites expect exactly one `#` heading per file, with sections starting at `##`.
+2. **Look for fake headings.** Text that was made big and bold by hand, instead of styled as a heading, exports as bold paragraphs. Fix them in the doc with the **Styles** dropdown and export again, or edit the `#` marks directly.
+3. **Replace base64 images** from the native export with file paths.
+4. **Remove empty lines and stray escapes.** Exports sometimes escape characters like `\_` or `\*` that you typed literally. Check them against the [Markdown cheat sheet](/markdown-cheat-sheet).
+5. **Render it once.** Preview the file in VS Code, on GitHub, or in any Markdown viewer before committing.
+
+Going the other direction, from Markdown into a doc, is covered in [Markdown to Google Docs](/blog/markdown-to-google-docs).
+
+## Frequently Asked Questions
+
+**Q: Where is the Markdown option in the Google Docs download menu?**
+
+Open the document and click **File → Download → Markdown (.md)**. It appears alongside formats like Microsoft Word and PDF. Import and export are on by default; only Copy as Markdown and Paste from Markdown require enabling in **Tools → Preferences**.
+
+**Q: Why is my exported .md file so large?**
+
+The native export embeds every image as base64 text inside the Markdown file. A few screenshots can add hundreds of kilobytes. Save the images separately, reference them by path, and delete the long data definitions at the bottom of the file.
+
+**Q: Does the native export keep tables?**
+
+Simple tables become GitHub-style pipe tables. Pipe tables can't represent merged cells, so if your table uses merges, the Docs to Markdown add-on is the better choice because it outputs HTML tables that keep them.
+
+**Q: Is the Docs to Markdown add-on still needed now that Docs exports Markdown?**
+
+Not for most documents. It remains useful for footnotes, tables with merged cells, converting a selection to a file-ready format, and documents where you want image placeholders instead of base64 data.
+
+**Q: Can I convert a Google Doc to Markdown without giving an add-on access to it?**
+
+Yes. Use the built-in **File → Download → Markdown (.md)**, or download a `.docx` and convert it with MDTool's Word to Markdown tool, which processes the file locally in your browser and uploads nothing.

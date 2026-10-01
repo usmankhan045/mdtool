@@ -31,7 +31,7 @@ export default function ContactPage() {
         <section className="max-w-3xl mx-auto px-4 py-10 prose prose-gray">
           <p>
             The fastest way to reach the MDTool team is by email:{' '}
-            <a href="mailto:hello@mdtool.dev">hello@mdtool.dev</a>
+            <a href="mailto:syncwithusman@gmail.com">syncwithusman@gmail.com</a>
           </p>
           <p>When reporting a bug, it helps to include:</p>
           <ul>

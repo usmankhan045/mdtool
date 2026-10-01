@@ -39,13 +39,13 @@ export default function BlogCard({ post }: Props) {
         )}
 
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors leading-snug">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors leading-snug">
           {post.title}
-        </h2>
+        </h3>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
-          {post.description}
+        <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-1">
+          {post.description.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? post.description}
         </p>
 
         {/* Meta */}

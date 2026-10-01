@@ -4,12 +4,12 @@ import StructuredData from '@/components/seo/StructuredData';
 import { GUIDE_TOPICS } from '@/lib/cheatsheet';
 
 export const metadata: Metadata = {
-  title: 'Markdown Cheat Sheet — Every Syntax on One Page (2026)',
+  title: 'Markdown Cheat Sheet with Examples (Copy & Paste, 2026)',
   description:
-    'The complete Markdown cheat sheet: headings, bold, links, images, lists, checkboxes, tables, code blocks, and GitHub Flavored Markdown — with copyable examples for every element.',
+    'Every Markdown syntax with a copyable example: headings, bold, links, images, lists, checkboxes, tables, code blocks and GitHub Flavored Markdown, on one page.',
   alternates: { canonical: 'https://www.mdtool.dev/markdown-cheat-sheet' },
   openGraph: {
-    title: 'Markdown Cheat Sheet — Every Syntax on One Page',
+    title: 'Markdown Cheat Sheet with Examples',
     description:
       'Quick reference for all Markdown syntax, from headings to GFM tables and task lists, with copyable examples.',
     url: 'https://www.mdtool.dev/markdown-cheat-sheet',
@@ -63,12 +63,12 @@ export default function MarkdownCheatSheetPage() {
   return (
     <>
       <StructuredData
-        type="blog"
-        name="Markdown Cheat Sheet — Every Syntax on One Page"
+        type="techarticle"
+        name="Markdown Cheat Sheet with Examples"
         url="/markdown-cheat-sheet"
         description="The complete Markdown cheat sheet: every syntax element with copyable examples, plus GitHub Flavored Markdown extensions."
         datePublished="2026-06-24"
-        dateModified="2026-07-03"
+        dateModified="2026-10-01"
       />
       <StructuredData
         type="breadcrumb"
@@ -82,12 +82,12 @@ export default function MarkdownCheatSheetPage() {
       <main className="min-h-screen bg-gray-50">
         <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
           <div className="max-w-5xl mx-auto px-4 pt-10 pb-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">Markdown Cheat Sheet</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-3">Markdown Cheat Sheet with Examples</h1>
             <p className="text-base md:text-lg text-blue-100/80 max-w-2xl leading-relaxed">
               Every Markdown syntax element on one page — core Markdown plus the GitHub Flavored
               Markdown extensions — with a dedicated deep-dive guide for each element.
             </p>
-            <p className="mt-3 text-xs text-blue-200/50">Updated July 3, 2026</p>
+            <p className="mt-3 text-xs text-blue-200/50">Updated <time dateTime="2026-10-01">October 1, 2026</time></p>
           </div>
         </section>
 

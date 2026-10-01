@@ -7,7 +7,7 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'HTML to Markdown Converter — Free Online, GFM Output',
+  title: 'HTML to Markdown Converter: Free, GFM Output',
   description: 'Paste or upload .html and get clean, GFM Markdown instantly, entirely in your browser, nothing sent to a server. Free, no signup, no file limit.',
   keywords: ['html to markdown', 'convert html to markdown', 'html to md', 'html to github flavored markdown', 'html markdown converter'],
   openGraph: {
@@ -38,7 +38,7 @@ const FAQ_ITEMS = [
         strikethrough all use the syntax GitHub, GitLab, and most static site generators expect.
       </>
     ),
-    text: 'Yes. MDTool uses turndown with the GitHub Flavored Markdown plugin, so output follows GFM conventions: pipe tables, fenced code blocks, task lists, and strikethrough.',
+    text: 'Yes. MDTool uses turndown with the GitHub Flavored Markdown plugin, so the output follows GFM conventions: pipe tables, fenced code blocks, task lists, and strikethrough all use the syntax GitHub, GitLab, and most static site generators expect.',
   },
   {
     q: 'What happens to inline CSS and styling?',

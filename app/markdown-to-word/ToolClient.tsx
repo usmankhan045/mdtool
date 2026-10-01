@@ -1,14 +1,15 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import ToolLoadingShell from '@/components/tools/ToolLoadingShell';
 
-// ssr:false keeps the heavy conversion libs out of the server build; the fixed-height
-// skeleton reserves the converter's space so hydration causes no layout shift (CLS).
+// ssr:false keeps the heavy conversion libs out of the server build. The loading
+// fallback IS server-rendered: a static shell with the tool name, a sample input
+// and a rendered sample output, laid out with the converter's exact classes so
+// crawlers see real content and hydration causes no layout shift (CLS 0).
 const ToolClientDynamic = dynamic(() => import('@/components/tools/MarkdownToWordClient'), {
   ssr: false,
-  loading: () => (
-    <div className="h-[560px] rounded-xl border border-gray-200 bg-white shadow-sm animate-pulse" aria-hidden />
-  ),
+  loading: () => <ToolLoadingShell variant="md-to-word" />,
 });
 
 export default ToolClientDynamic;

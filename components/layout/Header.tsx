@@ -10,9 +10,11 @@ const NAV_LINKS = [
   { href: '/markdown-to-word', label: 'MD → Word' },
   { href: '/html-to-markdown', label: 'HTML → MD' },
   { href: '/word-to-markdown', label: 'Word → MD' },
+  { href: '/markdown-to-text', label: 'MD → Text' },
   { href: '/markdown-table-generator', label: 'Tables' },
   { href: '/markdown-cheat-sheet', label: 'Cheat Sheet' },
   { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
 ];
 
 export default function Header() {
@@ -26,16 +28,16 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <span className="text-blue-300">&lt;/&gt;</span>
           <span>MDTool</span>
-          <span className="text-xs font-normal text-blue-300 bg-blue-900 px-2 py-0.5 rounded-full">tools</span>
+          <span className="lg:hidden xl:inline text-xs font-normal text-blue-300 bg-blue-900 px-2 py-0.5 rounded-full">tools</span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-0.5">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-2.5 xl:px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                 pathname === link.href
                   ? 'bg-blue-600 text-white'
                   : 'text-blue-100 hover:bg-blue-800 hover:text-white'
@@ -49,7 +51,7 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-blue-800"
+          className="lg:hidden p-2 rounded-lg hover:bg-blue-800"
           aria-label="Toggle menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,7 +65,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <nav className="md:hidden border-t border-blue-800 px-4 py-3 flex flex-col gap-1">
+        <nav className="lg:hidden border-t border-blue-800 px-4 py-3 flex flex-col gap-1">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

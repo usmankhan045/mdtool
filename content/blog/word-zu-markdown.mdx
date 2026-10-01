@@ -1,0 +1,124 @@
+---
+title: "Word zu Markdown: .docx umwandeln (auch Obsidian)"
+description: "Word in Markdown umwandeln: .docx hochladen, .md herunterladen. Tipps zu Überschriften, Tabellen und Obsidian, plus Hilfe, wenn Docxer nicht funktioniert."
+lang: "de"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "word", "docx", "obsidian", "pandoc"]
+image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Hände tippen auf einem Laptop, auf dessen Bildschirm ein Textdokument geöffnet ist"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/word-to-markdown"
+  label: "Word-zu-Markdown-Konverter öffnen →"
+  description: ".docx hineinziehen, .md herunterladen und direkt in den Obsidian-Vault legen. Kostenlos, ohne Anmeldung, ohne Upload."
+---
+
+Um ein Word-Dokument in Markdown umzuwandeln, speicherst du es als `.docx`, ziehst die Datei in den [Word-zu-Markdown-Konverter](/word-to-markdown) und lädst die fertige `.md`-Datei herunter. Überschriften, Listen, Links, Fett- und Kursivschrift sowie Tabellen bleiben erhalten. Die Datei kannst du anschließend direkt in deinen Obsidian-Vault oder ins Git-Repository legen.
+
+Warum der Umweg? Obsidian, GitHub und die meisten Static-Site-Generatoren arbeiten mit reinen Textdateien. Laut der [Obsidian-Hilfe zu akzeptierten Dateiformaten](https://obsidian.md/de/help/file-formats) unterstützt Obsidian Markdown, Bilder, Audio, Video und PDF, aber kein `.docx`. Eine Word-Datei taucht im Vault also weder in der Suche noch im Graphen auf, solange sie nicht als Markdown vorliegt.
+
+## Wie wandelst du eine Word-Datei in Markdown um?
+
+Bevor du konvertierst, lohnen sich zwei Handgriffe in Word.
+
+**1. Nachverfolgte Änderungen annehmen.** Wenn im Dokument noch Überarbeitungen markiert sind, gehe auf die Registerkarte **Überprüfen**, klicke auf den Pfeil unter **Annehmen** und wähle **Alle Änderungen annehmen**. Sonst ist nicht eindeutig, welche Fassung im Markdown landet.
+
+**2. Alte .doc-Dateien als .docx speichern.** Der Konverter liest nur das moderne Format. Öffne die Datei in Word und wähle **Datei → Speichern unter → Durchsuchen**. Stelle unter **Dateityp** auf **Word-Dokument (\*.docx)** um und klicke auf **Speichern**. Microsoft beschreibt den Weg auch in der Anleitung [Speichern des Dokuments in docx](https://support.microsoft.com/de-de/word/saving-doc-to-docx-or-dorm).
+
+Danach geht es im Browser weiter. Die Oberfläche von MDTool ist auf Englisch, aber selbsterklärend:
+
+1. Öffne den [Word-zu-Markdown-Konverter](/word-to-markdown).
+2. Ziehe die `.docx`-Datei in das Feld **Word Document** oder klicke auf **Choose .docx file**.
+3. Rechts erscheint das Markdown. Prüfe Überschriften und Tabellen kurz auf Plausibilität.
+4. Klicke auf **Download .md**. Die Datei heißt wie dein Dokument, nur mit `.md`-Endung. Alternativ kopierst du den Text mit **Copy**.
+
+Die Datei wird dabei nicht hochgeladen. MDTool liest das Dokument mit mammoth.js direkt im Browser, wandelt es in HTML und daraus mit turndown in GitHub Flavored Markdown. Das Tool ist kostenlos, ohne Anmeldung und ohne Wasserzeichen.
+
+## Was bleibt bei der Umwandlung erhalten?
+
+| In Word | In Markdown | Bemerkung |
+|---|---|---|
+| Formatvorlage **Überschrift 1** bis **Überschrift 6** | `#` bis `######` | nur echte Formatvorlagen, siehe unten |
+| Fett, Kursiv | `**fett**`, `_kursiv_` | |
+| Durchgestrichen | `~Text~` | |
+| Aufzählung, Nummerierung | `-` bzw. `1.` | |
+| Hyperlink | `[Text](URL)` | |
+| Tabelle mit Kopfzeile | Pipe-Tabelle | siehe Tabellen-Abschnitt |
+| Tabelle ohne Kopfzeile | HTML-Tabelle | Obsidian zeigt sie trotzdem an |
+| Bilder | eingebettet als lange `data:`-URI | besser separat ablegen |
+| Kopf- und Fußzeilen, Kommentare | entfallen | |
+| Schriftart, Farbe, Schriftgröße | entfallen | Markdown kennt keine Gestaltung |
+
+## Warum werden meine Überschriften nur fett?
+
+Das ist der häufigste Stolperstein. Markdown-Überschriften entstehen nur aus Absätzen, die in Word mit einer Überschriften-Formatvorlage formatiert sind. Wer Überschriften von Hand auf 16 Punkt und fett gestellt hat, bekommt im Markdown einen fetten Absatz statt `##`.
+
+So prüfst du dein Dokument: Öffne über **Ansicht → Navigationsbereich** (oder Strg+F) die Gliederung. Laut [Microsoft-Hilfe zum Navigationsbereich](https://support.microsoft.com/de-de/office/verwenden-des-navigationsbereichs-in-word-394787be-bca7-459b-894e-3f8511515e55) erscheinen dort nur Überschriften, die eine Überschriften-Formatvorlage haben. Fehlt eine Zwischenüberschrift in der Liste, markiere sie und wähle auf der Registerkarte **Start** im Bereich **Formatvorlagen** die passende Ebene, etwa **Überschrift 2**.
+
+Die Ebenen sollten lückenlos sein: Auf **Überschrift 1** folgt **Überschrift 2**, nicht direkt **Überschrift 3**. Im Markdown sieht das später genauso aus, und viele Tools erzeugen daraus das Inhaltsverzeichnis. Die Syntax im Detail steht im [Spickzettel zu Markdown-Überschriften](/markdown-cheat-sheet/headings).
+
+## Wie bekommst du Tabellen sauber nach Markdown?
+
+Ob eine Word-Tabelle als Pipe-Tabelle oder als HTML ankommt, hängt an einem einzigen Häkchen: Die erste Zeile muss in Word als Kopfzeile markiert sein. Sonst weiß der Konverter nicht, welche Zeile die Spaltenüberschriften enthält, und lässt die Tabelle als HTML stehen.
+
+1. Klicke mit der rechten Maustaste in die erste Zeile der Tabelle.
+2. Wähle **Tabelleneigenschaften** und wechsle zur Registerkarte **Zeile**.
+3. Setze das Häkchen bei **Als Kopfzeile wiederholen oben auf jeder Seite** und bestätige mit **OK**.
+
+Schneller geht es über **Tabellenlayout → Daten → Headerzeilen wiederholen**, in älteren Word-Versionen heißt der Button **Überschriften wiederholen**. Microsoft dokumentiert beide Wege unter [Tabellenkopf auf nachfolgenden Seiten wiederholen](https://support.microsoft.com/de-de/office/tabellenkopf-auf-nachfolgenden-seiten-wiederholen-2ff677e0-3150-464a-a283-fa52794b4b41).
+
+Verbundene Zellen kennt Markdown nicht. Löse sie vor der Konvertierung auf, sonst verrutschen die Spalten. Wie Markdown-Tabellen aufgebaut sind, zeigt der [Spickzettel zu Tabellen](/markdown-cheat-sheet/tables).
+
+## Wie kommt die Datei in den Obsidian-Vault?
+
+Ein Vault ist nur ein Ordner auf deiner Festplatte. Verschiebe die heruntergeladene `.md`-Datei im Explorer oder Finder in diesen Ordner, und Obsidian zeigt sie sofort an. Danach lohnt sich etwas Feinschliff:
+
+- **Interne Links:** Der Konverter erzeugt normale Markdown-Links. Wenn Verweise im Graphen auftauchen sollen, ersetze sie durch Wikilinks wie `[[Projektplan]]`.
+- **Eigenschaften:** Tags, Datum oder Status ergänzt du als YAML-Block ganz oben in der Notiz.
+- **Bilder:** Lösche die langen `data:`-Zeichenketten, speichere die Bilder als Dateien im Vault und binde sie mit `![[bild.png]]` ein.
+
+Eine ausführliche englische Anleitung mit allen Obsidian-Besonderheiten findest du im Artikel [Word to Markdown for Obsidian](/blog/word-to-markdown-obsidian).
+
+### Was tun, wenn sich Docxer im Vault nicht öffnen lässt?
+
+[Docxer](https://github.com/Developer-Mike/obsidian-docxer) ist eine Community-Erweiterung, die `.docx`-Dateien direkt in Obsidian anzeigt und über den Button **Convert** oben rechts in Markdown umwandelt. Wenn sich die Datei nicht öffnen lässt, liegt es meist an einem dieser Punkte:
+
+1. **Eingeschränkter Modus ist aktiv.** Community-Erweiterungen laufen erst, wenn du ihn unter **Einstellungen → Community-Erweiterungen** ausschaltest. Die [Obsidian-Hilfe zu Community-Erweiterungen](https://obsidian.md/de/help/community-plugins) beschreibt die Schritte.
+2. **Die Erweiterung ist installiert, aber nicht aktiviert.** Prüfe unter **Einstellungen → Community-Erweiterungen → Installierte Erweiterungen**, ob der Schalter bei Docxer an ist.
+3. **Die Datei liegt nicht im Vault.** Docxer sieht nur Dateien innerhalb des Vault-Ordners. Kopiere die `.docx` hinein, statt sie per Doppelklick aus dem Download-Ordner zu öffnen.
+4. **Es ist eine .doc-Datei.** Wie MDTool liest auch Docxer nur `.docx`. Speichere die Datei vorher wie oben beschrieben um.
+
+Klappt es trotzdem nicht, ist der Browser-Konverter der schnellste Ausweg: Datei hineinziehen, `.md` herunterladen, in den Vault verschieben.
+
+## Gibt es eine Alternative für viele Dateien?
+
+Für ganze Ordner voller Word-Dateien ist [pandoc](https://pandoc.org/MANUAL.html) die bessere Wahl, weil es Bilder als echte Dateien speichern kann:
+
+```bash
+pandoc bericht.docx -t gfm --wrap=none --extract-media=./anhang -o bericht.md
+```
+
+`--extract-media` legt alle Bilder im Ordner `anhang` ab und verlinkt sie im Markdown. `--wrap=none` verhindert harte Zeilenumbrüche mitten im Absatz.
+
+## Häufig gestellte Fragen
+
+**F: Ist der Word-zu-Markdown-Konverter kostenlos?**
+
+Ja, ohne Anmeldung, ohne Wasserzeichen und ohne Limit. Die Oberfläche ist auf Englisch, du brauchst aber nur den Upload- und den Download-Button.
+
+**F: Wird mein Dokument auf einen Server hochgeladen?**
+
+Nein. Die Konvertierung läuft komplett im Browser. Das Dokument verlässt deinen Rechner nicht, was bei vertraulichen Unterlagen wichtig ist.
+
+**F: Kann ich alte .doc-Dateien umwandeln?**
+
+Nicht direkt. Öffne die Datei in Word, wähle **Datei → Speichern unter → Durchsuchen** und stelle den Dateityp auf **Word-Dokument (\*.docx)**. Die neue Datei kannst du dann konvertieren.
+
+**F: Warum sind meine Überschriften im Markdown nur fett?**
+
+Weil sie in Word von Hand formatiert und nicht mit den Formatvorlagen **Überschrift 1** bis **Überschrift 6** ausgezeichnet sind. Weise die Formatvorlagen zu und konvertiere erneut.
+
+**F: Wie wandle ich Markdown wieder in Word um?**
+
+Mit dem [Markdown-zu-Word-Konverter](/markdown-to-word). Er erzeugt eine echte `.docx`-Datei, in der deine Überschriften wieder die Formatvorlagen **Überschrift 1** bis **Überschrift 6** tragen.

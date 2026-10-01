@@ -7,7 +7,9 @@ interface FaqItem { q: string; a: ReactNode; text?: string; }
 
 export default function FaqSection({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const schemaFaqs = items.map(({ q, a, text }) => ({ q, a: text ?? (typeof a === 'string' ? a : '') }));
+  // FAQPage text must match what readers see: use the visible answer whenever it's
+  // a plain string; `text` is only the plain-text twin of a JSX answer.
+  const schemaFaqs = items.map(({ q, a, text }) => ({ q, a: typeof a === 'string' ? a : text ?? '' }));
 
   return (
     <div>

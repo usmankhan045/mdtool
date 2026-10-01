@@ -1,0 +1,166 @@
+---
+title: "Printable Markdown Cheat Sheet (Free PDF)"
+description: "A printable Markdown cheat sheet: every common syntax in compact tables, a free two-page PDF download, and the source to print your own in any theme."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "cheat-sheet", "pdf", "printable", "reference"]
+image: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Hand writing notes in an open paper notebook on a wooden desk next to a coffee cup"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Open Markdown to PDF Converter →"
+  description: "Paste the cheat sheet source, pick a theme and paper size, and download your own PDF. Free, no signup, nothing uploaded."
+---
+
+This page is a compact, printable Markdown cheat sheet that fits on one sheet of paper printed double-sided. [Download the ready-made PDF](/downloads/markdown-cheat-sheet.pdf), or copy the Markdown source below, paste it into [MDTool's Markdown to PDF converter](/markdown-to-pdf), choose a theme and paper size, and download your own copy. It covers CommonMark plus the GitHub Flavored Markdown extras you'll actually use.
+
+The full reference is also on this page as a table, so you can scan it without downloading anything.
+
+## What syntax is on the printable Markdown cheat sheet?
+
+Everything you need for READMEs, docs, notes and issue comments. Base syntax follows the [CommonMark spec](https://spec.commonmark.org/); items marked GFM come from the [GitHub Flavored Markdown spec](https://github.github.com/gfm/); items marked GitHub are GitHub-specific features from [GitHub's writing docs](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+| Element | Syntax | Where it works |
+|---------|--------|----------------|
+| Headings 1 to 6 | `# H1` to `###### H6` | Everywhere |
+| Bold | `**bold**` | Everywhere |
+| Italic | `*italic*` or `_italic_` | Everywhere |
+| Bold and italic | `***both***` | Everywhere |
+| Strikethrough | `~~deleted~~` | GFM |
+| Inline code | `` `code` `` | Everywhere |
+| Paragraph | Blank line between blocks | Everywhere |
+| Line break | Two trailing spaces, or `<br>` | Everywhere |
+| Escape a symbol | `\*not italic\*` | Everywhere |
+| Hidden comment | `<!-- not rendered -->` | Everywhere |
+| Bulleted list | `- item` | Everywhere |
+| Numbered list | `1. item` | Everywhere |
+| Task list | `- [ ] to do` / `- [x] done` | GFM |
+| Link | `[text](https://example.com "title")` | Everywhere |
+| Reference link | `[text][id]` + `[id]: https://example.com` | Everywhere |
+| Autolink | `<https://example.com>` | Everywhere |
+| Heading link | `[Jump](#heading-text)` | GitHub and most renderers |
+| Image | `![alt text](image.png)` | Everywhere |
+| Blockquote | `> quote` | Everywhere |
+| Horizontal rule | `---` | Everywhere |
+| Fenced code block | ` ```python ` … ` ``` ` | Everywhere |
+| Table | `\| A \| B \|` + `\|---\|---\|` | GFM |
+| Table alignment | `:---` left, `:---:` center, `---:` right | GFM |
+| Footnote | `Text[^1]` + `[^1]: The note` | GitHub, not every renderer |
+| Alert | `> [!NOTE]`, also TIP, IMPORTANT, WARNING, CAUTION | GitHub |
+| Diagram | ` ```mermaid ` fence | GitHub, MDTool |
+
+"Everywhere" means any CommonMark-compliant renderer. Footnotes and alerts are the ones that most often fail outside GitHub, so test them in your target tool before you rely on them.
+
+## How do you print your own Markdown cheat sheet as a PDF?
+
+The cheat sheet is plain Markdown, which means you can turn it into a PDF with any converter. With MDTool it takes about a minute:
+
+1. Copy the full source from the block below. It's the same file as [markdown-cheat-sheet.md](/downloads/markdown-cheat-sheet.md).
+2. Open the [Markdown to PDF converter](/markdown-to-pdf) and paste it into the editor.
+3. Pick a theme. **GitHub** looks like a rendered README, **Academic** suits a printed handout, **Minimal** saves ink, and **Dark** works for an on-screen reference.
+4. Choose **A4** or **Letter** to match your printer paper.
+5. Click **Download PDF**.
+
+The conversion runs in your browser, so nothing is uploaded, and there's no signup or watermark. Because the PDF is real text rather than a screenshot, you can search it and copy syntax out of it.
+
+You can edit the source before converting. Delete rows you already know, add your team's conventions, or append a second page with a page break. MDTool starts a new page at a line containing only `<!-- pagebreak -->`, `\pagebreak` or `\newpage`.
+
+## Where is the cheat sheet source to copy?
+
+Here's the complete cheat sheet. Copy everything inside the block:
+
+`````markdown
+# Markdown Cheat Sheet
+
+Compact reference for CommonMark and GitHub Flavored Markdown (GFM). Free from mdtool.dev.
+
+## Text
+
+| Element | Syntax |
+|---|---|
+| Headings 1 to 6 | `# H1` `## H2` ... `###### H6` |
+| Bold | `**bold**` |
+| Italic | `*italic*` or `_italic_` |
+| Bold and italic | `***both***` |
+| Strikethrough (GFM) | `~~deleted~~` |
+| Inline code | `` `code` `` |
+| Paragraph | Leave a blank line between blocks |
+| Line break | End the line with two spaces, or use `<br>` |
+| Escape a symbol | `\*not italic\*` |
+| Hidden comment | `<!-- not rendered -->` |
+
+## Lists, links and images
+
+| Element | Syntax |
+|---|---|
+| Bulleted list | `- item` (indent to nest) |
+| Numbered list | `1. item` |
+| Task list (GFM) | `- [ ] to do` and `- [x] done` |
+| Link | `[text](https://example.com "title")` |
+| Reference link | `[text][id]` then `[id]: https://example.com` |
+| Autolink | `<https://example.com>` |
+| Heading link | `[Jump](#heading-text)` |
+| Image | `![alt text](image.png)` |
+| Blockquote | `> quote` (use `>>` to nest) |
+| Horizontal rule | `---` on its own line |
+| Footnote (GitHub) | `Text[^1]` then `[^1]: The note` |
+| Alert (GitHub) | `> [!NOTE]` also TIP, IMPORTANT, WARNING, CAUTION |
+
+## Code blocks
+
+Fence with three backticks and add a language for syntax highlighting:
+
+````
+```python
+def hello():
+    print("Hello, Markdown")
+```
+````
+
+Use a `mermaid` language tag to draw a diagram on GitHub and in MDTool.
+
+## Tables (GFM)
+
+```
+| Left   | Center | Right |
+|:-------|:------:|------:|
+| a      |   b    |     c |
+```
+
+Colons in the separator row set alignment. Escape a pipe inside a cell as `\|`.
+`````
+
+The source uses four backticks around the code example so the inner three-backtick fence displays as text instead of being treated as the end of the block. Keep that when you edit it.
+
+## Why use a printable cheat sheet instead of a full reference?
+
+A full reference such as the [MDTool Markdown cheat sheet](/markdown-cheat-sheet) explains every element with rendered examples, which is what you want while learning. Once you know the basics, you only need reminders for the syntax you use rarely: reference links, table alignment, footnotes, alerts. One page next to your keyboard covers those faster than a browser tab.
+
+| Format | Best for |
+|--------|----------|
+| Printed cheat sheet (this page) | Quick reminders at your desk, onboarding handouts |
+| [Full online cheat sheet](/markdown-cheat-sheet) | Learning, examples of rendered output |
+| [VS Code cheat sheet and shortcuts](/blog/markdown-in-vscode) | Editor shortcuts alongside the syntax |
+
+## Frequently Asked Questions
+
+**Q: Is there a free Markdown cheat sheet PDF?**
+
+Yes. Download the PDF at /downloads/markdown-cheat-sheet.pdf (two A4 pages, one sheet printed double-sided). It was made with MDTool from the same Markdown source shown on this page, so you can regenerate it in another theme or paper size.
+
+**Q: Will the cheat sheet fit on one page?**
+
+The ready-made PDF is two A4 pages in the GitHub theme: the syntax tables on page one, and the rest of the tables plus the code and table examples on page two. Print it double-sided and it fits on one sheet. For a strict single page, keep only the Text and Lists tables and delete the Code blocks and Tables sections before downloading.
+
+**Q: Does the cheat sheet cover GitHub Flavored Markdown?**
+
+Yes. Tables, task lists, strikethrough and autolinks come from the GFM spec, and the sheet also lists GitHub-only features such as alerts and footnotes, with a note on where they work.
+
+**Q: Can I edit the cheat sheet before printing?**
+
+Yes. It's plain Markdown. Paste it into the converter, change anything you like in the editor, and the live preview shows the result before you download.
+
+**Q: Why don't emoji appear in my PDF?**
+
+MDTool's PDF output doesn't include emoji glyphs, so they're left out of the file. The cheat sheet avoids emoji for that reason. Use words or symbols such as "[x]" instead.

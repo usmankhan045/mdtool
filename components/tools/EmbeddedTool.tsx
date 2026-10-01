@@ -3,8 +3,7 @@
 import { useState, useDeferredValue } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { parseMarkdown } from '@/lib/markdown';
-import { ThemeId } from '@/lib/pdf';
+import { markdownToPdfHtml, ThemeId } from '@/lib/pdf';
 
 const DownloadButton = dynamic(() => import('./DownloadButton'), { ssr: false });
 
@@ -21,7 +20,7 @@ export default function EmbeddedTool() {
   const [markdown, setMarkdown] = useState(SAMPLE);
   const [theme, setTheme] = useState<ThemeId>('github');
   const deferredMd = useDeferredValue(markdown);
-  const html = parseMarkdown(deferredMd);
+  const html = markdownToPdfHtml(deferredMd);
 
   const srcDoc = `<html><head>
     <meta charset="UTF-8">

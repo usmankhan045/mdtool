@@ -1,8 +1,8 @@
 ---
-title: "DOCX to Markdown: How to Convert Word Documents to Clean Markdown"
-description: "Convert .docx Word files to clean Markdown in seconds. Here's how mammoth.js extracts the structure, how turndown renders GFM, and what to fix in the output before using it."
+title: "DOCX to Markdown: Convert Word Files Cleanly"
+description: "Convert .docx Word files to clean Markdown: how mammoth.js reads the structure, how turndown writes GFM, and what to fix in the output before using it."
 datePublished: "2026-06-25"
-dateModified: "2026-06-25"
+dateModified: "2026-10-01"
 tags: ["markdown", "word", "docx", "developer-tools", "github"]
 image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?fm=jpg&q=80&w=1200&h=630&fit=crop"
 imageAlt: "Laptop on a desk displaying a code editor with text files open"
@@ -51,13 +51,13 @@ The conversion works cleanest when the source document was written using Word's 
 
 Four patterns in Word documents require manual attention after conversion:
 
-**Embedded images** are not extracted. mammoth.js does not output base64-encoded images or image references in its default configuration. An image-heavy document will convert with all its text and structure intact, but images will be absent from the output. Plan to re-add images manually, or use Pandoc with `--extract-media` if image extraction is required.
+**Embedded images** are kept inline, not as separate files. mammoth.js embeds each image as a base64 `data:` URI by default, so the output contains lines like `![](data:image/png;base64,...)`. The pictures survive, but the `.md` file can become very large, and GitHub READMEs and several other platforms don't display `data:` URI images. Save the images as files and replace those links with relative paths, or use Pandoc with `--extract-media` to extract them automatically.
 
 **Merged table cells** are simplified. GFM pipe tables have no syntax for `colspan` or `rowspan`. A Word table with merged cells is flattened into a rectangular grid, with cells split rather than merged. The content is preserved but the merge layout is lost. Rebuild merged-cell tables manually or use an HTML `<table>` fallback in Markdown.
 
 **Tracked changes and comments** are stripped. Only the accepted (current) version of the text appears in the Markdown output. Accept or reject all tracked changes in Word before converting if you need to control which version is exported.
 
-**Footnotes** have no standard Markdown equivalent in GFM. They are dropped during conversion. You can use Pandoc's extended footnote syntax (`[^1]`) if the platform you're targeting supports it, or convert footnotes to inline parenthetical notes manually.
+**Footnotes** become a numbered list at the end of the document, with `[1]`-style links where each note was referenced. That's readable everywhere, but it isn't Markdown footnote syntax. If your platform supports extended footnotes (`[^1]`, as GitHub and Obsidian do), convert the list to that syntax by hand.
 
 ## Post-Conversion Cleanup Tips
 
@@ -67,7 +67,7 @@ Even a clean conversion benefits from a quick pass before publishing:
 
 2. **Remove duplicate blank lines.** Word documents often have extra paragraph breaks between sections that convert to multiple consecutive blank lines. One blank line between paragraphs is standard; more than two is typically noise.
 
-3. **Fix image references.** Converted `.md` files will have placeholder text or empty image references where images were. Replace these with valid relative paths to image files after you've added the images to your project's assets folder.
+3. **Fix image references.** Images arrive as long base64 `data:` links. Save each image as a file in your project's assets folder and replace the `data:` link with a relative path such as `![Diagram](assets/diagram.png)`.
 
 4. **Audit table output.** Scan every table in the output for cells that look suspiciously short, which is often the symptom of a merged cell being split. Rebuild these manually.
 

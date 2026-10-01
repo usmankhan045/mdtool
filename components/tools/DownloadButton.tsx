@@ -1,16 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { generatePdf, ThemeId } from '@/lib/pdf';
+import { generatePdf, ThemeId, PageSizeId } from '@/lib/pdf';
 
 interface Props {
   htmlContent: string;
   theme: ThemeId;
   filename?: string;
   size?: 'default' | 'compact';
+  pageSize?: PageSizeId;
 }
 
-export default function DownloadButton({ htmlContent, theme, filename, size = 'default' }: Props) {
+export default function DownloadButton({ htmlContent, theme, filename, size = 'default', pageSize = 'a4' }: Props) {
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
@@ -20,7 +21,7 @@ export default function DownloadButton({ htmlContent, theme, filename, size = 'd
     }
     setLoading(true);
     try {
-      await generatePdf(htmlContent, { theme, filename: filename || 'document.pdf' });
+      await generatePdf(htmlContent, { theme, pageSize, filename: filename || 'document.pdf' });
     } catch (err) {
       console.error('PDF generation failed:', err);
       const detail = err instanceof Error ? err.message : String(err);

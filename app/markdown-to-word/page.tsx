@@ -6,8 +6,8 @@ import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
 
 export const metadata: Metadata = {
-  title: 'Markdown to Word Converter — Free Online, Real .docx',
-  description: 'Convert Markdown to DOCX online, free. Get a real, editable Word document that opens in Word, Google Docs, and LibreOffice. No signup, no watermark.',
+  title: 'Markdown to Word Converter Online (MD to DOCX), Free',
+  description: 'Convert MD to Word online, free. Headings become real Word heading styles, and tables, lists and code are kept. Editable .docx, no signup, nothing uploaded.',
   keywords: ['markdown to word', 'md to word', 'markdown to docx', 'convert markdown to word', 'markdown word converter'],
   openGraph: {
     title: 'Free Markdown to Word Converter: Real .docx, No Signup',
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.mdtool.dev/markdown-to-word',
+    languages: {
+      en: 'https://www.mdtool.dev/markdown-to-word',
+      es: 'https://www.mdtool.dev/es/markdown-to-word',
+      'zh-Hans': 'https://www.mdtool.dev/zh/markdown-to-word',
+      'x-default': 'https://www.mdtool.dev/markdown-to-word',
+    },
   },
 };
 
@@ -32,7 +38,7 @@ const FAQ_ITEMS = [
         standard), not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.
       </>
     ),
-    text: 'Yes. MDTool generates a genuine .docx file (Office Open XML), editable in Microsoft Word, Google Docs, or LibreOffice Writer.',
+    text: 'Yes. MDTool generates a genuine .docx file (the Office Open XML standard), not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.',
   },
   {
     q: 'Does it support tables in Word?',

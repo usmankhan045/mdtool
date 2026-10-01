@@ -1,8 +1,8 @@
 ---
 title: "Best Markdown to PDF Converter (2026 Guide)"
-description: "A feature-by-feature comparison of the best Markdown to PDF converters: MDTool, Dillinger, CloudConvert, and Pandoc. See which tool handles code blocks and diagrams."
-datePublished: "2026-03-08"
-dateModified: "2026-06-24"
+description: "An honest comparison of Markdown to PDF converters: MDTool, Dillinger, CloudConvert, markdowntopdf.com and Pandoc, including what each one can't do."
+datePublished: "2026-06-23"
+dateModified: "2026-10-01"
 tags: ["markdown", "pdf", "developer-tools", "comparison"]
 image: "/blog/best-markdown-to-pdf-converter.jpg"
 imageAlt: "Two laptops side by side on a desk, representing a tool comparison"
@@ -12,52 +12,82 @@ author: "Muhammad Usman"
 ## Finding the Best Markdown to PDF Converter
 
 <Callout type="success">
-**Short answer:** For free, private, in-browser conversion with syntax-highlighted code and rendered Mermaid diagrams, use [MDTool](/markdown-to-pdf). For command-line pipelines and custom LaTeX templates, use Pandoc. CloudConvert works if you're already paying for it, but it uploads your files to a server. Full comparison below.
+**Quick pick**
+
+- **One file, private, no install:** [MDTool](/markdown-to-pdf). Free, runs in your browser, highlights code and renders Mermaid. No CLI, and no emoji in the PDF.
+- **Scripts, CI or book-quality typesetting:** [Pandoc](https://pandoc.org/MANUAL.html). Needs installing and, for its default route, a LaTeX distribution.
+- **Batch jobs inside a larger file-conversion workflow:** CloudConvert. It has an API, but files are uploaded and the free tier allows 10 conversions a day.
+- **Writing and exporting in one web editor:** Dillinger. Its PDF is generated on its server.
+
+Disclosure: MDTool is our tool. The comparison below lists its limitations next to everyone else's.
 </Callout>
 
 If you've spent ten minutes searching for the best Markdown to PDF converter, you've already noticed the problem: every tool claims to "fully support Markdown," but the results tell a different story. Code blocks lose syntax highlighting. Tables get mangled. Mermaid diagrams just vanish. And half the tools require you to create an account before you can download a single file.
 
-**Methodology:** this is a feature comparison based on each tool's documented capabilities, public output examples, and stated processing model (client-side vs. server-side) — evaluated against the same reference document containing fenced code blocks, a Mermaid flowchart, a table, and custom heading styles. Where we haven't generated output in a tool ourselves, we say so rather than guessing.
+This is a feature comparison, not a lab test. The "How we evaluated" section below explains exactly what we checked and what we didn't.
 
 ---
 
 ## The Contenders
 
-### <a href="https://www.markdowntopdf.com" rel="nofollow noopener" target="_blank">markdowntopdf.com</a>
+### markdowntopdf.com
 
-One of the oldest tools in this category. It parses basic Markdown reliably (headings, bold, italic, lists), but code blocks are rendered without syntax highlighting and without a monospace font on some themes. There's no Mermaid support, and the output styling is fixed: you can't choose a theme or adjust margins. No login required, and the conversion is server-side (your Markdown is uploaded and processed remotely).
+<a href="https://www.markdowntopdf.com" rel="nofollow noopener" target="_blank">markdowntopdf.com</a> is one of the oldest tools in this category, and it has changed a lot. Its site now lists a live editor, curated themes, syntax-highlighted code, Mermaid diagrams and LaTeX/KaTeX math. Guests can use it without an account, but the free download includes a watermark; removing it takes a paid Pro plan or a day pass. The site doesn't say whether conversion happens in your browser or on its servers.
 
-### <a href="https://dillinger.io" rel="nofollow noopener" target="_blank">Dillinger</a>
+### Dillinger
 
-Dillinger is primarily a Markdown editor with a live HTML preview. The "Export as PDF" feature effectively prints the preview pane using the browser's print dialog. This gives you reasonable output for simple documents, but code highlighting depends entirely on which Dillinger theme you've loaded, and Mermaid diagrams are not rendered. The tool is free, no login needed, and since the PDF is generated client-side via the print API, your content doesn't leave your browser.
+<a href="https://dillinger.io" rel="nofollow noopener" target="_blank">Dillinger</a> is primarily a Markdown editor with a live preview, and it exports Markdown, styled HTML or PDF. Its source code is [public on GitHub](https://github.com/joemccann/dillinger), so we can say precisely how the PDF is made: the editor sends your Markdown to a server route that renders it with markdown-it and highlight.js and prints it with headless Chromium. That means code highlighting and KaTeX math work, but Mermaid isn't rendered, and your document does leave the browser when you export. It's free and needs no login.
 
-### <a href="https://cloudconvert.com" rel="nofollow noopener" target="_blank">CloudConvert</a>
+### CloudConvert
 
-CloudConvert is a general-purpose file conversion service that supports Markdown to PDF among hundreds of other formats. The quality is good for plain-text Markdown, but it requires a free account for most usage, imposes a daily conversion limit, and uploads your file to their servers for processing. Code block styling varies by template. No Mermaid support in the standard Markdown pipeline.
+<a href="https://cloudconvert.com" rel="nofollow noopener" target="_blank">CloudConvert</a> is a general-purpose file conversion service that supports Markdown to PDF among hundreds of other formats. Its [pricing page](https://cloudconvert.com/pricing) lists a free tier of 10 conversions per day, with API access included. Files are uploaded to its servers for processing. Code block styling varies by template, and Mermaid isn't rendered in the standard Markdown pipeline.
 
-### <a href="https://pandoc.org" rel="nofollow noopener" target="_blank">Pandoc</a> (CLI)
+### Pandoc (CLI)
 
-Pandoc is the gold standard for document conversion among developers who are comfortable with the command line. It supports an enormous range of output formats, has excellent handling of code blocks (via `--highlight-style`), and can be extended with custom LaTeX templates for pixel-perfect output. However, it requires installation, has a steep learning curve for custom styling, and has no web UI. Mermaid diagrams require a pre-processing step with a separate tool. If you want maximum control and don't mind the setup, Pandoc is powerful, but it's not something you'd use for a quick conversion.
+<a href="https://pandoc.org" rel="nofollow noopener" target="_blank">Pandoc</a> is the gold standard for document conversion among developers who are comfortable with the command line. It supports an enormous range of output formats, has excellent handling of code blocks (via `--syntax-highlighting` in Pandoc 3.8 and later, `--highlight-style` before that), and can be extended with custom LaTeX templates for pixel-perfect output. However, it requires installation, has a steep learning curve for custom styling, and has no web UI. Mermaid diagrams require a pre-processing step with a separate tool. If you want maximum control and don't mind the setup, Pandoc is powerful, but it's not something you'd use for a quick conversion. Our [Pandoc, Python and Node guide](/blog/markdown-to-pdf-python-pandoc) has working commands.
 
 ### MDTool
 
-MDTool is a free, browser-based Markdown to PDF converter built specifically for developers. Conversion runs entirely client-side, so your Markdown is never sent to a server. It supports syntax-highlighted code blocks for all major languages, renders Mermaid diagrams directly in the browser, lets you choose from multiple themes (GitHub, Default, Minimal), and requires no login, no account, and no watermark.
+MDTool is a free, browser-based Markdown to PDF converter built specifically for developers. Conversion runs entirely client-side, so your Markdown is never sent to a server. It highlights code in common languages (JavaScript, TypeScript, Python, Bash, Go, Rust, SQL, JSON, YAML, HTML, CSS and Dart), renders Mermaid diagrams, offers four themes (GitHub, Academic, Minimal, Dark) on A4 or Letter paper, and supports manual page breaks. No login, no account, no watermark.
+
+Its limitations are just as concrete:
+
+- **No emoji in the PDF.** The PDF font has no emoji glyphs, so emoji are left out of the file rather than shown as empty boxes.
+- **Browser only.** There's no CLI or API, so it can't run in a script or CI job.
+- **Narrower syntax than Pandoc.** It uses GitHub Flavored Markdown, so footnotes, definition lists and math aren't rendered.
+- **The Word export is more limited than the PDF export.** [Markdown to Word](/markdown-to-word) produces a real .docx with native heading styles, but Mermaid diagrams and images aren't included in Word yet.
 
 ---
 
 ## Side-by-Side Comparison
 
-*Competitor features checked against each tool's own site and documentation as of June 2026. Verify current behavior before relying on it, since competitor products change.*
+*Features checked against each tool's own site and documentation (and Dillinger's source code) as of October 2026. Competitor products change, so verify current behavior before relying on it.*
 
-| Tool | Free | Code Highlighting | Mermaid | No Login | Client-Side |
-|------|------|------------------|---------|----------|-------------|
-| **MDTool** | Yes | Yes | Yes | Yes | Yes |
-| markdowntopdf.com | Yes | No | No | Yes | No |
-| Dillinger | Yes | Partial | No | Yes | Yes |
-| CloudConvert | Limited | Partial | No | No | No |
-| Pandoc | Yes | Yes | No* | Yes | N/A (CLI) |
+| Tool | Free | Code highlighting | Mermaid | Runs locally | CLI / API | Main limitation |
+|------|------|-------------------|---------|--------------|-----------|-----------------|
+| **MDTool** | Yes | Yes | Yes | Yes (browser) | No | No emoji in PDF; no footnotes or math; Word export lacks Mermaid and images |
+| markdowntopdf.com | Watermark on free downloads | Yes (stated) | Yes (stated) | Not stated | No | Pay to remove the watermark |
+| Dillinger | Yes | Yes | No | No (server-side PDF) | No | Document is sent to its server on export |
+| CloudConvert | 10 conversions/day | Partial | No | No (upload) | Yes | Upload required; daily cap |
+| Pandoc | Yes | Yes | With a filter* | Yes (installed) | Yes | Setup and LaTeX or CSS knowledge |
 
-*Pandoc can render Mermaid with a separate pre-processing step, but it's not built-in.
+*Pandoc can render Mermaid with a pre-processing step such as mermaid-cli or mermaid-filter, but it isn't built in.
+
+---
+
+## How we evaluated
+
+We compared the tools on five criteria that matter for developer documentation:
+
+1. **Code highlighting** in the exported PDF, not just in a preview.
+2. **Mermaid rendering**, since diagrams in Markdown are increasingly common.
+3. **Where processing happens**: in your browser, on your machine, or on someone else's server.
+4. **Access cost**: price, signup, daily caps and watermarks.
+5. **Automation**: whether there's a CLI or API for repeat jobs.
+
+For each competitor, we used what the tool states on its own website, pricing page or documentation. For Dillinger we also read its open-source code to confirm how the PDF is produced. For Pandoc we used the official manual. We did not run the same test document through every tool or score output quality side by side, so this table says what each tool supports, not how good its output looks. For MDTool, we describe the tool as built, including the limitations above.
+
+If you're choosing a tool for important documents, run your own file through your top two picks. Tables, long code lines and diagrams are the elements most likely to differ.
 
 <Callout type="info">
   "Client-side" means your Markdown content is processed in your browser and never uploaded to a remote server. For code containing credentials, proprietary logic, or sensitive data, this distinction matters.
@@ -76,7 +106,7 @@ Most online converters work the same way: you paste or upload your Markdown, the
 
 With a server-side tool, every document you convert passes through someone else's infrastructure. Even if the provider claims not to store your content, the data still transits their network and lands in their process memory.
 
-MDTool runs the entire conversion pipeline in your browser using `html2pdf.js` and `html2canvas`. When you click Download, the PDF is assembled locally from your rendered HTML, and nothing is transmitted. This isn't a marketing claim; it's a consequence of how the tool is built. Open the browser's Network tab while converting and you'll see zero outbound requests carrying your content.
+MDTool runs the entire conversion pipeline in your browser using `pdfmake`, which writes real, selectable text into the PDF. When you click Download, the PDF is assembled locally from your rendered HTML, and nothing is transmitted. This isn't a marketing claim; it's a consequence of how the tool is built. Open the browser's Network tab while converting and you'll see zero outbound requests carrying your content.
 
 For teams working on open-source projects or public documentation, this may not matter. For developers handling internal documentation, security write-ups, or architecture decisions, it matters considerably.
 
@@ -93,7 +123,7 @@ A tool that claims to support code highlighting might:
 - Support only a handful of languages (JavaScript and Python, but not Rust, Go, or SQL)
 - Render highlighting correctly for light themes but lose it entirely for dark themes
 
-MDTool uses `highlight.js` with the same token-level syntax highlighting you'd see on GitHub, applied both in the live preview and in the final PDF output. The PDF is generated from the rendered HTML, so what you see is exactly what you get.
+MDTool uses `highlight.js` for token-level syntax highlighting, applied both in the live preview and in the final PDF output, with a color palette matched to each theme. The PDF is built from the same rendered HTML as the preview, so keywords, strings and comments keep their colors.
 
 If your Markdown documents contain multi-language code blocks, mixing shell commands, JavaScript, and SQL in the same file, full language-aware highlighting is the difference between a readable technical document and a wall of monochrome text.
 
@@ -112,9 +142,9 @@ graph TD
 ```
 ````
 
-Should render as an actual diagram in the PDF, not as a raw text block. Among the tools tested, only MDTool renders Mermaid diagrams correctly in the PDF output. The others either skip the block entirely or render the raw Mermaid syntax as a code block (without interpreting it).
+Should render as an actual diagram in the PDF, not as a raw text block. In this comparison, MDTool renders Mermaid in the PDF and markdowntopdf.com states that it does. Dillinger and CloudConvert don't render it, and Pandoc needs a pre-processing step.
 
-This is a technically harder problem than code highlighting because Mermaid diagrams have to be rendered into SVG or canvas before the PDF is generated. MDTool handles this by initializing the Mermaid renderer in the browser before the PDF export step, so diagrams are fully rendered when `html2canvas` captures the page.
+This is a technically harder problem than code highlighting because Mermaid diagrams have to be rendered into SVG or canvas before the PDF is generated. MDTool handles this by running the Mermaid renderer in the browser before the PDF export step, so each diagram is already drawn when the PDF is built.
 
 ---
 
@@ -130,13 +160,15 @@ You don't need to navigate away. Paste your Markdown below and download the PDF 
 
 **Use MDTool when** you need a quick, private, browser-based conversion with code highlighting and Mermaid support, especially for internal or proprietary documentation.
 
-**Use Dillinger when** you're already writing in Dillinger and want a fast export for simple documents without code blocks.
+**Don't use MDTool when** you need to convert files from a script or CI job, your document relies on emoji, footnotes or math, or you need diagrams in a Word file.
+
+**Use Dillinger when** you're already writing in Dillinger and your document isn't sensitive, since the PDF is generated on its server.
 
 **Use Pandoc when** you need maximum control over output formatting, are comfortable with the CLI, and don't mind setting up a processing pipeline for each project.
 
 **Use CloudConvert when** you're converting Markdown as part of a larger file processing workflow and need batch conversions or API access.
 
-Based on its published documentation and output examples, **markdowntopdf.com is a weaker fit for code-heavy documents**: it does not list syntax highlighting or Mermaid support among its features. If your document contains code blocks, verify the output before committing to it.
+**Use markdowntopdf.com when** you want curated document themes and math support and don't mind the watermark on free downloads, or you're willing to pay to remove it.
 
 ---
 
@@ -150,7 +182,7 @@ The best Markdown to PDF converter for developers in 2026 is one that:
 4. Requires no login or account
 5. Produces clean, readable output across themes
 
-MDTool is the only tool in this comparison that meets all five criteria. It's free, requires no signup, and runs entirely in your browser. If you're converting developer documentation (READMEs, architecture notes, API guides, internal specs), it's the right tool.
+Of the tools compared here, MDTool is the one that combines all five: free with no watermark, no login, client-side, with highlighted code and rendered Mermaid. That makes it a strong default for developer documentation such as READMEs, architecture notes and internal specs. It isn't the right tool for automation, emoji-heavy documents, or Pandoc-specific syntax; use Pandoc for those.
 
 **[Open the Markdown to PDF converter →](/markdown-to-pdf)**
 
@@ -167,6 +199,10 @@ Yes. There's no free tier with a conversion cap, no watermark on the output, and
 **Q: Can I use MDTool for commercial projects?**
 
 Yes. The PDF you generate is yours, with no MDTool branding in the output.
+
+**Q: What can't MDTool do?**
+
+It can't run from the command line or an API, it doesn't include emoji in the PDF, and it doesn't render footnotes, definition lists or math. Its Word export doesn't include Mermaid diagrams or images yet. For any of those, Pandoc is the better choice.
 
 **Q: Does MDTool support every Markdown flavor?**
 

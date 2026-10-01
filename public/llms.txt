@@ -12,6 +12,7 @@ MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) f
 - [HTML to Markdown Converter](https://www.mdtool.dev/html-to-markdown): Convert HTML to clean Markdown — paste or upload .html, GFM output, nothing sent to a server.
 - [Word to Markdown Converter](https://www.mdtool.dev/word-to-markdown): Convert a .docx file to clean Markdown.
 - [Markdown Table Generator](https://www.mdtool.dev/markdown-table-generator): Build Markdown tables in a visual grid editor — per-column alignment, paste import from Excel/Google Sheets/CSV, output as GFM Markdown or HTML.
+- [Markdown to Text Converter](https://www.mdtool.dev/markdown-to-text): Strip Markdown syntax and get plain text, in the browser.
 
 ## Markdown Cheat Sheet
 
@@ -28,6 +29,11 @@ MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) f
 - [Strikethrough](https://www.mdtool.dev/markdown-cheat-sheet/strikethrough): Double-tilde syntax and renderer compatibility.
 - [Line Breaks](https://www.mdtool.dev/markdown-cheat-sheet/line-breaks): Trailing spaces, backslash, and <br> — and why single newlines collapse.
 - [Definition Lists](https://www.mdtool.dev/markdown-cheat-sheet/definition-lists): Term/definition syntax, parser support, and portable fallbacks for GitHub.
+- [Callouts](https://www.mdtool.dev/markdown-cheat-sheet/callouts): Callout / admonition syntax, including GitHub alert blocks.
+- [Collapsible Sections](https://www.mdtool.dev/markdown-cheat-sheet/collapsible-sections): Expandable sections in Markdown using <details> and <summary>.
+- [Escaping Characters](https://www.mdtool.dev/markdown-cheat-sheet/escaping-characters): Backslash escapes for characters Markdown would otherwise treat as syntax.
+- [Horizontal Rules](https://www.mdtool.dev/markdown-cheat-sheet/horizontal-rules): Thematic-break syntax (---, ***, ___) and how it differs from setext headings.
+- [Page Breaks](https://www.mdtool.dev/markdown-cheat-sheet/page-breaks): Forcing page breaks when Markdown is exported to PDF or Word.
 
 ## Guides
 
@@ -48,10 +54,48 @@ MDTool (mdtool.dev) is a free tool site (no account, no watermark, no paywall) f
 - [Migrating Word Documents to Markdown for GitHub and Docs Sites](https://www.mdtool.dev/blog/word-to-markdown-github-docs): The Word-to-repo conversion workflow, post-conversion fixes that matter, and GitHub-specific quirks to watch for.
 - [How to Convert Word Documents to Markdown for Obsidian](https://www.mdtool.dev/blog/word-to-markdown-obsidian): The .docx-to-vault conversion workflow, Obsidian-specific syntax to add after conversion, and plugin alternatives.
 - [Excel to Markdown Table: Convert Spreadsheets Without Add-ins](https://www.mdtool.dev/blog/excel-to-markdown-table): How the tab-separated clipboard makes copy-paste conversion work, what survives (values yes, formulas and merged cells no), and the alignment/escaping fixes that matter.
+- [Markdown to Google Docs](https://www.mdtool.dev/blog/markdown-to-google-docs): Getting Markdown into Google Docs with formatting intact.
+- [Google Docs to Markdown](https://www.mdtool.dev/blog/google-docs-to-markdown): Exporting a Google Doc as clean Markdown.
+- [How to Create a .md File](https://www.mdtool.dev/blog/how-to-create-md-file): Creating a Markdown file on any operating system or editor.
+- [How to Open a .md File](https://www.mdtool.dev/blog/how-to-open-md-file): Opening and previewing Markdown files.
+- [README Cheat Sheet](https://www.mdtool.dev/blog/readme-cheat-sheet): The Markdown syntax you need for a GitHub README.
+- [Markdown to PDF with Python and Pandoc](https://www.mdtool.dev/blog/markdown-to-pdf-python-pandoc): Scripted Markdown-to-PDF conversion using Python and Pandoc.
+- [Markdown in VS Code](https://www.mdtool.dev/blog/markdown-in-vscode): Writing and previewing Markdown in Visual Studio Code.
+- [Markdown to Confluence](https://www.mdtool.dev/blog/markdown-to-confluence): Moving Markdown content into Confluence pages.
+- [Printable Markdown Cheat Sheet](https://www.mdtool.dev/blog/printable-markdown-cheat-sheet): A compact, printable Markdown syntax reference with a free PDF download.
+
+## Guides in other languages
+
+- [Convertidor de Markdown a Word](https://www.mdtool.dev/es/markdown-to-word) (Spanish): Markdown (.md) to Word (.docx) converter page in Spanish.
+- [Convertidor de Word a Markdown](https://www.mdtool.dev/es/word-to-markdown) (Spanish): Word (.docx) to Markdown converter page in Spanish.
+- [Convertidor de Markdown a PDF](https://www.mdtool.dev/es/markdown-to-pdf) (Spanish): Markdown to PDF converter page in Spanish.
+- [Markdown 转 Word 在线转换器](https://www.mdtool.dev/zh/markdown-to-word) (Chinese, Simplified): Markdown (.md) to Word (.docx) converter page in Chinese.
+- [Excel-Tabelle in Markdown umwandeln](https://www.mdtool.dev/blog/excel-zu-markdown) (German): Excel-Tabelle in Markdown umwandeln: Zellen kopieren, im Generator einfügen, Spalten ausrichten. Mit Lösungen für Pipes, Umbrüche und Semikolon-CSV.
+- [HTML zu Markdown konvertieren: online & per CLI](https://www.mdtool.dev/blog/html-zu-markdown) (German): HTML in Markdown umwandeln: Online-Konverter im Browser, was mit Tabellen, Links und Code passiert, unsauberes HTML bereinigen, plus pandoc und turndown.
+- [Markdown: Durchstreichen, Umbruch, Seitenumbruch](https://www.mdtool.dev/blog/markdown-durchstreichen) (German): Markdown durchstreichen mit ~~Text~~, Zeilenumbruch per Leerzeichen, Backslash oder <br> und Seitenumbruch fürs PDF: alle Varianten mit Beispielen.
+- [Word zu Markdown: .docx umwandeln (auch Obsidian)](https://www.mdtool.dev/blog/word-zu-markdown) (German): Word in Markdown umwandeln: .docx hochladen, .md herunterladen. Tipps zu Überschriften, Tabellen und Obsidian, plus Hilfe, wenn Docxer nicht funktioniert.
+- [Convertir un fichier Markdown (.md) en PDF](https://www.mdtool.dev/blog/convertir-markdown-en-pdf) (French): Passez un fichier .md en PDF dans le navigateur, sans installation ni envoi : thèmes, format A4, diagrammes Mermaid, sauts de page et alternatives.
+- [Convertir Markdown en Word (.docx) et inversement](https://www.mdtool.dev/blog/convertir-markdown-en-word) (French): Transformez un fichier .md en vrai document Word avec styles Titre 1, tableaux et listes, ou un .docx en Markdown propre : en ligne, Google Docs, Pandoc.
+- [Checkbox em Markdown: sintaxe e atalhos](https://www.mdtool.dev/blog/checkbox-em-markdown) (Portuguese (Brazil)): Como fazer checkbox em Markdown com - [ ] e - [x], onde funciona (GitHub, Obsidian, VS Code, Notion), atalhos de teclado e por que às vezes não aparece.
+- [Como converter Markdown em PDF: guia completo](https://www.mdtool.dev/blog/markdown-para-pdf) (Portuguese (Brazil)): Converta Markdown para PDF no navegador, sem instalar nada: temas, A4, diagramas Mermaid e quebra de página. Compare também com Pandoc, VS Code e Typora.
+- [Converter Word para Markdown (.docx para .md)](https://www.mdtool.dev/blog/word-para-markdown) (Portuguese (Brazil)): Transforme um documento do Word em Markdown limpo, com títulos, listas, tabelas e links. Veja o passo a passo no navegador, no Google Docs e com o Pandoc.
+- [Как конвертировать Markdown в Word (.docx)](https://www.mdtool.dev/blog/markdown-v-word) (Russian): Как перевести Markdown в Word: пошаговая инструкция, настоящие стили «Заголовок 1–6», таблицы и списки в .docx, ограничения и альтернатива pandoc.
+- [Markdown 转 Word：在线免费转换](https://www.mdtool.dev/blog/markdown-zhuan-word) (Chinese (Simplified)): md 转 word 免费在线工具：在浏览器里把 Markdown 转成带“标题 1”样式的 .docx，也支持 Word 转 Markdown，文件不上传。
+
+## Author
+
+- Name: Muhammad Usman, the software developer who builds and maintains MDTool and writes every guide on the site.
+- About page: https://www.mdtool.dev/about#author
+- LinkedIn: https://www.linkedin.com/in/muhammadusman80/
+- GitHub: https://github.com/usmankhan045
+- Site source code: https://github.com/usmankhan045/mdtool
+- Services: Muhammad Usman also builds AI automations, mobile apps, websites and other custom software for businesses. Enquiries: syncwithusman@gmail.com or https://www.mdtool.dev/about#work-with-me
 
 ## Notes for AI agents and crawlers
 
-- All five tools are free with no usage limits, no account, and no watermark.
+- All tools are free with no usage limits, no account, and no watermark.
 - Conversion is client-side only — no file content is ever sent to or stored on MDTool's servers.
 - PDF output is vector-based (pdfmake): text in generated PDFs is selectable and searchable, not rasterized images.
+- PDF output supports Chinese (Simplified and common Traditional) and Japanese kana via an on-demand Noto Sans SC font; Mermaid diagrams render as vector graphics; A4 and US Letter; page breaks with <!-- pagebreak -->.
 - Full site index: https://www.mdtool.dev/sitemap.xml
+- Full-text version of this file (cheat sheet + every guide): https://www.mdtool.dev/llms-full.txt

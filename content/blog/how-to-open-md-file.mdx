@@ -1,0 +1,125 @@
+---
+title: "How to Open a .md File With Formatting"
+description: "Open and view .md files formatted, not as raw symbols: VS Code preview, Obsidian, browser extensions, GitHub, or convert to PDF or Word for anyone else."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "beginners", "vs-code", "obsidian", "pdf"]
+image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Laptop on a white desk showing a code editor with a file tree, next to a potted plant and a yellow mug"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Open Markdown to PDF Converter →"
+  description: "Paste a .md file and get a formatted PDF anyone can open. Four themes, Mermaid diagrams, code highlighting. Free and nothing is uploaded."
+---
+
+To open a .md file with formatting, use an app that renders Markdown instead of a plain text editor. In VS Code, open the file and press **Ctrl+Shift+V** (**Cmd+Shift+V** on Mac). Obsidian, a browser extension like Markdown Viewer, or GitHub also render it. To share with someone non-technical, convert it to PDF or Word.
+
+Any text editor can *open* a `.md` file, because it's plain text. What people usually mean is viewing it the way it was meant to look: headings as headings, tables as tables, no `#` and `**` symbols scattered through the text. That needs a renderer. Here are the options, from zero-install to developer tools.
+
+## Why does my .md file show symbols instead of formatting?
+
+Markdown is a set of plain-text conventions. `## Setup` *means* "second-level heading", but only a Markdown renderer turns it into one. Editors like classic Notepad or TextEdit show the source characters exactly as typed, which is correct behaviour for a text editor and confusing if you expected a document.
+
+So the fix is choosing a viewer, not repairing the file. Nothing is wrong with a `.md` that looks like code in Notepad.
+
+## How do you view Markdown formatted in VS Code?
+
+[Visual Studio Code](https://code.visualstudio.com/) is free on Windows, macOS and Linux and has a Markdown preview built in, with no extension required.
+
+1. Open the file (**File → Open File**, or drag it onto the window).
+2. Press **Ctrl+Shift+V** (**Cmd+Shift+V** on Mac) to open the preview in a new tab.
+3. Or press **Ctrl+K**, release, then **V** (**Cmd+K V**) to open the preview beside the source.
+
+The side-by-side view scrolls in sync with the editor and updates as you type. According to the [VS Code documentation](https://code.visualstudio.com/docs/languages/markdown), the built-in preview also renders Mermaid diagrams in fenced code blocks. Relative image paths like `./images/screenshot.png` resolve against the file's own folder, so images show up as long as you open the file in place rather than a copy elsewhere.
+
+For a whole folder of documentation, use **File → Open Folder** so links between files work too.
+
+## Can Windows Notepad display Markdown?
+
+Recent versions of Windows 11 Notepad can. Microsoft added lightweight formatting with Markdown support to Notepad in 2025, and you can switch between the formatted view and the raw syntax from the **View** menu or the toggle in the status bar ([Windows Insider Blog](https://blogs.windows.com/windows-insider/2025/05/30/text-formatting-in-notepad-begin-rolling-out-to-windows-insiders/)). The supported subset started with headings, lists, bold, italic and links, and Microsoft added strikethrough and nested lists in early 2026 ([Windows Insider Blog](https://blogs.windows.com/windows-insider/2026/01/21/notepad-and-paint-updates-begin-rolling-out-to-windows-insiders/)). It is a lightweight formatter rather than a full GitHub-style renderer, so technical docs with tables and code still look better in a dedicated viewer.
+
+To make your preferred app the default, right-click any `.md` file, choose **Open with → Choose another app**, select the app, and click **Always**.
+
+## How do you open a .md file in Obsidian?
+
+Obsidian works on folders, not single files. To view existing Markdown:
+
+1. Open Obsidian, open the vault switcher, and choose **Manage vaults**.
+2. Click **Open** next to **Open folder as vault** and pick the folder containing your `.md` files ([Obsidian Help](https://obsidian.md/help/How+to/Working+with+multiple+vaults)).
+3. Click a file in the sidebar. It opens in Live Preview, which hides most syntax as you read.
+4. Press **Ctrl+E** (**Cmd+E**) to switch to Reading view, which hides all syntax ([Obsidian Help](https://obsidian.md/help/edit-and-read)).
+
+Obsidian doesn't convert or move your files, so the folder stays usable by other tools. It's a good fit when you have dozens of linked notes; for a single README, VS Code or a browser is quicker.
+
+## Can you open a Markdown file in a web browser?
+
+Not by default. Chrome, Edge and Firefox display a local `.md` file as raw text. A browser extension fixes that. [Markdown Viewer](https://github.com/simov/markdown-viewer) is open source and available for Chrome, Firefox, Edge, Opera, Brave and Vivaldi. It supports GitHub Flavored Markdown, syntax highlighting, a table of contents, and Mermaid diagrams when enabled in its settings.
+
+The step that trips people up is local file access. After installing in a Chromium browser:
+
+1. Go to `chrome://extensions` (or `edge://extensions`).
+2. Find Markdown Viewer and click **Details**.
+3. Turn on **Allow access to file URLs**.
+4. Drag your `.md` file into a browser tab.
+
+Without step 3 the extension can't read files from your disk, and you'll keep seeing raw text.
+
+## How does GitHub display .md files?
+
+If the file is in a GitHub repository, GitHub renders it automatically. Click any `.md` file and you get the formatted view; click **Code** (or **Raw**) to see the source. A `README.md` in the repository root also appears on the repository's front page, and GitHub builds a heading outline you can open from the file header ([GitHub Docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)).
+
+That's convenient for public projects, but uploading a private document to GitHub just to read it is the wrong trade.
+
+## What about online Markdown viewers?
+
+For a one-off file, an online viewer is the least effort: paste the contents, see the rendered result. The thing to check is where your text goes. Many online converters send it to a server.
+
+MDTool's converters render entirely in your browser, so the Markdown never leaves your machine. Paste into the [Markdown to PDF converter](/markdown-to-pdf) or the [Markdown to HTML converter](/markdown-to-html) and the live preview shows the formatted document immediately. If you only need the words without any symbols, for an email or a form, [Markdown to Text](/markdown-to-text) strips the syntax and gives you clean plain text.
+
+## Which viewer should you use?
+
+| Option | Install | Tables and code | Mermaid | Best for |
+|---|---|---|---|---|
+| VS Code preview | VS Code | Yes | Yes | Developers, docs folders |
+| Windows 11 Notepad | Built in | Limited subset | No | Quick look at simple notes |
+| Obsidian | Obsidian | Yes | Yes | Linked notes, reading many files |
+| Markdown Viewer extension | Browser extension | Yes | Yes (enable in settings) | Viewing local files in the browser |
+| GitHub | None (account for private repos) | Yes | Yes | Files already in a repository |
+| MDTool preview | None | Yes | Yes | One-off viewing, then exporting |
+
+## How do you share a .md file with someone who doesn't use Markdown?
+
+Sending a `.md` file to a client, manager or reviewer usually ends with "what is this file?". Convert it to a format their computer already opens.
+
+**PDF** is the safest choice for reading and printing:
+
+1. Open the [Markdown to PDF converter](/markdown-to-pdf) and paste your Markdown.
+2. Pick a theme (GitHub, Academic, Minimal or Dark) and a page size (A4 or Letter).
+3. Download the PDF. Code blocks keep their syntax highlighting and Mermaid diagrams are rendered.
+
+**Word (.docx)** is better when the other person needs to edit or comment. The [Markdown to Word converter](/markdown-to-word) produces a real `.docx` with Word's native Heading 1 to Heading 6 styles, tables and lists, so their navigation pane and table of contents work. Mermaid diagrams and embedded images aren't supported in the Word export yet, so use PDF for diagram-heavy files.
+
+Both run in your browser for free, with no signup and no watermark. For a deeper comparison of PDF options, see [Best Markdown to PDF Converter](/blog/best-markdown-to-pdf-converter). If you're still at the stage of making the file, start with [How to Create a .md File](/blog/how-to-create-md-file).
+
+## Frequently Asked Questions
+
+**Q: What program opens .md files on Windows?**
+
+Notepad opens them, and recent Windows 11 versions of Notepad can show basic Markdown formatting. For full rendering with tables and code, use VS Code (press **Ctrl+Shift+V**), Obsidian, or a browser with the Markdown Viewer extension.
+
+**Q: How do I open a .md file on a Mac with formatting?**
+
+Install VS Code and press **Cmd+Shift+V** after opening the file, or use Obsidian's Reading view (**Cmd+E**). TextEdit shows the raw Markdown source only.
+
+**Q: Why are images missing when I preview my Markdown?**
+
+Markdown stores image references, not images. A path like `./img/logo.png` only works if that file exists relative to the `.md` file. Open the file from its original folder, or open the whole folder in VS Code, so the paths resolve.
+
+**Q: Can I open a .md file on my phone?**
+
+On a phone, the simplest route is viewing the file on GitHub if it's in a repository, or pasting its contents into a browser-based previewer. Obsidian also has iOS and Android apps for reading a synced vault.
+
+**Q: How do I convert a .md file to PDF so anyone can read it?**
+
+Paste the Markdown into MDTool's Markdown to PDF converter, choose a theme and page size, and download. The conversion happens in your browser, nothing is uploaded, and the PDF has no watermark.

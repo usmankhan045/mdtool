@@ -103,7 +103,7 @@ If the original document had note boxes or warning panels, upgrading the corresp
 
 ### 4. Check Image Paths
 
-Word embeds images as binary objects inside the `.docx` ZIP. They are **not extracted** by MDTool or Docxer in their default configuration. After conversion, any image that was in the original document will be absent from the Markdown output. Re-add images manually:
+Word embeds images as binary objects inside the `.docx` ZIP. MDTool keeps them, but **inline**: each image becomes a long base64 `data:` link (`![](data:image/png;base64,...)`) instead of a separate file in your vault. That makes the note heavy and awkward to edit, so swap them for real attachment files:
 
 1. Export images from the Word document (right-click → Save as Picture)
 2. Copy the image files into a subfolder in your vault (e.g., `/attachments/` or `/assets/`)
@@ -133,7 +133,7 @@ These convert cleanly. Word's Heading 1 style becomes `# H1` in Markdown, bullet
 
 **Q: What about footnotes in Word documents?**
 
-GFM has no standard footnote syntax, so Word footnotes are dropped by the converter. You can add Markdown extended footnote syntax (`[^1]`) manually, and Obsidian renders extended footnotes in reading view, though they're not part of strict GFM.
+They aren't lost: the converter turns Word footnotes into a numbered list at the end of the note, with `[1]`-style links where each one was referenced. Obsidian also supports Markdown footnote syntax (`[^1]`), which renders as proper footnotes in reading view, so you can convert the list to that syntax by hand if you prefer.
 
 **Q: Can I convert a batch of Word files at once?**
 

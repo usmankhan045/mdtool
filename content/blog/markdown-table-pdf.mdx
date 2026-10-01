@@ -1,8 +1,8 @@
 ---
 title: "Why Markdown Tables Break in PDF Exports"
 description: "Markdown tables are a common cause of broken PDF exports. Learn why they fail, what correct output looks like, and how to fix every table rendering problem."
-datePublished: "2026-03-08"
-dateModified: "2026-07-03"
+datePublished: "2026-06-23"
+dateModified: "2026-10-01"
 tags: ["markdown", "pdf", "tables", "github-flavored-markdown", "developer-tools"]
 image: "/blog/markdown-table-pdf.jpg"
 imageAlt: "Performance analytics dashboard with charts and data on a laptop screen"
@@ -122,9 +122,9 @@ MDTool avoids all three failure modes:
 
 1. **GFM enabled by default.** The `marked` parser runs with `gfm: true`, so pipe tables are parsed correctly.
 
-2. **Inline CSS, no race conditions.** Theme styles are injected as `<style>` tags in `<head>` before the PDF capture step. There's no external stylesheet request that could arrive late.
+2. **No stylesheet to load.** The PDF is drawn with `pdfmake`, a vector PDF engine, and each theme's table styling (header fill, thin borders, cell padding) is defined in code. Nothing depends on a stylesheet arriving in time.
 
-3. **Full CSS fidelity.** Because conversion uses `html2canvas` to capture the rendered page, what you see in the preview is exactly what you get in the PDF. `border-collapse`, `padding`, `background-color`, and `font-weight` all apply.
+3. **Real text, not a screenshot.** Table cells are written into the PDF as selectable, searchable text rather than captured as an image, so tables stay sharp at any zoom and you can copy values out of them. The preview and the PDF use the same parsed HTML, so rows and columns match; fonts and spacing differ slightly because the PDF uses its own embedded font.
 
 The result is that a table like this:
 

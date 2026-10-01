@@ -1,0 +1,164 @@
+---
+title: "How to Create a .md File on Windows, Mac and Linux"
+description: "Create a Markdown (.md) file with Notepad, TextEdit, VS Code, Obsidian or one terminal command. Exact steps, plus how to avoid the hidden .md.txt trap."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "beginners", "windows", "macos", "vs-code"]
+image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Close-up of a Linux terminal prompt on a dark screen with the sudo command typed after the cursor"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Open Markdown to PDF Converter →"
+  description: "Wrote your first .md file? Paste it in and download a formatted PDF with code highlighting. Free, no signup, nothing uploaded."
+---
+
+To create a .md file, open any plain-text editor, type your Markdown, and save the file with a `.md` extension, for example `README.md`. On Windows use Notepad and set **Save as type** to **All files**. On Mac, switch TextEdit to plain text first. VS Code, Obsidian, or a single `touch` or `New-Item` command also work.
+
+A Markdown file is just plain text with a different extension. There is no special format, no binary header, nothing that requires a dedicated app. The only things that go wrong are the extension (you end up with `notes.md.txt`) and, occasionally, the text encoding. This guide covers both on every common setup.
+
+## What is a .md file, exactly?
+
+A `.md` file contains plain UTF-8 text that uses Markdown syntax: `#` for headings, `**` for bold, `-` for list items, and so on. The extension tells tools like GitHub, VS Code and static site generators to render the text as formatted content. `.markdown` is an equivalent extension, but `.md` is far more common, and GitHub looks for `README.md` by convention.
+
+Because it is plain text, rich-text editors are the wrong tool. Word, Pages and TextEdit's default mode add formatting data you can't see, which corrupts the file. Stick to editors that save raw characters.
+
+## How do you create a Markdown file in Windows?
+
+### Notepad
+
+1. Open **Notepad** from the Start menu.
+2. Type some Markdown, for example `# My Notes`.
+3. Click **File → Save as**.
+4. In the **Save as type** dropdown, choose **All files (\*.\*)**.
+5. Type the file name with the extension, such as `notes.md`, and set **Encoding** to **UTF-8**.
+6. Click **Save**.
+
+Step 4 is the one people miss. With the default **Text documents (\*.txt)** filter, Notepad can add `.txt` to the end, giving you `notes.md.txt`. Wrapping the name in quotes, `"notes.md"`, also forces the exact name.
+
+Current Windows 11 Notepad also understands Markdown. Microsoft added lightweight formatting with support for Markdown-style input and files in 2025, and you can switch between the formatted view and the raw syntax from the **View** menu or the toggle in the status bar ([Windows Insider Blog](https://blogs.windows.com/windows-insider/2025/05/30/text-formatting-in-notepad-begin-rolling-out-to-windows-insiders/)). If you prefer pure plain text, formatting can be turned off in Notepad's settings.
+
+### File Explorer
+
+1. Right-click inside a folder and choose **New → Text Document**.
+2. Rename it from `New Text Document.txt` to `notes.md`.
+3. Confirm the warning about changing the file name extension.
+
+This only works if Windows is showing file extensions. If it isn't, you'll rename the visible part to `notes.md` while the hidden `.txt` stays on the end.
+
+### How do you show file extensions in Windows?
+
+In **Windows 11**, open File Explorer and select **View → Show → File name extensions**. In **Windows 10**, open the **View** tab and tick **File name extensions** in the **Show/hide** group ([Microsoft Support](https://support.microsoft.com/en-us/windows/common-file-name-extensions-in-windows-da4a4430-8e76-89c5-59f7-1cdbbc75cb01)). Do this once and the `.md.txt` problem becomes obvious whenever it happens.
+
+## How do you create a .md file on a Mac?
+
+TextEdit opens in rich-text mode by default, which saves `.rtf` files. Switch it to plain text:
+
+1. Open **TextEdit** and choose **File → New**.
+2. Select **Format → Make Plain Text** (**Shift+Cmd+T**).
+3. Type your Markdown.
+4. Choose **File → Save**, name the file `notes.md`, and click **Save**.
+5. If TextEdit asks which extension to use, click **Use .md**.
+
+Apple documents the same plain-text-then-save flow for HTML files in the [TextEdit User Guide](https://support.apple.com/guide/textedit/work-with-html-documents-txted0b6cd61/mac). To skip step 2 permanently, open **TextEdit → Settings → New Document** and select **Plain text** under Format.
+
+Finder doesn't have a "new file" option, so on a Mac the terminal (below) is often faster.
+
+## How do you create a Markdown file in VS Code?
+
+VS Code is what I'd recommend to anyone who will write more than a few Markdown files, because it shows a live preview.
+
+1. Press **Ctrl+N** (**Cmd+N** on Mac) to open a new untitled file.
+2. Press **Ctrl+S** (**Cmd+S**) and save it as `notes.md`. VS Code switches the language mode to Markdown based on the extension.
+3. Open the preview with **Ctrl+Shift+V** (**Cmd+Shift+V**), or side by side with **Ctrl+K V** (**Cmd+K V**) ([VS Code docs](https://code.visualstudio.com/docs/languages/markdown)).
+
+In the Explorer sidebar you can also click the **New File** icon and type `notes.md` directly. VS Code saves in UTF-8 by default, so encoding is never an issue.
+
+## How do you create a .md file in Obsidian?
+
+Every note in Obsidian is a `.md` file in a normal folder on your disk (Obsidian calls that folder a vault).
+
+1. Open or create a vault. To use an existing folder, open the vault switcher, choose **Manage vaults**, and click **Open** next to **Open folder as vault** ([Obsidian Help](https://obsidian.md/help/How+to/Working+with+multiple+vaults)).
+2. Press **Ctrl+N** (**Cmd+N**) for a new note.
+3. Type a title. That title becomes the file name, saved as `Title.md`.
+
+Obsidian saves automatically, so there is no save step. Open the folder in File Explorer or Finder and you'll see the `.md` files sitting there, readable by any other editor.
+
+## How do you create a .md file from the command line?
+
+**macOS and Linux (Terminal):**
+
+```bash
+touch README.md                      # empty file
+echo "# My Project" > README.md      # file with a first heading
+```
+
+**Windows PowerShell:**
+
+```powershell
+New-Item -Path . -Name "README.md" -ItemType "File" -Value "# My Project"
+```
+
+`New-Item` is the documented way to create files in PowerShell ([Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-item)), and its short alias is `ni`. Prefer it over `echo "# My Project" > README.md` in Windows PowerShell 5.1: there, the `>` operator writes UTF-16LE, while `New-Item -Value` writes BOM-less UTF-8 ([Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_character_encoding)). PowerShell 7 writes UTF-8 without a BOM in both cases.
+
+**Windows Command Prompt:**
+
+```bat
+type nul > README.md
+```
+
+## Which method should you use?
+
+| Method | Best for | Live preview | Extension trap? |
+|---|---|---|---|
+| Notepad (Windows) | One-off files, no installs | Formatted view in current Windows 11 | Yes: choose **All files** |
+| File Explorer rename | Creating a file in a specific folder | No | Yes: show extensions first |
+| TextEdit (Mac) | One-off files, no installs | No | Must use **Make Plain Text** |
+| VS Code | Docs, READMEs, regular writing | Yes (**Ctrl+Shift+V**) | No |
+| Obsidian | Notes and personal knowledge bases | Yes (Live Preview) | No |
+| Terminal / PowerShell | Developers, scripts, new repos | No | No |
+
+## What should go in your first .md file?
+
+Paste this in to check that rendering works:
+
+```markdown
+# My First Markdown File
+
+Some **bold** text, some *italic* text, and a [link](https://www.mdtool.dev).
+
+## A list
+
+- First item
+- Second item
+
+## A table
+
+| Name | Value |
+|------|-------|
+| One  | 1     |
+```
+
+If the preview shows a heading, a bulleted list and a small table, your file is set up correctly. The [Markdown cheat sheet](/markdown-cheat-sheet) covers every element, with focused pages on [headings](/markdown-cheat-sheet/headings) and [lists](/markdown-cheat-sheet/lists). Once you have content, you can open and view it formatted (see [How to Open a .md File](/blog/how-to-open-md-file)), or turn it into a shareable document with the [Markdown to PDF converter](/markdown-to-pdf), which runs in your browser and uploads nothing.
+
+## Frequently Asked Questions
+
+**Q: Why does my file end in .md.txt?**
+
+Notepad or File Explorer kept the `.txt` extension, and Windows is hiding it. Turn on **View → Show → File name extensions** in File Explorer, then rename the file and delete the `.txt` part. When saving from Notepad, set **Save as type** to **All files (\*.\*)**.
+
+**Q: Is .md the same as .markdown?**
+
+Yes. Both extensions identify Markdown files and editors treat them identically. `.md` is the common choice, and GitHub's conventions, such as `README.md` and `CONTRIBUTING.md`, use it.
+
+**Q: Can I create a .md file in Microsoft Word?**
+
+Not reliably. Word saves formatted documents, not plain text. Write in a text editor instead, or write in Word and convert the finished `.docx` with a Word to Markdown converter.
+
+**Q: What encoding should a Markdown file use?**
+
+UTF-8, ideally without a byte order mark. VS Code, Obsidian, TextEdit plain text and the macOS terminal use UTF-8 already. In Notepad, pick **UTF-8** in the Encoding dropdown when saving.
+
+**Q: Do I need special software to create Markdown?**
+
+No. Any plain-text editor works, including the ones that ship with Windows and macOS. Dedicated editors like VS Code or Obsidian add a live preview, which helps while you learn the syntax.

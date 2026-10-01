@@ -129,13 +129,13 @@ export default function HomePage() {
               <span className="h-3 w-3 rounded-full bg-rose-400/80" />
               <span className="h-3 w-3 rounded-full bg-amber-400/80" />
               <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
-              <span className="ml-3 font-mono text-xs text-blue-200/60">mdtool: convert</span>
+              <span className="ml-3 font-mono text-xs text-blue-200/80">mdtool: convert</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-stretch">
               {/* Left: raw markdown, real text with syntax tokens */}
               <div className="p-5 font-mono text-[13px] leading-6 text-blue-100/90">
-                <div className="mb-3 font-sans text-xs uppercase tracking-wider text-blue-200/50">
+                <div className="mb-3 font-sans text-xs uppercase tracking-wider text-blue-200/80">
                   README.md
                 </div>
                 <pre className="whitespace-pre-wrap">
@@ -158,7 +158,7 @@ export default function HomePage() {
 
               {/* Right: rendered output stack — fixes the cut-off output card */}
               <div className="p-5">
-                <div className="mb-3 font-sans text-xs uppercase tracking-wider text-blue-200/50">
+                <div className="mb-3 font-sans text-xs uppercase tracking-wider text-blue-200/80">
                   Output
                 </div>
                 <div className="space-y-2.5">
@@ -183,7 +183,7 @@ export default function HomePage() {
               href="/markdown-to-pdf"
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-blue-900/40 transition-colors hover:bg-blue-500"
             >
-              <span className="font-mono text-sm text-blue-200">MD → PDF</span>
+              <span className="font-mono text-sm text-white">MD → PDF</span>
               Markdown to PDF →
             </Link>
             {TOOLS.slice(1).map((tool) => (
@@ -198,7 +198,7 @@ export default function HomePage() {
           </div>
 
           {/* trust strip — true facts, not decoration */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-xs text-blue-200/50">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-xs text-blue-200/80">
             <span>100% client-side</span>
             <span className="hidden sm:inline text-white/15">•</span>
             <a
@@ -236,7 +236,7 @@ export default function HomePage() {
                     {tool.badge}
                   </span>
                 ) : (
-                  <span className="font-mono text-xs font-semibold text-gray-400 group-hover:text-blue-500 transition-colors">
+                  <span className="font-mono text-xs font-semibold text-gray-600 group-hover:text-blue-700 transition-colors">
                     {tool.from} → {tool.to}
                   </span>
                 )}

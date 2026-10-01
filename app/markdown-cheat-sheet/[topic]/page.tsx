@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import StructuredData from '@/components/seo/StructuredData';
-import { GUIDE_TOPICS, getGuideTopic } from '@/lib/cheatsheet';
+import { GUIDE_TOPICS, getGuideTopic, type GuideTopic } from '@/lib/cheatsheet';
+
+
+// Spokes launched 2026-07-03; the five below were added 2026-10-01, when every
+// spoke was also revised (new sections, FAQs and related links).
+const FIRST_PUBLISHED = '2026-07-03';
+const CONTENT_UPDATED = '2026-10-01';
+const NEW_TOPICS = new Set(['callouts', 'collapsible-sections', 'escaping-characters', 'horizontal-rules', 'page-breaks']);
 
 export function generateStaticParams() {
   return GUIDE_TOPICS.map((t) => ({ topic: t.slug }));
@@ -30,17 +37,20 @@ export default async function GuideTopicPage({ params }: { params: Promise<{ top
   const topic = getGuideTopic(slug);
   if (!topic) notFound();
 
-  const related = GUIDE_TOPICS.filter((t) => t.slug !== slug).slice(0, 4);
+  const curated = (topic.related ?? [])
+    .map((s) => getGuideTopic(s))
+    .filter((t): t is GuideTopic => t !== undefined && t.slug !== slug);
+  const related = curated.length > 0 ? curated : GUIDE_TOPICS.filter((t) => t.slug !== slug).slice(0, 4);
 
   return (
     <>
       <StructuredData
-        type="blog"
+        type="techarticle"
         name={topic.metaTitle}
         url={`/markdown-cheat-sheet/${slug}`}
         description={topic.metaDescription}
-        datePublished="2026-07-03"
-        dateModified="2026-07-03"
+        datePublished={NEW_TOPICS.has(topic.slug) ? CONTENT_UPDATED : FIRST_PUBLISHED}
+        dateModified={CONTENT_UPDATED}
       />
       <StructuredData
         type="breadcrumb"
@@ -61,6 +71,9 @@ export default async function GuideTopicPage({ params }: { params: Promise<{ top
               <span>{topic.title}</span>
             </nav>
             <h1 className="text-3xl md:text-4xl font-bold mb-3">{topic.title}</h1>
+            <p className="text-xs text-blue-200/60 mb-3">
+              Updated <time dateTime={CONTENT_UPDATED}>October 1, 2026</time>
+            </p>
             {/* Answer-first: the direct, self-contained answer to the query */}
             <p className="text-base md:text-lg text-blue-100/85 leading-relaxed">{topic.answer}</p>
           </div>
@@ -71,6 +84,32 @@ export default async function GuideTopicPage({ params }: { params: Promise<{ top
             <section key={section.heading} className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-800 mb-3">{section.heading}</h2>
               <p className="text-gray-700 leading-relaxed mb-4">{section.body}</p>
+              {section.table && (
+                <div className="mb-4 overflow-x-auto rounded-xl border border-gray-200 bg-white">
+                  <table className="w-full text-sm text-left">
+                    <thead className="bg-gray-50 text-gray-700">
+                      <tr>
+                        {section.table.headers.map((h) => (
+                          <th key={h} scope="col" className="px-4 py-2.5 font-semibold border-b border-gray-200">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="text-gray-700">
+                      {section.table.rows.map((row, i) => (
+                        <tr key={i} className="border-b border-gray-100 last:border-0 align-top">
+                          {row.map((cell, j) => (
+                            <td key={j} className={`px-4 py-2.5 ${j === 0 ? 'font-medium text-gray-900 whitespace-nowrap' : ''}`}>
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
               {section.code && (
                 <pre className="rounded-xl bg-[#0f1e30] text-blue-50 p-4 overflow-x-auto text-sm font-mono leading-relaxed">
                   <code>{section.code}</code>

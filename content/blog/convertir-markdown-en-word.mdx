@@ -1,0 +1,132 @@
+---
+title: "Convertir Markdown en Word (.docx) et inversement"
+description: "Transformez un fichier .md en vrai document Word avec styles Titre 1, tableaux et listes, ou un .docx en Markdown propre : en ligne, Google Docs, Pandoc."
+lang: "fr"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "word", "docx", "francais", "conversion"]
+image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Main tenant un stylo au-dessus de feuilles de papier, à côté d'un ordinateur portable et d'une tasse"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-word"
+  label: "Ouvrir le convertisseur Markdown vers Word →"
+  description: "Collez votre Markdown et téléchargez un .docx modifiable, avec de vrais styles de titre. Gratuit, sans inscription, rien n'est envoyé sur un serveur."
+---
+
+Pour convertir un fichier Markdown en Word, collez le contenu du `.md` dans un convertisseur comme MDTool et téléchargez le `.docx` : les `#` deviennent des styles **Titre 1**, **Titre 2**, et les tableaux et listes restent modifiables. Dans l'autre sens, déposez le `.docx` dans le convertisseur Word vers Markdown et copiez le résultat.
+
+On rédige souvent en Markdown parce que c'est rapide, lisible et versionnable avec Git. Mais le jour où un collègue, un client ou une administration réclame « la version Word », il faut un vrai `.docx`, pas un texte collé avec des dièses partout. L'inverse arrive aussi : une procédure écrite sous Word doit rejoindre une documentation en Markdown. Voici comment faire dans les deux sens sans perdre la structure.
+
+## Pourquoi un simple copier-coller ne suffit-il pas ?
+
+Si vous copiez le texte brut d'un `.md` dans Word, vous obtenez les symboles tels quels : `## Introduction`, `**important**`, des tirets en début de ligne. Si vous copiez l'aperçu rendu par un éditeur, c'est mieux, mais Word applique le plus souvent une mise en forme directe (police plus grande, gras) au lieu de ses styles de titre. Résultat : le volet de navigation reste vide et la table des matières automatique ne trouve rien.
+
+Un convertisseur, lui, traduit chaque élément Markdown vers l'objet Word correspondant.
+
+## Comment convertir un .md en Word en ligne ?
+
+Le [convertisseur Markdown vers Word de MDTool](/markdown-to-word) produit un vrai fichier `.docx`. L'interface est en anglais, mais la manipulation est simple :
+
+1. Collez votre Markdown dans le panneau de gauche, ou glissez-y le fichier `.md`.
+2. Vérifiez l'aperçu à droite.
+3. Cliquez sur **Download Word (Free)**.
+4. Ouvrez le fichier dans Word, LibreOffice ou Google Docs.
+
+Tout se passe dans votre navigateur : le document n'est envoyé sur aucun serveur, ce qui le rend utilisable pour des contenus internes ou des données personnelles. Pas de compte, pas de filigrane, pas de limite.
+
+## Qu'est-ce qui est conservé dans le fichier Word ?
+
+| Markdown | Dans Word |
+|---|---|
+| `#`, `##`, `###` | Styles Titre 1, Titre 2, Titre 3 |
+| `**gras**`, `*italique*` | Gras et italique |
+| Listes `-` et `1.` | Listes à puces et numérotées |
+| Tableaux | Tableaux Word modifiables |
+| Blocs de code | Police à chasse fixe (Courier New) |
+| Citations `>` | Paragraphe en retrait avec bordure gauche |
+| Liens | Liens hypertexte cliquables |
+| Diagrammes Mermaid | Non inclus |
+| Images | Non incluses |
+
+Comme les titres utilisent les styles intégrés de Word, vous pouvez ensuite insérer une table des matières via **Références > Table des matières**, ou changer l'apparence de tous les titres en modifiant le style dans la galerie **Styles** de l'onglet **Accueil**. La [page d'aide Microsoft sur les titres](https://support.microsoft.com/fr-fr/word/add-a-heading) explique ce fonctionnement.
+
+Si votre document contient des diagrammes ou des images importantes, passez plutôt par le [convertisseur Markdown vers PDF](/markdown-to-pdf), qui les affiche.
+
+## Comment convertir un docx en md ?
+
+Pour le sens inverse, utilisez le [convertisseur Word vers Markdown](/word-to-markdown) :
+
+1. Déposez le fichier `.docx` dans la zone **Drag and drop a .docx file here**.
+2. Le Markdown (format GitHub Flavored Markdown) s'affiche à droite.
+3. Cliquez sur **Copy** pour le copier ou sur **Download .md** pour l'enregistrer.
+
+Le convertisseur se fie aux **styles** du document, pas à son apparence. Un paragraphe en Titre 1 devient `#`. Un paragraphe simplement mis en gras et en taille 16 reste un paragraphe. Avant de convertir, prenez donc deux minutes pour :
+
+- appliquer les styles **Titre 1**, **Titre 2**, etc. aux vrais titres (onglet **Accueil**, galerie **Styles**) ;
+- accepter les modifications suivies dans **Révision > Accepter > Accepter toutes les modifications** ;
+- défusionner les cellules des tableaux, car Markdown ne gère pas les cellules fusionnées.
+
+Deux comportements à connaître : les images sont intégrées directement dans le Markdown sous forme de texte base64 (`data:image/...`), ce qui alourdit le fichier, et les notes de bas de page deviennent une liste numérotée en fin de document, reliée par des liens `[1]`.
+
+## Et si le fichier est un ancien .doc ?
+
+Le format `.doc` de Word 97-2003 est binaire et n'est pas pris en charge. Ouvrez-le dans Word, faites **Fichier > Enregistrer sous**, choisissez **Document Word (*.docx)** dans la liste **Type**, puis convertissez le nouveau fichier. Dans LibreOffice Writer, le principe est le même avec **Fichier > Enregistrer sous** et le format Word 2007-365.
+
+## Peut-on passer par Google Docs ?
+
+Oui, et dans les deux sens. Google Docs sait désormais lire et écrire du Markdown, comme le détaille sa [page d'aide](https://support.google.com/docs/answer/12014036?hl=fr) :
+
+- **Markdown vers Word** : importez le `.md` avec **Fichier > Ouvrir > Importer**, puis **Fichier > Télécharger > Microsoft Word (.docx)**.
+- **Word vers Markdown** : ouvrez le `.docx` dans Google Docs, puis **Fichier > Télécharger > Markdown (.md)**.
+- **Copier-coller** : activez **Outils > Préférences > Activer Markdown**, puis utilisez le clic droit et **Coller à partir de Markdown** ou **Copier au format Markdown**.
+
+C'est pratique si vos fichiers sont déjà dans Google Drive. L'inconvénient est qu'ils transitent par votre compte Google.
+
+## Et en ligne de commande avec Pandoc ?
+
+[Pandoc](https://pandoc.org/MANUAL.html) convertit dans les deux sens et se prête bien au traitement par lots :
+
+```bash
+# Markdown vers Word
+pandoc rapport.md -o rapport.docx
+
+# Word vers Markdown, images extraites dans un dossier
+pandoc rapport.docx -t gfm --extract-media=images -o rapport.md
+```
+
+Son atout pour les entreprises : l'option `--reference-doc=modele.docx`, qui applique les styles d'un modèle Word existant (polices, couleurs, marges) au document généré. Pratique pour respecter une charte graphique.
+
+## Quelle méthode choisir ?
+
+| Situation | Méthode conseillée |
+|---|---|
+| Un document, tout de suite, contenu sensible | MDTool dans le navigateur |
+| Fichiers déjà stockés dans Google Drive | Google Docs |
+| Dizaines de fichiers ou charte graphique imposée | Pandoc avec `--reference-doc` |
+| Images à extraire en fichiers séparés | Pandoc avec `--extract-media` |
+| Fichier `.doc` ancien | Enregistrer d'abord en `.docx` |
+
+Pour vérifier vos tableaux avant conversion, la fiche sur les [tableaux en Markdown](/markdown-cheat-sheet/tables) rappelle la syntaxe et l'alignement des colonnes.
+
+## Questions fréquentes
+
+**Q: Le fichier Word généré est-il vraiment modifiable ?**
+
+Oui. C'est un `.docx` natif, pas une image ni un PDF déguisé. Les titres utilisent les styles Titre 1, Titre 2, etc., les tableaux sont de vrais tableaux Word et le texte se modifie normalement.
+
+**Q: Les images de mon Markdown apparaissent-elles dans le Word ?**
+
+Non, MDTool n'inclut pas les images ni les diagrammes Mermaid dans le `.docx`. Ajoutez-les ensuite dans Word, ou utilisez Pandoc, qui sait intégrer les images locales.
+
+**Q: Pourquoi mes titres Word deviennent-ils du texte normal en Markdown ?**
+
+Parce qu'ils ont été mis en forme à la main (taille, gras) au lieu de recevoir un style de titre. Appliquez Titre 1, Titre 2, etc. depuis l'onglet Accueil, puis relancez la conversion.
+
+**Q: Ma conversion est-elle envoyée sur un serveur ?**
+
+Non. Avec MDTool, la conversion dans les deux sens s'exécute dans votre navigateur. Le fichier ne quitte pas votre ordinateur.
+
+**Q: Comment ouvrir le .docx si je n'ai pas Microsoft Word ?**
+
+LibreOffice Writer, Google Docs et Pages sur Mac ouvrent tous les fichiers `.docx`. Les styles de titre y sont reconnus.

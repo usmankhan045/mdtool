@@ -1,0 +1,224 @@
+---
+title: "Markdown to PDF with Python, Pandoc and Node"
+description: "Convert Markdown to PDF in code: Pandoc with LaTeX or WeasyPrint, Python's md2pdf and markdown-pdf, Node's md-to-pdf. Working commands and a comparison."
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "pdf", "python", "pandoc", "nodejs", "automation"]
+image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Close-up of Python code with colored syntax highlighting in a dark code editor"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Open Markdown to PDF Converter →"
+  description: "Need one PDF, not a pipeline? Paste your Markdown and download a themed PDF with highlighted code and Mermaid diagrams. Nothing is uploaded."
+---
+
+To convert Markdown to PDF programmatically, run `pandoc input.md -o output.pdf` (Pandoc plus a LaTeX engine or WeasyPrint), or in Python render the Markdown to HTML with the `markdown` package and pass it to WeasyPrint. In Node, `md-to-pdf` does it in one call through headless Chrome. For a single file, a browser tool is faster.
+
+This guide gives working commands for each route, shows where each one breaks (tables in LaTeX, Mermaid everywhere), and ends with a comparison table so you can pick one for your script or CI job.
+
+## Which tool should you use to convert Markdown to PDF in code?
+
+| Tool | Setup | Mermaid | Code highlighting | Tables | Best for |
+|------|-------|---------|-------------------|--------|----------|
+| Pandoc + LaTeX (`pdflatex`, `xelatex`) | Heavy: Pandoc plus a TeX distribution | No; pre-render with `mmdc` or a filter | Yes, built in | Yes, but wide tables need tuning | Books, papers, print-quality typesetting |
+| Pandoc + WeasyPrint | Medium: Pandoc plus WeasyPrint (needs Pango) | No; pre-render | Yes, built in | Yes, styled with CSS | Teams that know CSS better than LaTeX |
+| Python `markdown` + WeasyPrint | Medium: two pip packages plus Pango | No; pre-render | Yes, via CodeHilite and Pygments | Yes, with the `tables` extension | Python apps and reports generated in code |
+| `md2pdf` (PyPI) | Medium: wraps WeasyPrint | No | Via Markdown extras and your CSS | Yes | Quick CLI or Python call with a stylesheet |
+| `markdown-pdf` (PyPI) | Light: pure pip install (PyMuPDF) | Not documented; PlantUML plugin exists | Not a headline feature | Yes | Simple documents with a table of contents |
+| `md-to-pdf` (npm) | Medium: downloads Chromium via Puppeteer | Not built in | Yes, highlight.js | Yes | Node projects and CI with real browser CSS |
+| [MDTool](/markdown-to-pdf) (browser) | None | Yes, rendered | Yes | Yes | One-off conversions, private files, no install |
+
+Every row except MDTool can run unattended in a script. MDTool is browser-only: it has no CLI or API, so it fits the "I need this one file as a PDF" case rather than a pipeline.
+
+## How do you convert Markdown to PDF with Pandoc?
+
+[Pandoc](https://pandoc.org/MANUAL.html) picks a PDF engine for you. With no options, it converts through LaTeX and uses `pdflatex` by default, so you need a TeX distribution installed (TeX Live, MiKTeX, or TinyTeX):
+
+```bash
+pandoc README.md -o README.pdf
+```
+
+For Unicode text and system fonts, switch to `xelatex` and set margins with the `geometry` variable:
+
+```bash
+pandoc README.md -o README.pdf \
+  --pdf-engine=xelatex \
+  -V geometry:margin=2cm \
+  -V mainfont="DejaVu Serif"
+```
+
+The manual lists the valid engines: `pdflatex`, `lualatex`, `xelatex`, `latexmk`, `tectonic`, `wkhtmltopdf`, `weasyprint`, `pagedjs-cli`, `prince`, `context`, `groff`, `pdfroff` and `typst`.
+
+### Pandoc with a LaTeX engine or an HTML engine?
+
+LaTeX gives the best typography, but you style it with LaTeX templates and variables. An HTML engine lets you style the PDF with an ordinary CSS file:
+
+```bash
+pandoc README.md -o README.pdf \
+  --pdf-engine=weasyprint \
+  --css=print.css
+```
+
+Skip `wkhtmltopdf` for new projects. Its [GitHub repository](https://github.com/wkhtmltopdf/wkhtmltopdf) was archived in January 2023 and is read-only, so it receives no fixes. WeasyPrint is actively maintained, but its own docs say its scope includes [no JavaScript](https://doc.courtbouillon.org/weasyprint/stable/going_further.html), which matters for diagrams (see below).
+
+### Syntax highlighting flags changed in Pandoc 3.8
+
+Pandoc highlights fenced code blocks that carry a language tag. Pandoc 3.8 (September 2025) added `--syntax-highlighting` and deprecated `--highlight-style`:
+
+```bash
+# Pandoc 3.8 and later
+pandoc notes.md -o notes.pdf --syntax-highlighting=tango
+
+# Older Pandoc versions
+pandoc notes.md -o notes.pdf --highlight-style=tango
+```
+
+Run `pandoc --version` first. CI images often ship an older release, and the new flag fails there.
+
+### Why does Pandoc render my tables wrong in the PDF?
+
+This is the most common Pandoc complaint, and the manual explains it. For pipe tables, if any line of the Markdown source is longer than the column width (`--columns`, 72 by default), the table spans the full text width, cells wrap, and the relative column widths come from the number of dashes in the separator line. A separator like `---|-` makes the first column three quarters of the width.
+
+Two fixes work in practice:
+
+1. Set the dash ratio on purpose. `|------|--|----|` gives you 50/17/33 percent columns.
+2. Use an HTML engine and control widths with CSS, for example `table { table-layout: fixed; width: 100%; }`.
+
+Cells in pipe tables also can't contain block elements such as lists or multiple paragraphs. If you need those, use Pandoc's grid tables instead.
+
+## How do you convert Markdown to PDF in Python?
+
+There are three practical options in Python. All of them are on PyPI under the names used here.
+
+### Option 1: markdown + WeasyPrint (most control)
+
+```bash
+pip install markdown pygments weasyprint
+pygmentize -S default -f html -a .codehilite > pygments.css
+```
+
+```python
+from pathlib import Path
+
+import markdown
+from weasyprint import HTML, CSS
+
+source = Path("README.md").read_text(encoding="utf-8")
+body = markdown.markdown(
+    source,
+    extensions=["tables", "fenced_code", "codehilite", "toc"],
+)
+
+html = f"""<!doctype html>
+<html><head><meta charset="utf-8"></head>
+<body>{body}</body></html>"""
+
+HTML(string=html, base_url=".").write_pdf(
+    "README.pdf",
+    stylesheets=[
+        CSS(filename="pygments.css"),
+        CSS(string="body { font-family: sans-serif; font-size: 11pt; }"
+                   "pre { background: #f6f8fa; padding: 8px; }"),
+    ],
+)
+```
+
+`tables`, `fenced_code`, `codehilite` and `toc` are [official Python-Markdown extensions](https://python-markdown.github.io/extensions/). CodeHilite only adds CSS classes; the colors come from the stylesheet that `pygmentize` generates. `base_url="."` lets WeasyPrint resolve relative image paths. WeasyPrint also needs Pango 1.44 or newer on the system, which is the usual reason `pip install weasyprint` succeeds but the import fails.
+
+### Option 2: md2pdf
+
+[md2pdf](https://pypi.org/project/md2pdf/) wraps the same WeasyPrint pipeline behind one call:
+
+```bash
+pip install md2pdf
+md2pdf -i README.md
+md2pdf --css custom-styles.css -i README.md
+```
+
+```python
+from md2pdf.core import md2pdf
+
+md2pdf("README.pdf", md="README.md", css="custom-styles.css", base_url=".")
+```
+
+### Option 3: markdown-pdf
+
+[markdown-pdf](https://pypi.org/project/markdown-pdf/) uses markdown-it-py and PyMuPDF instead of WeasyPrint, so there is no Pango dependency:
+
+```python
+from markdown_pdf import MarkdownPdf, Section
+
+pdf = MarkdownPdf(toc_level=2, optimize=True)
+pdf.add_section(Section(open("README.md", encoding="utf-8").read()))
+pdf.save("README.pdf")
+```
+
+It supports tables, images and a generated table of contents. Code highlighting and Mermaid are not documented features, so check the output on a code-heavy file before you depend on it.
+
+## How do you convert Markdown to PDF in Node.js?
+
+[md-to-pdf](https://github.com/simonhaenisch/md-to-pdf) parses with Marked, highlights with highlight.js, and prints through Puppeteer's headless Chromium:
+
+```bash
+npm i -g md-to-pdf
+md-to-pdf README.md
+```
+
+```javascript
+const { mdToPdf } = require('md-to-pdf');
+
+(async () => {
+  await mdToPdf({ path: 'README.md' }, { dest: 'README.pdf' });
+})();
+```
+
+Page size and margins go in front matter (`pdf_options: { format: a4, margin: 30mm 20mm }`), and `<div class="page-break"></div>` forces a new page. Because a real browser renders the page, CSS behaves exactly as it does in Chrome. The cost is a Chromium download on install, which some locked-down CI runners block.
+
+## What about Rust, Java, Go or C#?
+
+Each of these ecosystems has Markdown parsers, but PDF output usually means either an HTML-to-PDF library or a call out to Pandoc. Calling Pandoc as a subprocess is the most portable choice: `std::process::Command` in Rust, `ProcessBuilder` in Java, `exec.Command` in Go, or `Process.Start` in C# all run the same `pandoc input.md -o output.pdf` command shown above, and the output matches what you get on your own machine.
+
+## How do you get Mermaid diagrams into a programmatic PDF?
+
+None of the pipelines above renders Mermaid on its own, because Mermaid needs JavaScript and a DOM. The clean fix is to pre-render diagrams with [mermaid-cli](https://github.com/mermaid-js/mermaid-cli) before conversion. It can rewrite a whole Markdown file, replacing each `mermaid` block with an SVG image reference:
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+mmdc -i README.md -o README.rendered.md
+pandoc README.rendered.md -o README.pdf --pdf-engine=weasyprint
+```
+
+For Pandoc there is also `mermaid-filter` (`pandoc -F mermaid-filter ...`), which calls the same CLI during conversion. Both approaches launch a headless browser, so expect the extra install weight.
+
+## When is a browser tool better than a script?
+
+A script pays off when you convert the same kind of file repeatedly: release notes on every tag, reports in a nightly job, docs in CI. For a single README, a spec you're sending to a client, or a file you can't install software for, the setup costs more than it saves.
+
+That's where [MDTool's Markdown to PDF converter](/markdown-to-pdf) fits. You paste Markdown, pick a theme (GitHub, Academic, Minimal or Dark), choose A4 or Letter, and download. Code blocks keep syntax highlighting, Mermaid diagrams are rendered, and you can force page breaks with `<!-- pagebreak -->`, `\pagebreak`, `\newpage` or `<div class="page-break"></div>`. The conversion runs in your browser, so nothing is uploaded, and there's no signup or watermark.
+
+The tradeoffs are real: there is no CLI or API, and emoji glyphs don't appear in the PDF. If you need either, use one of the pipelines above.
+
+<EmbeddedTool />
+
+## Frequently Asked Questions
+
+**Q: What is the easiest way to convert Markdown to PDF in Python?**
+
+`md2pdf` is the shortest path: `pip install md2pdf`, then `md2pdf -i README.md`. It uses WeasyPrint underneath, so make sure WeasyPrint's system dependency (Pango) is installed. If you want no system dependencies at all, try `markdown-pdf`, which uses PyMuPDF.
+
+**Q: Does Pandoc need LaTeX to make a PDF?**
+
+Only for the default route. Pandoc uses `pdflatex` unless you pass `--pdf-engine`. Set `--pdf-engine=weasyprint`, `typst` or another non-LaTeX engine and you can skip the TeX installation.
+
+**Q: Why are my code blocks not highlighted in the PDF?**
+
+Highlighting needs a language tag on the fence (` ```python `, not just ` ``` `). With Python-Markdown you also need the CodeHilite extension plus a Pygments stylesheet. With Pandoc 3.8 or later, check that you haven't passed `--syntax-highlighting=none`.
+
+**Q: Can I render Mermaid diagrams when converting Markdown to PDF in code?**
+
+Yes, by pre-rendering them. Run `mmdc -i input.md -o output.md` from mermaid-cli to replace each Mermaid block with an SVG, then convert the output file with any tool in this guide.
+
+**Q: Is wkhtmltopdf still a good PDF engine for Pandoc?**
+
+No. The project was archived in January 2023 and receives no updates. Use WeasyPrint, Typst, a LaTeX engine, or a headless Chromium tool such as md-to-pdf instead.

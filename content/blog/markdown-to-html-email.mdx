@@ -2,11 +2,15 @@
 title: "How to Convert Markdown to HTML for Email Templates"
 description: "Converting Markdown to HTML is step one. Here's why your email breaks in Outlook or Gmail if you skip step two, CSS inlining, and how to do both."
 datePublished: "2026-06-24"
-dateModified: "2026-06-24"
+dateModified: "2026-10-01"
 tags: ["markdown", "html", "email", "developer-tools"]
 image: "/blog/markdown-to-html-email.jpg"
 imageAlt: "Email inbox interface on a laptop screen"
 author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-html"
+  label: "Open Markdown to HTML Converter →"
+  description: "Convert Markdown to clean, copy-ready HTML with a live preview. No signup, nothing uploaded."
 ---
 
 ## Markdown to HTML for Email, in Two Steps
@@ -19,11 +23,11 @@ This guide covers why that second step exists, how to do both parts, and what sp
 
 ## Why Email HTML Isn't the Same as Web HTML
 
-A normal webpage loads CSS from a `<link>` tag in the `<head>`, or from a `<style>` block. Email clients routinely strip both. Gmail, Outlook, and most webmail clients sanitize incoming HTML for security reasons, and an external stylesheet reference is one of the first things to go, along with `<script>` tags, and in many clients, the entire `<head>` element itself.
+A normal webpage loads CSS from a `<link>` tag in the `<head>`, or from a `<style>` block. Email clients sanitize incoming HTML for security reasons, and an external stylesheet reference is one of the first things to go, along with `<script>` tags. Support for `<style>` blocks is uneven: [Gmail's CSS documentation](https://developers.google.com/workspace/gmail/design/css) says Gmail supports `<style>` in the head, with class, element and ID selectors and media queries, but other clients drop it, and forwarding or replying can strip it too. [Can I email](https://www.caniemail.com/) tracks this client by client, the same way caniuse.com does for browsers.
 
 That leaves exactly one styling method that reliably survives: **inline styles**, written directly on each element as a `style="..."` attribute rather than referenced from elsewhere. `<p style="color: #333; font-size: 14px;">` survives. `<p class="body-text">` with the actual rule sitting in a stylesheet does not, because the class name means nothing without the rule that defines it.
 
-Outlook adds a second wrinkle on top of this: its desktop versions render HTML using Microsoft Word's layout engine rather than a standard browser engine, which has much weaker support for modern CSS, so flexbox and grid layouts in particular tend to collapse. That's why email templates still commonly use `<table>`-based layouts for structure, even though no one would build a website that way in 2026.
+Outlook adds a second wrinkle on top of this: classic Outlook for Windows renders HTML using a Word-based engine rather than a standard browser engine. Microsoft's own [email rendering troubleshooting guide](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/email-troubleshoot-rendering) notes its limited support for CSS margins and padding, and recommends inline CSS and table-based layouts. Flexbox and grid layouts in particular tend to collapse there. That's why email templates still commonly use `<table>`-based layouts for structure, even though no one would build a website that way in 2026.
 
 So a Markdown-to-HTML converter that outputs clean, semantic, modern HTML, which is exactly what you want for a webpage, produces something that's only half-ready for an email client.
 
@@ -54,6 +58,40 @@ You have three practical ways to get there from the plain HTML snippet:
 3. **Use a dedicated Markdown-to-email tool.** Several tools exist specifically for this combined workflow; they convert Markdown to HTML and inline the CSS in the same step, aimed at people who'd rather not handle inlining separately. That convenience trades off against the control and the "no extra service" simplicity of doing the two steps yourself.
 
 There's no single "more correct" choice between these. Pick based on whether you're sending through an ESP that already inlines for you, or producing a standalone `.html` file you need fully email-ready on its own.
+
+---
+
+## How do you send Markdown as a formatted email in Gmail or Outlook?
+
+For a one-off message, you don't need an email platform or a CSS inliner. Gmail and Outlook both accept pasted rich text, so the trick is to paste the *rendered* Markdown, not the Markdown source or the HTML code.
+
+1. Paste your Markdown into the [Markdown to HTML converter](/markdown-to-html).
+2. Switch the output panel to **Preview**.
+3. Click inside the preview, select all (Ctrl+A / Cmd+A), and copy (Ctrl+C / Cmd+C).
+4. Open a new message in Gmail or Outlook and paste into the body.
+
+Headings, bold, lists, links, tables and code blocks arrive as formatted content. When you copy rendered content, the browser puts formatted HTML on the clipboard along with the visible styling, so this works without a separate inlining step for simple messages.
+
+Before you paste, make sure the compose window is in rich text (HTML) mode:
+
+| Client | Where to check the format | What to pick |
+|--------|---------------------------|--------------|
+| Gmail (web) | Compose > **More options** (three dots) > **Plain text mode** | Make sure Plain text mode is **off** |
+| New Outlook for Windows / Outlook on the web | Message **Options** > Switch to plain text / HTML | HTML (the default) |
+| Classic Outlook for Windows | Message window > **Format Text** tab | HTML |
+
+The steps come from Google's [Gmail formatting help](https://support.google.com/mail/answer/8260?hl=en) and Microsoft's guide to [changing the message format in Outlook](https://support.microsoft.com/en-us/office/change-the-message-format-to-html-rich-text-format-or-plain-text-in-outlook-338a389d-11da-47fe-b693-cf41f792fefa). In plain text mode, both clients discard formatting, and your Markdown arrives as the bare text.
+
+A few things to check before sending:
+
+- **Don't paste the HTML code.** Pasting `<h2>…</h2>` source into the message body sends the tags as visible text. Gmail's compose window has no "insert HTML" option. Always copy from the Preview tab.
+- **Classic Outlook may change spacing.** Its Word-based engine handles margins differently, so headings and lists can look tighter or looser than in the preview. Send yourself a test first.
+- **Images need public URLs.** A relative path like `images/chart.png` won't resolve for the recipient. Host the image publicly, or insert it with the client's own image button after pasting.
+- **Long messages may be clipped.** Gmail truncates messages above a size limit, so very long Markdown documents are better sent as an attachment, for example a PDF from the [Markdown to PDF converter](/markdown-to-pdf).
+
+This is the simplest answer to "markdown to Outlook converter" searches: Outlook doesn't read Markdown, but it reads formatted content you paste, and MDTool turns Markdown into that formatted content in your browser without uploading the message anywhere.
+
+For newsletters and templates sent to a list, use the two-step method above instead (convert, then inline the CSS), because a list send goes through more clients and forwarding chains than a single message.
 
 ---
 
@@ -91,4 +129,8 @@ This is almost always the table-layout/CSS-rendering-engine issue described abov
 
 **Q: Is there a way to test how my converted HTML will actually look in different email clients before sending?**
 
-Yes. Email testing services exist specifically to render your HTML across dozens of real email clients (Gmail, Outlook, Apple Mail, etc.) and show you screenshots, which is the only reliable way to catch client-specific rendering issues before sending to a real list.
+Yes. Email testing services exist specifically to render your HTML across dozens of real email clients (Gmail, Outlook, Apple Mail, etc.) and show you screenshots, which is the only reliable way to catch client-specific rendering issues before sending to a real list. Before testing, check individual HTML and CSS features on [caniemail.com](https://www.caniemail.com/) to avoid ones your audience's clients don't support.
+
+**Q: How do I send Markdown as a formatted email in Gmail?**
+
+Convert the Markdown in MDTool's Markdown to HTML converter, open the Preview tab, select and copy the rendered content, and paste it into a Gmail compose window with Plain text mode turned off. Gmail keeps the headings, lists, links and tables.

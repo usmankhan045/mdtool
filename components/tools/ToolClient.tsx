@@ -3,10 +3,10 @@
 import { useState, useCallback, useDeferredValue } from 'react';
 import MarkdownEditor from './MarkdownEditor';
 import PdfPreview from './PdfPreview';
-import ThemeSelector from './ThemeSelector';
+import ThemeSelector, { PageSizeSelector } from './ThemeSelector';
 import DownloadButton from './DownloadButton';
-import { parseMarkdown, countWords } from '@/lib/markdown';
-import { ThemeId } from '@/lib/pdf';
+import { countWords } from '@/lib/markdown';
+import { markdownToPdfHtml, ThemeId, PageSizeId } from '@/lib/pdf';
 
 const SAMPLE_MARKDOWN = `# Welcome to MDTool
 
@@ -23,10 +23,10 @@ const convert = async (markdown) => {
 
 | Feature | MDTool | Others |
 |---------|---------|--------|
-| Code highlighting | ✅ | ❌ |
-| Mermaid diagrams | ✅ | ❌ |
-| Client-side only | ✅ | ❌ |
-| Free forever | ✅ | ❌ |
+| Code highlighting | Yes | No |
+| Mermaid diagrams | Yes | No |
+| Client-side only | Yes | No |
+| Free forever | Yes | No |
 
 ## Mermaid Diagram
 
@@ -44,10 +44,11 @@ graph TD
 export default function ToolClient() {
   const [markdown, setMarkdown] = useState(SAMPLE_MARKDOWN);
   const [theme, setTheme] = useState<ThemeId>('github');
+  const [pageSize, setPageSize] = useState<PageSizeId>('a4');
 
   // Defer HTML computation so typing feels instant
   const deferredMarkdown = useDeferredValue(markdown);
-  const htmlContent = parseMarkdown(deferredMarkdown);
+  const htmlContent = markdownToPdfHtml(deferredMarkdown);
   const wordCount = countWords(markdown);
 
   const handleMarkdownChange = useCallback((val: string) => {
@@ -58,8 +59,11 @@ export default function ToolClient() {
     <div className="space-y-4">
       {/* Controls Bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-        <ThemeSelector selected={theme} onSelect={setTheme} />
-        <DownloadButton htmlContent={htmlContent} theme={theme} filename="document.pdf" />
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <ThemeSelector selected={theme} onSelect={setTheme} />
+          <PageSizeSelector selected={pageSize} onSelect={setPageSize} />
+        </div>
+        <DownloadButton htmlContent={htmlContent} theme={theme} pageSize={pageSize} filename="document.pdf" />
       </div>
 
       {/* Two-Column Editor */}

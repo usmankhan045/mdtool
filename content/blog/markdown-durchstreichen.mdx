@@ -1,0 +1,151 @@
+---
+title: "Markdown: Durchstreichen, Umbruch, Seitenumbruch"
+description: "Markdown durchstreichen mit ~~Text~~, Zeilenumbruch per Leerzeichen, Backslash oder <br> und Seitenumbruch fürs PDF: alle Varianten mit Beispielen."
+lang: "de"
+datePublished: "2026-10-01"
+dateModified: "2026-10-01"
+tags: ["markdown", "syntax", "strikethrough", "line-breaks", "page-breaks"]
+image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?fm=jpg&q=80&w=1200&h=630&fit=crop"
+imageAlt: "Nahaufnahme einer Füllfederhalter-Feder, die handschriftlichen Text auf liniertes Papier schreibt"
+author: "Muhammad Usman"
+ctaTool:
+  href: "/markdown-to-pdf"
+  label: "Markdown-zu-PDF-Konverter öffnen →"
+  description: "Markdown mit Seitenumbrüchen einfügen und als PDF in A4 herunterladen. Kostenlos, ohne Anmeldung, ohne Wasserzeichen."
+---
+
+Text durchstreichen funktioniert in Markdown mit zwei Tilden: `~~durchgestrichen~~`. Einen Zeilenumbruch erzwingst du mit zwei Leerzeichen am Zeilenende, einem Backslash oder `<br>`. Einen Seitenumbruch kennt Markdown selbst nicht. Für PDFs setzt du eine Markierung wie `<!-- pagebreak -->`, die der Konverter beim Export auswertet.
+
+Alle drei Themen haben etwas gemeinsam: Sie gehören nicht zum ursprünglichen Markdown von 2004 und werden deshalb nicht überall gleich behandelt. Wer weiß, welcher Dialekt gerade am Werk ist, spart sich viel Rätselraten.
+
+## Wie streicht man Text in Markdown durch?
+
+Setze den Text zwischen zwei Tilden auf jeder Seite:
+
+```markdown
+Der Termin ist am ~~Montag~~ Dienstag.
+```
+
+Das Ergebnis: Der Termin ist am ~~Montag~~ Dienstag.
+
+Die Durchstreichung ist eine Erweiterung von GitHub Flavored Markdown (GFM). Laut [GFM-Spezifikation](https://github.github.com/gfm/#strikethrough-extension-) gilt Text als durchgestrichen, wenn er von einem passenden Paar aus einer oder zwei Tilden umschlossen ist. In der Praxis solltest du immer zwei verwenden, denn viele Programme erkennen die Variante mit einer Tilde nicht. Auch die deutschsprachige [GitHub-Dokumentation zur Formatierungssyntax](https://docs.github.com/de/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) führt unter „Durchgestrichen“ die Schreibweise mit zwei Tilden.
+
+**Die Tilde auf der deutschen Tastatur:** Unter Windows drückst du AltGr und die Plus-Taste. Auf dem Mac ist es Wahltaste + N, danach ein Leerzeichen, weil die Tilde dort ein Akzentzeichen ist und auf den nächsten Buchstaben wartet.
+
+### Wo funktioniert die Durchstreichung?
+
+| Umgebung | `~~Text~~` | Bemerkung |
+|---|---|---|
+| GitHub, GitLab | ja | GFM-Standard |
+| Obsidian | ja | |
+| VS Code (Vorschau) | ja | |
+| Discord | ja | |
+| Slack | nein | Slack nutzt eine einzelne Tilde: `~Text~` |
+| Reines CommonMark | nein | keine Durchstreichung im Kernstandard |
+| MDTool (PDF und Word) | ja | im PDF und in der .docx durchgestrichen |
+
+Wenn dein Renderer keine Tilden versteht, hilft HTML: `<del>Text</del>` oder `<s>Text</s>`. Die meisten Markdown-Renderer lassen diese Tags durch. Innerhalb von Backticks wird übrigens nichts formatiert. In `` `~~Text~~` `` bleiben die Tilden als Zeichen stehen. Weitere Beispiele zeigt der [Spickzettel zur Durchstreichung](/markdown-cheat-sheet/strikethrough).
+
+## Wie macht man einen Zeilenumbruch in Markdown?
+
+Ein einfacher Druck auf die Eingabetaste reicht in Markdown nicht. Zwei Zeilen direkt untereinander werden zu einem Absatz zusammengezogen. Das ist Absicht: So kannst du im Editor lange Sätze umbrechen, ohne dass sich das Ergebnis ändert.
+
+Für einen echten Umbruch innerhalb eines Absatzes gibt es drei Wege. Die [CommonMark-Spezifikation zu harten Zeilenumbrüchen](https://spec.commonmark.org/0.31.2/#hard-line-breaks) definiert die ersten beiden, der dritte ist reines HTML.
+
+```markdown
+Erika Mustermann··
+Musterstraße 1\
+12345 Musterstadt<br>
+Deutschland
+```
+
+(Die beiden Punkte `··` stehen hier für zwei Leerzeichen, die man sonst nicht sieht.)
+
+| Methode | Vorteil | Nachteil |
+|---|---|---|
+| Zwei Leerzeichen am Zeilenende | Original-Syntax, funktioniert fast überall | unsichtbar, viele Editoren löschen Leerzeichen am Zeilenende beim Speichern |
+| Backslash `\` am Zeilenende | sichtbar, CommonMark-Standard | ältere Renderer zeigen den Backslash an |
+| `<br>` | funktioniert auch in Tabellenzellen | HTML im Text, nicht überall erlaubt |
+| Leerzeile | neuer Absatz statt Umbruch | erzeugt mehr Abstand |
+
+Meine Empfehlung: Nimm den Backslash. Er ist sichtbar, überlebt das automatische Aufräumen im Editor und ist Teil des Standards. In Tabellenzellen bleibt nur `<br>`, weil eine Tabellenzeile in Markdown nicht über mehrere Zeilen gehen darf.
+
+### Warum sieht mein Umbruch auf GitHub anders aus?
+
+Die GitHub-Dokumentation erklärt den Unterschied: In Kommentaren zu Issues, Pull Requests und Diskussionen wird jeder einfache Zeilenumbruch angezeigt. In `.md`-Dateien im Repository gilt dagegen die strenge Regel, dort brauchst du Leerzeichen, Backslash oder `<br>`. Auch die Konverter von MDTool behandeln einen einfachen Umbruch wie GitHub-Kommentare und zeigen ihn als neue Zeile an. Wenn deine Datei überall gleich aussehen soll, setze die Umbrüche trotzdem explizit. Mehr Varianten stehen im [Spickzettel zu Zeilenumbrüchen](/markdown-cheat-sheet/line-breaks).
+
+## Wie fügt man in Markdown einen Seitenumbruch ein?
+
+Markdown beschreibt Text, keine Seiten. Einen Seitenumbruch gibt es deshalb erst, wenn das Dokument in ein Format mit Seiten umgewandelt wird, also zum Beispiel in ein PDF. Der [Markdown-zu-PDF-Konverter von MDTool](/markdown-to-pdf) erkennt vier Schreibweisen:
+
+```markdown
+## Kapitel 1
+
+Text von Kapitel 1.
+
+<!-- pagebreak -->
+
+## Kapitel 2
+
+Text von Kapitel 2.
+
+\newpage
+
+## Kapitel 3
+
+\pagebreak
+
+<div class="page-break"></div>
+```
+
+Jede Markierung muss allein in ihrer Zeile stehen, am besten mit einer Leerzeile davor und danach.
+
+| Markierung | Herkunft | Auf GitHub sichtbar? |
+|---|---|---|
+| `<!-- pagebreak -->` | HTML-Kommentar | nein, unsichtbar |
+| `\newpage` | LaTeX, auch von pandoc genutzt | ja, als Text |
+| `\pagebreak` | LaTeX | ja, als Text |
+| `<div class="page-break"></div>` | HTML/CSS | nein |
+
+Für Dokumente, die auch auf GitHub gut aussehen sollen, ist der HTML-Kommentar die beste Wahl: Im PDF erzeugt er eine neue Seite, auf GitHub bleibt er unsichtbar. `\newpage` ist praktisch, wenn du dieselbe Datei auch mit pandoc und LaTeX in ein PDF umwandelst.
+
+### Schritt für Schritt zum PDF mit Seitenumbrüchen
+
+Die Oberfläche des Konverters ist auf Englisch, die Bedienung ist aber schnell erklärt:
+
+1. Öffne den [Markdown-zu-PDF-Konverter](/markdown-to-pdf).
+2. Füge deinen Text ein oder lade über **Upload .md** eine Datei.
+3. Setze die Seitenumbruch-Markierungen an die gewünschten Stellen.
+4. Wähle ein Theme: **GitHub**, **Academic**, **Minimal** oder **Dark**.
+5. Stelle das Papierformat auf **A4**, das in Deutschland übliche Format. **Letter** ist das US-Format.
+6. Lade das PDF herunter. Alles passiert im Browser, nichts wird hochgeladen.
+
+Zwei Einschränkungen solltest du kennen: Emojis werden im PDF entfernt, und Fußnoten werden derzeit nicht gerendert. Mermaid-Diagramme und Codeblöcke mit Syntaxhervorhebung funktionieren dagegen. Die Details findest du im [Spickzettel zu Seitenumbrüchen](/markdown-cheat-sheet/page-breaks).
+
+Probiere es direkt hier aus. Füge eine Zeile mit `~~Text~~` und eine Seitenumbruch-Markierung ein und lade das PDF herunter:
+
+<EmbeddedTool />
+
+Brauchst du statt eines PDFs eine Word-Datei? Der [Markdown-zu-Word-Konverter](/markdown-to-word) übernimmt durchgestrichenen Text als echte Durchstreichung in die `.docx`. Einen manuellen Seitenumbruch setzt du danach in Word mit Strg+Eingabe.
+
+## Häufig gestellte Fragen
+
+**F: Warum wird mein Text mit `~~` nicht durchgestrichen?**
+
+Dein Programm nutzt vermutlich reines CommonMark oder das klassische Markdown, die beide keine Durchstreichung kennen. Weiche auf `<del>Text</del>` aus, falls HTML erlaubt ist. Prüfe außerdem, ob zwischen Tilden und Text Leerzeichen stehen, denn das verhindert die Formatierung.
+
+**F: Reicht eine einzelne Tilde zum Durchstreichen?**
+
+Laut GFM-Spezifikation ja, in der Praxis aber nicht zuverlässig. Slack verlangt sogar genau eine Tilde, die meisten anderen Programme zwei. Für Markdown-Dateien sind zwei Tilden die sichere Wahl.
+
+**F: Wie erzeuge ich mehr Abstand zwischen zwei Absätzen?**
+
+Mehrere Leerzeilen hintereinander fasst Markdown zu einer zusammen. Für zusätzlichen Abstand kannst du eine Zeile mit `<br>` oder `&nbsp;` einfügen, sofern dein Renderer HTML zulässt.
+
+**F: Wird der Seitenumbruch auf GitHub angezeigt?**
+
+Nein. GitHub zeigt Dateien als eine durchgehende Seite. `<!-- pagebreak -->` bleibt dort unsichtbar, `\newpage` und `\pagebreak` erscheinen als normaler Text. Wirksam werden die Markierungen erst beim PDF-Export.
+
+**F: Ist der Markdown-zu-PDF-Konverter kostenlos?**
+
+Ja. Er ist kostenlos, ohne Anmeldung und ohne Wasserzeichen. Die Oberfläche ist auf Englisch, und die Umwandlung läuft komplett in deinem Browser.

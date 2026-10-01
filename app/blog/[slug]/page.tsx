@@ -1,9 +1,14 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { getBlogPost, getAllBlogPosts } from '@/lib/blog';
+import { getBlogPost, getAllBlogPosts, getRelatedPosts, OG_LOCALES } from '@/lib/blog';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
 import StructuredData from '@/components/seo/StructuredData';
+import AuthorBox from '@/components/blog/AuthorBox';
+import RelatedPosts from '@/components/blog/RelatedPosts';
+import { formatDate } from '@/components/blog/formatDate';
 import AdSlot from '@/components/ads/AdSlot';
 import EmbeddedTool from '@/components/tools/EmbeddedToolLazy';
 
@@ -24,9 +29,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: post.title,
       description: post.description,
       type: 'article',
+      url: `https://www.mdtool.dev/blog/${slug}`,
+      siteName: 'MDTool',
+      locale: OG_LOCALES[post.lang] || 'en_US',
       publishedTime: post.datePublished,
       modifiedTime: post.dateModified,
-      images: [{ url: post.image, width: 1200, height: 800, alt: post.imageAlt }],
+      images: [{ url: post.image, alt: post.imageAlt }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -55,6 +63,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getBlogPost(slug);
   if (!post) notFound();
 
+  const updated = post.dateModified || post.datePublished;
+  const related = getRelatedPosts(slug, 3);
+
   return (
     <>
       <StructuredData
@@ -66,6 +77,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         dateModified={post.dateModified}
         image={post.image}
         author={post.author}
+        inLanguage={post.lang}
       />
       <StructuredData
         type="breadcrumb"
@@ -75,13 +87,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           { name: post.title, url: `/blog/${slug}` },
         ]}
       />
-      {post.faqs.length > 0 && <StructuredData type="faq" faqs={post.faqs} />}
+      {post.faqs.length > 0 && <StructuredData type="faq" url={`/blog/${slug}`} faqs={post.faqs} />}
 
       <main className="max-w-3xl mx-auto px-4 py-12">
         {/* Post Header */}
         <header className="mb-8">
-          <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
-            <time dateTime={post.datePublished}>{post.datePublished}</time>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-3">
+            <span>
+              Updated <time dateTime={updated}>{formatDate(updated)}</time>
+            </span>
             <span>·</span>
             <span>{post.readingTime}</span>
             <span>·</span>
@@ -109,9 +123,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <AdSlot slotId="blog-top" format="horizontal" />
 
         {/* Article Content */}
-        <article className="prose prose-gray max-w-none mt-8">
-          <MDXRemote source={post.content} components={mdxComponents} />
+        <article lang={post.lang} className="prose prose-gray max-w-none mt-8">
+          <MDXRemote
+            source={post.content}
+            components={mdxComponents}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug] } }}
+          />
         </article>
+
+        <AuthorBox datePublished={post.datePublished} dateModified={post.dateModified} />
 
         {/* Ad Slot — End of article */}
         <div className="mt-8">
@@ -135,6 +155,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           );
         })()}
+
+        <RelatedPosts posts={related} />
       </main>
     </>
   );
