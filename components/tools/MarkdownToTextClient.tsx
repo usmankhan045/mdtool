@@ -5,6 +5,8 @@ import MarkdownEditor from './MarkdownEditor';
 import { countWords } from '@/lib/markdown';
 import { markdownToText } from '@/lib/markdownToText';
 import { downloadTextFile, copyToClipboard } from '@/lib/download';
+import { WORKSPACE, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_PRIMARY, BTN_OUTLINE, ICON_DOWNLOAD } from './ui';
+import { ToolIcon } from './UiParts';
 
 export const SAMPLE_MARKDOWN = `# Release Notes
 
@@ -71,39 +73,26 @@ export default function MarkdownToTextClient() {
   ];
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <MarkdownEditor value={markdown} onChange={handleMarkdownChange} wordCount={wordCount} />
-        </div>
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-between px-3 py-2 bg-zinc-50 border-b border-zinc-200 rounded-t-lg gap-2 flex-wrap">
-              <span className="text-sm font-medium text-zinc-600">Plain Text Output</span>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-400">
+    <div className={WORKSPACE}>
+      <div className={SPLIT}>
+        <MarkdownEditor value={markdown} onChange={handleMarkdownChange} wordCount={wordCount} />
+        <div className={PANE}>
+            <div className={PANE_HEAD}>
+              <span className={PANE_TITLE}>Plain Text Output</span>
+              <div className="flex items-center gap-1.5">
+                <span className={`${META} mr-1.5`}>
                   {outputWords} words · {countChars(plainText)} chars
                 </span>
-                <button
-                  onClick={handleCopy}
-                  disabled={!plainText.trim()}
-                  className="text-xs px-3 min-h-[44px] bg-white border border-zinc-300 rounded hover:bg-zinc-50 text-zinc-600 disabled:opacity-40 disabled:cursor-not-allowed"
-                >
+                <button onClick={handleCopy} disabled={!plainText.trim()} className={BTN_OUTLINE}>
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
-                <button
-                  onClick={handleDownload}
-                  disabled={!plainText.trim()}
-                  className="flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-zinc-900 hover:bg-zinc-800 active:scale-95 text-white rounded-md shadow-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
+                <button onClick={handleDownload} disabled={!plainText.trim()} className={BTN_PRIMARY}>
+                  <ToolIcon d={ICON_DOWNLOAD} />
                   Download .txt
                 </button>
               </div>
             </div>
-            <div className="flex items-center gap-4 flex-wrap px-3 py-1.5 border-b border-zinc-200 bg-white">
+            <div className="flex items-center gap-4 flex-wrap px-4 py-1.5 border-b border-zinc-100">
               {toggles.map((t) => (
                 <label key={t.label} title={t.title} className="flex items-center gap-1.5 text-xs text-zinc-600 cursor-pointer select-none min-h-[32px]">
                   <input
@@ -121,10 +110,9 @@ export default function MarkdownToTextClient() {
               readOnly
               placeholder="Your plain text will appear here as you type..."
               aria-label="Plain text output"
-              className="flex-1 w-full p-4 font-mono text-sm text-zinc-800 bg-white resize-none outline-none border-x border-b border-zinc-200 rounded-b-lg min-h-[340px] sm:min-h-[452px]"
+              className={`${TEXTAREA.replace('sm:min-h-[500px]', 'sm:min-h-[452px]')}`}
               spellCheck={false}
             />
-          </div>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useCallback, useDeferredValue, useState } from 'react';
 import MarkdownEditor from './MarkdownEditor';
 import HtmlOutputPanel from './HtmlOutputPanel';
 import { parseMarkdown, countWords } from '@/lib/markdown';
+import { WORKSPACE, SPLIT } from './ui';
 
 const SAMPLE_MARKDOWN = `# Welcome to MDTool
 
@@ -39,14 +40,10 @@ export default function MarkdownToHtmlClient() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <MarkdownEditor value={markdown} onChange={handleMarkdownChange} wordCount={wordCount} />
-        </div>
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <HtmlOutputPanel htmlContent={htmlContent} filename="document.html" />
-        </div>
+    <div className={WORKSPACE}>
+      <div className={SPLIT}>
+        <MarkdownEditor value={markdown} onChange={handleMarkdownChange} wordCount={wordCount} />
+        <HtmlOutputPanel htmlContent={htmlContent} filename="document.html" />
       </div>
     </div>
   );

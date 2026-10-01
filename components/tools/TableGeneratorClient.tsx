@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { toMarkdownTable, toHtmlTable, parsePastedData, type ColAlign, type TableData } from '@/lib/tableGenerator';
+import { WORKSPACE, WORKSPACE_BAR, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, BTN_PRIMARY, BTN_OUTLINE, BTN_GHOST, SEG, SEG_ITEM, SEG_ON, SEG_OFF } from './ui';
 
 const MAX_DIM = 30;
 
@@ -90,29 +91,31 @@ export default function TableGeneratorClient() {
   };
 
   const inputClass =
-    'w-full min-w-[7rem] px-2 py-1.5 text-sm border border-zinc-200 rounded focus:outline-none focus:ring-1 focus:ring-zinc-400 bg-white';
+    'w-full min-w-[7rem] px-2.5 py-2 text-sm border border-zinc-200 rounded-md bg-white transition-[border-color,box-shadow] duration-150 focus:outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-900/10';
 
   return (
-    <div className="space-y-4">
+    <div className={WORKSPACE}>
       {/* Controls */}
-      <div className="bg-white rounded-xl border border-zinc-200 shadow-sm p-4 flex flex-wrap items-center gap-2">
-        <button onClick={addRow} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">+ Row</button>
-        <button onClick={removeRow} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">− Row</button>
-        <button onClick={addCol} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">+ Column</button>
-        <button onClick={removeCol} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">− Column</button>
-        <span className="mx-1 hidden sm:inline text-zinc-200">|</span>
-        <button onClick={() => setShowImport(!showImport)} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">
+      <div className={`${WORKSPACE_BAR} sm:flex-wrap sm:justify-start`}>
+        <div className="flex flex-wrap items-center gap-2">
+        <button onClick={addRow} className={BTN_OUTLINE}>+ Row</button>
+        <button onClick={removeRow} className={BTN_OUTLINE}>− Row</button>
+        <button onClick={addCol} className={BTN_OUTLINE}>+ Column</button>
+        <button onClick={removeCol} className={BTN_OUTLINE}>− Column</button>
+        <span className="mx-1 hidden h-5 w-px bg-zinc-200 sm:inline-block" aria-hidden />
+        <button onClick={() => setShowImport(!showImport)} className={BTN_OUTLINE}>
           Paste from Excel / CSV
         </button>
-        <button onClick={clearTable} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-red-400 hover:text-red-500 transition-colors">Clear</button>
-        <span className="ml-auto text-xs text-zinc-400">
+        <button onClick={clearTable} className={`${BTN_GHOST} hover:text-red-600`}>Clear</button>
+        </div>
+        <span className={`${META} sm:ml-auto`}>
           {table.rows.length} × {table.header.length} · click ⇤↔⇥ to align columns
         </span>
       </div>
 
       {/* Import panel */}
       {showImport && (
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm p-4">
+        <div className="border-b border-zinc-100 bg-zinc-50/40 p-4">
           <p className="text-sm text-zinc-600 mb-2">
             Paste cells copied from Excel or Google Sheets (tab-separated), or CSV data, and the grid fills automatically.
           </p>
@@ -121,19 +124,19 @@ export default function TableGeneratorClient() {
             onChange={(e) => setImportText(e.target.value)}
             placeholder={'Name\tRole\nAda\tEngineer\nGrace\tAdmiral'}
             rows={5}
-            className="w-full font-mono text-sm border border-zinc-200 rounded-lg p-3 focus:outline-none focus:ring-1 focus:ring-zinc-400"
+            className="w-full font-mono text-[13px] bg-white border border-zinc-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400"
           />
-          <button onClick={handleImport} className="mt-2 px-4 py-2 bg-zinc-900 text-white text-sm rounded-lg font-medium hover:bg-zinc-800 transition-colors">
+          <button onClick={handleImport} className={`${BTN_PRIMARY} mt-3`}>
             Import into grid
           </button>
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
+      <div className={SPLIT}>
         {/* Grid editor */}
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <div className="px-4 py-2.5 border-b border-zinc-100 text-xs font-medium uppercase tracking-wider text-zinc-400">
-            Table editor
+        <div className={PANE}>
+          <div className={PANE_HEAD}>
+            <span className={PANE_TITLE}>Table editor</span>
           </div>
           <div className="p-3 overflow-x-auto">
             <table className="border-separate border-spacing-1">
@@ -144,7 +147,7 @@ export default function TableGeneratorClient() {
                       <button
                         onClick={() => cycleAlign(c)}
                         title={`Alignment: ${table.aligns[c]} (click to change)`}
-                        className="mb-1 px-2 py-0.5 text-xs rounded border border-zinc-200 text-zinc-500 hover:border-zinc-400 hover:text-zinc-900 transition-colors"
+                        className="mb-1 rounded-md border border-zinc-200 bg-white px-2 py-0.5 text-xs font-medium text-zinc-600 transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-900 active:scale-[0.97]"
                       >
                         {ALIGN_ICON[table.aligns[c]]} {table.aligns[c]}
                       </button>
@@ -175,26 +178,22 @@ export default function TableGeneratorClient() {
         </div>
 
         {/* Output */}
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <div className="px-4 py-2 border-b border-zinc-100 flex items-center gap-2">
-            <span className="text-xs font-medium uppercase tracking-wider text-zinc-400 mr-auto">Output</span>
-            <button
-              onClick={() => setOutput('markdown')}
-              className={`px-3 py-1 text-xs rounded-lg border transition-colors ${output === 'markdown' ? 'bg-zinc-900 border-zinc-900 text-white' : 'border-zinc-200 text-zinc-500 hover:border-zinc-400'}`}
-            >
-              Markdown
-            </button>
-            <button
-              onClick={() => setOutput('html')}
-              className={`px-3 py-1 text-xs rounded-lg border transition-colors ${output === 'html' ? 'bg-zinc-900 border-zinc-900 text-white' : 'border-zinc-200 text-zinc-500 hover:border-zinc-400'}`}
-            >
-              HTML
-            </button>
-            <button onClick={copy} className="px-3 py-1 text-xs rounded-lg bg-zinc-800 text-white hover:bg-zinc-700 transition-colors">
+        <div className={PANE}>
+          <div className={PANE_HEAD}>
+            <span className={`${PANE_TITLE} mr-auto`}>Output</span>
+            <div className={SEG}>
+              <button onClick={() => setOutput('markdown')} className={`${SEG_ITEM} ${output === 'markdown' ? SEG_ON : SEG_OFF}`}>
+                Markdown
+              </button>
+              <button onClick={() => setOutput('html')} className={`${SEG_ITEM} ${output === 'html' ? SEG_ON : SEG_OFF}`}>
+                HTML
+              </button>
+            </div>
+            <button onClick={copy} className={BTN_PRIMARY}>
               {copied ? 'Copied ✓' : 'Copy'}
             </button>
           </div>
-          <pre className="p-4 overflow-x-auto text-[13px] font-mono leading-relaxed text-zinc-800 bg-zinc-50 min-h-[16rem]">
+          <pre className="flex-1 p-4 overflow-x-auto text-[13px] font-mono leading-relaxed text-zinc-800 min-h-[16rem]">
             <code>{code}</code>
           </pre>
         </div>

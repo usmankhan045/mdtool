@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { ThemeId, mermaidThemeFor } from '@/lib/pdf';
+import { PANE, PANE_HEAD, PANE_TITLE, PANE_HEIGHT } from './ui';
+import { LiveBadge } from './UiParts';
 
 // Minimal inline CSS for each theme (preview only - not the full PDF CSS)
 const PREVIEW_STYLES: Record<ThemeId, string> = {
@@ -79,17 +81,14 @@ export default function PdfPreview({ htmlContent, theme }: Props) {
   `, [bodyHtml, theme, dark]);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-3 py-2 bg-gray-50 border-b border-gray-200 rounded-t-lg">
-        <span className="text-sm font-medium text-gray-600">PDF Preview</span>
-        <span className="text-xs text-green-600 font-medium flex items-center gap-1">
-          <span className="w-2 h-2 bg-green-500 rounded-full inline-block"></span>
-          Live
-        </span>
+    <div className={`${PANE} h-full`}>
+      <div className={PANE_HEAD}>
+        <span className={PANE_TITLE}>PDF Preview</span>
+        <LiveBadge />
       </div>
       <iframe
         srcDoc={srcDoc}
-        className="flex-1 w-full min-h-[340px] sm:min-h-[500px] border-0"
+        className={`flex-1 w-full border-0 ${PANE_HEIGHT}`}
         title="PDF Preview"
         sandbox="allow-same-origin"
       />

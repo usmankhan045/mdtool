@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LogoMark from './LogoMark';
 
 const TOOL_LINKS = [
   { href: '/markdown-to-pdf', label: 'Markdown to PDF' },
@@ -63,8 +64,8 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.3fr_3fr] lg:gap-8">
           {/* Brand + the person behind it */}
           <div className="max-w-xs">
-            <Link href="/" className="inline-flex items-center gap-2 text-lg font-bold text-white">
-              <span className="text-blue-400">&lt;/&gt;</span>
+            <Link href="/" className="inline-flex items-center gap-2.5 text-lg font-bold tracking-tight text-white">
+              <LogoMark className="h-7 w-7 rounded-lg ring-1 ring-white/15" />
               MDTool
             </Link>
             <p className="mt-3 text-sm leading-6 text-zinc-400">

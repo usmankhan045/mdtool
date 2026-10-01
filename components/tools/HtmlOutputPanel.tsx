@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import { downloadTextFile, copyToClipboard } from '@/lib/download';
+import { PANE, PANE_HEAD, PANE_HEIGHT, TEXTAREA, BTN_PRIMARY, BTN_OUTLINE, SEG, SEG_ITEM, SEG_ON, SEG_OFF, ICON_DOWNLOAD } from './ui';
+import { ToolIcon } from './UiParts';
 
 interface Props {
   htmlContent: string;
@@ -57,25 +59,19 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-3 py-2 bg-zinc-50 border-b border-zinc-200 rounded-t-lg gap-2 flex-wrap">
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() => setTab('preview')}
-            className={`text-xs px-3 min-h-[44px] rounded-md font-medium ${tab === 'preview' ? 'bg-zinc-900 text-white' : 'bg-white text-zinc-600 border border-zinc-300'}`}
-          >
+    <div className={`${PANE} h-full`}>
+      <div className={PANE_HEAD}>
+        <div className={SEG}>
+          <button onClick={() => setTab('preview')} className={`${SEG_ITEM} ${tab === 'preview' ? SEG_ON : SEG_OFF}`}>
             Preview
           </button>
-          <button
-            onClick={() => setTab('code')}
-            className={`text-xs px-3 min-h-[44px] rounded-md font-medium ${tab === 'code' ? 'bg-zinc-900 text-white' : 'bg-white text-zinc-600 border border-zinc-300'}`}
-          >
+          <button onClick={() => setTab('code')} className={`${SEG_ITEM} ${tab === 'code' ? SEG_ON : SEG_OFF}`}>
             Code
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
-          <label className="flex items-center gap-1.5 text-xs text-zinc-500 cursor-pointer select-none">
+        <div className="flex items-center gap-1.5">
+          <label className="mr-1.5 flex items-center gap-1.5 text-xs text-zinc-500 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={fullDocument}
@@ -84,21 +80,11 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
             />
             Full document
           </label>
-          <button
-            onClick={handleCopy}
-            disabled={!htmlContent.trim()}
-            className="text-xs px-3 min-h-[44px] bg-white border border-zinc-300 rounded hover:bg-zinc-50 text-zinc-600 disabled:opacity-40 disabled:cursor-not-allowed"
-          >
+          <button onClick={handleCopy} disabled={!htmlContent.trim()} className={BTN_OUTLINE}>
             {copied ? 'Copied!' : 'Copy'}
           </button>
-          <button
-            onClick={handleDownload}
-            disabled={!htmlContent.trim()}
-            className="flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-zinc-900 hover:bg-zinc-800 active:scale-95 text-white rounded-md shadow-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
+          <button onClick={handleDownload} disabled={!htmlContent.trim()} className={BTN_PRIMARY}>
+            <ToolIcon d={ICON_DOWNLOAD} />
             Download .html
           </button>
         </div>
@@ -107,7 +93,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
       {tab === 'preview' ? (
         <iframe
           srcDoc={htmlContent.trim() ? fullHtml : '<p style="color:#9ca3af;font-style:italic;font-family:sans-serif;margin:24px;">Your preview will appear here as you type...</p>'}
-          className="flex-1 w-full min-h-[340px] sm:min-h-[500px] border-0 bg-white rounded-b-lg border-x border-b border-zinc-200"
+          className={`flex-1 w-full border-0 bg-white ${PANE_HEIGHT}`}
           title="HTML Preview"
           sandbox="allow-same-origin"
         />
@@ -115,7 +101,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
         <textarea
           value={outputCode}
           readOnly
-          className="flex-1 w-full p-4 font-mono text-sm text-zinc-800 bg-white resize-none outline-none border-x border-b border-zinc-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
+          className={TEXTAREA}
           spellCheck={false}
         />
       )}

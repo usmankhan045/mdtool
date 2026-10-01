@@ -3,17 +3,18 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import LogoMark from './LogoMark';
 
 // Converters live in the "Tools" menu. The panel is always rendered (only hidden
 // visually), so every tool link stays in the HTML on every page for crawlers.
 const TOOLS = [
-  { href: '/markdown-to-pdf', label: 'Markdown to PDF', badge: 'PDF', tone: 'bg-rose-50 text-rose-700 ring-rose-100', dark: 'bg-rose-500/15 text-rose-300 ring-rose-400/25' },
-  { href: '/markdown-to-word', label: 'Markdown to Word', badge: 'DOCX', tone: 'bg-emerald-50 text-emerald-700 ring-emerald-100', dark: 'bg-emerald-500/15 text-emerald-300 ring-emerald-400/25' },
-  { href: '/markdown-to-html', label: 'Markdown to HTML', badge: 'HTML', tone: 'bg-orange-50 text-orange-700 ring-orange-100', dark: 'bg-orange-500/15 text-orange-300 ring-orange-400/25' },
-  { href: '/markdown-to-text', label: 'Markdown to Plain Text', badge: 'TXT', tone: 'bg-zinc-50 text-zinc-700 ring-zinc-100', dark: 'bg-zinc-500/15 text-zinc-300 ring-zinc-400/25' },
-  { href: '/html-to-markdown', label: 'HTML to Markdown', badge: 'MD', tone: 'bg-violet-50 text-violet-700 ring-violet-100', dark: 'bg-violet-500/15 text-violet-300 ring-violet-400/25' },
-  { href: '/word-to-markdown', label: 'Word to Markdown', badge: 'MD', tone: 'bg-violet-50 text-violet-700 ring-violet-100', dark: 'bg-violet-500/15 text-violet-300 ring-violet-400/25' },
-  { href: '/markdown-table-generator', label: 'Table Generator', badge: 'TABLE', tone: 'bg-amber-50 text-amber-700 ring-amber-100', dark: 'bg-amber-500/15 text-amber-300 ring-amber-400/25' },
+  { href: '/markdown-to-pdf', label: 'Markdown to PDF', badge: 'PDF', tone: 'bg-rose-50 text-rose-700 ring-rose-200' },
+  { href: '/markdown-to-word', label: 'Markdown to Word', badge: 'DOCX', tone: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
+  { href: '/markdown-to-html', label: 'Markdown to HTML', badge: 'HTML', tone: 'bg-orange-50 text-orange-700 ring-orange-200' },
+  { href: '/markdown-to-text', label: 'Markdown to Plain Text', badge: 'TXT', tone: 'bg-zinc-50 text-zinc-700 ring-zinc-200' },
+  { href: '/html-to-markdown', label: 'HTML to Markdown', badge: 'MD', tone: 'bg-violet-50 text-violet-700 ring-violet-200' },
+  { href: '/word-to-markdown', label: 'Word to Markdown', badge: 'MD', tone: 'bg-violet-50 text-violet-700 ring-violet-200' },
+  { href: '/markdown-table-generator', label: 'Table Generator', badge: 'TABLE', tone: 'bg-amber-50 text-amber-700 ring-amber-200' },
 ];
 
 const HOME = { href: '/', label: 'Home' };
@@ -92,8 +93,8 @@ export default function Header() {
       <div className="relative mx-auto max-w-6xl">
         <div className="flex h-14 items-center justify-between gap-4 rounded-full bg-white pl-5 pr-2 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5">
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center gap-2 text-lg font-bold text-zinc-900">
-            <span className="text-blue-600">&lt;/&gt;</span>
+          <Link href="/" className="group flex shrink-0 items-center gap-2.5 text-lg font-bold tracking-tight text-zinc-900">
+            <LogoMark className="h-7 w-7 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-rotate-6" />
             MDTool
           </Link>
 
@@ -125,7 +126,7 @@ export default function Header() {
               {/* Always in the DOM (crawlable); shown with a quick scale + fade from the trigger. */}
               <div
                 id="tools-menu"
-                className={`absolute left-1/2 top-full z-50 mt-3 w-[34rem] before:absolute before:inset-x-0 before:-top-3 before:h-3 before:content-[''] -translate-x-1/2 origin-top rounded-2xl bg-[#111215] p-2 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.55)] ring-1 ring-white/10 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none ${
+                className={`absolute left-1/2 top-full z-50 mt-3 w-[34rem] before:absolute before:inset-x-0 before:-top-3 before:h-3 before:content-[''] -translate-x-1/2 origin-top rounded-2xl bg-white p-2 shadow-[0_1px_2px_rgba(24,24,27,0.04),0_20px_44px_-12px_rgba(24,24,27,0.22)] ring-1 ring-zinc-900/[0.07] transition-[opacity,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${
                   toolsOpen ? 'visible scale-100 opacity-100' : 'invisible scale-[0.97] opacity-0'
                 }`}
               >
@@ -134,11 +135,11 @@ export default function Header() {
                     <li key={tool.href}>
                       <Link
                         href={tool.href}
-                        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-white/[0.07] hover:text-white ${
-                          pathname === tool.href ? 'bg-white/[0.07] text-white' : 'text-zinc-600'
+                        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-950 ${
+                          pathname === tool.href ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-700'
                         }`}
                       >
-                        <span className={`w-14 shrink-0 rounded-md py-0.5 text-center font-mono text-[10px] font-semibold ring-1 ring-inset ${tool.dark}`}>
+                        <span className={`w-14 shrink-0 rounded-md py-0.5 text-center font-mono text-[10px] font-semibold ring-1 ring-inset ${tool.tone}`}>
                           {tool.badge}
                         </span>
                         {tool.label}
@@ -189,16 +190,16 @@ export default function Header() {
         {/* Mobile menu: a card under the pill */}
         <div
           id="mobile-menu"
-          className={`absolute inset-x-0 top-full mt-2 origin-top rounded-3xl bg-[#111215] p-3 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.55)] ring-1 ring-white/10 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden ${
+          className={`absolute inset-x-0 top-full mt-2 origin-top rounded-3xl bg-white p-3 shadow-[0_1px_2px_rgba(24,24,27,0.04),0_20px_44px_-12px_rgba(24,24,27,0.22)] ring-1 ring-zinc-900/[0.07] transition-[opacity,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none lg:hidden ${
             mobileOpen ? 'visible scale-100 opacity-100' : 'invisible scale-[0.97] opacity-0'
           }`}
         >
-          <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-zinc-500">Tools</p>
+          <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-zinc-400">Tools</p>
           <ul className="grid gap-0.5 sm:grid-cols-2">
             {TOOLS.map((tool) => (
               <li key={tool.href}>
-                <Link href={tool.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-white/[0.07] hover:text-white">
-                  <span className={`w-14 shrink-0 rounded-md py-0.5 text-center font-mono text-[10px] font-semibold ring-1 ring-inset ${tool.dark}`}>
+                <Link href={tool.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-700 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-950">
+                  <span className={`w-14 shrink-0 rounded-md py-0.5 text-center font-mono text-[10px] font-semibold ring-1 ring-inset ${tool.tone}`}>
                     {tool.badge}
                   </span>
                   {tool.label}
@@ -206,13 +207,13 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-2 flex flex-wrap gap-1 border-t border-white/10 pt-2">
+          <div className="mt-2 flex flex-wrap gap-1 border-t border-zinc-100 pt-2">
             {[HOME, ...LINKS].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  pathname === link.href ? 'bg-white/10 text-white' : 'text-zinc-600 hover:bg-white/[0.07] hover:text-white'
+                  pathname === link.href ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950'
                 }`}
               >
                 {link.label}
@@ -221,7 +222,7 @@ export default function Header() {
           </div>
           <Link
             href="/markdown-to-pdf"
-            className={`mt-3 flex justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-zinc-900 sm:hidden ${pressable}`}
+            className={`mt-3 flex justify-center rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-800 sm:hidden ${pressable}`}
           >
             Start converting
           </Link>

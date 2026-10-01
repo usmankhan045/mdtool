@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { WORKSPACE, SPLIT, PANE, PANE_HEAD, PANE_TITLE } from '@/components/tools/ui';
 
 // Static copy of the converter's default sample and its real output, so the server-rendered
 // fallback shows crawlers (and no-JS visitors) what the tool does. Keep in sync with
@@ -49,18 +50,20 @@ Screenshot of the export dialog`;
 
 function StaticPreview() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:h-[560px]">
-      <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden flex flex-col">
-        <div className="px-3 py-2 bg-zinc-50 border-b border-zinc-200 text-sm font-medium text-zinc-600 min-h-[60px] flex items-center">
-          Markdown Input
+    <div className={WORKSPACE}>
+      <div className={`${SPLIT} lg:h-[560px]`}>
+        <div className={`${PANE} overflow-hidden`}>
+          <div className={PANE_HEAD}>
+            <span className={PANE_TITLE}>Markdown Input</span>
+          </div>
+          <pre className="flex-1 p-4 font-mono text-[13px] leading-6 text-zinc-800 whitespace-pre-wrap overflow-hidden">{FALLBACK_INPUT}</pre>
         </div>
-        <pre className="flex-1 p-4 font-mono text-sm text-zinc-800 whitespace-pre-wrap overflow-hidden">{FALLBACK_INPUT}</pre>
-      </div>
-      <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden flex flex-col">
-        <div className="px-3 py-2 bg-zinc-50 border-b border-zinc-200 text-sm font-medium text-zinc-600 min-h-[60px] flex items-center">
-          Plain Text Output
+        <div className={`${PANE} overflow-hidden`}>
+          <div className={PANE_HEAD}>
+            <span className={PANE_TITLE}>Plain Text Output</span>
+          </div>
+          <pre className="flex-1 p-4 font-mono text-[13px] leading-6 text-zinc-800 whitespace-pre-wrap overflow-hidden">{FALLBACK_OUTPUT}</pre>
         </div>
-        <pre className="flex-1 p-4 font-mono text-sm text-zinc-800 whitespace-pre-wrap overflow-hidden">{FALLBACK_OUTPUT}</pre>
       </div>
     </div>
   );

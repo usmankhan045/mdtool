@@ -7,6 +7,7 @@ import ThemeSelector, { PageSizeSelector } from './ThemeSelector';
 import DownloadButton from './DownloadButton';
 import { countWords } from '@/lib/markdown';
 import { markdownToPdfHtml, ThemeId, PageSizeId } from '@/lib/pdf';
+import { WORKSPACE, WORKSPACE_BAR, SPLIT } from './ui';
 
 const SAMPLE_MARKDOWN = `# Welcome to MDTool
 
@@ -56,10 +57,10 @@ export default function ToolClient() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className={WORKSPACE}>
       {/* Controls Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-zinc-200 shadow-sm">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className={WORKSPACE_BAR}>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <ThemeSelector selected={theme} onSelect={setTheme} />
           <PageSizeSelector selected={pageSize} onSelect={setPageSize} />
         </div>
@@ -67,17 +68,13 @@ export default function ToolClient() {
       </div>
 
       {/* Two-Column Editor */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <MarkdownEditor
-            value={markdown}
-            onChange={handleMarkdownChange}
-            wordCount={wordCount}
-          />
-        </div>
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <PdfPreview htmlContent={htmlContent} theme={theme} />
-        </div>
+      <div className={SPLIT}>
+        <MarkdownEditor
+          value={markdown}
+          onChange={handleMarkdownChange}
+          wordCount={wordCount}
+        />
+        <PdfPreview htmlContent={htmlContent} theme={theme} />
       </div>
     </div>
   );

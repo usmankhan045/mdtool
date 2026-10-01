@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { generateDocx } from '@/lib/docx';
+import { BTN_MAIN } from './ui';
 
 interface Props {
   markdown: string;
@@ -31,11 +32,7 @@ export default function DownloadWordButton({ markdown, filename }: Props) {
     <button
       onClick={handleDownload}
       disabled={loading || !markdown.trim()}
-      className={`flex items-center gap-1.5 text-white transition-all px-6 py-3 text-base font-semibold rounded-lg shadow-md hover:shadow-lg ${
-        loading || !markdown.trim()
-          ? 'bg-zinc-300 cursor-not-allowed'
-          : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
-      }`}
+      className={BTN_MAIN}
     >
       {loading ? (
         <>

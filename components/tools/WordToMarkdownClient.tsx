@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import DocxUploadPanel from './DocxUploadPanel';
 import MarkdownOutputPanel from './MarkdownOutputPanel';
 import { convertDocxToMarkdown } from '@/lib/wordToMarkdown';
+import { WORKSPACE, SPLIT } from './ui';
 
 export default function WordToMarkdownClient() {
   const [fileName, setFileName] = useState<string | null>(null);
@@ -40,26 +41,22 @@ export default function WordToMarkdownClient() {
   const outputFilename = fileName ? fileName.replace(/\.docx$/i, '.md') : 'document.md';
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <DocxUploadPanel
-            fileName={fileName}
-            fileSize={fileSize}
-            loading={loading}
-            error={error}
-            onFileSelected={handleFileSelected}
-            onClear={handleClear}
-          />
-        </div>
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <MarkdownOutputPanel
-            markdown={markdown}
-            filename={outputFilename}
-            charCount={markdown.length}
-            loading={loading}
-          />
-        </div>
+    <div className={WORKSPACE}>
+      <div className={SPLIT}>
+        <DocxUploadPanel
+          fileName={fileName}
+          fileSize={fileSize}
+          loading={loading}
+          error={error}
+          onFileSelected={handleFileSelected}
+          onClear={handleClear}
+        />
+        <MarkdownOutputPanel
+          markdown={markdown}
+          filename={outputFilename}
+          charCount={markdown.length}
+          loading={loading}
+        />
       </div>
     </div>
   );

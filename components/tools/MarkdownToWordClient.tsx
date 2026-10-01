@@ -5,6 +5,7 @@ import MarkdownEditor from './MarkdownEditor';
 import WordPreview from './WordPreview';
 import DownloadWordButton from './DownloadWordButton';
 import { parseMarkdown, countWords } from '@/lib/markdown';
+import { WORKSPACE, WORKSPACE_BAR, SPLIT } from './ui';
 
 const SAMPLE_MARKDOWN = `# Welcome to MDTool
 
@@ -36,21 +37,17 @@ export default function MarkdownToWordClient() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className={WORKSPACE}>
       {/* Controls Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-zinc-200 shadow-sm">
-        <p className="text-sm text-zinc-500">Converts to a real, editable .docx file that opens in Word, Google Docs, and LibreOffice.</p>
+      <div className={WORKSPACE_BAR}>
+        <p className="text-[13px] text-zinc-500">Converts to a real, editable .docx file that opens in Word, Google Docs, and LibreOffice.</p>
         <DownloadWordButton markdown={markdown} filename="document.docx" />
       </div>
 
       {/* Two-Column Editor */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <MarkdownEditor value={markdown} onChange={handleMarkdownChange} wordCount={wordCount} />
-        </div>
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <WordPreview htmlContent={htmlContent} />
-        </div>
+      <div className={SPLIT}>
+        <MarkdownEditor value={markdown} onChange={handleMarkdownChange} wordCount={wordCount} />
+        <WordPreview htmlContent={htmlContent} />
       </div>
     </div>
   );

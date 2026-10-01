@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { PANE, PANE_HEAD, PANE_TITLE, PANE_HEIGHT, BTN_PRIMARY, BTN_GHOST } from './ui';
 
 interface Props {
   fileName: string | null;
@@ -41,14 +42,11 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-3 py-2 bg-zinc-50 border-b border-zinc-200 rounded-t-lg">
-        <span className="text-sm font-medium text-zinc-600">Word Document</span>
+    <div className={`${PANE} h-full`}>
+      <div className={PANE_HEAD}>
+        <span className={PANE_TITLE}>Word Document</span>
         {fileName && (
-          <button
-            onClick={onClear}
-            className="text-sm px-3.5 min-h-[44px] bg-white border border-zinc-300 rounded-md hover:bg-zinc-50 text-zinc-600"
-          >
+          <button onClick={onClear} className={BTN_GHOST}>
             Remove
           </button>
         )}
@@ -58,13 +56,16 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
         onDrop={handleDrop}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
-        className={`flex-1 flex flex-col items-center justify-center gap-3 border-x border-b border-zinc-200 rounded-b-lg min-h-[340px] sm:min-h-[500px] transition-colors ${
-          dragOver ? 'bg-zinc-100 border-zinc-300' : 'bg-white'
-        }`}
+        className={`flex-1 flex flex-col p-4 ${PANE_HEIGHT}`}
+      >
+        <div
+          className={`flex flex-1 flex-col items-center justify-center gap-3 rounded-xl border border-dashed transition-colors duration-150 ${
+            dragOver ? 'border-zinc-400 bg-zinc-100' : 'border-zinc-300 bg-zinc-50/60'
+          }`}
       >
         {loading ? (
           <>
-            <svg className="animate-spin h-8 w-8 text-zinc-900" fill="none" viewBox="0 0 24 24">
+            <svg className="animate-spin h-6 w-6 text-zinc-700" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
             </svg>
@@ -72,7 +73,7 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
           </>
         ) : fileName ? (
           <>
-            <svg className="w-12 h-12 text-zinc-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m-7 5h8a2 2 0 002-2V7.414a1 1 0 00-.293-.707l-4.414-4.414A1 1 0 0012.586 2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
             </svg>
             <p className="text-sm font-medium text-zinc-800">{fileName}</p>
@@ -80,19 +81,17 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
           </>
         ) : (
           <>
-            <svg className="w-12 h-12 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-10 h-10 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
             </svg>
             <p className="text-sm text-zinc-500">Drag and drop a .docx file here</p>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 text-sm font-semibold px-4 min-h-[44px] bg-zinc-900 hover:bg-zinc-800 active:scale-95 text-white rounded-md shadow-sm transition-all"
-            >
+            <button onClick={() => fileInputRef.current?.click()} className={BTN_PRIMARY}>
               Choose .docx file
             </button>
           </>
         )}
         {error && <p className="text-xs text-red-500 max-w-xs text-center">{error}</p>}
+        </div>
       </div>
 
       <input

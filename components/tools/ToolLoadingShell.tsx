@@ -1,12 +1,18 @@
 /**
  * Static, server-rendered stand-in for the converters while their client
  * bundles (loaded with `ssr: false`) download. It mirrors each converter's
- * layout class for class (controls bar, 60px panel toolbars, 340/500px panel
+ * layout class for class (shared ./ui strings: workspace bar, 60px pane heads, 340/500px pane
  * bodies) so hydration swaps it out with zero layout shift, and it gives
  * crawlers real text: the tool name, a sample input and a rendered output.
  *
  * No hooks, no event handlers, no heavy imports: it ships as plain markup.
  */
+
+import {
+  WORKSPACE, WORKSPACE_BAR, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, BTN_PRIMARY, BTN_OUTLINE, BTN_GHOST, BTN_MAIN,
+  SEG, SEG_ITEM, SEG_ON, SEG_OFF, FIELD_LABEL, ICON_UPLOAD, ICON_DOWNLOAD,
+} from './ui';
+import { ToolIcon, LiveBadge } from './UiParts';
 
 export type ToolShellVariant = 'md-to-pdf' | 'md-to-html' | 'md-to-word' | 'html-to-md' | 'word-to-md';
 
@@ -68,28 +74,10 @@ const TOOL_LABELS: Record<ToolShellVariant, string> = {
   'word-to-md': 'Word → Markdown',
 };
 
-const PANEL = 'bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden';
-const TOOLBAR = 'flex items-center justify-between px-3 py-2 bg-zinc-50 border-b border-zinc-200 rounded-t-lg';
-// Fixed (not min-) height so the sample content can never grow the panel past the real tool's size.
-const BODY = 'w-full h-[340px] sm:h-[500px] overflow-hidden bg-white border-x border-b border-zinc-200 rounded-b-lg';
-const PRE = 'm-0 p-4 font-mono text-sm text-zinc-800 whitespace-pre-wrap';
-const BTN_PRIMARY =
-  'flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-zinc-900 text-white rounded-md shadow-sm';
-const BTN_SECONDARY = 'flex items-center text-sm px-3.5 min-h-[44px] bg-white border border-zinc-300 rounded-md text-zinc-600';
-const BTN_SMALL = 'flex items-center text-xs px-3 min-h-[44px] bg-white border border-zinc-300 rounded text-zinc-600';
-
-function ToolbarLabel({ children }: { children: React.ReactNode }) {
-  return <span className="text-sm font-medium text-zinc-600">{children}</span>;
-}
-
-function LiveBadge() {
-  return (
-    <span className="text-xs text-green-600 font-medium flex items-center gap-1">
-      <span className="w-2 h-2 bg-green-500 rounded-full inline-block" />
-      Live
-    </span>
-  );
-}
+// Same class strings as the real converters (./ui), so the swap is pixel-identical.
+// Fixed (not min-) height so the sample content can never grow a pane past the real tool's size.
+const BODY = 'w-full h-[340px] sm:h-[500px] overflow-hidden';
+const PRE = 'm-0 p-4 font-mono text-[13px] leading-6 text-zinc-800 whitespace-pre-wrap';
 
 function RenderedSample({ serif = false }: { serif?: boolean }) {
   return (
@@ -125,19 +113,20 @@ function RenderedSample({ serif = false }: { serif?: boolean }) {
 
 function MarkdownInputPanel({ label }: { label: string }) {
   return (
-    <div className={PANEL}>
-      <div className="flex flex-col h-full">
-        <div className={TOOLBAR}>
-          <ToolbarLabel>{label}</ToolbarLabel>
-          <div className="flex items-center gap-3" aria-hidden>
-            <span className="text-xs text-zinc-400">40 words</span>
-            <span className={BTN_PRIMARY}>Upload .md</span>
-            <span className={BTN_SECONDARY}>Clear</span>
-          </div>
+    <div className={PANE}>
+      <div className={PANE_HEAD}>
+        <span className={PANE_TITLE}>{label}</span>
+        <div className="flex items-center gap-1.5" aria-hidden>
+          <span className={`${META} mr-1.5`}>40 words</span>
+          <span className={BTN_OUTLINE}>
+            <ToolIcon d={ICON_UPLOAD} />
+            Upload .md
+          </span>
+          <span className={BTN_GHOST}>Clear</span>
         </div>
-        <div className={BODY}>
-          <pre className={PRE}>{SAMPLE_MARKDOWN}</pre>
-        </div>
+      </div>
+      <div className={BODY}>
+        <pre className={PRE}>{SAMPLE_MARKDOWN}</pre>
       </div>
     </div>
   );
@@ -145,15 +134,13 @@ function MarkdownInputPanel({ label }: { label: string }) {
 
 function PreviewPanel({ title, serif }: { title: string; serif?: boolean }) {
   return (
-    <div className={PANEL}>
-      <div className="flex flex-col h-full">
-        <div className={TOOLBAR}>
-          <ToolbarLabel>{title}</ToolbarLabel>
-          <LiveBadge />
-        </div>
-        <div className={BODY}>
-          <RenderedSample serif={serif} />
-        </div>
+    <div className={PANE}>
+      <div className={PANE_HEAD}>
+        <span className={PANE_TITLE}>{title}</span>
+        <LiveBadge />
+      </div>
+      <div className={BODY}>
+        <RenderedSample serif={serif} />
       </div>
     </div>
   );
@@ -161,139 +148,141 @@ function PreviewPanel({ title, serif }: { title: string; serif?: boolean }) {
 
 function MarkdownOutputPanel({ sample }: { sample: string }) {
   return (
-    <div className={PANEL}>
-      <div className="flex flex-col h-full">
-        <div className={TOOLBAR}>
-          <ToolbarLabel>Markdown Output</ToolbarLabel>
-          <div className="flex items-center gap-2" aria-hidden>
-            <span className="text-xs text-zinc-400">{sample.length} chars</span>
-            <span className={BTN_SMALL}>Copy</span>
-            <span className={BTN_PRIMARY}>Download .md</span>
-          </div>
+    <div className={PANE}>
+      <div className={PANE_HEAD}>
+        <span className={PANE_TITLE}>Markdown Output</span>
+        <div className="flex items-center gap-1.5" aria-hidden>
+          <span className={`${META} mr-1.5`}>{sample.length} chars</span>
+          <span className={BTN_OUTLINE}>Copy</span>
+          <span className={BTN_PRIMARY}>
+            <ToolIcon d={ICON_DOWNLOAD} />
+            Download .md
+          </span>
         </div>
-        <div className={BODY}>
-          <pre className={PRE}>{sample}</pre>
-        </div>
+      </div>
+      <div className={BODY}>
+        <pre className={PRE}>{sample}</pre>
       </div>
     </div>
   );
 }
 
-function Grid({ children }: { children: React.ReactNode }) {
-  return <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">{children}</div>;
+function Segmented({ items, active = 0, label }: { items: string[]; active?: number; label?: string }) {
+  return (
+    <div className="flex items-center gap-2" aria-hidden>
+      {label && <span className={FIELD_LABEL}>{label}</span>}
+      <div className={`${SEG} flex-wrap`}>
+        {items.map((t, i) => (
+          <span key={t} className={`${SEG_ITEM} ${i === active ? SEG_ON : SEG_OFF}`}>
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
 }
-
-const CONTROLS_BAR =
-  'flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-zinc-200 shadow-sm';
-const BIG_DOWNLOAD = 'flex items-center gap-1.5 text-white px-6 py-3 text-base font-semibold rounded-lg shadow-md bg-zinc-900';
 
 export default function ToolLoadingShell({ variant }: { variant: ToolShellVariant }) {
   const label = TOOL_LABELS[variant];
 
   return (
-    <div className="space-y-4" aria-busy="true" data-tool-shell={variant}>
+    <div className={WORKSPACE} aria-busy="true" data-tool-shell={variant}>
       {variant === 'md-to-pdf' && (
         <>
-          <div className={CONTROLS_BAR}>
-            <div className="flex items-center gap-2 flex-wrap" aria-hidden>
-              <span className="text-sm font-medium text-zinc-600 mr-1">Theme:</span>
-              {['GitHub', 'Academic', 'Minimal', 'Dark'].map((t, i) => (
-                <span
-                  key={t}
-                  className={`px-3.5 min-h-[44px] flex items-center rounded-full text-sm font-medium border ${
-                    i === 0 ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white text-zinc-700 border-zinc-300'
-                  }`}
-                >
-                  {t}
-                </span>
-              ))}
+          <div className={WORKSPACE_BAR}>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <Segmented label="Theme" items={['GitHub', 'Academic', 'Minimal', 'Dark']} />
+              <Segmented label="Page" items={['A4', 'US Letter']} />
             </div>
-            <span className={BIG_DOWNLOAD} aria-hidden>Download PDF (Free)</span>
+            <span className={BTN_MAIN} aria-hidden>
+              <ToolIcon d={ICON_DOWNLOAD} />
+              Download PDF (Free)
+            </span>
           </div>
-          <Grid>
+          <div className={SPLIT}>
             <MarkdownInputPanel label={label} />
             <PreviewPanel title="PDF Preview" />
-          </Grid>
+          </div>
         </>
       )}
 
       {variant === 'md-to-word' && (
         <>
-          <div className={CONTROLS_BAR}>
-            <p className="text-sm text-zinc-500">
+          <div className={WORKSPACE_BAR}>
+            <p className="text-[13px] text-zinc-500">
               Converts to a real, editable .docx file that opens in Word, Google Docs, and LibreOffice.
             </p>
-            <span className={BIG_DOWNLOAD} aria-hidden>Download Word (Free)</span>
+            <span className={BTN_MAIN} aria-hidden>
+              <ToolIcon d={ICON_DOWNLOAD} />
+              Download Word (Free)
+            </span>
           </div>
-          <Grid>
+          <div className={SPLIT}>
             <MarkdownInputPanel label={label} />
             <PreviewPanel title="Word Preview" serif />
-          </Grid>
+          </div>
         </>
       )}
 
       {variant === 'md-to-html' && (
-        <Grid>
+        <div className={SPLIT}>
           <MarkdownInputPanel label={label} />
-          <div className={PANEL}>
-            <div className="flex flex-col h-full">
-              <div className={`${TOOLBAR} gap-2 flex-wrap`}>
-                <div className="flex items-center gap-1" aria-hidden>
-                  <span className="flex items-center text-xs px-3 min-h-[44px] rounded-md font-medium bg-zinc-900 text-white">Preview</span>
-                  <span className="flex items-center text-xs px-3 min-h-[44px] rounded-md font-medium bg-white text-zinc-600 border border-zinc-300">Code</span>
-                </div>
-                <div className="flex items-center gap-2" aria-hidden>
-                  <span className="flex items-center gap-1.5 text-xs text-zinc-500">Full document</span>
-                  <span className={BTN_SMALL}>Copy</span>
-                  <span className={BTN_PRIMARY}>Download .html</span>
-                </div>
-              </div>
-              <div className={BODY}>
-                <RenderedSample />
+          <div className={PANE}>
+            <div className={PANE_HEAD}>
+              <Segmented items={['Preview', 'Code']} />
+              <div className="flex items-center gap-1.5" aria-hidden>
+                <span className="mr-1.5 flex items-center gap-1.5 text-xs text-zinc-500">Full document</span>
+                <span className={BTN_OUTLINE}>Copy</span>
+                <span className={BTN_PRIMARY}>
+                  <ToolIcon d={ICON_DOWNLOAD} />
+                  Download .html
+                </span>
               </div>
             </div>
+            <div className={BODY}>
+              <RenderedSample />
+            </div>
           </div>
-        </Grid>
+        </div>
       )}
 
       {variant === 'html-to-md' && (
-        <Grid>
-          <div className={PANEL}>
-            <div className="flex flex-col h-full">
-              <div className={TOOLBAR}>
-                <ToolbarLabel>{label}</ToolbarLabel>
-                <div className="flex items-center gap-2" aria-hidden>
-                  <span className="text-xs text-zinc-400">{SAMPLE_HTML.length} chars</span>
-                  <span className={BTN_PRIMARY}>Upload .html</span>
-                  <span className={BTN_SECONDARY}>Clear</span>
-                </div>
+        <div className={SPLIT}>
+          <div className={PANE}>
+            <div className={PANE_HEAD}>
+              <span className={PANE_TITLE}>{label}</span>
+              <div className="flex items-center gap-1.5" aria-hidden>
+                <span className={`${META} mr-1.5`}>{SAMPLE_HTML.length} chars</span>
+                <span className={BTN_OUTLINE}>
+                  <ToolIcon d={ICON_UPLOAD} />
+                  Upload .html
+                </span>
+                <span className={BTN_GHOST}>Clear</span>
               </div>
-              <div className={BODY}>
-                <pre className={PRE}>{SAMPLE_HTML}</pre>
-              </div>
+            </div>
+            <div className={BODY}>
+              <pre className={PRE}>{SAMPLE_HTML}</pre>
             </div>
           </div>
           <MarkdownOutputPanel sample={SAMPLE_MARKDOWN_OUTPUT} />
-        </Grid>
+        </div>
       )}
 
       {variant === 'word-to-md' && (
-        <Grid>
-          <div className={PANEL}>
-            <div className="flex flex-col h-full">
-              <div className={TOOLBAR}>
-                <ToolbarLabel>{label}</ToolbarLabel>
-                {/* Real toolbar has no button until a file is chosen; keep the 60px row height. */}
-                <span className="min-h-[44px]" aria-hidden />
-              </div>
-              <div className={`${BODY} flex flex-col items-center justify-center gap-3`}>
+        <div className={SPLIT}>
+          <div className={PANE}>
+            <div className={PANE_HEAD}>
+              <span className={PANE_TITLE}>{label}</span>
+            </div>
+            <div className={`${BODY} flex flex-col p-4`}>
+              <div className="flex flex-1 flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-zinc-300 bg-zinc-50/60">
                 <p className="text-sm text-zinc-500">Drag and drop a .docx file here</p>
                 <span className={BTN_PRIMARY} aria-hidden>Choose .docx file</span>
               </div>
             </div>
           </div>
           <MarkdownOutputPanel sample={SAMPLE_WORD_MARKDOWN_OUTPUT} />
-        </Grid>
+        </div>
       )}
     </div>
   );

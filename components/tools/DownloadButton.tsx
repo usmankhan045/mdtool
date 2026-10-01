@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { generatePdf, ThemeId, PageSizeId } from '@/lib/pdf';
+import { BTN_MAIN } from './ui';
 
 interface Props {
   htmlContent: string;
@@ -31,19 +32,17 @@ export default function DownloadButton({ htmlContent, theme, filename, size = 'd
     }
   };
 
-  const sizeClass = size === 'compact'
-    ? 'px-3 py-2 text-xs font-medium rounded-md'
-    : 'px-6 py-3 text-base font-semibold rounded-lg shadow-md hover:shadow-lg';
+  const className = size === 'compact'
+    ? `flex items-center gap-1.5 text-white transition-all px-3 py-2 text-xs font-medium rounded-md ${
+        loading || !htmlContent.trim() ? 'bg-zinc-300 cursor-not-allowed' : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
+      }`
+    : BTN_MAIN;
 
   return (
     <button
       onClick={handleDownload}
       disabled={loading || !htmlContent.trim()}
-      className={`flex items-center gap-1.5 text-white transition-all ${sizeClass} ${
-        loading || !htmlContent.trim()
-          ? 'bg-zinc-300 cursor-not-allowed'
-          : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
-      }`}
+      className={className}
     >
       {loading ? (
         <>

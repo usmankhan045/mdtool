@@ -4,6 +4,7 @@ import { useCallback, useDeferredValue, useState } from 'react';
 import HtmlEditor from './HtmlEditor';
 import MarkdownOutputPanel from './MarkdownOutputPanel';
 import { convertHtmlToMarkdown } from '@/lib/htmlToMarkdown';
+import { WORKSPACE, SPLIT } from './ui';
 
 const SAMPLE_HTML = `<h1>Welcome to MDTool</h1>
 <h2>Table Example</h2>
@@ -28,14 +29,10 @@ export default function HtmlToMarkdownClient() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <HtmlEditor value={html} onChange={handleHtmlChange} charCount={html.length} />
-        </div>
-        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
-          <MarkdownOutputPanel markdown={markdown} filename="document.md" charCount={markdown.length} />
-        </div>
+    <div className={WORKSPACE}>
+      <div className={SPLIT}>
+        <HtmlEditor value={html} onChange={handleHtmlChange} charCount={html.length} />
+        <MarkdownOutputPanel markdown={markdown} filename="document.md" charCount={markdown.length} />
       </div>
     </div>
   );
