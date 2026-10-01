@@ -30,7 +30,7 @@ export default function AdSlot({ slotId, format, className = '', adSlotNumber }:
   if (process.env.NODE_ENV === 'development') {
     return (
       <div
-        className={`my-4 p-3 bg-gray-100 border-2 border-dashed border-gray-300 rounded text-center text-xs text-gray-400 flex items-center justify-center ${className}`}
+        className={`my-4 p-3 bg-zinc-100 border-2 border-dashed border-zinc-300 rounded text-center text-xs text-zinc-400 flex items-center justify-center ${className}`}
         style={{ minHeight: placeholderHeight }}
       >
         Ad Slot: {slotId} ({format})

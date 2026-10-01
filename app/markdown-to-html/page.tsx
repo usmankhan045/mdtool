@@ -26,7 +26,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes. MDTool fully supports{' '}
-        <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           GitHub Flavored Markdown
         </a>{' '}
         including tables, task lists, strikethrough, fenced code blocks with syntax highlighting, and autolinks.
@@ -39,7 +39,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes. Code blocks are rendered with{' '}
-        <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           highlight.js
         </a>{' '}
         CSS classes baked in. Include a highlight.js stylesheet on your page (or use the &quot;Full document&quot; download, which links one automatically) to see colors.
@@ -76,10 +76,10 @@ const FAQ_ITEMS = [
     q: 'Does converting a Mermaid code block render it as a diagram?',
     a: (
       <>
-        No. A <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code> block is
+        No. A <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">```mermaid</code> block is
         preserved as a labeled code block showing the raw syntax, not rendered into a visual
         diagram. For actual Mermaid diagram rendering, use the{' '}
-        <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a>{' '}
+        <a href="/markdown-to-pdf" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown to PDF converter</a>{' '}
         instead.
       </>
     ),
@@ -128,16 +128,16 @@ export default function MarkdownToHtmlPage() {
 
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live converter */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown to HTML Converter
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Paste or drop a .md file and get clean, semantic HTML, with live preview, code highlighting, and
               one-click copy or download.
             </p>
-            <p className="text-xs text-blue-200/50">Updated July 3, 2026 · Built and maintained by MDTool</p>
+            <p className="text-xs text-zinc-500">Updated July 3, 2026 · Built and maintained by MDTool</p>
           </div>
         </section>
 
@@ -149,7 +149,7 @@ export default function MarkdownToHtmlPage() {
         {/* About this converter */}
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Markdown to HTML conversion</strong> is the process of transforming Markdown syntax,
               such as headings, lists, tables, bold/italic text, and fenced code blocks, into standard HTML markup
               that any browser renders natively. MDTool converts Markdown to HTML entirely in your browser:
@@ -167,14 +167,14 @@ export default function MarkdownToHtmlPage() {
 
         {/* SEO Content */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to HTML Free</h2>
-          <p className="text-gray-700 leading-relaxed mb-3 max-w-3xl">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How to Convert Markdown to HTML Free</h2>
+          <p className="text-zinc-700 leading-relaxed mb-3 max-w-3xl">
             Converting Markdown to HTML with MDTool takes four steps and no account: paste your
             content, watch the live preview, choose your output format, then copy or download.
             The whole process runs in your browser, so it works the same whether you&apos;re
             converting one file or fifty.
           </p>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700">
             <li>Paste your Markdown text into the left panel, or click <strong>Upload .md</strong> to
               load a file directly from your computer. There&apos;s no size limit, so a full
               README or a multi-page doc converts just as easily as a short snippet</li>
@@ -183,7 +183,7 @@ export default function MarkdownToHtmlPage() {
               output, so you can catch formatting issues before exporting anything</li>
             <li>Switch to the <strong>Code</strong> tab to view the raw HTML markup, then toggle{' '}
               <strong>Full document</strong> on or off depending on where the HTML is going: on
-              for a standalone <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">.html</code> file,
+              for a standalone <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">.html</code> file,
               off for a pasteable snippet you&apos;ll drop into an existing page or CMS</li>
             <li>Click <strong>Copy</strong> to grab the HTML straight to your clipboard, or{' '}
               <strong>Download .html</strong> to save it as a file. Either way, the conversion
@@ -192,44 +192,44 @@ export default function MarkdownToHtmlPage() {
         </section>
 
         {/* Format-specific substance */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Snippet vs. Full Document: Which Should You Use?</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Snippet vs. Full Document: Which Should You Use?</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               MDTool gives you two different HTML outputs because they solve different problems. A{' '}
               <strong>snippet</strong> is the bare HTML fragment: just the headings, paragraphs, lists, and
-              code blocks, with no <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;html&gt;</code>,{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;head&gt;</code>, or{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;body&gt;</code> wrapper. That&apos;s what
+              code blocks, with no <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;html&gt;</code>,{' '}
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;head&gt;</code>, or{' '}
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;body&gt;</code> wrapper. That&apos;s what
               you want when pasting into an existing page, a CMS editor, or an email template that already
               defines its own styles, since wrapping the fragment in another document structure would just create
               nested tags the browser has to clean up.
             </p>
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Aspect</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Snippet</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Full Document</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Aspect</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Snippet</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Full Document</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Wrapper</td>
                   <td className="px-3 py-2">None (bare HTML fragment)</td>
                   <td className="px-3 py-2">Complete &lt;html&gt;/&lt;head&gt;/&lt;body&gt;</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Styling</td>
                   <td className="px-3 py-2">Inherits the host page&apos;s CSS</td>
                   <td className="px-3 py-2">Basic styles + highlight.js stylesheet included</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Best for</td>
                   <td className="px-3 py-2">CMS, existing page, email template</td>
                   <td className="px-3 py-2">Standalone .html file, hosting as-is</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Output action</td>
                   <td className="px-3 py-2">Copy to clipboard</td>
                   <td className="px-3 py-2">Download .html</td>
@@ -238,27 +238,27 @@ export default function MarkdownToHtmlPage() {
             </table>
             <p>
               A <strong>full document</strong> wraps the same content in a complete, valid HTML file with a{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;!DOCTYPE html&gt;</code>, basic
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;!DOCTYPE html&gt;</code>, basic
               readable styling, and a stylesheet link so syntax-highlighted code actually shows color when you
-              open the file directly. Use this when you want a standalone <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">.html</code> file
+              open the file directly. Use this when you want a standalone <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">.html</code> file
               you can host as-is, attach as a deliverable, or open straight in a browser without any other
               setup.
             </p>
             <p>
               Either way, the conversion follows{' '}
-              <a href="https://commonmark.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CommonMark</a>{' '}
+              <a href="https://commonmark.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">CommonMark</a>{' '}
               and GitHub Flavored Markdown semantics: headings map to{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h1&gt;</code> to <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;h6&gt;</code>, fenced
-              code blocks map to <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;pre&gt;&lt;code&gt;</code> with
-              a language class, and tables map to real <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
-              rather than styled <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;div&gt;</code>s, so the
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;h1&gt;</code> to <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;h6&gt;</code>, fenced
+              code blocks map to <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;pre&gt;&lt;code&gt;</code> with
+              a language class, and tables map to real <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
+              rather than styled <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;div&gt;</code>s, so the
               output stays usable by screen readers and other tools that expect semantic HTML.
             </p>
             <p>
               That semantic mapping matters most for accessibility. A screen reader announces{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup with row and column
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup with row and column
               context, and lets a user jump between headings by level; neither is possible if a converter
-              outputs visually similar but semantically empty <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;div&gt;</code> grids
+              outputs visually similar but semantically empty <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;div&gt;</code> grids
               and bold paragraphs instead. Because MDTool emits real heading tags and real table elements, the
               HTML you export is just as navigable with assistive technology as it is readable visually,
               whether you paste the snippet into a CMS or host the full document as-is.
@@ -267,41 +267,41 @@ export default function MarkdownToHtmlPage() {
         </section>
 
         {/* What's Preserved + Free/Privacy substance */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What MDTool Preserves in HTML Output</h2>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">What MDTool Preserves in HTML Output</h2>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
-              <strong>GFM tables</strong> convert to real <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
-              with <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;thead&gt;</code> and{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;tbody&gt;</code>, not styled divs.{' '}
+              <strong>GFM tables</strong> convert to real <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;table&gt;</code> markup
+              with <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;thead&gt;</code> and{' '}
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;tbody&gt;</code>, not styled divs.{' '}
               <strong>Fenced code blocks</strong> get syntax highlighting via{' '}
-              <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">highlight.js</a>,
+              <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">highlight.js</a>,
               with JavaScript, TypeScript, Python, Bash, CSS, HTML, JSON, YAML, SQL, Rust, Go, and Dart
               recognized by name (other languages fall back to automatic detection).{' '}
-              <strong>Images</strong> carry over as standard <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;img&gt;</code> tags
+              <strong>Images</strong> carry over as standard <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;img&gt;</code> tags
               with whatever path you wrote in the Markdown, relative or absolute, unchanged.
             </p>
             <p>
-              <strong>Mermaid code blocks</strong> (<code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code>) are
+              <strong>Mermaid code blocks</strong> (<code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">```mermaid</code>) are
               preserved as a labeled code block showing the raw diagram syntax; they are not
               rendered into a visual diagram in this converter. If you need the actual diagram
               rendered into the output, use the{' '}
-              <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a>,
+              <a href="/markdown-to-pdf" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown to PDF converter</a>,
               which renders Mermaid blocks before export.
             </p>
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Is This Converter Free?</h2>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Is This Converter Free?</h2>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               Yes. MDTool is free with no account, no premium tier, and no usage cap. There&apos;s
               no paywall hiding the Full document export, no watermark on the HTML you download,
               and no limit on how many times you can convert. That&apos;s possible because nothing
               you paste is ever uploaded: the conversion runs entirely in your browser&apos;s
               JavaScript engine, using the same{' '}
-              <a href="https://marked.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">marked</a>{' '}
+              <a href="https://marked.js.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">marked</a>{' '}
               parser whether you convert one line or a 10,000-word document, so there&apos;s no
               server-side cost that would require a subscription to cover.
             </p>
@@ -314,29 +314,29 @@ export default function MarkdownToHtmlPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to PDF →
               </a>
-              <a href="/markdown-to-word" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-word" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to Word →
               </a>
-              <a href="/html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/html-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 HTML to Markdown →
               </a>
-              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Syntax Cheatsheet →
               </a>
-              <a href="/blog/markdown-to-html-guide" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-to-html-guide" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Complete Conversion Guide →
               </a>
-              <a href="/blog/markdown-to-html-email" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-to-html-email" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML for Email →
               </a>
-              <a href="/blog/markdown-to-html-static-site" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-to-html-static-site" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML for Static Sites →
               </a>
             </div>

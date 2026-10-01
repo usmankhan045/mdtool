@@ -13,7 +13,6 @@ const TOOLS = [
     href: '/markdown-to-pdf',
     from: 'MD',
     to: 'PDF',
-    icon: '📄',
     title: 'Markdown to PDF',
     description: 'Convert .md files to beautifully formatted PDFs. Supports code highlighting, tables, Mermaid diagrams, and 4 themes.',
     badge: 'Most Popular',
@@ -22,7 +21,6 @@ const TOOLS = [
     href: '/markdown-to-html',
     from: 'MD',
     to: 'HTML',
-    icon: '🌐',
     title: 'Markdown to HTML',
     description: 'Convert Markdown to clean, ready-to-use HTML. Perfect for embedding in websites or email templates.',
     badge: null,
@@ -31,16 +29,22 @@ const TOOLS = [
     href: '/markdown-to-word',
     from: 'MD',
     to: 'DOCX',
-    icon: '📝',
     title: 'Markdown to Word',
     description: 'Convert Markdown to a real, editable .docx file. Opens in Word, Google Docs, and LibreOffice.',
+    badge: null,
+  },
+  {
+    href: '/markdown-to-text',
+    from: 'MD',
+    to: 'TXT',
+    title: 'Markdown to Plain Text',
+    description: 'Strip Markdown syntax and get clean, readable plain text. Keeps paragraphs, lists, and table rows.',
     badge: null,
   },
   {
     href: '/html-to-markdown',
     from: 'HTML',
     to: 'MD',
-    icon: '🔄',
     title: 'HTML to Markdown',
     description: 'Convert HTML to clean Markdown. Supports tables, code blocks, and GitHub Flavored Markdown.',
     badge: null,
@@ -49,7 +53,6 @@ const TOOLS = [
     href: '/word-to-markdown',
     from: 'DOCX',
     to: 'MD',
-    icon: '📋',
     title: 'Word to Markdown',
     description: 'Convert .docx Word documents to clean Markdown. Headings, tables, and lists convert automatically.',
     badge: null,
@@ -58,7 +61,6 @@ const TOOLS = [
     href: '/markdown-table-generator',
     from: 'GRID',
     to: 'MD',
-    icon: '⊞',
     title: 'Markdown Table Generator',
     description: 'Build tables in a visual grid: column alignment, Excel/CSV paste import, copy as Markdown or HTML.',
     badge: 'New',
@@ -68,17 +70,46 @@ const TOOLS = [
 // The three formats Markdown fans out into - shown in the hero output stack.
 const OUTPUTS = [
   { ext: 'PDF', label: 'document.pdf', tint: 'text-rose-300', dot: 'bg-rose-400' },
-  { ext: 'HTML', label: 'index.html', tint: 'text-sky-300', dot: 'bg-sky-400' },
+  { ext: 'HTML', label: 'index.html', tint: 'text-orange-300', dot: 'bg-orange-400' },
   { ext: 'DOCX', label: 'report.docx', tint: 'text-emerald-300', dot: 'bg-emerald-400' },
 ];
 
 // Output-format colours, shared by the hero buttons and the output stack.
 const FORMAT_DOT: Record<string, string> = {
   PDF: 'bg-rose-400',
-  HTML: 'bg-sky-400',
+  HTML: 'bg-orange-400',
   DOCX: 'bg-emerald-400',
+  TXT: 'bg-zinc-400',
   MD: 'bg-violet-400',
 };
+
+// Seven cards in a 3-column grid: two wide cards make every row full.
+const CARD_SPAN: Record<string, string> = {
+  '/markdown-to-pdf': 'md:col-span-2',
+  '/markdown-table-generator': 'lg:col-span-2',
+};
+
+// A small page with a folded corner, tinted by format.
+const FORMAT_TILE: Record<string, { page: string; fold: string }> = {
+  MD: { page: 'bg-violet-50 text-violet-700 ring-violet-600/15', fold: 'bg-violet-200' },
+  PDF: { page: 'bg-rose-50 text-rose-700 ring-rose-600/15', fold: 'bg-rose-200' },
+  HTML: { page: 'bg-orange-50 text-orange-700 ring-orange-600/15', fold: 'bg-orange-200' },
+  DOCX: { page: 'bg-emerald-50 text-emerald-700 ring-emerald-600/15', fold: 'bg-emerald-200' },
+  TXT: { page: 'bg-zinc-100 text-zinc-700 ring-zinc-600/15', fold: 'bg-zinc-300' },
+  GRID: { page: 'bg-amber-50 text-amber-700 ring-amber-600/15', fold: 'bg-amber-200' },
+};
+
+function FileTile({ format }: { format: string }) {
+  const tone = FORMAT_TILE[format] ?? FORMAT_TILE.MD;
+  return (
+    <span
+      className={`relative flex h-12 w-10 items-end justify-center overflow-hidden rounded-md pb-1.5 font-mono text-[9px] font-bold tracking-wide ring-1 ring-inset [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,0_100%)] ${tone.page}`}
+    >
+      <span className={`absolute right-0 top-0 h-[9px] w-[9px] rounded-bl-[3px] ${tone.fold}`} />
+      {format}
+    </span>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -210,13 +241,13 @@ export default function HomePage() {
 
           {/* CTA: every converter as an identical button. The tool name stays in
               the link (screen-reader only) so the anchor text is unchanged. */}
-          <div className="mt-10 mx-auto grid max-w-4xl grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="mt-10 mx-auto flex max-w-5xl flex-wrap justify-center gap-2.5">
             {TOOLS.map((tool) => (
               <Link
                 key={tool.href}
                 href={tool.href}
                 title={tool.title}
-                className="group flex items-center justify-center gap-2.5 rounded-xl border border-zinc-200 bg-white px-4 py-3.5 shadow-[0_1px_0_rgba(24,24,27,0.04),0_2px_6px_-2px_rgba(24,24,27,0.08)] transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-[0_1px_0_rgba(24,24,27,0.04),0_10px_20px_-8px_rgba(24,24,27,0.18)] active:translate-y-0 active:scale-[0.97]"
+                className="group flex basis-[calc(50%-0.3125rem)] items-center justify-center gap-2.5 rounded-xl border border-zinc-200 bg-white px-3 py-3.5 sm:basis-[8.5rem] shadow-[0_1px_0_rgba(24,24,27,0.04),0_2px_6px_-2px_rgba(24,24,27,0.08)] transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-[0_1px_0_rgba(24,24,27,0.04),0_10px_20px_-8px_rgba(24,24,27,0.18)] active:translate-y-0 active:scale-[0.97]"
               >
                 <span aria-hidden className={`h-2 w-2 shrink-0 rounded-full ${FORMAT_DOT[tool.to]}`} />
                 <span aria-hidden className="font-mono text-sm">
@@ -251,35 +282,46 @@ export default function HomePage() {
       <section className="max-w-5xl mx-auto px-4 py-16 md:py-20">
         <div className="mb-10 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">All converters</h2>
-          <p className="mt-2 text-gray-500">Five tools, both directions. Pick one and start.</p>
+          <p className="mt-2 text-gray-500">Seven tools, both directions. Pick one and start.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {TOOLS.map((tool) => (
             <Link
               key={tool.href}
               href={tool.href}
-              className="group relative flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-100"
+              className={`${CARD_SPAN[tool.href] ?? ''} group relative flex flex-col rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-[0_1px_0_rgba(24,24,27,0.03),0_2px_8px_-4px_rgba(24,24,27,0.06)] transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_1px_0_rgba(24,24,27,0.03),0_16px_32px_-12px_rgba(24,24,27,0.16)] active:translate-y-0 active:scale-[0.99]`}
             >
-              <div className="mb-4 flex items-center justify-between">
-                <span className="text-2xl">{tool.icon}</span>
-                {tool.badge ? (
-                  <span className="rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-700">
-                    {tool.badge}
+              {/* the conversion itself, drawn as two little files */}
+              <div className="mb-6 flex items-center justify-between">
+                <div aria-hidden className="flex items-center gap-2">
+                  <FileTile format={tool.from} />
+                  <span className="font-mono text-sm text-zinc-300 transition-[transform,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:text-zinc-500">
+                    →
                   </span>
-                ) : (
-                  <span className="font-mono text-xs font-semibold text-gray-600 group-hover:text-blue-700 transition-colors">
-                    {tool.from} → {tool.to}
+                  <FileTile format={tool.to} />
+                </div>
+                {tool.badge && (
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ${
+                      tool.badge === 'New'
+                        ? 'bg-emerald-50 text-emerald-700 ring-emerald-600/15'
+                        : 'bg-blue-50 text-blue-700 ring-blue-600/15'
+                    }`}
+                  >
+                    {tool.badge}
                   </span>
                 )}
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
-                {tool.title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">{tool.description}</p>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-blue-600">
+
+              <h3 className="text-lg font-semibold tracking-tight text-zinc-900">{tool.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-500">{tool.description}</p>
+
+              <span className="mt-6 flex items-center justify-between border-t border-dashed border-zinc-200 pt-4 text-sm font-medium text-zinc-900 transition-colors duration-200 group-hover:text-blue-600">
                 Open tool
-                <span className="transition-transform group-hover:translate-x-1">→</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 transition-[transform,background-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:bg-blue-600 group-hover:text-white">
+                  →
+                </span>
               </span>
             </Link>
           ))}

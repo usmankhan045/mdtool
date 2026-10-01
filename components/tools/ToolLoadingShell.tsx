@@ -68,18 +68,18 @@ const TOOL_LABELS: Record<ToolShellVariant, string> = {
   'word-to-md': 'Word → Markdown',
 };
 
-const PANEL = 'bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden';
-const TOOLBAR = 'flex items-center justify-between px-3 py-2 bg-gray-50 border-b border-gray-200 rounded-t-lg';
+const PANEL = 'bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden';
+const TOOLBAR = 'flex items-center justify-between px-3 py-2 bg-zinc-50 border-b border-zinc-200 rounded-t-lg';
 // Fixed (not min-) height so the sample content can never grow the panel past the real tool's size.
-const BODY = 'w-full h-[340px] sm:h-[500px] overflow-hidden bg-white border-x border-b border-gray-200 rounded-b-lg';
-const PRE = 'm-0 p-4 font-mono text-sm text-gray-800 whitespace-pre-wrap';
+const BODY = 'w-full h-[340px] sm:h-[500px] overflow-hidden bg-white border-x border-b border-zinc-200 rounded-b-lg';
+const PRE = 'm-0 p-4 font-mono text-sm text-zinc-800 whitespace-pre-wrap';
 const BTN_PRIMARY =
-  'flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-blue-600 text-white rounded-md shadow-sm';
-const BTN_SECONDARY = 'flex items-center text-sm px-3.5 min-h-[44px] bg-white border border-gray-300 rounded-md text-gray-600';
-const BTN_SMALL = 'flex items-center text-xs px-3 min-h-[44px] bg-white border border-gray-300 rounded text-gray-600';
+  'flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-zinc-900 text-white rounded-md shadow-sm';
+const BTN_SECONDARY = 'flex items-center text-sm px-3.5 min-h-[44px] bg-white border border-zinc-300 rounded-md text-zinc-600';
+const BTN_SMALL = 'flex items-center text-xs px-3 min-h-[44px] bg-white border border-zinc-300 rounded text-zinc-600';
 
 function ToolbarLabel({ children }: { children: React.ReactNode }) {
-  return <span className="text-sm font-medium text-gray-600">{children}</span>;
+  return <span className="text-sm font-medium text-zinc-600">{children}</span>;
 }
 
 function LiveBadge() {
@@ -93,8 +93,8 @@ function LiveBadge() {
 
 function RenderedSample({ serif = false }: { serif?: boolean }) {
   return (
-    <div className={`p-6 text-gray-800 text-sm leading-relaxed ${serif ? 'font-serif' : ''}`}>
-      <h2 className="text-2xl font-bold mb-3 pb-1 border-b border-gray-200">Project Notes</h2>
+    <div className={`p-6 text-zinc-800 text-sm leading-relaxed ${serif ? 'font-serif' : ''}`}>
+      <h2 className="text-2xl font-bold mb-3 pb-1 border-b border-zinc-200">Project Notes</h2>
       <p className="mb-3">
         Convert <strong>Markdown</strong> into a clean, shareable document.
       </p>
@@ -105,18 +105,18 @@ function RenderedSample({ serif = false }: { serif?: boolean }) {
       <table className="mb-3 border-collapse text-sm">
         <thead>
           <tr>
-            <th className="border border-gray-300 bg-gray-50 px-3 py-1 text-left">Feature</th>
-            <th className="border border-gray-300 bg-gray-50 px-3 py-1 text-left">Supported</th>
+            <th className="border border-zinc-300 bg-zinc-50 px-3 py-1 text-left">Feature</th>
+            <th className="border border-zinc-300 bg-zinc-50 px-3 py-1 text-left">Supported</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="border border-gray-300 px-3 py-1">GFM</td>
-            <td className="border border-gray-300 px-3 py-1">Yes</td>
+            <td className="border border-zinc-300 px-3 py-1">GFM</td>
+            <td className="border border-zinc-300 px-3 py-1">Yes</td>
           </tr>
         </tbody>
       </table>
-      <pre className="m-0 rounded-md bg-gray-100 p-3 font-mono text-xs">
+      <pre className="m-0 rounded-md bg-zinc-100 p-3 font-mono text-xs">
         <code>console.log(&apos;Hello, MDTool&apos;);</code>
       </pre>
     </div>
@@ -130,7 +130,7 @@ function MarkdownInputPanel({ label }: { label: string }) {
         <div className={TOOLBAR}>
           <ToolbarLabel>{label}</ToolbarLabel>
           <div className="flex items-center gap-3" aria-hidden>
-            <span className="text-xs text-gray-400">40 words</span>
+            <span className="text-xs text-zinc-400">40 words</span>
             <span className={BTN_PRIMARY}>Upload .md</span>
             <span className={BTN_SECONDARY}>Clear</span>
           </div>
@@ -166,7 +166,7 @@ function MarkdownOutputPanel({ sample }: { sample: string }) {
         <div className={TOOLBAR}>
           <ToolbarLabel>Markdown Output</ToolbarLabel>
           <div className="flex items-center gap-2" aria-hidden>
-            <span className="text-xs text-gray-400">{sample.length} chars</span>
+            <span className="text-xs text-zinc-400">{sample.length} chars</span>
             <span className={BTN_SMALL}>Copy</span>
             <span className={BTN_PRIMARY}>Download .md</span>
           </div>
@@ -184,8 +184,8 @@ function Grid({ children }: { children: React.ReactNode }) {
 }
 
 const CONTROLS_BAR =
-  'flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-gray-200 shadow-sm';
-const BIG_DOWNLOAD = 'flex items-center gap-1.5 text-white px-6 py-3 text-base font-semibold rounded-lg shadow-md bg-blue-600';
+  'flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-zinc-200 shadow-sm';
+const BIG_DOWNLOAD = 'flex items-center gap-1.5 text-white px-6 py-3 text-base font-semibold rounded-lg shadow-md bg-zinc-900';
 
 export default function ToolLoadingShell({ variant }: { variant: ToolShellVariant }) {
   const label = TOOL_LABELS[variant];
@@ -196,12 +196,12 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
         <>
           <div className={CONTROLS_BAR}>
             <div className="flex items-center gap-2 flex-wrap" aria-hidden>
-              <span className="text-sm font-medium text-gray-600 mr-1">Theme:</span>
+              <span className="text-sm font-medium text-zinc-600 mr-1">Theme:</span>
               {['GitHub', 'Academic', 'Minimal', 'Dark'].map((t, i) => (
                 <span
                   key={t}
                   className={`px-3.5 min-h-[44px] flex items-center rounded-full text-sm font-medium border ${
-                    i === 0 ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-gray-700 border-gray-300'
+                    i === 0 ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white text-zinc-700 border-zinc-300'
                   }`}
                 >
                   {t}
@@ -220,7 +220,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
       {variant === 'md-to-word' && (
         <>
           <div className={CONTROLS_BAR}>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-zinc-500">
               Converts to a real, editable .docx file that opens in Word, Google Docs, and LibreOffice.
             </p>
             <span className={BIG_DOWNLOAD} aria-hidden>Download Word (Free)</span>
@@ -239,11 +239,11 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
             <div className="flex flex-col h-full">
               <div className={`${TOOLBAR} gap-2 flex-wrap`}>
                 <div className="flex items-center gap-1" aria-hidden>
-                  <span className="flex items-center text-xs px-3 min-h-[44px] rounded-md font-medium bg-blue-600 text-white">Preview</span>
-                  <span className="flex items-center text-xs px-3 min-h-[44px] rounded-md font-medium bg-white text-gray-600 border border-gray-300">Code</span>
+                  <span className="flex items-center text-xs px-3 min-h-[44px] rounded-md font-medium bg-zinc-900 text-white">Preview</span>
+                  <span className="flex items-center text-xs px-3 min-h-[44px] rounded-md font-medium bg-white text-zinc-600 border border-zinc-300">Code</span>
                 </div>
                 <div className="flex items-center gap-2" aria-hidden>
-                  <span className="flex items-center gap-1.5 text-xs text-gray-500">Full document</span>
+                  <span className="flex items-center gap-1.5 text-xs text-zinc-500">Full document</span>
                   <span className={BTN_SMALL}>Copy</span>
                   <span className={BTN_PRIMARY}>Download .html</span>
                 </div>
@@ -263,7 +263,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
               <div className={TOOLBAR}>
                 <ToolbarLabel>{label}</ToolbarLabel>
                 <div className="flex items-center gap-2" aria-hidden>
-                  <span className="text-xs text-gray-400">{SAMPLE_HTML.length} chars</span>
+                  <span className="text-xs text-zinc-400">{SAMPLE_HTML.length} chars</span>
                   <span className={BTN_PRIMARY}>Upload .html</span>
                   <span className={BTN_SECONDARY}>Clear</span>
                 </div>
@@ -287,7 +287,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
                 <span className="min-h-[44px]" aria-hidden />
               </div>
               <div className={`${BODY} flex flex-col items-center justify-center gap-3`}>
-                <p className="text-sm text-gray-500">Drag and drop a .docx file here</p>
+                <p className="text-sm text-zinc-500">Drag and drop a .docx file here</p>
                 <span className={BTN_PRIMARY} aria-hidden>Choose .docx file</span>
               </div>
             </div>

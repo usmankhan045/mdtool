@@ -20,53 +20,53 @@ Paste your **Markdown** and download a PDF instantly.
  */
 function EmbeddedToolShell() {
   return (
-    <div className="my-8 rounded-xl border border-blue-100 bg-blue-50/30 overflow-hidden shadow-sm" aria-busy="true">
-      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-blue-100">
+    <div className="my-8 rounded-xl border border-zinc-100 bg-zinc-100/30 overflow-hidden shadow-sm" aria-busy="true">
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-zinc-100">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-gray-700">Try it: Markdown to PDF</span>
-          <span className="text-xs text-gray-400 hidden sm:inline">Live converter</span>
+          <span className="text-sm font-semibold text-zinc-700">Try it: Markdown to PDF</span>
+          <span className="text-xs text-zinc-400 hidden sm:inline">Live converter</span>
         </div>
-        <a href="/markdown-to-pdf" className="text-xs text-blue-600 hover:text-blue-700 font-medium">
+        <a href="/markdown-to-pdf" className="text-xs text-zinc-900 hover:text-zinc-800 font-medium">
           Full Tool →
         </a>
       </div>
 
-      <div className="flex items-center gap-2 px-4 py-2 bg-white border-b border-gray-100 flex-wrap" aria-hidden>
-        <span className="text-xs text-gray-500 mr-1">Theme:</span>
+      <div className="flex items-center gap-2 px-4 py-2 bg-white border-b border-zinc-100 flex-wrap" aria-hidden>
+        <span className="text-xs text-zinc-500 mr-1">Theme:</span>
         {THEMES.map((t, i) => (
           <span
             key={t}
             className={`px-3 py-2 rounded-full text-xs font-medium border ${
-              i === 0 ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-200'
+              i === 0 ? 'bg-zinc-900 text-white border-zinc-900' : 'bg-white text-zinc-600 border-zinc-200'
             }`}
           >
             {t}
           </span>
         ))}
         <div className="ml-auto">
-          <span className="flex items-center gap-1.5 text-white px-3 py-2 text-xs font-medium rounded-md bg-blue-600">
+          <span className="flex items-center gap-1.5 text-white px-3 py-2 text-xs font-medium rounded-md bg-zinc-900">
             ↓ PDF
           </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-200">
         <div className="bg-white">
-          <div className="px-3 py-1.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-xs text-gray-500 font-medium">Markdown</span>
-            <span className="text-xs text-gray-400 px-2 py-2 -my-2" aria-hidden>Clear</span>
+          <div className="px-3 py-1.5 bg-zinc-50 border-b border-zinc-100 flex items-center justify-between">
+            <span className="text-xs text-zinc-500 font-medium">Markdown</span>
+            <span className="text-xs text-zinc-400 px-2 py-2 -my-2" aria-hidden>Clear</span>
           </div>
-          <pre className="m-0 w-full h-52 overflow-hidden p-3 font-mono text-xs text-gray-800 whitespace-pre-wrap">{SAMPLE}</pre>
+          <pre className="m-0 w-full h-52 overflow-hidden p-3 font-mono text-xs text-zinc-800 whitespace-pre-wrap">{SAMPLE}</pre>
         </div>
         <div className="bg-white">
-          <div className="px-3 py-1.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-xs text-gray-500 font-medium">Preview</span>
+          <div className="px-3 py-1.5 bg-zinc-50 border-b border-zinc-100 flex items-center justify-between">
+            <span className="text-xs text-zinc-500 font-medium">Preview</span>
             <span className="text-xs text-green-500 font-medium flex items-center gap-1">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full inline-block" />
               Live
             </span>
           </div>
-          <div className="w-full h-52 overflow-hidden p-4 text-sm text-gray-800 leading-relaxed">
+          <div className="w-full h-52 overflow-hidden p-4 text-sm text-zinc-800 leading-relaxed">
             <h3 className="text-xl font-bold mb-2">Try It Here</h3>
             <p className="mb-2">
               Paste your <strong>Markdown</strong> and download a PDF instantly.
@@ -74,18 +74,18 @@ function EmbeddedToolShell() {
             <table className="w-full border-collapse text-xs">
               <thead>
                 <tr>
-                  <th className="border border-gray-300 bg-gray-50 px-2 py-1 text-left">Feature</th>
-                  <th className="border border-gray-300 bg-gray-50 px-2 py-1 text-left">Supported</th>
+                  <th className="border border-zinc-300 bg-zinc-50 px-2 py-1 text-left">Feature</th>
+                  <th className="border border-zinc-300 bg-zinc-50 px-2 py-1 text-left">Supported</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-300 px-2 py-1">Code highlighting</td>
-                  <td className="border border-gray-300 px-2 py-1">✅</td>
+                  <td className="border border-zinc-300 px-2 py-1">Code highlighting</td>
+                  <td className="border border-zinc-300 px-2 py-1">✅</td>
                 </tr>
                 <tr>
-                  <td className="border border-gray-300 px-2 py-1">Tables</td>
-                  <td className="border border-gray-300 px-2 py-1">✅</td>
+                  <td className="border border-zinc-300 px-2 py-1">Tables</td>
+                  <td className="border border-zinc-300 px-2 py-1">✅</td>
                 </tr>
               </tbody>
             </table>
@@ -93,7 +93,7 @@ function EmbeddedToolShell() {
         </div>
       </div>
 
-      <div className="px-4 py-2.5 bg-blue-600 text-center">
+      <div className="px-4 py-2.5 bg-zinc-900 text-center">
         <a href="/markdown-to-pdf" className="text-white text-xs font-medium hover:underline">
           Need more features? Open the full tool for themes, Mermaid diagrams, and file upload →
         </a>

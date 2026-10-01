@@ -96,19 +96,19 @@ export default function WordToMarkdownEsPage() {
       />
 
       <main lang="es" className="min-h-screen bg-page">
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Convertidor de Word a Markdown (DOCX a MD) gratis
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Arrastra un archivo .docx y obtén Markdown limpio (GitHub Flavored Markdown) al instante. Sin subir
               nada y sin marca de agua.
             </p>
             <UiLanguageNote />
-            <p className="text-xs text-blue-200/50">
+            <p className="text-xs text-zinc-500">
               Actualizado el 1 de octubre de 2026 ·{' '}
-              <a href="/word-to-markdown" hrefLang="en" className="underline hover:text-white">English version</a>
+              <a href="/word-to-markdown" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>
         </section>
@@ -119,13 +119,13 @@ export default function WordToMarkdownEsPage() {
 
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Convertir Word a Markdown</strong> consiste en leer los estilos estructurales de tu
               archivo .docx (Título 1, Título 2, listas, tablas, negrita, cursiva) y escribirlos como Markdown de
               texto plano. MDTool lo hace íntegramente en tu navegador con{' '}
-              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">mammoth.js</a>,
+              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">mammoth.js</a>,
               que extrae la estructura del documento, y{' '}
-              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>,
+              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">turndown</a>,
               que la convierte en GitHub Flavored Markdown. Gratis, sin registro y sin límite de tamaño.
             </p>
             <ConversionDiagram from="Word (.docx)" to="Markdown (.md)" />
@@ -136,9 +136,9 @@ export default function WordToMarkdownEsPage() {
           <AdSlot slotId="tool-below" format="horizontal" />
         </div>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Cómo convertir Word a Markdown</h2>
-          <ol className="list-decimal list-inside space-y-3 text-gray-700 max-w-3xl mb-6">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Cómo convertir Word a Markdown</h2>
+          <ol className="list-decimal list-inside space-y-3 text-zinc-700 max-w-3xl mb-6">
             <li>
               <strong>Arrastra</strong> tu archivo .docx al panel izquierdo o pulsa{' '}
               <strong>Choose .docx file</strong> para buscarlo en tu equipo
@@ -154,14 +154,14 @@ export default function WordToMarkdownEsPage() {
             </li>
           </ol>
 
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Qué se convierte</h3>
-          <p className="text-gray-700 mb-3 max-w-3xl leading-relaxed">
+          <h3 className="text-xl font-semibold text-zinc-800 mb-3">Qué se convierte</h3>
+          <p className="text-zinc-700 mb-3 max-w-3xl leading-relaxed">
             La conversión se basa en los estilos con nombre de Word, no en la apariencia visual. Un texto que
             solo se ve grande y en negrita, sin el estilo Título aplicado, se trata como texto normal.
           </p>
           <div className="overflow-x-auto max-w-3xl mb-6">
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden">
+              <thead className="bg-zinc-100">
                 <tr>
                   <th className={tableHead}>Elemento de Word</th>
                   <th className={tableHead}>Resultado en Markdown</th>
@@ -170,7 +170,7 @@ export default function WordToMarkdownEsPage() {
               </thead>
               <tbody>
                 {ROWS.map(([el, md, status], i) => (
-                  <tr key={el} className={`border-t border-gray-200${i % 2 === 1 ? ' bg-gray-50' : ''}`}>
+                  <tr key={el} className={`border-t border-zinc-200${i % 2 === 1 ? ' bg-zinc-50' : ''}`}>
                     <td className="px-3 py-2 font-medium">{el}</td>
                     <td className="px-3 py-2 font-mono text-sm">{md}</td>
                     <td className="px-3 py-2">{status}</td>
@@ -180,8 +180,8 @@ export default function WordToMarkdownEsPage() {
             </table>
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Archivos .doc y Google Docs</h3>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+          <h3 className="text-xl font-semibold text-zinc-800 mb-3">Archivos .doc y Google Docs</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               Los <strong>.doc antiguos</strong> (formato binario de Word 97-2003) no se leen directamente. Ábrelos
               en Word o en LibreOffice Writer y usa <strong>Archivo → Guardar como</strong> eligiendo .docx. Si no
@@ -197,16 +197,16 @@ export default function WordToMarkdownEsPage() {
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">¿Para qué convertir Word a Markdown?</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">¿Para qué convertir Word a Markdown?</h2>
+          <ul className="list-disc list-inside space-y-2 text-zinc-700 leading-relaxed max-w-3xl">
             <li><strong>GitHub y GitLab</strong>: los README, wikis y la documentación de los repositorios se escriben en Markdown; un .docx no sirve como README.</li>
             <li><strong>Obsidian</strong>: las notas son archivos .md; convierte el documento y suéltalo en tu bóveda.</li>
             <li><strong>Generadores de sitios estáticos</strong> (Jekyll, Hugo, Eleventy, Astro): generan las páginas a partir de archivos Markdown.</li>
             <li><strong>Docs como código</strong> (MkDocs, Docusaurus): pasar la documentación de Word a Markdown permite versionarla con Git y revisarla en pull requests.</li>
             <li><strong>Notion, Ghost y Hashnode</strong>: aceptan Markdown pegado o importado, con títulos y formato intactos.</li>
           </ul>
-          <p className="text-gray-700 leading-relaxed max-w-3xl mt-4">
+          <p className="text-zinc-700 leading-relaxed max-w-3xl mt-4">
             Las tablas con celdas combinadas se simplifican, porque las tablas GFM no admiten{' '}
             <code className={codeClass}>colspan</code> ni <code className={codeClass}>rowspan</code>. Los colores
             de fuente, las fuentes personalizadas y el subrayado se descartan, ya que Markdown no tiene equivalente.

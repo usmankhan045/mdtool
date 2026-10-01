@@ -27,11 +27,11 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes. MDTool uses{' '}
-        <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           turndown
         </a>{' '}
         with the{' '}
-        <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           GitHub Flavored Markdown
         </a>{' '}
         plugin, so the output follows GFM conventions: pipe tables, fenced code blocks, task lists, and
@@ -115,16 +115,16 @@ export default function HtmlToMarkdownPage() {
 
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live converter */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online HTML to Markdown Converter: GFM Output
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Paste HTML or upload a .html file and get clean GitHub Flavored Markdown, with tables, fenced code
               blocks with language tags, nested lists, links, and images.
             </p>
-            <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
+            <p className="text-xs text-zinc-500">Updated July 3, 2026</p>
           </div>
         </section>
 
@@ -136,12 +136,12 @@ export default function HtmlToMarkdownPage() {
         {/* About this converter */}
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>HTML to Markdown conversion</strong> strips HTML down to its semantic structure,
               such as headings, links, tables, lists, and code, and re-expresses it as plain Markdown text. MDTool
               converts HTML to Markdown entirely in your browser: paste HTML directly or upload a .html file,
               and get clean GitHub Flavored Markdown (GFM) back, powered by the{' '}
-              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>{' '}
+              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">turndown</a>{' '}
               library. Free, no signup, no file size limit.
             </p>
             <ConversionDiagram from="HTML" to="Markdown" />
@@ -155,9 +155,9 @@ export default function HtmlToMarkdownPage() {
 
         {/* SEO Content */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert HTML to Markdown</h2>
-          <p className="text-gray-700 mb-3 leading-relaxed">There are two ways to get your HTML into the converter: paste it directly, or upload a file:</p>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How to Convert HTML to Markdown</h2>
+          <p className="text-zinc-700 mb-3 leading-relaxed">There are two ways to get your HTML into the converter: paste it directly, or upload a file:</p>
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700">
             <li><strong>Paste:</strong> Copy your HTML and paste it directly into the left panel</li>
             <li><strong>Or upload:</strong> Click <strong>Upload .html</strong>, or drag and drop a .html or .htm file, to load it from disk instead</li>
             <li>The Markdown output updates live on the right as soon as you paste or the file loads</li>
@@ -166,11 +166,11 @@ export default function HtmlToMarkdownPage() {
         </section>
 
         {/* Format-specific substance */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">What Should You Know Before Converting HTML to Markdown?</h2>
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-6">What Should You Know Before Converting HTML to Markdown?</h2>
 
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Why Convert HTML Back to Markdown?</h3>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl mb-8">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-2">Why Convert HTML Back to Markdown?</h3>
             <p>
               The most common trigger is content migration: pulling pages out of a CMS or documentation
               platform that only exports HTML, such as Confluence, WordPress, or a Word-generated export, into a
@@ -186,40 +186,40 @@ export default function HtmlToMarkdownPage() {
             </p>
           </div>
 
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">What Does MDTool Preserve When Converting?</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl mb-8">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-2">What Does MDTool Preserve When Converting?</h3>
             <p>
               MDTool&apos;s converter is built on{' '}
-              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>{' '}
+              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">turndown</a>{' '}
               with the GFM plugin, following{' '}
-              <a href="https://commonmark.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CommonMark</a>{' '}
+              <a href="https://commonmark.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">CommonMark</a>{' '}
               + GitHub Flavored Markdown conventions. Semantic tags map directly to their Markdown equivalents:
             </p>
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">HTML element</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown output</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">HTML element</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Markdown output</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">&lt;strong&gt;, &lt;em&gt;</td>
                   <td className="px-3 py-2">✅ **bold**, *italic*</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">&lt;table&gt;</td>
                   <td className="px-3 py-2">✅ GFM pipe table</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;</td>
                   <td className="px-3 py-2">✅ Fenced code block, language preserved</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">&lt;a&gt;, &lt;img&gt;</td>
                   <td className="px-3 py-2">✅ Markdown links and image syntax</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">&lt;h1&gt; to &lt;h6&gt;, &lt;ul&gt;/&lt;ol&gt; (incl. nested)</td>
                   <td className="px-3 py-2">✅ # headings, indented Markdown lists</td>
                 </tr>
@@ -227,38 +227,38 @@ export default function HtmlToMarkdownPage() {
             </table>
           </div>
 
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">What Gets Stripped From the HTML?</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl mb-8">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-2">What Gets Stripped From the HTML?</h3>
             <p>
               HTML can express things Markdown simply has no syntax for: presentation applied through CSS
               classes rather than semantic tags, inline{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">style</code> attributes,{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;span&gt;</code> wrappers used purely
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">style</code> attributes,{' '}
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;span&gt;</code> wrappers used purely
               for color, and executable markup like event-handler attributes. Markdown supports roughly 15
               formatting constructs against HTML&apos;s 100+ element types, so this is a deliberate, lossy
               design choice, not a bug.
             </p>
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">HTML element</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown output</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">HTML element</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Markdown output</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Inline style, color-only &lt;span&gt;</td>
                   <td className="px-3 py-2">❌ Dropped (no Markdown equivalent)</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">&lt;script&gt;, &lt;style&gt;</td>
                   <td className="px-3 py-2">❌ Dropped (non-content markup)</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">onclick and other event-handler attributes</td>
                   <td className="px-3 py-2">❌ Dropped (behavior, not content)</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">colspan/rowspan, nested tables</td>
                   <td className="px-3 py-2">❌ Flattened (GFM tables can&apos;t represent merged cells)</td>
                 </tr>
@@ -271,8 +271,8 @@ export default function HtmlToMarkdownPage() {
             </p>
           </div>
 
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Is MDTool&apos;s HTML to Markdown Converter Free?</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-2">Is MDTool&apos;s HTML to Markdown Converter Free?</h3>
             <p>
               Yes, and it stays free for a structural reason, not a promotional one: conversion runs entirely
               as JavaScript in your browser. There&apos;s no server processing each submitted file, no backend
@@ -291,29 +291,29 @@ export default function HtmlToMarkdownPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <Link href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-to-html" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML →
               </Link>
-              <Link href="/word-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/word-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Word to Markdown →
               </Link>
-              <Link href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to PDF →
               </Link>
-              <Link href="/blog/clean-html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/blog/clean-html-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Clean Up Messy HTML to Markdown →
               </Link>
-              <Link href="/blog/html-to-markdown-cms-migration" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/blog/html-to-markdown-cms-migration" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 HTML to Markdown for CMS Migration →
               </Link>
-              <Link href="/blog/html-to-markdown-github" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/blog/html-to-markdown-github" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 HTML to Markdown for GitHub →
               </Link>
-              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Syntax Cheatsheet →
               </Link>
             </div>

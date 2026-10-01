@@ -32,7 +32,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes. MDTool fully supports{' '}
-        <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           GitHub Flavored Markdown
         </a>{' '}
         including tables, task lists, strikethrough, fenced code blocks with syntax highlighting, and autolinks.
@@ -45,7 +45,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes. Code blocks are automatically syntax-highlighted using{' '}
-        <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           highlight.js
         </a>
         , which supports over 190 programming languages including JavaScript, Python, TypeScript, Rust, Go, and more.
@@ -63,7 +63,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes.{' '}
-        <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           Mermaid diagrams
         </a>{' '}
         in your Markdown (```mermaid blocks) are rendered and included in the PDF export.
@@ -83,7 +83,7 @@ const FAQ_ITEMS = [
         Put <code>&lt;!-- pagebreak --&gt;</code> on its own line where the new page should start. MDTool also accepts{' '}
         <code>\pagebreak</code>, <code>\newpage</code>, <code>&lt;div class=&quot;page-break&quot;&gt;&lt;/div&gt;</code> and{' '}
         <code>&lt;div style=&quot;page-break-after: always;&quot;&gt;&lt;/div&gt;</code>. The preview shows a dashed line where each break falls. See the{' '}
-        <a href="/markdown-cheat-sheet/page-breaks" className="text-blue-600 hover:underline">page break guide</a>.
+        <a href="/markdown-cheat-sheet/page-breaks" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">page break guide</a>.
       </>
     ),
     text: 'Put <!-- pagebreak --> on its own line where the new page should start. MDTool also accepts \\pagebreak, \\newpage, <div class=\"page-break\"></div> and <div style=\"page-break-after: always;\"></div>. The preview shows a dashed line where each break falls. See the page break guide.',
@@ -141,16 +141,16 @@ export default function MarkdownToPdfPage() {
 
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live converter */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown to PDF Converter
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Paste or upload Markdown and download a paginated PDF, with code highlighting, tables, and
               Mermaid diagrams included. No login, no watermark.
             </p>
-            <p className="text-xs text-blue-200/50">Updated October 1, 2026</p>
+            <p className="text-xs text-zinc-500">Updated October 1, 2026</p>
           </div>
         </section>
 
@@ -162,7 +162,7 @@ export default function MarkdownToPdfPage() {
         {/* About this converter */}
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Markdown to PDF conversion</strong> renders Markdown, including headings, tables, syntax-highlighted
               code, and Mermaid diagrams, into a paginated PDF document ready to print, email, or archive.
               MDTool generates the PDF entirely in your browser as a vector document with selectable text,
@@ -180,8 +180,8 @@ export default function MarkdownToPdfPage() {
 
         {/* SEO Content */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Do You Convert Markdown to PDF?</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How Do You Convert Markdown to PDF?</h2>
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700">
             <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file</li>
             <li>Choose a PDF theme: GitHub, Academic, Minimal, or Dark</li>
             <li>See the live preview update in real-time on the right</li>
@@ -190,67 +190,67 @@ export default function MarkdownToPdfPage() {
         </section>
 
         {/* What gets preserved - answer-first, quotable */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What Gets Preserved in the PDF?</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">What Gets Preserved in the PDF?</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               MDTool turns each Markdown element into a native part of the PDF rather than a screenshot of the
               page, so text stays selectable and searchable and the file stays small. This is what each element
               becomes, including the limits:
             </p>
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown element</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">In the PDF</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Markdown element</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">In the PDF</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Headings, paragraphs, bold, italic, links</td>
                   <td className="px-3 py-2">✅ Real, selectable text</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Fenced code blocks</td>
                   <td className="px-3 py-2">✅ Syntax-highlighted per theme, monospace, shaded box</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Mermaid diagrams</td>
                   <td className="px-3 py-2">✅ Rendered as vector graphics (flowchart, sequence, class, state, pie, gantt)</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Tables (GFM)</td>
                   <td className="px-3 py-2">✅ Header fill and thin borders</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Strikethrough, blockquotes, lists</td>
                   <td className="px-3 py-2">✅ Kept</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Task lists</td>
                   <td className="px-3 py-2">⚠️ Shown as [x] and [ ] text, not drawn checkboxes</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Images by full URL</td>
                   <td className="px-3 py-2">✅ Embedded when the host allows cross-origin requests</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Images by relative path (./img.png)</td>
                   <td className="px-3 py-2">❌ A browser cannot read local files; use full URLs</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Page breaks</td>
                   <td className="px-3 py-2">✅ &lt;!-- pagebreak --&gt;, \pagebreak, \newpage and page-break divs</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Chinese and Japanese text</td>
                   <td className="px-3 py-2">✅ Rendered with Noto Sans SC, loaded only for documents that need it</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Emoji</td>
                   <td className="px-3 py-2">❌ Left out of the PDF (no emoji glyphs in the embedded font)</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Footnotes ([^1]), math</td>
                   <td className="px-3 py-2">❌ Not rendered; shown as plain text</td>
                 </tr>
@@ -263,9 +263,9 @@ export default function MarkdownToPdfPage() {
               alt="Page one of the same Markdown document exported to PDF in the GitHub, Academic, Minimal and Dark themes"
               width={1880}
               height={694}
-              className="w-full h-auto rounded-lg border border-gray-200"
+              className="w-full h-auto rounded-lg border border-zinc-200"
             />
-            <figcaption className="text-sm text-gray-500 mt-2">
+            <figcaption className="text-sm text-zinc-500 mt-2">
               The same document exported in all four themes. In Academic and Minimal the diagram moves to page two
               together with its heading.
             </figcaption>
@@ -273,30 +273,30 @@ export default function MarkdownToPdfPage() {
         </section>
 
         {/* Themes + page setup */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Which Theme and Page Size Should You Use?</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Which Theme and Page Size Should You Use?</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Theme</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Best for</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Theme</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Best for</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">GitHub</td>
                   <td className="px-3 py-2">READMEs and developer documentation</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Academic</td>
                   <td className="px-3 py-2">Papers, reports and formal write-ups (centered title)</td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-t border-zinc-200">
                   <td className="px-3 py-2 font-medium">Minimal</td>
                   <td className="px-3 py-2">Clean, modern general-purpose documents</td>
                 </tr>
-                <tr className="border-t border-gray-200 bg-gray-50">
+                <tr className="border-t border-zinc-200 bg-zinc-50">
                   <td className="px-3 py-2 font-medium">Dark</td>
                   <td className="px-3 py-2">Dark-background reading and screen sharing</td>
                 </tr>
@@ -305,7 +305,7 @@ export default function MarkdownToPdfPage() {
             <p>
               Choose <strong>A4</strong> for most of the world and <strong>US Letter</strong> for the United States and
               Canada; the Page menu sits next to the theme buttons. To start a new page at a specific point, put 
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;!-- pagebreak --&gt;</code> on its own line.
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;!-- pagebreak --&gt;</code> on its own line.
               Headings are kept on the same page as the block that follows them, so a heading never ends up alone at
               the bottom of a page.
             </p>
@@ -313,22 +313,22 @@ export default function MarkdownToPdfPage() {
         </section>
 
         {/* How Mermaid + highlighting survive */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Do Some Markdown to PDF Converters Lose Formatting?</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Why Do Some Markdown to PDF Converters Lose Formatting?</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               Mermaid diagrams and syntax highlighting are the two things most converters drop, and for the same
               reason: neither exists in the Markdown itself. A 
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">```mermaid</code> block is text until something
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">```mermaid</code> block is text until something
               draws it, and code colors are classes that a PDF engine ignores unless they are turned into real colors.
               A converter that skips either step prints the diagram as raw text and the code in one flat color.
             </p>
             <p>
               MDTool draws each Mermaid diagram as an SVG in your browser before the PDF is built and places it in the
               document as vector graphics, so labels stay sharp and selectable. Code is highlighted with 
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">highlight.js</code> and every token color is
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">highlight.js</code> and every token color is
               written into the PDF using a palette matched to the theme. The PDF itself is generated by 
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">pdfmake</code>, a vector engine, instead of
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">pdfmake</code>, a vector engine, instead of
               capturing an image of the page. The preview and the PDF come from the same parsed document, so diagrams,
               code colors and page breaks land in the same places; fonts differ slightly because the PDF embeds its
               own.
@@ -339,9 +339,9 @@ export default function MarkdownToPdfPage() {
                 alt="A PDF page exported by MDTool showing a Mermaid sequence diagram, pie chart and class diagram rendered as vector graphics"
                 width={910}
                 height={1187}
-                className="w-full max-w-md h-auto rounded-lg border border-gray-200"
+                className="w-full max-w-md h-auto rounded-lg border border-zinc-200"
               />
-              <figcaption className="text-sm text-gray-500 mt-2">
+              <figcaption className="text-sm text-zinc-500 mt-2">
                 Sequence, pie and class diagrams in an exported PDF page.
               </figcaption>
             </figure>
@@ -349,9 +349,9 @@ export default function MarkdownToPdfPage() {
         </section>
 
         {/* Direct answers */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Is This Markdown to PDF Converter Really Free?</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Is This Markdown to PDF Converter Really Free?</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl">
             Yes. The PDF is generated on your own device, so there is no server cost to recover with a paywall,
             a daily limit or a watermark. There is no account, no email and no trial. Because nothing is uploaded,
             it also works for confidential documents: you can confirm it in your browser&apos;s Network tab, which
@@ -365,26 +365,26 @@ export default function MarkdownToPdfPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <a href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-html" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML →
               </a>
-              <a href="/blog/github-readme-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/github-readme-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 GitHub README to PDF Guide →
               </a>
-              <a href="/blog/best-markdown-to-pdf-converter" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/best-markdown-to-pdf-converter" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Best Markdown to PDF Converters Compared →
               </a>
-              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Syntax Cheatsheet →
               </a>
-              <a href="/blog/markdown-to-pdf-code-blocks" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-to-pdf-code-blocks" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Fix Code Blocks in PDF Exports →
               </a>
-              <a href="/blog/markdown-table-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-table-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Why Markdown Tables Break in PDFs →
               </a>
             </div>

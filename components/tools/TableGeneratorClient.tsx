@@ -90,30 +90,30 @@ export default function TableGeneratorClient() {
   };
 
   const inputClass =
-    'w-full min-w-[7rem] px-2 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-blue-400 bg-white';
+    'w-full min-w-[7rem] px-2 py-1.5 text-sm border border-zinc-200 rounded focus:outline-none focus:ring-1 focus:ring-zinc-400 bg-white';
 
   return (
     <div className="space-y-4">
       {/* Controls */}
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex flex-wrap items-center gap-2">
-        <button onClick={addRow} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 hover:border-blue-400 hover:text-blue-600 transition-colors">+ Row</button>
-        <button onClick={removeRow} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 hover:border-blue-400 hover:text-blue-600 transition-colors">− Row</button>
-        <button onClick={addCol} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 hover:border-blue-400 hover:text-blue-600 transition-colors">+ Column</button>
-        <button onClick={removeCol} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 hover:border-blue-400 hover:text-blue-600 transition-colors">− Column</button>
-        <span className="mx-1 hidden sm:inline text-gray-200">|</span>
-        <button onClick={() => setShowImport(!showImport)} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 hover:border-blue-400 hover:text-blue-600 transition-colors">
+      <div className="bg-white rounded-xl border border-zinc-200 shadow-sm p-4 flex flex-wrap items-center gap-2">
+        <button onClick={addRow} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">+ Row</button>
+        <button onClick={removeRow} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">− Row</button>
+        <button onClick={addCol} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">+ Column</button>
+        <button onClick={removeCol} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">− Column</button>
+        <span className="mx-1 hidden sm:inline text-zinc-200">|</span>
+        <button onClick={() => setShowImport(!showImport)} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 transition-colors">
           Paste from Excel / CSV
         </button>
-        <button onClick={clearTable} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 hover:border-red-400 hover:text-red-500 transition-colors">Clear</button>
-        <span className="ml-auto text-xs text-gray-400">
+        <button onClick={clearTable} className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 hover:border-red-400 hover:text-red-500 transition-colors">Clear</button>
+        <span className="ml-auto text-xs text-zinc-400">
           {table.rows.length} × {table.header.length} · click ⇤↔⇥ to align columns
         </span>
       </div>
 
       {/* Import panel */}
       {showImport && (
-        <div className="bg-white rounded-xl border border-blue-200 shadow-sm p-4">
-          <p className="text-sm text-gray-600 mb-2">
+        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm p-4">
+          <p className="text-sm text-zinc-600 mb-2">
             Paste cells copied from Excel or Google Sheets (tab-separated), or CSV data, and the grid fills automatically.
           </p>
           <textarea
@@ -121,9 +121,9 @@ export default function TableGeneratorClient() {
             onChange={(e) => setImportText(e.target.value)}
             placeholder={'Name\tRole\nAda\tEngineer\nGrace\tAdmiral'}
             rows={5}
-            className="w-full font-mono text-sm border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            className="w-full font-mono text-sm border border-zinc-200 rounded-lg p-3 focus:outline-none focus:ring-1 focus:ring-zinc-400"
           />
-          <button onClick={handleImport} className="mt-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          <button onClick={handleImport} className="mt-2 px-4 py-2 bg-zinc-900 text-white text-sm rounded-lg font-medium hover:bg-zinc-800 transition-colors">
             Import into grid
           </button>
         </div>
@@ -131,8 +131,8 @@ export default function TableGeneratorClient() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
         {/* Grid editor */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="px-4 py-2.5 border-b border-gray-100 text-xs font-medium uppercase tracking-wider text-gray-400">
+        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
+          <div className="px-4 py-2.5 border-b border-zinc-100 text-xs font-medium uppercase tracking-wider text-zinc-400">
             Table editor
           </div>
           <div className="p-3 overflow-x-auto">
@@ -144,7 +144,7 @@ export default function TableGeneratorClient() {
                       <button
                         onClick={() => cycleAlign(c)}
                         title={`Alignment: ${table.aligns[c]} (click to change)`}
-                        className="mb-1 px-2 py-0.5 text-xs rounded border border-gray-200 text-gray-500 hover:border-blue-400 hover:text-blue-600 transition-colors"
+                        className="mb-1 px-2 py-0.5 text-xs rounded border border-zinc-200 text-zinc-500 hover:border-zinc-400 hover:text-zinc-900 transition-colors"
                       >
                         {ALIGN_ICON[table.aligns[c]]} {table.aligns[c]}
                       </button>
@@ -175,26 +175,26 @@ export default function TableGeneratorClient() {
         </div>
 
         {/* Output */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="px-4 py-2 border-b border-gray-100 flex items-center gap-2">
-            <span className="text-xs font-medium uppercase tracking-wider text-gray-400 mr-auto">Output</span>
+        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
+          <div className="px-4 py-2 border-b border-zinc-100 flex items-center gap-2">
+            <span className="text-xs font-medium uppercase tracking-wider text-zinc-400 mr-auto">Output</span>
             <button
               onClick={() => setOutput('markdown')}
-              className={`px-3 py-1 text-xs rounded-lg border transition-colors ${output === 'markdown' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-200 text-gray-500 hover:border-blue-400'}`}
+              className={`px-3 py-1 text-xs rounded-lg border transition-colors ${output === 'markdown' ? 'bg-zinc-900 border-zinc-900 text-white' : 'border-zinc-200 text-zinc-500 hover:border-zinc-400'}`}
             >
               Markdown
             </button>
             <button
               onClick={() => setOutput('html')}
-              className={`px-3 py-1 text-xs rounded-lg border transition-colors ${output === 'html' ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-200 text-gray-500 hover:border-blue-400'}`}
+              className={`px-3 py-1 text-xs rounded-lg border transition-colors ${output === 'html' ? 'bg-zinc-900 border-zinc-900 text-white' : 'border-zinc-200 text-zinc-500 hover:border-zinc-400'}`}
             >
               HTML
             </button>
-            <button onClick={copy} className="px-3 py-1 text-xs rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition-colors">
+            <button onClick={copy} className="px-3 py-1 text-xs rounded-lg bg-zinc-800 text-white hover:bg-zinc-700 transition-colors">
               {copied ? 'Copied ✓' : 'Copy'}
             </button>
           </div>
-          <pre className="p-4 overflow-x-auto text-[13px] font-mono leading-relaxed text-gray-800 bg-gray-50 min-h-[16rem]">
+          <pre className="p-4 overflow-x-auto text-[13px] font-mono leading-relaxed text-zinc-800 bg-zinc-50 min-h-[16rem]">
             <code>{code}</code>
           </pre>
         </div>

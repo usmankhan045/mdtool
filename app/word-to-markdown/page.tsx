@@ -31,7 +31,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Modern .docx files (Word 2007 and later, the{' '}
-        <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           ECMA-376 Office Open XML
         </a>{' '}
         standard). Legacy .doc files (Word 97 to 2003 binary format) are not supported. Open the file in Word and use File → Save As → .docx first.
@@ -64,7 +64,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         GitHub Flavored Markdown (GFM). The converter uses{' '}
-        <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           turndown
         </a>{' '}
         with the GFM plugin, so tables render as pipe tables, code blocks use fenced syntax (``` triple backticks), and lists use the dash-space (- item) format that renders correctly on GitHub, GitLab, Obsidian, and most static site generators.
@@ -121,16 +121,16 @@ export default function WordToMarkdownPage() {
       />
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live converter */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Word to Markdown Converter
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Drag and drop a .docx file and get clean, plain-text GitHub Flavored Markdown back. No upload,
               no watermark.
             </p>
-            <p className="text-xs text-blue-200/50">Updated June 25, 2026</p>
+            <p className="text-xs text-zinc-500">Updated June 25, 2026</p>
           </div>
         </section>
 
@@ -142,13 +142,13 @@ export default function WordToMarkdownPage() {
         {/* About this converter */}
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Word to Markdown conversion</strong> reads the structural styles in your .docx file,
               such as Heading 1, Heading 2, bullet lists, tables, bold, and italic, and outputs clean, plain-text Markdown.
               MDTool converts Word to Markdown entirely in your browser using{' '}
-              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">mammoth.js</a>{' '}
+              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">mammoth.js</a>{' '}
               to extract the document structure and{' '}
-              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>{' '}
+              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">turndown</a>{' '}
               to render it as GitHub Flavored Markdown, free, with no login and no file size limit.
             </p>
             <ConversionDiagram from="Word (.docx)" to="Markdown (.md)" />
@@ -161,25 +161,25 @@ export default function WordToMarkdownPage() {
         </div>
 
         {/* How to Convert - Main Content Section */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Word to Markdown</h2>
-          <p className="text-gray-700 mb-4 max-w-3xl leading-relaxed">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How to Convert Word to Markdown</h2>
+          <p className="text-zinc-700 mb-4 max-w-3xl leading-relaxed">
             Drop a .docx file onto the left panel and MDTool reads the document&apos;s XML structure,
             including named heading styles, list formatting, and table grids, and converts them to Markdown syntax
             in seconds, entirely inside your browser tab.
           </p>
-          <ol className="list-decimal list-inside space-y-3 text-gray-700 max-w-3xl mb-6">
+          <ol className="list-decimal list-inside space-y-3 text-zinc-700 max-w-3xl mb-6">
             <li>
               <strong>Drag and drop</strong> your .docx file onto the left panel, or click{' '}
               <strong>Choose .docx file</strong> to browse your computer
             </li>
             <li>
               MDTool reads the file using{' '}
-              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">mammoth.js</a>{' '}
+              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">mammoth.js</a>{' '}
               to extract the Word document&apos;s structural XML and map named styles to HTML elements
             </li>
             <li>
-              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>{' '}
+              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">turndown</a>{' '}
               with the GFM plugin then converts the intermediate HTML to GitHub Flavored Markdown
             </li>
             <li>
@@ -189,61 +189,61 @@ export default function WordToMarkdownPage() {
           </ol>
 
           {/* What Gets Converted */}
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">What Gets Converted</h3>
-          <p className="text-gray-700 mb-3 max-w-3xl leading-relaxed">
+          <h3 className="text-xl font-semibold text-zinc-800 mb-3">What Gets Converted</h3>
+          <p className="text-zinc-700 mb-3 max-w-3xl leading-relaxed">
             mammoth.js maps Word&apos;s named paragraph styles to Markdown elements. These are the formatting
             types that Word explicitly marks in the file&apos;s XML, not visual appearance, but structural intent.
           </p>
-          <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden mb-6 max-w-3xl">
-            <thead className="bg-gray-100">
+          <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden mb-6 max-w-3xl">
+            <thead className="bg-zinc-100">
               <tr>
-                <th className="text-left px-3 py-2 font-semibold text-gray-700">Word element</th>
-                <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown output</th>
-                <th className="text-left px-3 py-2 font-semibold text-gray-700">Status</th>
+                <th className="text-left px-3 py-2 font-semibold text-zinc-700">Word element</th>
+                <th className="text-left px-3 py-2 font-semibold text-zinc-700">Markdown output</th>
+                <th className="text-left px-3 py-2 font-semibold text-zinc-700">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-zinc-200">
                 <td className="px-3 py-2 font-medium">Heading 1 to Heading 6 styles</td>
                 <td className="px-3 py-2 font-mono text-sm"># through ######</td>
                 <td className="px-3 py-2 text-green-700">✅ Preserved</td>
               </tr>
-              <tr className="border-t border-gray-200 bg-gray-50">
+              <tr className="border-t border-zinc-200 bg-zinc-50">
                 <td className="px-3 py-2 font-medium">Bold and italic text</td>
                 <td className="px-3 py-2 font-mono text-sm">**bold** / *italic*</td>
                 <td className="px-3 py-2 text-green-700">✅ Preserved</td>
               </tr>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-zinc-200">
                 <td className="px-3 py-2 font-medium">Bullet lists</td>
                 <td className="px-3 py-2 font-mono text-sm">- item</td>
                 <td className="px-3 py-2 text-green-700">✅ Preserved</td>
               </tr>
-              <tr className="border-t border-gray-200 bg-gray-50">
+              <tr className="border-t border-zinc-200 bg-zinc-50">
                 <td className="px-3 py-2 font-medium">Numbered lists</td>
                 <td className="px-3 py-2 font-mono text-sm">1. item</td>
                 <td className="px-3 py-2 text-green-700">✅ Preserved</td>
               </tr>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-zinc-200">
                 <td className="px-3 py-2 font-medium">Hyperlinks</td>
                 <td className="px-3 py-2 font-mono text-sm">[text](url)</td>
                 <td className="px-3 py-2 text-green-700">✅ Preserved</td>
               </tr>
-              <tr className="border-t border-gray-200 bg-gray-50">
+              <tr className="border-t border-zinc-200 bg-zinc-50">
                 <td className="px-3 py-2 font-medium">Simple tables</td>
                 <td className="px-3 py-2 font-mono text-sm">| col | col |</td>
                 <td className="px-3 py-2 text-green-700">✅ Converted to pipe tables</td>
               </tr>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-zinc-200">
                 <td className="px-3 py-2 font-medium">Manually formatted text (no named style)</td>
                 <td className="px-3 py-2">Treated as body text</td>
                 <td className="px-3 py-2 text-amber-700">⚠️ Loses formatting</td>
               </tr>
-              <tr className="border-t border-gray-200 bg-gray-50">
+              <tr className="border-t border-zinc-200 bg-zinc-50">
                 <td className="px-3 py-2 font-medium">Embedded images</td>
                 <td className="px-3 py-2">Inline base64 data: URI image</td>
                 <td className="px-3 py-2 text-amber-700">⚠️ Kept, but bulky</td>
               </tr>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-zinc-200">
                 <td className="px-3 py-2 font-medium">Tracked changes, comments</td>
                 <td className="px-3 py-2">Stripped</td>
                 <td className="px-3 py-2 text-red-600">❌ Not included</td>
@@ -252,8 +252,8 @@ export default function WordToMarkdownPage() {
           </table>
 
           {/* What Does Not Convert Cleanly */}
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">What Does Not Convert Cleanly</h3>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl mb-6">
+          <h3 className="text-xl font-semibold text-zinc-800 mb-3">What Does Not Convert Cleanly</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl mb-6">
             <p>
               Some Word features have no Markdown equivalent and are stripped or simplified during conversion.
               Knowing these in advance saves cleanup time:
@@ -261,11 +261,11 @@ export default function WordToMarkdownPage() {
             <ul className="list-disc list-inside space-y-2 pl-2">
               <li>
                 <strong>Embedded images</strong>: Kept inline. mammoth.js embeds each image as a base64{' '}
-                <code className="text-sm bg-gray-100 px-1 rounded">data:</code> URI, so the picture travels inside
+                <code className="text-sm bg-zinc-100 px-1 rounded">data:</code> URI, so the picture travels inside
                 the .md file, which can make it very large. GitHub READMEs and several other platforms don&apos;t
                 display data: URI images, so save the images as files and relink them. If you want image files
                 extracted automatically, use Pandoc with{' '}
-                <code className="text-sm bg-gray-100 px-1 rounded">--extract-media</code> instead.
+                <code className="text-sm bg-zinc-100 px-1 rounded">--extract-media</code> instead.
               </li>
               <li>
                 <strong>Tracked changes and comments</strong>: Word&apos;s revision markup and comment
@@ -274,8 +274,8 @@ export default function WordToMarkdownPage() {
               </li>
               <li>
                 <strong>Complex table merges</strong>: GFM pipe tables have no support for{' '}
-                <code className="text-sm bg-gray-100 px-1 rounded">colspan</code> or{' '}
-                <code className="text-sm bg-gray-100 px-1 rounded">rowspan</code>. Merged cells are
+                <code className="text-sm bg-zinc-100 px-1 rounded">colspan</code> or{' '}
+                <code className="text-sm bg-zinc-100 px-1 rounded">rowspan</code>. Merged cells are
                 split into individual cells. Rebuild merged-cell tables manually or use an HTML table fallback.
               </li>
               <li>
@@ -292,8 +292,8 @@ export default function WordToMarkdownPage() {
           </div>
 
           {/* Why Convert Word to Markdown */}
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Why Convert Word to Markdown</h3>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl mb-6">
+          <h3 className="text-xl font-semibold text-zinc-800 mb-3">Why Convert Word to Markdown</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl mb-6">
             <p>
               Markdown is the plain-text format that most developer tools, documentation platforms, and
               publishing systems natively understand. Word&apos;s .docx format is a binary XML archive,
@@ -302,7 +302,7 @@ export default function WordToMarkdownPage() {
             </p>
             <p>
               Scale makes this concrete:{' '}
-              <a href="https://github.blog/news-insights/octoverse/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://github.blog/news-insights/octoverse/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
                 GitHub&apos;s 2025 Octoverse report
               </a>{' '}
               counted 630 million repositories on the platform, with 230+ new repositories
@@ -320,7 +320,7 @@ export default function WordToMarkdownPage() {
                 <strong>Obsidian</strong>: Obsidian vaults store notes as plain .md files. Word documents
                 cannot be opened directly in Obsidian, so convert first, then drop the .md into your vault.
                 See{' '}
-                <a href="/blog/word-to-markdown-obsidian" className="text-blue-600 hover:underline">
+                <a href="/blog/word-to-markdown-obsidian" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
                   converting Word documents for Obsidian
                 </a>.
               </li>
@@ -344,8 +344,8 @@ export default function WordToMarkdownPage() {
           </div>
 
           {/* Is It Free */}
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Is MDTool Free?</h3>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+          <h3 className="text-xl font-semibold text-zinc-800 mb-3">Is MDTool Free?</h3>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               Yes, free to use, no account required, and no file size limit. MDTool is a client-side
               converter: the conversion logic runs as JavaScript in your browser tab. Your .docx file is
@@ -354,9 +354,9 @@ export default function WordToMarkdownPage() {
             </p>
             <p>
               The two libraries powering the conversion,{' '}
-              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">mammoth.js</a>{' '}
+              <a href="https://github.com/mwilliamson/mammoth.js" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">mammoth.js</a>{' '}
               and{' '}
-              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">turndown</a>{' '}
+              <a href="https://github.com/mixmark-io/turndown" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">turndown</a>{' '}
               are open-source MIT-licensed projects. You can verify the behavior, inspect the source,
               or use the libraries directly in your own projects. MDTool bundles them into a drag-and-drop
               interface so you don&apos;t need Node.js or a command line to get a quick conversion done.
@@ -365,9 +365,9 @@ export default function WordToMarkdownPage() {
         </section>
 
         {/* Legacy .doc and Google Docs */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What About .doc and Google Docs Files?</h2>
-          <div className="space-y-3 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">What About .doc and Google Docs Files?</h2>
+          <div className="space-y-3 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               <strong>Legacy .doc files</strong> (the Word 97 to 2003 binary format) can&apos;t be read
               directly; the converter only understands the XML-based .docx format. Converting one takes
@@ -395,7 +395,7 @@ export default function WordToMarkdownPage() {
               first: in the document, choose <strong>File → Download → Microsoft Word (.docx)</strong>, then
               drop the downloaded file onto the converter. Google Docs also has a built-in{' '}
               <strong>File → Download → Markdown (.md)</strong> option,{' '}
-              <a href="https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
                 added in 2024
               </a>
               , which is the quickest route for a simple document. Going through .docx and MDTool gives you
@@ -411,29 +411,29 @@ export default function WordToMarkdownPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <a href="/markdown-to-word" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-word" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to Word →
               </a>
-              <a href="/html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/html-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 HTML to Markdown →
               </a>
-              <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to PDF →
               </a>
-              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Syntax Cheatsheet →
               </a>
-              <a href="/blog/word-to-markdown-github-docs" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/word-to-markdown-github-docs" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Word to Markdown for GitHub →
               </a>
-              <a href="/blog/word-to-markdown-obsidian" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/word-to-markdown-obsidian" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Word to Markdown for Obsidian →
               </a>
-              <a href="/blog/docx-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/docx-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 DOCX to Markdown Guide →
               </a>
             </div>

@@ -58,7 +58,7 @@ export default function ToolClient() {
   return (
     <div className="space-y-4">
       {/* Controls Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white rounded-xl p-4 border border-zinc-200 shadow-sm">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <ThemeSelector selected={theme} onSelect={setTheme} />
           <PageSizeSelector selected={pageSize} onSelect={setPageSize} />
@@ -68,14 +68,14 @@ export default function ToolClient() {
 
       {/* Two-Column Editor */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
           <MarkdownEditor
             value={markdown}
             onChange={handleMarkdownChange}
             wordCount={wordCount}
           />
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden">
           <PdfPreview htmlContent={htmlContent} theme={theme} />
         </div>
       </div>

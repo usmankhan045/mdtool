@@ -98,19 +98,19 @@ export default function MarkdownToWordEsPage() {
       />
 
       <main lang="es" className="min-h-screen bg-page">
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Convertidor de Markdown a Word (MD a DOCX) gratis
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Convierte Markdown en un .docx real y editable que se abre en Word, Google Docs y LibreOffice.
               Sin registro, sin marca de agua y sin límites.
             </p>
             <UiLanguageNote />
-            <p className="text-xs text-blue-200/50">
+            <p className="text-xs text-zinc-500">
               Actualizado el 1 de octubre de 2026 ·{' '}
-              <a href="/markdown-to-word" hrefLang="en" className="underline hover:text-white">English version</a>
+              <a href="/markdown-to-word" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>
         </section>
@@ -121,7 +121,7 @@ export default function MarkdownToWordEsPage() {
 
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Convertir Markdown a Word</strong> significa transformar la sintaxis de Markdown en un
               archivo .docx que puedes editar: los títulos se convierten en estilos de título de Word, las
               listas en listas nativas y las tablas en tablas de Word. MDTool genera el .docx íntegramente en tu
@@ -137,12 +137,12 @@ export default function MarkdownToWordEsPage() {
         </div>
 
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Cómo convertir Markdown a Word gratis</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl mb-4">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Cómo convertir Markdown a Word gratis</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl mb-4">
             Son cuatro pasos y no necesitas cuenta: pegas el texto, revisas la vista previa y descargas un .docx
             real, sin nada bloqueado tras un registro.
           </p>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700 max-w-3xl">
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700 max-w-3xl">
             <li>Pega tu Markdown en el panel izquierdo o pulsa <strong>Upload .md</strong> para cargar un archivo</li>
             <li>Revisa la vista previa con aspecto de Word, que se actualiza a la derecha mientras escribes</li>
             <li>Pulsa <strong>Download Word (Free)</strong> para guardar el archivo .docx, sin pagos ni marca de agua</li>
@@ -150,19 +150,19 @@ export default function MarkdownToWordEsPage() {
           </ol>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Qué se conserva en el .docx</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Qué se conserva en el .docx</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               La exportación a Word de MDTool usa la biblioteca{' '}
-              <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">docx</a>,
+              <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">docx</a>,
               que traduce la estructura de Markdown a elementos nativos de Office Open XML en lugar de imitar el
               formato con texto plano. Un título no queda como texto en negrita, sino como un estilo
               Título 1, Título 2, etc., así que el panel de navegación y la tabla de contenido de Word
               funcionan desde el primer momento.
             </p>
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
                   <th className={tableHead}>Elemento de Markdown</th>
                   <th className={tableHead}>Resultado en Word</th>
@@ -170,7 +170,7 @@ export default function MarkdownToWordEsPage() {
               </thead>
               <tbody>
                 {ROWS.map(([el, out], i) => (
-                  <tr key={el} className={`border-t border-gray-200${i % 2 === 1 ? ' bg-gray-50' : ''}`}>
+                  <tr key={el} className={`border-t border-zinc-200${i % 2 === 1 ? ' bg-zinc-50' : ''}`}>
                     <td className="px-3 py-2 font-medium">{el}</td>
                     <td className="px-3 py-2">{out}</td>
                   </tr>
@@ -179,16 +179,16 @@ export default function MarkdownToWordEsPage() {
             </table>
             <p>
               Si tu documento necesita diagramas, usa el{' '}
-              <a href="/es/markdown-to-pdf" className="text-blue-600 hover:underline">convertidor de Markdown a PDF</a>,
+              <a href="/es/markdown-to-pdf" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">convertidor de Markdown a PDF</a>,
               que renderiza los bloques Mermaid antes de generar el archivo. Para contratos, informes, propuestas
               o actas, que son casi todo títulos, texto y tablas, la exportación a Word cubre lo necesario.
             </p>
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">¿Para quién es?</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">¿Para quién es?</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl">
             Para <strong>redactores técnicos</strong> que escriben en Markdown y tienen que entregar un .docx a
             un cliente o revisor; para <strong>desarrolladores</strong> que documentan APIs y READMEs en Markdown
             pero deben pasar una versión en Word a producto o cumplimiento; y para <strong>estudiantes</strong> que

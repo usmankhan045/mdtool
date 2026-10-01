@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-const code = 'text-sm bg-gray-100 px-1 py-0.5 rounded';
+const code = 'text-sm bg-zinc-100 px-1 py-0.5 rounded';
 
 const FAQ_ITEMS = [
   {
@@ -105,16 +105,16 @@ export default function MarkdownToTextPage() {
 
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live converter */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Markdown to Plain Text Converter
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Strip the #, ** and [link](url) syntax out of any Markdown and get clean, readable text you can
               paste anywhere. Copy it or download a .txt file.
             </p>
-            <p className="text-xs text-blue-200/50">Published October 1, 2026 · Built and maintained by MDTool</p>
+            <p className="text-xs text-zinc-500">Published October 1, 2026 · Built and maintained by MDTool</p>
           </div>
         </section>
 
@@ -126,7 +126,7 @@ export default function MarkdownToTextPage() {
         {/* Answer-first summary */}
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Converting Markdown to plain text</strong> removes the formatting syntax (# headings,
               **bold**, link brackets, code fences) and keeps only the words. MDTool does it in your browser:
               paragraphs stay separated, lists become simple lines, links keep their URL in parentheses, and
@@ -142,8 +142,8 @@ export default function MarkdownToTextPage() {
 
         {/* How to */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Strip Markdown Formatting</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700 max-w-3xl">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How to Strip Markdown Formatting</h2>
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700 max-w-3xl">
             <li>Paste your Markdown into the left panel, or click <strong>Upload .md</strong> to load a .md,
               .markdown or .txt file. You can also drag a file onto the editor</li>
             <li>Read the plain-text result on the right. It updates as you type, with a live word and
@@ -157,27 +157,27 @@ export default function MarkdownToTextPage() {
         </section>
 
         {/* Element mapping */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">What Happens to Each Markdown Element</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl mb-4">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">What Happens to Each Markdown Element</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl mb-4">
             The converter parses your Markdown with{' '}
-            <a href="https://marked.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">marked</a>{' '}
+            <a href="https://marked.js.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">marked</a>{' '}
             (CommonMark plus GitHub Flavored Markdown) and walks the parsed structure, so it removes syntax by
             meaning rather than by blindly deleting symbols. An asterisk in <code className={code}>2 * 3</code> or
             inside a code block survives; an asterisk that marks bold text does not.
           </p>
           <div className="overflow-x-auto max-w-4xl">
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden">
+              <thead className="bg-zinc-100">
                 <tr>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown element</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Example</th>
-                  <th className="text-left px-3 py-2 font-semibold text-gray-700">Plain-text output</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Markdown element</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Example</th>
+                  <th className="text-left px-3 py-2 font-semibold text-zinc-700">Plain-text output</th>
                 </tr>
               </thead>
               <tbody>
                 {ELEMENT_ROWS.map(([element, example, output], i) => (
-                  <tr key={element} className={`border-t border-gray-200${i % 2 === 1 ? ' bg-gray-50' : ''}`}>
+                  <tr key={element} className={`border-t border-zinc-200${i % 2 === 1 ? ' bg-zinc-50' : ''}`}>
                     <td className="px-3 py-2 font-medium">{element}</td>
                     <td className="px-3 py-2 font-mono text-xs">{example}</td>
                     <td className="px-3 py-2">{output}</td>
@@ -186,7 +186,7 @@ export default function MarkdownToTextPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-gray-700 leading-relaxed max-w-3xl mt-4">
+          <p className="text-zinc-700 leading-relaxed max-w-3xl mt-4">
             Code is treated as literal text: content inside backticks or a fenced block is copied exactly,
             including characters like <code className={code}>&amp;amp;</code> that would be decoded anywhere
             else. YAML front matter at the top of the file is dropped, since it is metadata rather than
@@ -195,9 +195,9 @@ export default function MarkdownToTextPage() {
         </section>
 
         {/* Use cases */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">When You Need Plain Text Instead of Markdown</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">When You Need Plain Text Instead of Markdown</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               <strong>Email, SMS and web forms.</strong> Most email composers, text messages, support-ticket
               forms and job applications show Markdown literally, so a line like{' '}
@@ -226,9 +226,9 @@ export default function MarkdownToTextPage() {
             </p>
             <p>
               Need formatting kept instead? Use the{' '}
-              <a href="/markdown-to-html" className="text-blue-600 hover:underline">Markdown to HTML converter</a>{' '}
+              <a href="/markdown-to-html" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown to HTML converter</a>{' '}
               for rich text you can paste into a web editor, or{' '}
-              <a href="/markdown-to-word" className="text-blue-600 hover:underline">Markdown to Word</a> for an
+              <a href="/markdown-to-word" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown to Word</a> for an
               editable .docx.
             </p>
           </div>
@@ -240,23 +240,23 @@ export default function MarkdownToTextPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <a href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-html" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML →
               </a>
-              <a href="/markdown-to-word" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-word" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to Word →
               </a>
-              <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to PDF →
               </a>
-              <a href="/html-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/html-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 HTML to Markdown →
               </a>
-              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Syntax Cheatsheet →
               </Link>
             </div>

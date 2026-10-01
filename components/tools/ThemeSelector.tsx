@@ -17,7 +17,7 @@ interface Props {
 export default function ThemeSelector({ selected, onSelect }: Props) {
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      <span className="text-sm font-medium text-gray-600 mr-1">Theme:</span>
+      <span className="text-sm font-medium text-zinc-600 mr-1">Theme:</span>
       {THEMES.map((theme) => (
         <button
           key={theme.id}
@@ -25,8 +25,8 @@ export default function ThemeSelector({ selected, onSelect }: Props) {
           title={theme.description}
           className={`px-3.5 min-h-[44px] flex items-center rounded-full text-sm font-medium transition-all border ${
             selected === theme.id
-              ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-              : 'bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:text-blue-600'
+              ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm'
+              : 'bg-white text-zinc-700 border-zinc-300 hover:border-zinc-400 hover:text-zinc-900'
           }`}
         >
           {theme.label}
@@ -49,20 +49,27 @@ interface PageSizeProps {
 // Paper size for the generated PDF (A4 = 210 x 297 mm, US Letter = 8.5 x 11 in).
 export function PageSizeSelector({ selected, onSelect }: PageSizeProps) {
   return (
-    <label className="flex items-center gap-2 text-sm font-medium text-gray-600">
+    <div className="flex items-center gap-2 text-sm font-medium text-zinc-600">
       <span>Page:</span>
-      <select
-        aria-label="Page size"
-        value={selected}
-        onChange={(e) => onSelect(e.target.value as PageSizeId)}
-        className="min-h-[44px] rounded-full border border-gray-300 bg-white px-3.5 text-sm font-medium text-gray-700 hover:border-blue-400 focus:border-blue-500 focus:outline-none"
-      >
+      {/* Two options only, so a segmented toggle instead of a native select. */}
+      <div role="radiogroup" aria-label="Page size" className="flex min-h-[44px] items-center rounded-full border border-zinc-300 bg-zinc-100 p-1">
         {PAGE_SIZES.map((s) => (
-          <option key={s.id} value={s.id}>
+          <button
+            key={s.id}
+            type="button"
+            role="radio"
+            aria-checked={selected === s.id}
+            onClick={() => onSelect(s.id)}
+            className={`flex h-full min-h-[34px] items-center rounded-full px-3.5 text-sm font-medium transition-[background-color,color,box-shadow,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
+              selected === s.id
+                ? 'bg-white text-zinc-900 shadow-[0_1px_2px_rgba(24,24,27,0.12),0_0_0_1px_rgba(24,24,27,0.06)]'
+                : 'text-zinc-500 hover:text-zinc-900'
+            }`}
+          >
             {s.label}
-          </option>
+          </button>
         ))}
-      </select>
-    </label>
+      </div>
+    </div>
   );
 }

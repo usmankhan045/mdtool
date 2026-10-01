@@ -89,16 +89,16 @@ export default function MarkdownTableGeneratorPage() {
 
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live tool */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown Table Generator
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Build tables in a visual grid, no hand-typed pipes. Set column alignment, paste data
               straight from Excel or Google Sheets, and copy clean Markdown or HTML.
             </p>
-            <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
+            <p className="text-xs text-zinc-500">Updated July 3, 2026</p>
           </div>
         </section>
 
@@ -109,7 +109,7 @@ export default function MarkdownTableGeneratorPage() {
 
         {/* About */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <p className="text-base text-gray-700 leading-relaxed max-w-3xl">
+          <p className="text-base text-zinc-700 leading-relaxed max-w-3xl">
             <strong>A Markdown table generator</strong> writes the pipe-and-hyphen table syntax for you:
             you edit cells in a familiar grid, and the tool produces a GitHub Flavored Markdown table
             with aligned columns, escaped pipe characters, and a correct separator row. That matters
@@ -126,8 +126,8 @@ export default function MarkdownTableGeneratorPage() {
 
         {/* How-to */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Do You Generate a Markdown Table?</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How Do You Generate a Markdown Table?</h2>
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700">
             <li>Set the size with <strong>+ Row</strong> / <strong>+ Column</strong>, or click <strong>Paste from Excel / CSV</strong> to import existing data</li>
             <li>Type your content into the grid cells (the first row is the header)</li>
             <li>Click the alignment buttons (⇤ ↔ ⇥) above any column to align it left, center, or right</li>
@@ -136,9 +136,9 @@ export default function MarkdownTableGeneratorPage() {
         </section>
 
         {/* Substance: Excel workflow */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Do You Convert an Excel Table to Markdown?</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How Do You Convert an Excel Table to Markdown?</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               Select the cells in Excel or Google Sheets, copy them, click <strong>Paste from Excel / CSV</strong>{' '}
               above, and paste. Spreadsheets copy cells as tab-separated text, so each tab becomes a column
@@ -149,7 +149,7 @@ export default function MarkdownTableGeneratorPage() {
               This is usually the fastest route from spreadsheet to README: no add-ins, no export step, and
               because the conversion happens in your browser, the data in your spreadsheet never leaves your
               machine. For whole documents rather than tables, the{' '}
-              <Link href="/word-to-markdown" className="text-blue-600 hover:underline">Word to Markdown converter</Link>{' '}
+              <Link href="/word-to-markdown" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Word to Markdown converter</Link>{' '}
               handles .docx files the same private way.
             </p>
           </div>
@@ -161,23 +161,23 @@ export default function MarkdownTableGeneratorPage() {
         </section>
 
         {/* Related */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <Link href="/markdown-cheat-sheet/tables" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-cheat-sheet/tables" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Table Syntax Guide →
               </Link>
-              <Link href="/blog/markdown-table-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/blog/markdown-table-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Why Tables Break in PDF Exports →
               </Link>
-              <Link href="/blog/excel-to-markdown-table" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/blog/excel-to-markdown-table" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Excel to Markdown Table Guide →
               </Link>
-              <Link href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-to-html" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML Converter →
               </Link>
-              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <Link href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Full Markdown Cheat Sheet →
               </Link>
             </div>

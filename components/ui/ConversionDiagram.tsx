@@ -25,22 +25,22 @@ export default function ConversionDiagram({ from, to, className = '' }: Props) {
     >
       <title>{label}</title>
 
-      <rect x="4" y="28" width="150" height="64" rx="10" fill="#eff6ff" stroke="#93c5fd" strokeWidth="2" />
-      <text x="79" y="54" textAnchor="middle" fontSize="13" fontWeight="700" fill="#1e3a5f">
+      <rect x="4" y="28" width="150" height="64" rx="10" fill="#ffffff" stroke="#d4d4d8" strokeWidth="2" />
+      <text x="79" y="54" textAnchor="middle" fontSize="13" fontWeight="700" fill="#18181b">
         {from}
       </text>
-      <text x="79" y="73" textAnchor="middle" fontSize="10" fill="#3b82f6">
+      <text x="79" y="73" textAnchor="middle" fontSize="10" fill="#71717a">
         file
       </text>
 
-      <line x1="162" y1="60" x2="190" y2="60" stroke="#3b82f6" strokeWidth="2.5" />
-      <polygon points="190,53 204,60 190,67" fill="#3b82f6" />
+      <line x1="162" y1="60" x2="190" y2="60" stroke="#a1a1aa" strokeWidth="2.5" />
+      <polygon points="190,53 204,60 190,67" fill="#a1a1aa" />
 
-      <rect x="206" y="28" width="150" height="64" rx="10" fill="#1e3a5f" />
+      <rect x="206" y="28" width="150" height="64" rx="10" fill="#18181b" />
       <text x="281" y="54" textAnchor="middle" fontSize="13" fontWeight="700" fill="#ffffff">
         {to}
       </text>
-      <text x="281" y="73" textAnchor="middle" fontSize="10" fill="#93c5fd">
+      <text x="281" y="73" textAnchor="middle" fontSize="10" fill="#a1a1aa">
         output
       </text>
     </svg>

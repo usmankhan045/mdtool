@@ -51,7 +51,7 @@ const mdxComponents = {
     <div className={`my-4 p-4 rounded-lg border-l-4 ${
       type === 'warning' ? 'bg-yellow-50 border-yellow-400' :
       type === 'success' ? 'bg-green-50 border-green-400' :
-      'bg-blue-50 border-blue-400'
+      'bg-zinc-100 border-zinc-400'
     }`}>
       {children}
     </div>
@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <main className="max-w-3xl mx-auto px-4 py-12">
         {/* Post Header */}
         <header className="mb-8">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-500 mb-3">
             <span>
               Updated <time dateTime={updated}>{formatDate(updated)}</time>
             </span>
@@ -100,11 +100,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span>{post.readingTime}</span>
             <span>·</span>
             <span>
-              By <a href="/about#author" className="text-blue-600 hover:underline">{post.author}</a>
+              By <a href="/about#author" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">{post.author}</a>
             </span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
-          <p className="text-xl text-gray-600">{post.description}</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">{post.title}</h1>
+          <p className="text-xl text-zinc-600">{post.description}</p>
         </header>
 
         {/* Hero Image */}
@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <AdSlot slotId="blog-top" format="horizontal" />
 
         {/* Article Content */}
-        <article lang={post.lang} className="prose prose-gray max-w-none mt-8">
+        <article lang={post.lang} className="prose prose-zinc max-w-none mt-8">
           <MDXRemote
             source={post.content}
             components={mdxComponents}
@@ -146,10 +146,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             description: 'Convert your Markdown to a perfect PDF right now. No signup, no watermark.',
           };
           return (
-            <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100">
-              <h3 className="font-semibold text-blue-900 mb-2">Try it yourself, free</h3>
-              <p className="text-blue-800 text-sm mb-4">{cta.description}</p>
-              <a href={cta.href} className="inline-block px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            <div className="mt-10 p-6 bg-zinc-100 rounded-xl border border-zinc-100">
+              <h3 className="font-semibold text-zinc-900 mb-2">Try it yourself, free</h3>
+              <p className="text-zinc-700 text-sm mb-4">{cta.description}</p>
+              <a href={cta.href} className="inline-block px-5 py-2.5 bg-zinc-900 text-white rounded-lg font-medium hover:bg-zinc-800 transition-colors">
                 {cta.label}
               </a>
             </div>

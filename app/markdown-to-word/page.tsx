@@ -32,7 +32,7 @@ const FAQ_ITEMS = [
     a: (
       <>
         Yes. MDTool generates a genuine .docx file (the{' '}
-        <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
           Office Open XML
         </a>{' '}
         standard), not a PDF or an image. You can open and edit it in Microsoft Word, Google Docs, or LibreOffice Writer.
@@ -115,16 +115,16 @@ export default function MarkdownToWordPage() {
 
       <main className="min-h-screen bg-page">
         {/* Hero - title over the live converter */}
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown to Word Converter: Real .docx
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Turn Markdown into a real, editable .docx that opens in Word, Google Docs, and LibreOffice.
               No login, no watermark, no limits.
             </p>
-            <p className="text-xs text-blue-200/50">Updated July 3, 2026</p>
+            <p className="text-xs text-zinc-500">Updated July 3, 2026</p>
           </div>
         </section>
 
@@ -136,7 +136,7 @@ export default function MarkdownToWordPage() {
         {/* About this converter */}
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Markdown to Word conversion</strong> turns Markdown syntax into a real, editable .docx
               file: headings become Word heading styles, lists become native bullet or numbered lists, and
               tables become Word table grids. MDTool generates the .docx entirely in your browser, with no
@@ -154,12 +154,12 @@ export default function MarkdownToWordPage() {
 
         {/* SEO Content */}
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Convert Markdown to Word Free</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl mb-4">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">How to Convert Markdown to Word Free</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl mb-4">
             Converting Markdown to Word takes four steps and no account: paste your content, watch the
             preview, and download a real .docx file with nothing held back behind a signup screen.
           </p>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700">
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700">
             <li>Paste your Markdown text in the left panel, or click <strong>Upload .md</strong> to load a file, no account required</li>
             <li>See the live Word-style preview update in real-time on the right as you type</li>
             <li>Click <strong>Download Word, Free</strong> to save your .docx file, with no paywall or watermark</li>
@@ -168,54 +168,54 @@ export default function MarkdownToWordPage() {
         </section>
 
         {/* What You Get */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">What You Get With This Converter</h2>
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-6">What You Get With This Converter</h2>
 
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">What Gets Preserved in the .docx</h3>
-            <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-3">What Gets Preserved in the .docx</h3>
+            <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
               <p>
                 MDTool&apos;s Word export is built on the{' '}
-                <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">docx</a>{' '}
+                <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">docx</a>{' '}
                 library, which maps Markdown structure to native Office Open XML elements rather than
                 approximating formatting with plain text. Headings (H1 through H6) become real Word heading
                 styles, not just bold text. Bold, italic, strikethrough, and links become native character
                 formatting, ordered and unordered lists become native Word lists, tables become native table
                 grids, and blockquotes and fenced code blocks get their own paragraph styles.
               </p>
-              <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-                <thead className="bg-gray-100">
+              <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+                <thead className="bg-zinc-100">
                   <tr>
-                    <th className="text-left px-3 py-2 font-semibold text-gray-700">Markdown element</th>
-                    <th className="text-left px-3 py-2 font-semibold text-gray-700">Word output</th>
+                    <th className="text-left px-3 py-2 font-semibold text-zinc-700">Markdown element</th>
+                    <th className="text-left px-3 py-2 font-semibold text-zinc-700">Word output</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-200">
+                  <tr className="border-t border-zinc-200">
                     <td className="px-3 py-2 font-medium">Headings (H1 to H6)</td>
                     <td className="px-3 py-2">✅ Native Word heading styles</td>
                   </tr>
-                  <tr className="border-t border-gray-200 bg-gray-50">
+                  <tr className="border-t border-zinc-200 bg-zinc-50">
                     <td className="px-3 py-2 font-medium">Bold, italic, strikethrough</td>
                     <td className="px-3 py-2">✅ Native character formatting</td>
                   </tr>
-                  <tr className="border-t border-gray-200">
+                  <tr className="border-t border-zinc-200">
                     <td className="px-3 py-2 font-medium">Links</td>
                     <td className="px-3 py-2">✅ Native clickable hyperlinks</td>
                   </tr>
-                  <tr className="border-t border-gray-200 bg-gray-50">
+                  <tr className="border-t border-zinc-200 bg-zinc-50">
                     <td className="px-3 py-2 font-medium">Ordered &amp; unordered lists</td>
                     <td className="px-3 py-2">✅ Native Word lists</td>
                   </tr>
-                  <tr className="border-t border-gray-200">
+                  <tr className="border-t border-zinc-200">
                     <td className="px-3 py-2 font-medium">Tables</td>
                     <td className="px-3 py-2">✅ Native Word table grids</td>
                   </tr>
-                  <tr className="border-t border-gray-200 bg-gray-50">
+                  <tr className="border-t border-zinc-200 bg-zinc-50">
                     <td className="px-3 py-2 font-medium">Fenced code blocks, blockquotes</td>
                     <td className="px-3 py-2">✅ Dedicated paragraph styles</td>
                   </tr>
-                  <tr className="border-t border-gray-200">
+                  <tr className="border-t border-zinc-200">
                     <td className="px-3 py-2 font-medium">Mermaid diagrams, embedded images</td>
                     <td className="px-3 py-2">❌ Not yet supported (use Markdown to PDF)</td>
                   </tr>
@@ -225,8 +225,8 @@ export default function MarkdownToWordPage() {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Compatible With Google Docs and LibreOffice</h3>
-            <p className="text-gray-700 leading-relaxed max-w-3xl">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-3">Compatible With Google Docs and LibreOffice</h3>
+            <p className="text-zinc-700 leading-relaxed max-w-3xl">
               Yes, explicitly. The download is a standard .docx file built on the Office Open XML
               specification, not a proprietary MDTool format, so it opens the same way any other .docx would:
               directly in Microsoft Word, uploaded into Google Docs, or opened in LibreOffice Writer, with
@@ -235,8 +235,8 @@ export default function MarkdownToWordPage() {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Who Is This For</h3>
-            <p className="text-gray-700 leading-relaxed max-w-3xl">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-3">Who Is This For</h3>
+            <p className="text-zinc-700 leading-relaxed max-w-3xl">
               <strong>Technical writers</strong> drafting in Markdown who need a polished .docx for a
               non-technical reviewer or client. <strong>Developers documenting APIs</strong> who write specs
               and READMEs in Markdown but have to hand off a Word version to a product or compliance team.{' '}
@@ -247,8 +247,8 @@ export default function MarkdownToWordPage() {
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Is It Really Free</h3>
-            <p className="text-gray-700 leading-relaxed max-w-3xl">
+            <h3 className="text-xl font-semibold text-zinc-800 mb-3">Is It Really Free</h3>
+            <p className="text-zinc-700 leading-relaxed max-w-3xl">
               Yes, with no catch. The .docx file is generated entirely client-side, in your browser, so there&apos;s
               no server doing the conversion, which is also why there&apos;s no usage-based cost to recover
               through a paywall or watermark. There&apos;s no account to create, no email to hand over, and no
@@ -260,12 +260,12 @@ export default function MarkdownToWordPage() {
         </section>
 
         {/* Format-specific substance */}
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Mermaid Diagrams Aren&apos;t in the Word Export Yet</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Why Mermaid Diagrams Aren&apos;t in the Word Export Yet</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               HTML and PDF can both embed a diagram as a vector image directly in the page: an inline{' '}
-              <code className="text-sm bg-gray-100 px-1 py-0.5 rounded">&lt;svg&gt;</code> for HTML, or a captured
+              <code className="text-sm bg-zinc-100 px-1 py-0.5 rounded">&lt;svg&gt;</code> for HTML, or a captured
               vector layer for PDF. The Word format (.docx, technically Office Open XML) doesn&apos;t work that
               way. An image in a Word document has to exist as a separate embedded file with its own
               relationship entry in the document&apos;s XML structure, a meaningfully different code path
@@ -273,7 +273,7 @@ export default function MarkdownToWordPage() {
             </p>
             <p>
               If your document needs the diagrams to render, use the{' '}
-              <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown to PDF converter</a> instead,
+              <a href="/markdown-to-pdf" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown to PDF converter</a> instead,
               which renders Mermaid directly in the browser before generating the file. In practice this
               trade-off rarely matters for the documents people actually send through a Word converter:
               contracts, reports, proposals, and meeting notes are almost entirely headings, body text, and
@@ -291,29 +291,29 @@ export default function MarkdownToWordPage() {
         </section>
 
         {/* Related Tools */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">You might also need:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">You might also need:</h2>
             <div className="flex flex-wrap gap-3">
-              <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to PDF →
               </a>
-              <a href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-html" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML →
               </a>
-              <a href="/word-to-markdown" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/word-to-markdown" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Word to Markdown →
               </a>
-              <a href="/blog/markdown-resume-to-word" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-resume-to-word" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Resume to Word Guide →
               </a>
-              <a href="/blog/markdown-to-docx" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-to-docx" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 How Markdown to DOCX Works →
               </a>
-              <a href="/blog/markdown-to-word-documentation" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/blog/markdown-to-word-documentation" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Technical Docs: Markdown to Word →
               </a>
-              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-cheat-sheet" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown Syntax Cheatsheet →
               </a>
             </div>

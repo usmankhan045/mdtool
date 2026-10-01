@@ -33,8 +33,8 @@ export default function DownloadWordButton({ markdown, filename }: Props) {
       disabled={loading || !markdown.trim()}
       className={`flex items-center gap-1.5 text-white transition-all px-6 py-3 text-base font-semibold rounded-lg shadow-md hover:shadow-lg ${
         loading || !markdown.trim()
-          ? 'bg-gray-300 cursor-not-allowed'
-          : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+          ? 'bg-zinc-300 cursor-not-allowed'
+          : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
       }`}
     >
       {loading ? (

@@ -39,13 +39,13 @@ const BOTTOM_LINKS = [
 function Column({ title, links }: { title: string; links: { href: string; label: string; more?: boolean }[] }) {
   return (
     <div>
-      <h2 className="text-xs font-medium uppercase tracking-wider text-gray-500">{title}</h2>
+      <h2 className="text-xs font-medium uppercase tracking-wider text-zinc-500">{title}</h2>
       <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className={`text-sm transition-colors hover:text-white ${link.more ? 'font-medium text-blue-300' : 'text-gray-400'}`}
+              className={`text-sm transition-colors hover:text-white ${link.more ? 'font-medium text-zinc-300' : 'text-zinc-400'}`}
             >
               {link.label}
             </Link>
@@ -58,7 +58,7 @@ function Column({ title, links }: { title: string; links: { href: string; label:
 
 export default function Footer() {
   return (
-    <footer className="mt-16 bg-gray-900">
+    <footer className="mt-16 bg-zinc-950">
       <div className="mx-auto max-w-6xl px-4 pb-8 pt-14">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_3fr] lg:gap-8">
           {/* Brand + the person behind it */}
@@ -67,7 +67,7 @@ export default function Footer() {
               <span className="text-blue-400">&lt;/&gt;</span>
               MDTool
             </Link>
-            <p className="mt-3 text-sm leading-6 text-gray-400">
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
               Private, in-browser Markdown converters. Your files never leave your device.
             </p>
 
@@ -76,7 +76,7 @@ export default function Footer() {
               className="mt-6 block rounded-2xl bg-white/[0.04] px-4 py-3 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.07]"
             >
               <span className="block text-sm font-semibold text-white">Muhammad Usman</span>
-              <span className="block text-xs text-gray-400">AI, app &amp; web developer</span>
+              <span className="block text-xs text-zinc-400">AI, app &amp; web developer</span>
             </Link>
           </div>
 
@@ -87,7 +87,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} MDTool. Free to use, no login, no watermarks.</span>
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {BOTTOM_LINKS.map((link) => (

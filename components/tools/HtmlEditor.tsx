@@ -40,13 +40,13 @@ export default function HtmlEditor({ value, onChange, charCount }: Props) {
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-3 py-2 bg-gray-50 border-b border-gray-200 rounded-t-lg">
-        <span className="text-sm font-medium text-gray-600">HTML Input</span>
+      <div className="flex items-center justify-between px-3 py-2 bg-zinc-50 border-b border-zinc-200 rounded-t-lg">
+        <span className="text-sm font-medium text-zinc-600">HTML Input</span>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-400">{charCount} chars</span>
+          <span className="text-xs text-zinc-400">{charCount} chars</span>
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded-md shadow-sm transition-all"
+            className="flex items-center gap-1.5 text-sm font-semibold px-3.5 min-h-[44px] bg-zinc-900 hover:bg-zinc-800 active:scale-95 text-white rounded-md shadow-sm transition-all"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
@@ -55,7 +55,7 @@ export default function HtmlEditor({ value, onChange, charCount }: Props) {
           </button>
           <button
             onClick={() => onChange('')}
-            className="text-sm px-3.5 min-h-[44px] bg-white border border-gray-300 rounded-md hover:bg-gray-50 text-gray-600"
+            className="text-sm px-3.5 min-h-[44px] bg-white border border-zinc-300 rounded-md hover:bg-zinc-50 text-zinc-600"
           >
             Clear
           </button>
@@ -69,7 +69,7 @@ export default function HtmlEditor({ value, onChange, charCount }: Props) {
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         placeholder={`<h1>Paste your HTML here...</h1>\n\nOr drag and drop a .html file.\n\n<p>Supports tables, lists, links, images, code blocks, and blockquotes.</p>`}
-        className="flex-1 w-full p-4 font-mono text-sm text-gray-800 bg-white resize-none outline-none border-x border-b border-gray-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
+        className="flex-1 w-full p-4 font-mono text-sm text-zinc-800 bg-white resize-none outline-none border-x border-b border-zinc-200 rounded-b-lg min-h-[340px] sm:min-h-[500px]"
         spellCheck={false}
       />
 

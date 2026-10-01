@@ -56,3 +56,15 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .about-rise { animation: none; }
 }
+
+/* Light hero used by every tool page: graph-paper grid fading into the page,
+   painted as one static background (no masks or blur layers, cheap to scroll). */
+.hero-grid {
+  background-color: var(--color-page);
+  background-image:
+    radial-gradient(ellipse 80% 90% at 50% 0%, transparent 35%, var(--color-page) 100%),
+    linear-gradient(rgba(24, 24, 27, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 24, 27, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-position: center, center top, center top;
+}

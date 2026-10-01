@@ -80,43 +80,43 @@ export default function MarkdownCheatSheetPage() {
       <StructuredData type="faq" faqs={FAQS} />
 
       <main className="min-h-screen bg-page">
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-5xl mx-auto px-4 pt-10 pb-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">Markdown Cheat Sheet with Examples</h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl leading-relaxed">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Markdown Cheat Sheet with Examples</h1>
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl leading-relaxed">
               Every Markdown syntax element on one page (core Markdown plus the GitHub Flavored
               Markdown extensions), with a dedicated deep-dive guide for each element.
             </p>
-            <p className="mt-3 text-xs text-blue-200/50">Updated <time dateTime="2026-10-01">October 1, 2026</time></p>
+            <p className="mt-3 text-xs text-zinc-500">Updated <time dateTime="2026-10-01">October 1, 2026</time></p>
           </div>
         </section>
 
         {/* Quick reference table - the answer-first artifact */}
         <section className="max-w-5xl mx-auto px-4 py-10">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Quick Reference</h2>
-          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Quick Reference</h2>
+          <div className="overflow-x-auto rounded-xl border border-zinc-200 bg-white">
             <table className="w-full text-sm">
-              <thead className="bg-gray-100 text-left">
+              <thead className="bg-zinc-100 text-left">
                 <tr>
-                  <th className="px-4 py-3 font-semibold text-gray-700">Element</th>
-                  <th className="px-4 py-3 font-semibold text-gray-700">Syntax</th>
-                  <th className="px-4 py-3 font-semibold text-gray-700">Guide</th>
+                  <th className="px-4 py-3 font-semibold text-zinc-700">Element</th>
+                  <th className="px-4 py-3 font-semibold text-zinc-700">Syntax</th>
+                  <th className="px-4 py-3 font-semibold text-zinc-700">Guide</th>
                 </tr>
               </thead>
               <tbody>
                 {QUICK_REF.map((row, i) => (
-                  <tr key={row.element} className={`border-t border-gray-100 ${i % 2 ? 'bg-gray-50' : ''}`}>
-                    <td className="px-4 py-2.5 font-medium text-gray-800 whitespace-nowrap">{row.element}</td>
+                  <tr key={row.element} className={`border-t border-zinc-100 ${i % 2 ? 'bg-zinc-50' : ''}`}>
+                    <td className="px-4 py-2.5 font-medium text-zinc-800 whitespace-nowrap">{row.element}</td>
                     <td className="px-4 py-2.5">
-                      <code className="font-mono text-[13px] text-blue-900 bg-blue-50 px-1.5 py-0.5 rounded">{row.syntax}</code>
+                      <code className="font-mono text-[13px] text-zinc-900 bg-zinc-100 px-1.5 py-0.5 rounded">{row.syntax}</code>
                     </td>
                     <td className="px-4 py-2.5 whitespace-nowrap">
                       {row.slug ? (
-                        <Link href={`/markdown-cheat-sheet/${row.slug}`} className="text-blue-600 hover:underline">
+                        <Link href={`/markdown-cheat-sheet/${row.slug}`} className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
                           Details →
                         </Link>
                       ) : (
-                        <span className="text-gray-300">-</span>
+                        <span className="text-zinc-300">-</span>
                       )}
                     </td>
                   </tr>
@@ -128,8 +128,8 @@ export default function MarkdownCheatSheetPage() {
 
         {/* Per-element guides */}
         <section className="max-w-5xl mx-auto px-4 pb-4">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Syntax Guides</h2>
-          <p className="text-gray-600 mb-6 max-w-3xl">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Syntax Guides</h2>
+          <p className="text-zinc-600 mb-6 max-w-3xl">
             Each guide covers the exact syntax, a rendered example, GitHub Flavored Markdown
             behavior, and the mistakes that most often break rendering.
           </p>
@@ -138,12 +138,12 @@ export default function MarkdownCheatSheetPage() {
               <Link
                 key={topic.slug}
                 href={`/markdown-cheat-sheet/${topic.slug}`}
-                className="group rounded-xl border border-gray-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+                className="group rounded-xl border border-zinc-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-zinc-400 hover:shadow-md"
               >
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                <h3 className="font-semibold text-zinc-900 group-hover:text-zinc-900 transition-colors">
                   {topic.title}
                 </h3>
-                <p className="mt-1.5 text-sm text-gray-500 leading-relaxed line-clamp-3">{topic.answer}</p>
+                <p className="mt-1.5 text-sm text-zinc-500 leading-relaxed line-clamp-3">{topic.answer}</p>
               </Link>
             ))}
           </div>
@@ -151,29 +151,29 @@ export default function MarkdownCheatSheetPage() {
 
         {/* FAQ */}
         <section className="max-w-5xl mx-auto px-4 py-10">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-6">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {FAQS.map((faq) => (
-              <div key={faq.q} className="rounded-lg border border-gray-200 bg-white p-5">
-                <h3 className="font-medium text-gray-900 mb-2">{faq.q}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+              <div key={faq.q} className="rounded-lg border border-zinc-200 bg-white p-5">
+                <h3 className="font-medium text-zinc-900 mb-2">{faq.q}</h3>
+                <p className="text-zinc-600 text-sm leading-relaxed">{faq.a}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Converters CTA */}
-        <section className="bg-page-soft border-t border-gray-200/70 px-4 py-8">
+        <section className="bg-page-soft border-t border-zinc-200/70 px-4 py-8">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">Put the syntax to work:</h2>
+            <h2 className="text-lg font-semibold text-zinc-700 mb-4">Put the syntax to work:</h2>
             <div className="flex flex-wrap gap-3">
-              <a href="/markdown-to-pdf" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-pdf" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to PDF →
               </a>
-              <a href="/markdown-to-html" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-html" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to HTML →
               </a>
-              <a href="/markdown-to-word" className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm">
+              <a href="/markdown-to-word" className="px-4 py-2 bg-white border border-zinc-200 rounded-lg text-zinc-700 shadow-[0_1px_0_rgba(24,24,27,0.04)] transition-[border-color,color,transform] duration-150 hover:border-zinc-400 hover:text-zinc-950 active:scale-[0.97] text-sm">
                 Markdown to Word →
               </a>
             </div>

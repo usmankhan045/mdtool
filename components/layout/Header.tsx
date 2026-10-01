@@ -8,12 +8,12 @@ import { useEffect, useRef, useState } from 'react';
 // visually), so every tool link stays in the HTML on every page for crawlers.
 const TOOLS = [
   { href: '/markdown-to-pdf', label: 'Markdown to PDF', badge: 'PDF', tone: 'bg-rose-50 text-rose-700 ring-rose-100', dark: 'bg-rose-500/15 text-rose-300 ring-rose-400/25' },
-  { href: '/markdown-to-word', label: 'Markdown to Word', badge: 'DOCX', tone: 'bg-blue-50 text-blue-700 ring-blue-100', dark: 'bg-blue-500/15 text-blue-300 ring-blue-400/25' },
+  { href: '/markdown-to-word', label: 'Markdown to Word', badge: 'DOCX', tone: 'bg-emerald-50 text-emerald-700 ring-emerald-100', dark: 'bg-emerald-500/15 text-emerald-300 ring-emerald-400/25' },
   { href: '/markdown-to-html', label: 'Markdown to HTML', badge: 'HTML', tone: 'bg-orange-50 text-orange-700 ring-orange-100', dark: 'bg-orange-500/15 text-orange-300 ring-orange-400/25' },
-  { href: '/markdown-to-text', label: 'Markdown to Plain Text', badge: 'TXT', tone: 'bg-slate-100 text-slate-700 ring-slate-200', dark: 'bg-slate-400/15 text-slate-300 ring-slate-300/25' },
+  { href: '/markdown-to-text', label: 'Markdown to Plain Text', badge: 'TXT', tone: 'bg-zinc-50 text-zinc-700 ring-zinc-100', dark: 'bg-zinc-500/15 text-zinc-300 ring-zinc-400/25' },
   { href: '/html-to-markdown', label: 'HTML to Markdown', badge: 'MD', tone: 'bg-violet-50 text-violet-700 ring-violet-100', dark: 'bg-violet-500/15 text-violet-300 ring-violet-400/25' },
-  { href: '/word-to-markdown', label: 'Word to Markdown', badge: 'MD', tone: 'bg-indigo-50 text-indigo-700 ring-indigo-100', dark: 'bg-indigo-500/15 text-indigo-300 ring-indigo-400/25' },
-  { href: '/markdown-table-generator', label: 'Table Generator', badge: 'TABLE', tone: 'bg-emerald-50 text-emerald-700 ring-emerald-100', dark: 'bg-emerald-500/15 text-emerald-300 ring-emerald-400/25' },
+  { href: '/word-to-markdown', label: 'Word to Markdown', badge: 'MD', tone: 'bg-violet-50 text-violet-700 ring-violet-100', dark: 'bg-violet-500/15 text-violet-300 ring-violet-400/25' },
+  { href: '/markdown-table-generator', label: 'Table Generator', badge: 'TABLE', tone: 'bg-amber-50 text-amber-700 ring-amber-100', dark: 'bg-amber-500/15 text-amber-300 ring-amber-400/25' },
 ];
 
 const HOME = { href: '/', label: 'Home' };
@@ -23,19 +23,6 @@ const LINKS = [
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
 ];
-
-// The band behind the floating pill matches the top of each page, so the pill
-// sits on the hero instead of on a stray white strip.
-function bandColor(pathname: string): string {
-  const darkHero = [
-    '/markdown-to-pdf', '/markdown-to-word', '/markdown-to-html', '/markdown-to-text',
-    '/html-to-markdown', '/word-to-markdown', '/markdown-table-generator', '/markdown-cheat-sheet',
-    '/es/', '/zh/',
-  ];
-  return darkHero.some((p) => pathname === p || pathname.startsWith(p.endsWith('/') ? p : `${p}/`))
-    ? 'bg-[#16314f]'
-    : 'bg-page';
-}
 
 const pressable = 'transition-transform duration-150 ease-out active:scale-[0.97]';
 
@@ -95,17 +82,17 @@ export default function Header() {
   const toolActive = TOOLS.some((t) => pathname === t.href);
   const linkClass = (active: boolean) =>
     `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-      active ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+      active ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
     }`;
 
   return (
     <header
-      className={`sticky top-0 z-50 px-3 py-3 transition-colors duration-200 sm:px-4 ${scrolled ? 'bg-transparent' : bandColor(pathname)}`}
+      className={`sticky top-0 z-50 px-3 py-3 transition-colors duration-200 sm:px-4 ${scrolled ? 'bg-transparent' : 'bg-page'}`}
     >
       <div className="relative mx-auto max-w-6xl">
-        <div className="flex h-14 items-center justify-between gap-4 rounded-full bg-white pl-5 pr-2 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.35)] ring-1 ring-gray-900/5">
+        <div className="flex h-14 items-center justify-between gap-4 rounded-full bg-white pl-5 pr-2 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.35)] ring-1 ring-zinc-900/5">
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center gap-2 text-lg font-bold text-gray-900">
+          <Link href="/" className="flex shrink-0 items-center gap-2 text-lg font-bold text-zinc-900">
             <span className="text-blue-600">&lt;/&gt;</span>
             MDTool
           </Link>
@@ -138,7 +125,7 @@ export default function Header() {
               {/* Always in the DOM (crawlable); shown with a quick scale + fade from the trigger. */}
               <div
                 id="tools-menu"
-                className={`absolute left-1/2 top-full z-50 mt-3 w-[34rem] before:absolute before:inset-x-0 before:-top-3 before:h-3 before:content-[''] -translate-x-1/2 origin-top rounded-2xl bg-[#0f1e30] p-2 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.55)] ring-1 ring-white/10 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none ${
+                className={`absolute left-1/2 top-full z-50 mt-3 w-[34rem] before:absolute before:inset-x-0 before:-top-3 before:h-3 before:content-[''] -translate-x-1/2 origin-top rounded-2xl bg-[#111215] p-2 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.55)] ring-1 ring-white/10 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none ${
                   toolsOpen ? 'visible scale-100 opacity-100' : 'invisible scale-[0.97] opacity-0'
                 }`}
               >
@@ -148,7 +135,7 @@ export default function Header() {
                       <Link
                         href={tool.href}
                         className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-white/[0.07] hover:text-white ${
-                          pathname === tool.href ? 'bg-white/[0.07] text-white' : 'text-blue-100/80'
+                          pathname === tool.href ? 'bg-white/[0.07] text-white' : 'text-zinc-600'
                         }`}
                       >
                         <span className={`w-14 shrink-0 rounded-md py-0.5 text-center font-mono text-[10px] font-semibold ring-1 ring-inset ${tool.dark}`}>
@@ -176,7 +163,7 @@ export default function Header() {
           <div className="flex items-center gap-1">
             <Link
               href="/markdown-to-pdf"
-              className={`hidden rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 sm:inline-flex ${pressable}`}
+              className={`hidden rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 sm:inline-flex ${pressable}`}
             >
               Start converting
             </Link>
@@ -186,7 +173,7 @@ export default function Header() {
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
               aria-label="Toggle menu"
-              className={`flex h-10 w-10 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 lg:hidden ${pressable}`}
+              className={`flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 hover:bg-zinc-100 lg:hidden ${pressable}`}
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                 {mobileOpen ? (
@@ -202,15 +189,15 @@ export default function Header() {
         {/* Mobile menu: a card under the pill */}
         <div
           id="mobile-menu"
-          className={`absolute inset-x-0 top-full mt-2 origin-top rounded-3xl bg-[#0f1e30] p-3 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.55)] ring-1 ring-white/10 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden ${
+          className={`absolute inset-x-0 top-full mt-2 origin-top rounded-3xl bg-[#111215] p-3 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.55)] ring-1 ring-white/10 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden ${
             mobileOpen ? 'visible scale-100 opacity-100' : 'invisible scale-[0.97] opacity-0'
           }`}
         >
-          <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-blue-200/50">Tools</p>
+          <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-wider text-zinc-500">Tools</p>
           <ul className="grid gap-0.5 sm:grid-cols-2">
             {TOOLS.map((tool) => (
               <li key={tool.href}>
-                <Link href={tool.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-blue-100/80 transition-colors hover:bg-white/[0.07] hover:text-white">
+                <Link href={tool.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-white/[0.07] hover:text-white">
                   <span className={`w-14 shrink-0 rounded-md py-0.5 text-center font-mono text-[10px] font-semibold ring-1 ring-inset ${tool.dark}`}>
                     {tool.badge}
                   </span>
@@ -225,7 +212,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  pathname === link.href ? 'bg-white/10 text-white' : 'text-blue-100/80 hover:bg-white/[0.07] hover:text-white'
+                  pathname === link.href ? 'bg-white/10 text-white' : 'text-zinc-600 hover:bg-white/[0.07] hover:text-white'
                 }`}
               >
                 {link.label}
@@ -234,7 +221,7 @@ export default function Header() {
           </div>
           <Link
             href="/markdown-to-pdf"
-            className={`mt-3 flex justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-gray-900 sm:hidden ${pressable}`}
+            className={`mt-3 flex justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-zinc-900 sm:hidden ${pressable}`}
           >
             Start converting
           </Link>

@@ -41,8 +41,8 @@ export default function DownloadButton({ htmlContent, theme, filename, size = 'd
       disabled={loading || !htmlContent.trim()}
       className={`flex items-center gap-1.5 text-white transition-all ${sizeClass} ${
         loading || !htmlContent.trim()
-          ? 'bg-gray-300 cursor-not-allowed'
-          : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+          ? 'bg-zinc-300 cursor-not-allowed'
+          : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
       }`}
     >
       {loading ? (

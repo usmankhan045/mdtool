@@ -48,7 +48,7 @@ const FAQ_ITEMS: ZhFaqItem[] = [
     a: (
       <>
         Word 导出暂时不包含 Mermaid 图表和图片。如果文档需要这些内容，可以改用{' '}
-        <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown 转 PDF 工具</a>，它会先渲染
+        <a href="/markdown-to-pdf" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown 转 PDF 工具</a>，它会先渲染
         Mermaid 图表再生成文件，中文文字也能正常显示。
       </>
     ),
@@ -63,7 +63,7 @@ const FAQ_ITEMS: ZhFaqItem[] = [
     a: (
       <>
         使用反方向的{' '}
-        <a href="/word-to-markdown" className="text-blue-600 hover:underline">Word 转 Markdown 工具</a>
+        <a href="/word-to-markdown" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Word 转 Markdown 工具</a>
         ：把 .docx 拖进去，就能得到 GitHub 风格的 Markdown，可以复制或下载为 .md 文件。
       </>
     ),
@@ -114,19 +114,19 @@ export default function MarkdownToWordZhPage() {
       />
 
       <main lang="zh-Hans" className="min-h-screen bg-page">
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Markdown 转 Word 在线转换器（md 转 docx，免费）
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               把 Markdown 转成真正可编辑的 .docx，用 Word、WPS 或 LibreOffice 都能直接打开。
               免费、无需注册、没有水印。
             </p>
             <UiLanguageNote />
-            <p className="text-xs text-blue-200/50">
+            <p className="text-xs text-zinc-500">
               更新于 2026 年 10 月 1 日 ·{' '}
-              <a href="/markdown-to-word" hrefLang="en" className="underline hover:text-white">English version</a>
+              <a href="/markdown-to-word" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>
         </section>
@@ -137,7 +137,7 @@ export default function MarkdownToWordZhPage() {
 
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>md 转 word</strong> 就是把 Markdown 语法转换成可编辑的 .docx 文件：<code>#</code> 变成 Word
               的“标题 1”样式，列表变成原生列表，表格变成 Word 表格。MDTool 在浏览器本地完成转换，文件不上传，
               生成的 .docx 可以直接用 Word、WPS 或 LibreOffice 打开，免费且无需注册。
@@ -151,11 +151,11 @@ export default function MarkdownToWordZhPage() {
         </div>
 
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">怎么在线把 Markdown 转成 Word？</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl mb-4">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">怎么在线把 Markdown 转成 Word？</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl mb-4">
             一共四步，不用注册：粘贴内容、确认预览、下载 .docx，然后打开编辑。
           </p>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700 max-w-3xl">
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700 max-w-3xl">
             <li>把 Markdown 粘贴到左侧编辑区，或点击 <strong>Upload .md</strong> 上传 .md 文件</li>
             <li>在右侧查看仿 Word 效果的预览，边输入边更新</li>
             <li>点击 <strong>Download Word (Free)</strong> 下载 .docx 文件，不收费、无水印</li>
@@ -163,17 +163,17 @@ export default function MarkdownToWordZhPage() {
           </ol>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">转换后哪些格式能保留？</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">转换后哪些格式能保留？</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
             <p>
               MDTool 使用{' '}
-              <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">docx</a>{' '}
+              <a href="https://docx.js.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">docx</a>{' '}
               库，把 Markdown 的结构映射成 Office Open XML 里的原生元素，而不是用普通文字去“模仿”格式。
               标题不是加粗放大的普通段落，而是 Word 内置的“标题 1”“标题 2”等样式，所以打开后导航窗格和自动目录都能直接使用。
             </p>
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
                   <th className={tableHead}>Markdown 元素</th>
                   <th className={tableHead}>Word 中的结果</th>
@@ -181,7 +181,7 @@ export default function MarkdownToWordZhPage() {
               </thead>
               <tbody>
                 {ROWS.map(([el, out], i) => (
-                  <tr key={el} className={`border-t border-gray-200${i % 2 === 1 ? ' bg-gray-50' : ''}`}>
+                  <tr key={el} className={`border-t border-zinc-200${i % 2 === 1 ? ' bg-zinc-50' : ''}`}>
                     <td className="px-3 py-2 font-medium">{el}</td>
                     <td className="px-3 py-2">{out}</td>
                   </tr>
@@ -190,21 +190,21 @@ export default function MarkdownToWordZhPage() {
             </table>
             <p>
               如果文档里有 Mermaid 图表或图片，建议改用{' '}
-              <a href="/markdown-to-pdf" className="text-blue-600 hover:underline">Markdown 转 PDF 工具</a>，
+              <a href="/markdown-to-pdf" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown 转 PDF 工具</a>，
               它会先渲染图表再生成 PDF，中文也能正常显示。合同、报告、方案、会议纪要这类以标题、正文和表格为主的文档，
               用 Word 导出就足够了。
             </p>
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">为什么不直接复制粘贴？</h2>
-          <p className="text-gray-700 leading-relaxed max-w-3xl">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">为什么不直接复制粘贴？</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-3xl">
             把 Typora 或 VS Code 里的内容直接粘贴进 Word，标题要么变成带 <code>#</code> 号的普通文字，要么只是字号变大的段落，
             导航窗格和“引用 &gt; 目录”都识别不了，表格也常常需要重新排版。用转换器生成的 .docx，标题就是 Word
             的标题样式，表格就是 Word 表格，打开后可以直接插入目录、统一修改样式，省去手动整理的时间。
             更详细的操作说明见{' '}
-            <a href="/blog/markdown-zhuan-word" className="text-blue-600 hover:underline">Markdown 转 Word 教程</a>。
+            <a href="/blog/markdown-zhuan-word" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">Markdown 转 Word 教程</a>。
           </p>
         </section>
 

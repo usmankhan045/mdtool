@@ -103,19 +103,19 @@ export default function MarkdownToPdfEsPage() {
       />
 
       <main lang="es" className="min-h-screen bg-page">
-        <section className="bg-gradient-to-b from-[#16314f] to-[#0f1e30] text-white">
+        <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Convertidor de Markdown a PDF gratis online
             </h1>
-            <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mb-3 leading-relaxed">
+            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
               Pega o sube tu Markdown y descarga un PDF paginado, con código resaltado, tablas y diagramas
               Mermaid. Sin registro y sin marca de agua.
             </p>
             <UiLanguageNote />
-            <p className="text-xs text-blue-200/50">
+            <p className="text-xs text-zinc-500">
               Actualizado el 1 de octubre de 2026 ·{' '}
-              <a href="/markdown-to-pdf" hrefLang="en" className="underline hover:text-white">English version</a>
+              <a href="/markdown-to-pdf" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>
         </section>
@@ -126,7 +126,7 @@ export default function MarkdownToPdfEsPage() {
 
         <section className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <p className="text-base text-gray-700 leading-relaxed max-w-2xl flex-1">
+            <p className="text-base text-zinc-700 leading-relaxed max-w-2xl flex-1">
               <strong>Convertir Markdown a PDF</strong> es pasar un archivo .md, con sus títulos, tablas, código
               resaltado y diagramas Mermaid, a un documento PDF paginado listo para imprimir, enviar o archivar.
               MDTool genera el PDF en tu navegador a partir del mismo HTML que ves en la vista previa, así que no
@@ -141,8 +141,8 @@ export default function MarkdownToPdfEsPage() {
         </div>
 
         <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Cómo convertir de MD a PDF</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-700 max-w-3xl">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Cómo convertir de MD a PDF</h2>
+          <ol className="list-decimal list-inside space-y-2 text-zinc-700 max-w-3xl">
             <li>Pega tu Markdown en el panel izquierdo o pulsa <strong>Upload .md</strong> para cargar un archivo</li>
             <li>Elige un tema para el PDF: GitHub, Academic, Minimal o Dark, y el tamaño de página (A4 o Carta)</li>
             <li>Revisa la vista previa, que se actualiza a la derecha en tiempo real</li>
@@ -150,11 +150,11 @@ export default function MarkdownToPdfEsPage() {
           </ol>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Qué pasa con cada elemento de Markdown</h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed max-w-3xl">
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden my-2">
-              <thead className="bg-gray-100">
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Qué pasa con cada elemento de Markdown</h2>
+          <div className="space-y-4 text-zinc-700 leading-relaxed max-w-3xl">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden my-2">
+              <thead className="bg-zinc-100">
                 <tr>
                   <th className={tableHead}>Elemento de Markdown</th>
                   <th className={tableHead}>Resultado en el PDF</th>
@@ -162,7 +162,7 @@ export default function MarkdownToPdfEsPage() {
               </thead>
               <tbody>
                 {ROWS.map(([el, out], i) => (
-                  <tr key={el} className={`border-t border-gray-200${i % 2 === 1 ? ' bg-gray-50' : ''}`}>
+                  <tr key={el} className={`border-t border-zinc-200${i % 2 === 1 ? ' bg-zinc-50' : ''}`}>
                     <td className="px-3 py-2 font-medium">{el}</td>
                     <td className="px-3 py-2">{out}</td>
                   </tr>
@@ -180,11 +180,11 @@ export default function MarkdownToPdfEsPage() {
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Qué tema elegir</h2>
+        <section className="max-w-6xl mx-auto px-4 py-8 border-t border-zinc-100">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Qué tema elegir</h2>
           <div className="max-w-3xl">
-            <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
-              <thead className="bg-gray-100">
+            <table className="w-full text-sm border border-zinc-200 rounded-lg overflow-hidden">
+              <thead className="bg-zinc-100">
                 <tr>
                   <th className={tableHead}>Tema</th>
                   <th className={tableHead}>Ideal para</th>
@@ -192,7 +192,7 @@ export default function MarkdownToPdfEsPage() {
               </thead>
               <tbody>
                 {THEMES.map(([theme, use], i) => (
-                  <tr key={theme} className={`border-t border-gray-200${i % 2 === 1 ? ' bg-gray-50' : ''}`}>
+                  <tr key={theme} className={`border-t border-zinc-200${i % 2 === 1 ? ' bg-zinc-50' : ''}`}>
                     <td className="px-3 py-2 font-medium">{theme}</td>
                     <td className="px-3 py-2">{use}</td>
                   </tr>

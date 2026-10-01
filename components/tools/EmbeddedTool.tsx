@@ -42,33 +42,33 @@ export default function EmbeddedTool() {
   </head><body>${html}</body></html>`;
 
   return (
-    <div className="my-8 rounded-xl border border-blue-100 bg-blue-50/30 overflow-hidden shadow-sm">
+    <div className="my-8 rounded-xl border border-zinc-100 bg-zinc-100/30 overflow-hidden shadow-sm">
 
       {/* Header bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-blue-100">
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-zinc-100">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-gray-700">Try it: Markdown to PDF</span>
-          <span className="text-xs text-gray-400 hidden sm:inline">Live converter</span>
+          <span className="text-sm font-semibold text-zinc-700">Try it: Markdown to PDF</span>
+          <span className="text-xs text-zinc-400 hidden sm:inline">Live converter</span>
         </div>
         <Link
           href="/markdown-to-pdf"
-          className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+          className="text-xs text-zinc-900 hover:text-zinc-800 font-medium"
         >
           Full Tool →
         </Link>
       </div>
 
       {/* Theme pills + download */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-white border-b border-gray-100 flex-wrap">
-        <span className="text-xs text-gray-500 mr-1">Theme:</span>
+      <div className="flex items-center gap-2 px-4 py-2 bg-white border-b border-zinc-100 flex-wrap">
+        <span className="text-xs text-zinc-500 mr-1">Theme:</span>
         {THEMES.map(t => (
           <button
             key={t.id}
             onClick={() => setTheme(t.id)}
             className={`px-3 py-2 rounded-full text-xs font-medium transition-colors border ${
               theme === t.id
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300'
+                ? 'bg-zinc-900 text-white border-zinc-900'
+                : 'bg-white text-zinc-600 border-zinc-200 hover:border-zinc-300'
             }`}
           >
             {t.label}
@@ -80,15 +80,15 @@ export default function EmbeddedTool() {
       </div>
 
       {/* Two panels */}
-      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-200">
 
         {/* Editor */}
         <div className="bg-white">
-          <div className="px-3 py-1.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-xs text-gray-500 font-medium">Markdown</span>
+          <div className="px-3 py-1.5 bg-zinc-50 border-b border-zinc-100 flex items-center justify-between">
+            <span className="text-xs text-zinc-500 font-medium">Markdown</span>
             <button
               onClick={() => setMarkdown('')}
-              className="text-xs text-gray-400 hover:text-gray-600 px-2 py-2 -my-2"
+              className="text-xs text-zinc-400 hover:text-zinc-600 px-2 py-2 -my-2"
             >
               Clear
             </button>
@@ -96,7 +96,7 @@ export default function EmbeddedTool() {
           <textarea
             value={markdown}
             onChange={e => setMarkdown(e.target.value)}
-            className="w-full h-52 p-3 font-mono text-xs text-gray-800 resize-none outline-none"
+            className="w-full h-52 p-3 font-mono text-xs text-zinc-800 resize-none outline-none"
             spellCheck={false}
             placeholder="Paste your Markdown here..."
           />
@@ -104,8 +104,8 @@ export default function EmbeddedTool() {
 
         {/* Preview */}
         <div className="bg-white">
-          <div className="px-3 py-1.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-xs text-gray-500 font-medium">Preview</span>
+          <div className="px-3 py-1.5 bg-zinc-50 border-b border-zinc-100 flex items-center justify-between">
+            <span className="text-xs text-zinc-500 font-medium">Preview</span>
             <span className="text-xs text-green-500 font-medium flex items-center gap-1">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full inline-block" />
               Live
@@ -121,7 +121,7 @@ export default function EmbeddedTool() {
       </div>
 
       {/* Footer CTA */}
-      <div className="px-4 py-2.5 bg-blue-600 text-center">
+      <div className="px-4 py-2.5 bg-zinc-900 text-center">
         <Link href="/markdown-to-pdf" className="text-white text-xs font-medium hover:underline">
           Need more features? Open the full tool for themes, Mermaid diagrams, and file upload →
         </Link>
