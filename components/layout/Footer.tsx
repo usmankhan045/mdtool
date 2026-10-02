@@ -40,7 +40,7 @@ const BOTTOM_LINKS = [
 function Column({ title, links }: { title: string; links: { href: string; label: string; more?: boolean }[] }) {
   return (
     <div>
-      <h2 className="text-xs font-medium uppercase tracking-wider text-zinc-500">{title}</h2>
+      <h2 className="text-xs font-medium uppercase tracking-wider text-zinc-400">{title}</h2>
       <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>
@@ -88,7 +88,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} MDTool. Free to use, no login, no watermarks.</span>
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {BOTTOM_LINKS.map((link) => (

@@ -187,20 +187,20 @@ export default function HomePage() {
                 <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
                 <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
                 <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-                <span className="ml-3 font-mono text-xs text-zinc-500">mdtool: convert</span>
+                <span className="ml-3 font-mono text-xs text-zinc-400">mdtool: convert</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-stretch">
                 {/* Left: raw markdown, real text with syntax tokens */}
                 <div className="p-5 font-mono text-[13px] leading-6 text-zinc-300">
-                  <div className="mb-3 font-sans text-xs uppercase tracking-wider text-zinc-500">
+                  <div className="mb-3 font-sans text-xs uppercase tracking-wider text-zinc-400">
                     README.md
                   </div>
                   <pre className="whitespace-pre-wrap">
                     <span className="text-sky-300"># Release Notes</span>{'\n\n'}
                     Ship <span className="text-amber-300">**Markdown**</span> anywhere.{'\n\n'}
-                    <span className="text-zinc-500">- [x]</span> Tables, code &amp; Mermaid{'\n'}
-                    <span className="text-zinc-500">- [ ]</span> No file uploads{'\n\n'}
+                    <span className="text-zinc-400">- [x]</span> Tables, code &amp; Mermaid{'\n'}
+                    <span className="text-zinc-400">- [ ]</span> No file uploads{'\n\n'}
                     <span className="text-emerald-300">`npx mdtool`</span>
                     <span className="md-caret ml-0.5 inline-block w-[7px] -translate-y-px bg-zinc-300 align-middle" style={{ height: '1.1em' }} />
                   </pre>
@@ -208,7 +208,7 @@ export default function HomePage() {
 
                 {/* Middle: the transform arrow */}
                 <div className="flex items-center justify-center border-y md:border-x md:border-y-0 border-white/[0.06] px-4 py-3 md:py-0">
-                  <div className="flex items-center gap-2 font-mono text-sm text-zinc-500">
+                  <div className="flex items-center gap-2 font-mono text-sm text-zinc-400">
                     <span className="hidden md:inline">convert</span>
                     <span className="md-arrow text-xl text-zinc-300 md:rotate-0 rotate-90">→</span>
                   </div>
@@ -216,7 +216,7 @@ export default function HomePage() {
 
                 {/* Right: rendered output stack */}
                 <div className="p-5">
-                  <div className="mb-3 font-sans text-xs uppercase tracking-wider text-zinc-500">
+                  <div className="mb-3 font-sans text-xs uppercase tracking-wider text-zinc-400">
                     Output
                   </div>
                   <div className="space-y-2.5">
@@ -251,7 +251,7 @@ export default function HomePage() {
               >
                 <span aria-hidden className={`h-2 w-2 shrink-0 rounded-full ${FORMAT_DOT[tool.to]}`} />
                 <span aria-hidden className="font-mono text-sm">
-                  <span className="text-zinc-400">{tool.from}</span>
+                  <span className="text-zinc-500">{tool.from}</span>
                   <span className="mx-1.5 inline-block text-zinc-300 transition-[transform,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:text-zinc-900">→</span>
                   <span className="font-semibold text-zinc-900">{tool.to}</span>
                 </span>
@@ -261,7 +261,7 @@ export default function HomePage() {
           </div>
 
           {/* trust strip - true facts, not decoration */}
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs text-zinc-500">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs text-zinc-600">
             <span>100% client-side</span>
             <span className="hidden sm:inline text-zinc-300">/</span>
             <a
@@ -282,7 +282,7 @@ export default function HomePage() {
       <section className="max-w-5xl mx-auto px-4 py-16 md:py-20">
         <div className="mb-10 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">All converters</h2>
-          <p className="mt-2 text-gray-500">Seven tools, both directions. Pick one and start.</p>
+          <p className="mt-2 text-gray-600">Seven tools, both directions. Pick one and start.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -343,7 +343,7 @@ export default function HomePage() {
               <div key={item.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-6">
                 <div className="mb-3 text-2xl">{item.icon}</div>
                 <h3 className="mb-2 font-semibold text-gray-900">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-gray-500">{item.desc}</p>
+                <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
