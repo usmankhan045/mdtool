@@ -12,6 +12,7 @@ No signup · No watermarks · No file uploads. Your documents never leave your d
 
 [![Live Site](https://img.shields.io/badge/live-mdtool.dev-blue)](https://www.mdtool.dev)
 [![GitHub stars](https://img.shields.io/github/stars/usmankhan045/mdtool?style=social)](https://github.com/usmankhan045/mdtool/stargazers)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org)
 [![React 19](https://img.shields.io/badge/React-19-61dafb)](https://react.dev)
 [![100% Client-Side](https://img.shields.io/badge/conversion-100%25%20client--side-brightgreen)](https://www.mdtool.dev/about)
@@ -20,7 +21,7 @@ No signup · No watermarks · No file uploads. Your documents never leave your d
 
 </div>
 
-**MDTool** (also written *MD Tool*, at [mdtool.dev](https://www.mdtool.dev)) is a free, browser-based Markdown converter built by [Muhammad Usman](https://www.mdtool.dev/about#author). If you find it useful, a ⭐ on this repo helps other people find it.
+**MDTool** (also written *MD Tool*, at [mdtool.dev](https://www.mdtool.dev)) is a free, open-source (MIT), browser-based Markdown converter built by [Muhammad Usman](https://www.mdtool.dev/about#author). If you find it useful, a ⭐ on this repo helps other people find it.
 
 ---
 
@@ -123,6 +124,10 @@ The [MDTool blog](https://www.mdtool.dev/blog) covers the practical corners of d
 Built and maintained by **[Muhammad Usman](https://github.com/usmankhan045)** ([about the project](https://www.mdtool.dev/about)).
 
 Found a conversion bug? [Open an issue](https://github.com/usmankhan045/mdtool/issues). Real-world documents that break are the most valuable test cases.
+
+## License
+
+[MIT](LICENSE) © 2026 Muhammad Usman. The code is free to use, modify and redistribute. The MDTool name, logo and mdtool.dev domain are not covered by the license.
 
 ---
 
