@@ -7,27 +7,10 @@ import WordPreview from './WordPreview';
 import DownloadWordButton from './DownloadWordButton';
 import { parseMarkdown, countWords } from '@/lib/markdown';
 import { WORKSPACE, WORKSPACE_BAR, SPLIT } from './ui';
-
-const SAMPLE_MARKDOWN = `# Welcome to MDTool
-
-## Headings and Text
-
-MDTool converts your **Markdown** into a real, editable Word document, not a screenshot.
-
-## Table Example
-
-| Feature | MDTool | Others |
-|---------|---------|--------|
-| Editable .docx output | ✅ | ❌ |
-| Tables preserved | ✅ | ❌ |
-| Client-side only | ✅ | ❌ |
-| Free forever | ✅ | ❌ |
-
-> Start typing or paste your own Markdown on the left!
-`;
+import { WORD_SAMPLE_MARKDOWN } from './samples';
 
 export default function MarkdownToWordClient() {
-  const [markdown, setMarkdown] = useState(SAMPLE_MARKDOWN);
+  const [markdown, setMarkdown] = useState(WORD_SAMPLE_MARKDOWN);
 
   const deferredMarkdown = useDebouncedValue(markdown);
   const htmlContent = parseMarkdown(deferredMarkdown);

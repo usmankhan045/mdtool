@@ -8,7 +8,10 @@ import StructuredData from '@/components/seo/StructuredData';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
+// 'optional': if the code font isn't ready almost immediately, keep the fallback
+// instead of swapping. The late swap re-painted the editor's sample text and
+// pushed LCP on /markdown-to-pdf from ~1.2s to ~2.4s on slow mobile.
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'optional' });
 
 // Search-engine ownership verification codes. Each is optional - set the env
 // var to the code the webmaster console gives you and the matching <meta> tag

@@ -10,37 +10,12 @@
 
 import {
   WORKSPACE, WORKSPACE_BAR, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, BTN_PRIMARY, BTN_OUTLINE, BTN_GHOST, BTN_MAIN,
-  SEG, SEG_ITEM, SEG_ON, SEG_OFF, FIELD_LABEL, ICON_UPLOAD, ICON_DOWNLOAD,
+  SEG, SEG_ITEM, SEG_ON, SEG_OFF, FIELD_LABEL, ICON_UPLOAD, ICON_DOWNLOAD, TEXTAREA,
 } from './ui';
 import { ToolIcon, LiveBadge } from './UiParts';
+import { PDF_SAMPLE_MARKDOWN, WORD_SAMPLE_MARKDOWN, HTML_SAMPLE_MARKDOWN, HTML_INPUT_SAMPLE } from './samples';
 
 export type ToolShellVariant = 'md-to-pdf' | 'md-to-html' | 'md-to-word' | 'html-to-md' | 'word-to-md';
-
-const SAMPLE_MARKDOWN = `# Project Notes
-
-Convert **Markdown** into a clean, shareable document.
-
-- Runs in your browser, nothing is uploaded
-- Tables, task lists and code blocks
-
-| Feature | Supported |
-| ------- | --------- |
-| GFM     | Yes       |
-
-\`\`\`js
-console.log('Hello, MDTool');
-\`\`\``;
-
-const SAMPLE_HTML = `<h1>Project Notes</h1>
-<p>Convert <strong>HTML</strong> into clean Markdown.</p>
-<ul>
-  <li>Runs in your browser, nothing is uploaded</li>
-  <li>Tables, task lists and code blocks</li>
-</ul>
-<table>
-  <tr><th>Feature</th><th>Supported</th></tr>
-  <tr><td>GFM</td><td>Yes</td></tr>
-</table>`;
 
 const SAMPLE_MARKDOWN_OUTPUT = `# Project Notes
 
@@ -111,13 +86,18 @@ function RenderedSample({ serif = false }: { serif?: boolean }) {
   );
 }
 
-function MarkdownInputPanel({ label }: { label: string }) {
+// Same word count formula as countWords() in lib/markdown, without importing marked.
+const wordCount = (text: string) => text.trim().split(/\s+/).filter(Boolean).length;
+
+// The input is a read-only <textarea> with the editor's exact classes and text,
+// so the client editor replacing it paints nothing larger (no late LCP).
+function MarkdownInputPanel({ label, sample }: { label: string; sample: string }) {
   return (
-    <div className={PANE}>
+    <div className={`${PANE} h-full`}>
       <div className={PANE_HEAD}>
         <span className={PANE_TITLE}>{label}</span>
         <div className="flex items-center gap-1.5" aria-hidden>
-          <span className={`${META} mr-1.5`}>40 words</span>
+          <span className={`${META} mr-1.5`}>{wordCount(sample)} words</span>
           <span className={BTN_OUTLINE}>
             <ToolIcon d={ICON_UPLOAD} />
             Upload .md
@@ -125,9 +105,7 @@ function MarkdownInputPanel({ label }: { label: string }) {
           <span className={BTN_GHOST}>Clear</span>
         </div>
       </div>
-      <div className={BODY}>
-        <pre className={PRE}>{SAMPLE_MARKDOWN}</pre>
-      </div>
+      <textarea readOnly defaultValue={sample} className={TEXTAREA} spellCheck={false} aria-label={label} />
     </div>
   );
 }
@@ -200,7 +178,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
             </span>
           </div>
           <div className={SPLIT}>
-            <MarkdownInputPanel label={label} />
+            <MarkdownInputPanel label={label} sample={PDF_SAMPLE_MARKDOWN} />
             <PreviewPanel title="PDF Preview" />
           </div>
         </>
@@ -218,7 +196,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
             </span>
           </div>
           <div className={SPLIT}>
-            <MarkdownInputPanel label={label} />
+            <MarkdownInputPanel label={label} sample={WORD_SAMPLE_MARKDOWN} />
             <PreviewPanel title="Word Preview" serif />
           </div>
         </>
@@ -226,7 +204,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
 
       {variant === 'md-to-html' && (
         <div className={SPLIT}>
-          <MarkdownInputPanel label={label} />
+          <MarkdownInputPanel label={label} sample={HTML_SAMPLE_MARKDOWN} />
           <div className={PANE}>
             <div className={PANE_HEAD}>
               <Segmented items={['Preview', 'Code']} />
@@ -252,7 +230,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
             <div className={PANE_HEAD}>
               <span className={PANE_TITLE}>{label}</span>
               <div className="flex items-center gap-1.5" aria-hidden>
-                <span className={`${META} mr-1.5`}>{SAMPLE_HTML.length} chars</span>
+                <span className={`${META} mr-1.5`}>{HTML_INPUT_SAMPLE.length} chars</span>
                 <span className={BTN_OUTLINE}>
                   <ToolIcon d={ICON_UPLOAD} />
                   Upload .html
@@ -261,7 +239,7 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
               </div>
             </div>
             <div className={BODY}>
-              <pre className={PRE}>{SAMPLE_HTML}</pre>
+              <pre className={PRE}>{HTML_INPUT_SAMPLE}</pre>
             </div>
           </div>
           <MarkdownOutputPanel sample={SAMPLE_MARKDOWN_OUTPUT} />

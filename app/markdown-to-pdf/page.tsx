@@ -263,6 +263,7 @@ export default function MarkdownToPdfPage() {
               alt="Page one of the same Markdown document exported to PDF in the GitHub, Academic, Minimal and Dark themes"
               width={1880}
               height={694}
+              sizes="(max-width: 1024px) 100vw, 1024px"
               className="w-full h-auto rounded-lg border border-zinc-200"
             />
             <figcaption className="text-sm text-zinc-500 mt-2">
@@ -339,6 +340,7 @@ export default function MarkdownToPdfPage() {
                 alt="A PDF page exported by MDTool showing a Mermaid sequence diagram, pie chart and class diagram rendered as vector graphics"
                 width={910}
                 height={1187}
+                sizes="448px"
                 className="w-full max-w-md h-auto rounded-lg border border-zinc-200"
               />
               <figcaption className="text-sm text-zinc-500 mt-2">
