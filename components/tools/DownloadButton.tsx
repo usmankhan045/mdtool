@@ -1,28 +1,33 @@
 'use client';
 
 import { useState } from 'react';
-import { generatePdf, ThemeId, PageSizeId } from '@/lib/pdf';
+import { generatePdf, markdownToPdfHtml, ThemeId, PageSizeId } from '@/lib/pdf';
+import { nextPaint } from './useDebouncedValue';
 import { BTN_MAIN } from './ui';
 
 interface Props {
-  htmlContent: string;
+  // Raw Markdown, converted at click time so a download right after typing
+  // never uses the (debounced) preview HTML.
+  markdown: string;
   theme: ThemeId;
   filename?: string;
   size?: 'default' | 'compact';
   pageSize?: PageSizeId;
 }
 
-export default function DownloadButton({ htmlContent, theme, filename, size = 'default', pageSize = 'a4' }: Props) {
+export default function DownloadButton({ markdown, theme, filename, size = 'default', pageSize = 'a4' }: Props) {
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
-    if (!htmlContent.trim()) {
+    if (!markdown.trim()) {
       alert('Please enter some Markdown first');
       return;
     }
     setLoading(true);
+    // Let the spinner paint before the heavy, synchronous PDF build starts.
+    await nextPaint();
     try {
-      await generatePdf(htmlContent, { theme, pageSize, filename: filename || 'document.pdf' });
+      await generatePdf(markdownToPdfHtml(markdown), { theme, pageSize, filename: filename || 'document.pdf' });
     } catch (err) {
       console.error('PDF generation failed:', err);
       const detail = err instanceof Error ? err.message : String(err);
@@ -34,14 +39,14 @@ export default function DownloadButton({ htmlContent, theme, filename, size = 'd
 
   const className = size === 'compact'
     ? `flex items-center gap-1.5 text-white transition-all px-3 py-2 text-xs font-medium rounded-md ${
-        loading || !htmlContent.trim() ? 'bg-zinc-300 cursor-not-allowed' : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
+        loading || !markdown.trim() ? 'bg-zinc-300 cursor-not-allowed' : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
       }`
     : BTN_MAIN;
 
   return (
     <button
       onClick={handleDownload}
-      disabled={loading || !htmlContent.trim()}
+      disabled={loading || !markdown.trim()}
       className={className}
     >
       {loading ? (

@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useDeferredValue, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useDebouncedValue } from './useDebouncedValue';
 import MarkdownEditor from './MarkdownEditor';
 import WordPreview from './WordPreview';
 import DownloadWordButton from './DownloadWordButton';
@@ -28,7 +29,7 @@ MDTool converts your **Markdown** into a real, editable Word document, not a scr
 export default function MarkdownToWordClient() {
   const [markdown, setMarkdown] = useState(SAMPLE_MARKDOWN);
 
-  const deferredMarkdown = useDeferredValue(markdown);
+  const deferredMarkdown = useDebouncedValue(markdown);
   const htmlContent = parseMarkdown(deferredMarkdown);
   const wordCount = countWords(markdown);
 

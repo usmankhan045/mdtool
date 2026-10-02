@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useDeferredValue, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useDebouncedValue } from './useDebouncedValue';
 import MarkdownEditor from './MarkdownEditor';
 import { countWords } from '@/lib/markdown';
 import { markdownToText } from '@/lib/markdownToText';
@@ -41,7 +42,7 @@ export default function MarkdownToTextClient() {
   const [joinLines, setJoinLines] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const deferredMarkdown = useDeferredValue(markdown);
+  const deferredMarkdown = useDebouncedValue(markdown);
   const plainText = useMemo(
     () => markdownToText(deferredMarkdown, { listMarkers, linkUrls, joinLines }),
     [deferredMarkdown, listMarkers, linkUrls, joinLines],

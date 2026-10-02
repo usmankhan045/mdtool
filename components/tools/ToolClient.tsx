@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback, useDeferredValue } from 'react';
+import { useState, useCallback } from 'react';
+import { useDebouncedValue } from './useDebouncedValue';
 import MarkdownEditor from './MarkdownEditor';
 import PdfPreview from './PdfPreview';
 import ThemeSelector, { PageSizeSelector } from './ThemeSelector';
@@ -47,8 +48,8 @@ export default function ToolClient() {
   const [theme, setTheme] = useState<ThemeId>('github');
   const [pageSize, setPageSize] = useState<PageSizeId>('a4');
 
-  // Defer HTML computation so typing feels instant
-  const deferredMarkdown = useDeferredValue(markdown);
+  // Rebuild the preview once typing pauses, not on every keystroke
+  const deferredMarkdown = useDebouncedValue(markdown);
   const htmlContent = markdownToPdfHtml(deferredMarkdown);
   const wordCount = countWords(markdown);
 
@@ -64,7 +65,7 @@ export default function ToolClient() {
           <ThemeSelector selected={theme} onSelect={setTheme} />
           <PageSizeSelector selected={pageSize} onSelect={setPageSize} />
         </div>
-        <DownloadButton htmlContent={htmlContent} theme={theme} pageSize={pageSize} filename="document.pdf" />
+        <DownloadButton markdown={markdown} theme={theme} pageSize={pageSize} filename="document.pdf" />
       </div>
 
       {/* Two-Column Editor */}

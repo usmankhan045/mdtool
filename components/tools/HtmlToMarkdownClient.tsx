@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useDeferredValue, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useDebouncedValue } from './useDebouncedValue';
 import HtmlEditor from './HtmlEditor';
 import MarkdownOutputPanel from './MarkdownOutputPanel';
 import { convertHtmlToMarkdown } from '@/lib/htmlToMarkdown';
@@ -21,7 +22,7 @@ const SAMPLE_HTML = `<h1>Welcome to MDTool</h1>
 export default function HtmlToMarkdownClient() {
   const [html, setHtml] = useState(SAMPLE_HTML);
 
-  const deferredHtml = useDeferredValue(html);
+  const deferredHtml = useDebouncedValue(html);
   const markdown = convertHtmlToMarkdown(deferredHtml);
 
   const handleHtmlChange = useCallback((val: string) => {

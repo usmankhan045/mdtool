@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { generateDocx } from '@/lib/docx';
 import { BTN_MAIN } from './ui';
+import { nextPaint } from './useDebouncedValue';
 
 interface Props {
   markdown: string;
@@ -18,6 +19,8 @@ export default function DownloadWordButton({ markdown, filename }: Props) {
       return;
     }
     setLoading(true);
+    // Let the spinner paint before the heavy, synchronous .docx build starts.
+    await nextPaint();
     try {
       await generateDocx(markdown, filename || 'document.docx');
     } catch (err) {

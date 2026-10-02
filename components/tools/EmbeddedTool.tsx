@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useDeferredValue } from 'react';
+import { useState } from 'react';
+import { useDebouncedValue } from './useDebouncedValue';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { markdownToPdfHtml, ThemeId } from '@/lib/pdf';
@@ -19,7 +20,7 @@ const THEMES: { id: ThemeId; label: string }[] = [
 export default function EmbeddedTool() {
   const [markdown, setMarkdown] = useState(SAMPLE);
   const [theme, setTheme] = useState<ThemeId>('github');
-  const deferredMd = useDeferredValue(markdown);
+  const deferredMd = useDebouncedValue(markdown);
   const html = markdownToPdfHtml(deferredMd);
 
   const srcDoc = `<html><head>
@@ -75,7 +76,7 @@ export default function EmbeddedTool() {
           </button>
         ))}
         <div className="ml-auto">
-          <DownloadButton htmlContent={html} theme={theme} filename="document.pdf" size="compact" />
+          <DownloadButton markdown={markdown} theme={theme} filename="document.pdf" size="compact" />
         </div>
       </div>
 
