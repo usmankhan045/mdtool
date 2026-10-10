@@ -66,6 +66,7 @@ function routeExists(routeDir: string): boolean {
 const STATIC_ROUTES: { route: string; files: string[] }[] = [
   { route: '', files: ['app/page.tsx'] },
   { route: '/markdown-editor', files: ['app/markdown-editor/page.tsx'] },
+  { route: '/tools', files: ['app/tools/page.tsx'] },
   { route: '/markdown-guide', files: ['app/markdown-guide/page.tsx', 'lib/cheatsheet.ts'] },
   { route: '/markdown-to-pdf', files: ['app/markdown-to-pdf/page.tsx'] },
   { route: '/markdown-to-html', files: ['app/markdown-to-html/page.tsx'] },

@@ -92,14 +92,13 @@ export default function MarkdownTableGeneratorPage() {
         {/* Hero - title over the live tool */}
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown Table Generator
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Build tables in a visual grid, no hand-typed pipes. Set column alignment, paste data
               straight from Excel or Google Sheets, and copy clean Markdown or HTML.
             </p>
-            <p className="text-xs text-zinc-500">Updated July 3, 2026</p>
           </div>
         </section>
 

@@ -92,35 +92,6 @@ const FORMAT_DOT: Record<string, string> = {
   MD: 'bg-violet-400',
 };
 
-// Seven cards in a 3-column grid: two wide cards make every row full.
-const CARD_SPAN: Record<string, string> = {
-  '/markdown-to-pdf': 'md:col-span-2',
-  '/markdown-table-generator': 'lg:col-span-2',
-};
-
-// A small page with a folded corner, tinted by format.
-const FORMAT_TILE: Record<string, { page: string; fold: string }> = {
-  EDIT: { page: 'bg-blue-50 text-blue-700 ring-blue-600/15', fold: 'bg-blue-200' },
-  MD: { page: 'bg-violet-50 text-violet-700 ring-violet-600/15', fold: 'bg-violet-200' },
-  PDF: { page: 'bg-rose-50 text-rose-700 ring-rose-600/15', fold: 'bg-rose-200' },
-  HTML: { page: 'bg-orange-50 text-orange-700 ring-orange-600/15', fold: 'bg-orange-200' },
-  DOCX: { page: 'bg-emerald-50 text-emerald-700 ring-emerald-600/15', fold: 'bg-emerald-200' },
-  TXT: { page: 'bg-zinc-100 text-zinc-700 ring-zinc-600/15', fold: 'bg-zinc-300' },
-  GRID: { page: 'bg-amber-50 text-amber-700 ring-amber-600/15', fold: 'bg-amber-200' },
-};
-
-function FileTile({ format }: { format: string }) {
-  const tone = FORMAT_TILE[format] ?? FORMAT_TILE.MD;
-  return (
-    <span
-      className={`relative flex h-12 w-10 items-end justify-center overflow-hidden rounded-md pb-1.5 font-mono text-[9px] font-bold tracking-wide ring-1 ring-inset [clip-path:polygon(0_0,calc(100%-9px)_0,100%_9px,100%_100%,0_100%)] ${tone.page}`}
-    >
-      <span className={`absolute right-0 top-0 h-[9px] w-[9px] rounded-bl-[3px] ${tone.fold}`} />
-      {format}
-    </span>
-  );
-}
-
 export default function HomePage() {
   return (
     <main className="bg-page">
@@ -292,25 +263,28 @@ export default function HomePage() {
       <section className="max-w-5xl mx-auto px-4 py-16 md:py-20">
         <div className="mb-10 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">All converters</h2>
-          <p className="mt-2 text-gray-600">Seven tools, both directions. Pick one and start.</p>
+          <p className="mt-2 text-gray-600">Eight tools for writing, converting, and organizing Markdown.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TOOLS.map((tool) => (
             <Link
               key={tool.href}
               href={tool.href}
-              className={`${CARD_SPAN[tool.href] ?? ''} group relative flex flex-col rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-[0_1px_0_rgba(24,24,27,0.03),0_2px_8px_-4px_rgba(24,24,27,0.06)] transition-[transform,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_1px_0_rgba(24,24,27,0.03),0_16px_32px_-12px_rgba(24,24,27,0.16)] active:translate-y-0 active:scale-[0.99]`}
+              className="group flex min-h-[218px] flex-col rounded-2xl border border-zinc-200 bg-white p-5 shadow-[0_1px_2px_rgba(24,24,27,0.04)] transition-[border-color,box-shadow,transform] duration-150 hover:-translate-y-0.5 hover:border-zinc-400 hover:shadow-[0_12px_24px_-16px_rgba(24,24,27,0.3)] active:translate-y-0 active:scale-[0.99]"
             >
-              {/* the conversion itself, drawn as two little files */}
-              <div className="mb-6 flex items-center justify-between">
-                <div aria-hidden className="flex items-center gap-2">
-                  <FileTile format={tool.from} />
-                  <span className="font-mono text-sm text-zinc-300 transition-[transform,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:text-zinc-500">
-                    →
-                  </span>
-                  <FileTile format={tool.to} />
-                </div>
+              <div className="flex items-start justify-between gap-3">
+                <span className={`inline-flex min-w-14 items-center justify-center rounded-md px-2 py-1 font-mono text-[10px] font-bold tracking-wide ring-1 ring-inset ${
+                  tool.to === 'PDF' ? 'bg-rose-50 text-rose-700 ring-rose-200' :
+                  tool.to === 'DOCX' ? 'bg-emerald-50 text-emerald-700 ring-emerald-200' :
+                  tool.to === 'HTML' ? 'bg-orange-50 text-orange-700 ring-orange-200' :
+                  tool.to === 'TXT' ? 'bg-zinc-100 text-zinc-700 ring-zinc-200' :
+                  tool.to === 'EDIT' ? 'bg-blue-50 text-blue-700 ring-blue-200' :
+                  tool.to === 'MD' ? 'bg-violet-50 text-violet-700 ring-violet-200' :
+                  'bg-amber-50 text-amber-700 ring-amber-200'
+                }`}>
+                  {tool.to === 'GRID' ? 'TABLE' : tool.to}
+                </span>
                 {tool.badge && (
                   <span
                     className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ${
@@ -324,14 +298,11 @@ export default function HomePage() {
                 )}
               </div>
 
-              <h3 className="text-lg font-semibold tracking-tight text-zinc-900">{tool.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-500">{tool.description}</p>
+              <h3 className="mt-4 text-lg font-bold tracking-tight text-zinc-950 group-hover:text-zinc-700">{tool.title}</h3>
+              <p className="mt-1 flex-1 text-sm leading-relaxed text-zinc-600">{tool.description}</p>
 
-              <span className="mt-6 flex items-center justify-between border-t border-dashed border-zinc-200 pt-4 text-sm font-medium text-zinc-900 transition-colors duration-200 group-hover:text-blue-600">
-                Open tool
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 transition-[transform,background-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 group-hover:bg-blue-600 group-hover:text-white">
-                  →
-                </span>
+              <span className="mt-4 inline-block text-sm font-semibold text-zinc-900 group-hover:text-zinc-700">
+                Open tool →
               </span>
             </Link>
           ))}

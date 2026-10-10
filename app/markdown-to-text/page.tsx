@@ -107,14 +107,13 @@ export default function MarkdownToTextPage() {
         {/* Hero - title over the live converter */}
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Markdown to Plain Text Converter
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Strip the #, ** and [link](url) syntax out of any Markdown and get clean, readable text you can
               paste anywhere. Copy it or download a .txt file.
             </p>
-            <p className="text-xs text-zinc-500">Published October 1, 2026 · Built and maintained by MDTool</p>
           </div>
         </section>
 

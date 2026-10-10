@@ -24,7 +24,6 @@ export default function PrivacyPage() {
         <section className="bg-page-soft border-b border-zinc-200/70 px-4 py-10">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2">Privacy Policy</h1>
-            <p className="text-zinc-500">Last updated: June 24, 2026</p>
           </div>
         </section>
 
@@ -71,7 +70,7 @@ export default function PrivacyPage() {
 
           <h2>Changes to this policy</h2>
           <p>
-            If this policy changes, the &quot;Last updated&quot; date above will change accordingly. Material
+            If this policy changes, this page will be updated accordingly. Material
             changes will be reflected directly on this page.
           </p>
 

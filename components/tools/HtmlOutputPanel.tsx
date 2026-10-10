@@ -73,7 +73,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
           </button>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex flex-wrap items-center justify-end gap-1.5">
           <label className="mr-1.5 flex items-center gap-1.5 text-xs text-zinc-500 cursor-pointer select-none">
             <input
               type="checkbox"

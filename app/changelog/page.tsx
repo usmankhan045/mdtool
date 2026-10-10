@@ -56,7 +56,6 @@ export default function ChangelogPage() {
           <div className="space-y-8">
             {RELEASES.map((release) => (
               <article key={`${release.date}-${release.title}`} className="border-l-2 border-zinc-200 pl-5">
-                <time className="text-sm text-zinc-500">{release.date}</time>
                 <h2 className="mt-1 text-xl font-semibold text-zinc-900">{release.title}</h2>
                 <p className="mt-2 leading-relaxed text-zinc-700">{release.details}</p>
               </article>

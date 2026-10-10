@@ -70,12 +70,9 @@ export default async function GuideTopicPage({ params }: { params: Promise<{ top
               <span className="mx-1.5">/</span>
               <span>{topic.title}</span>
             </nav>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">{topic.title}</h1>
-            <p className="text-xs text-zinc-500 mb-3">
-              Updated <time dateTime={CONTENT_UPDATED}>October 1, 2026</time>
-            </p>
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">{topic.title}</h1>
             {/* Answer-first: the direct, self-contained answer to the query */}
-            <p className="text-base md:text-lg text-zinc-600 leading-relaxed">{topic.answer}</p>
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 leading-relaxed">{topic.answer}</p>
           </div>
         </section>
 

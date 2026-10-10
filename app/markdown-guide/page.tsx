@@ -39,8 +39,8 @@ export default function MarkdownGuidePage() {
       <main className="min-h-screen bg-page">
         <section className="hero-grid text-zinc-950">
           <div className="mx-auto max-w-4xl px-4 pb-12 pt-10">
-            <h1 className="mb-3 text-3xl font-bold tracking-tight md:text-4xl">Markdown Guide</h1>
-            <p className="max-w-3xl text-base leading-relaxed text-zinc-600 md:text-lg">
+            <h1 className="mx-auto mb-3 text-center text-3xl font-bold tracking-tight md:text-4xl">Markdown Guide</h1>
+            <p className="mx-auto max-w-3xl text-center text-base leading-relaxed text-zinc-600 md:text-lg">
               Markdown is a plain-text way to add structure and formatting to documents. Start with the
               essentials below, then use the detailed syntax guides or the complete cheat sheet for a
               copyable reference.

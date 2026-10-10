@@ -116,16 +116,15 @@ export default function MarkdownToWordZhPage() {
       <main lang="zh-Hans" className="min-h-screen bg-page">
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Markdown 转 Word 在线转换器（md 转 docx，免费）
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               把 Markdown 转成真正可编辑的 .docx，用 Word、WPS 或 LibreOffice 都能直接打开。
               免费、无需注册、没有水印。
             </p>
             <UiLanguageNote />
             <p className="text-xs text-zinc-500">
-              更新于 2026 年 10 月 1 日 ·{' '}
               <a href="/markdown-to-word" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>

@@ -9,7 +9,7 @@
  */
 
 import {
-  WORKSPACE, WORKSPACE_BAR, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, BTN_PRIMARY, BTN_OUTLINE, BTN_GHOST, BTN_MAIN,
+  WORKSPACE, WORKSPACE_BAR, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, BTN_PRIMARY, BTN_OUTLINE, BTN_GHOST, BTN_UPLOAD, BTN_MAIN,
   SEG, SEG_ITEM, SEG_ON, SEG_OFF, FIELD_LABEL, ICON_UPLOAD, ICON_DOWNLOAD, TEXTAREA,
 } from './ui';
 import { ToolIcon, LiveBadge } from './UiParts';
@@ -96,9 +96,9 @@ function MarkdownInputPanel({ label, sample }: { label: string; sample: string }
     <div className={`${PANE} h-full`}>
       <div className={PANE_HEAD}>
         <span className={PANE_TITLE}>{label}</span>
-        <div className="flex items-center gap-1.5" aria-hidden>
+        <div className="flex flex-wrap items-center justify-end gap-2" aria-hidden>
           <span className={`${META} mr-1.5`}>{wordCount(sample)} words</span>
-          <span className={BTN_OUTLINE}>
+          <span className={BTN_UPLOAD}>
             <ToolIcon d={ICON_UPLOAD} />
             Upload .md
           </span>
@@ -229,9 +229,9 @@ export default function ToolLoadingShell({ variant }: { variant: ToolShellVarian
           <div className={PANE}>
             <div className={PANE_HEAD}>
               <span className={PANE_TITLE}>{label}</span>
-              <div className="flex items-center gap-1.5" aria-hidden>
+              <div className="flex flex-wrap items-center justify-end gap-2" aria-hidden>
                 <span className={`${META} mr-1.5`}>{HTML_INPUT_SAMPLE.length} chars</span>
-                <span className={BTN_OUTLINE}>
+                <span className={BTN_UPLOAD}>
                   <ToolIcon d={ICON_UPLOAD} />
                   Upload .html
                 </span>

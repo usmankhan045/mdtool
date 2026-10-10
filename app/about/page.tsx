@@ -346,8 +346,7 @@ export default function AboutPage() {
                     <li className="flex gap-3">
                       <Check />
                       <span>
-                        The facts on this page were last checked against the code on{' '}
-                        <time dateTime={LAST_REVIEWED} className="font-medium text-gray-900">{LAST_REVIEWED_LABEL}</time>.
+                        The facts on this page are checked against the current code.
                       </span>
                     </li>
                   </ul>

@@ -42,7 +42,7 @@ export default function DownloadButton({ markdown, theme, filename, size = 'defa
   };
 
   const className = size === 'compact'
-    ? `flex items-center gap-1.5 text-white transition-all px-3 py-2 text-xs font-medium rounded-md ${
+    ? `flex items-center gap-1.5 text-white transition-all px-3 py-2 text-xs font-medium rounded-full ${
         loading || !markdown.trim() ? 'bg-zinc-300 cursor-not-allowed' : 'bg-zinc-900 hover:bg-zinc-800 active:scale-95'
       }`
     : BTN_MAIN;

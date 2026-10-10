@@ -83,8 +83,8 @@ const FAQ_ITEMS = [
   },
   {
     q: 'How often is this tool updated?',
-    a: 'This page was last updated June 24, 2026. The underlying conversion engine (turndown + the GFM plugin) is a stable, widely used library, so updates here are mostly about expanding the supporting documentation rather than changing how conversion works.',
-    text: 'This page was last updated June 24, 2026.',
+    a: 'The underlying conversion engine (turndown + the GFM plugin) is a stable, widely used library. This page focuses on practical guidance for converting HTML into clean Markdown.',
+    text: 'The underlying conversion engine is a stable, widely used HTML-to-Markdown conversion pipeline.',
   },
 ];
 
@@ -118,14 +118,13 @@ export default function HtmlToMarkdownPage() {
         {/* Hero - title over the live converter */}
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online HTML to Markdown Converter: GFM Output
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Paste HTML or upload a .html file and get clean GitHub Flavored Markdown, with tables, fenced code
               blocks with language tags, nested lists, links, and images.
             </p>
-            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 

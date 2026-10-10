@@ -20,6 +20,14 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Keep native controls and text links styled as actions consistent with the
+   pill-shaped buttons used in the header and converter workspaces. */
+button,
+a[class*="px-"][class*="py-"][class*="bg-"],
+a[class*="px-"][class*="py-"][class*="border-"] {
+  border-radius: 9999px;
+}
+
 /* Hero "convert window" motion - the arrow nudges, the caret blinks,
    and output chips settle in on load. All disabled under reduced-motion. */
 @keyframes md-arrow {

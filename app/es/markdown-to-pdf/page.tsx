@@ -105,16 +105,15 @@ export default function MarkdownToPdfEsPage() {
       <main lang="es" className="min-h-screen bg-page">
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Convertidor de Markdown a PDF gratis online
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Pega o sube tu Markdown y descarga un PDF paginado, con código resaltado, tablas y diagramas
               Mermaid. Sin registro y sin marca de agua.
             </p>
             <UiLanguageNote />
             <p className="text-xs text-zinc-500">
-              Actualizado el 1 de octubre de 2026 ·{' '}
               <a href="/markdown-to-pdf" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>

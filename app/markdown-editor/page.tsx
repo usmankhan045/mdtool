@@ -46,10 +46,10 @@ export default function MarkdownEditorPage() {
       <main className="min-h-screen bg-page">
         <section className="hero-grid text-zinc-950">
           <div className="mx-auto max-w-6xl px-4 pb-16 pt-10">
-            <h1 className="mb-3 text-3xl font-bold tracking-tight md:text-4xl">
+            <h1 className="mx-auto mb-3 text-center text-3xl font-bold tracking-tight md:text-4xl">
               Online Markdown Editor with Live Preview
             </h1>
-            <p className="mb-3 max-w-2xl text-base leading-relaxed text-zinc-600 md:text-lg">
+            <p className="mx-auto mb-3 max-w-3xl text-center text-base leading-relaxed text-zinc-600 md:text-lg">
               Write or paste Markdown on the left and see clean, rendered HTML on the right. Upload a
               <code className="mx-1 rounded bg-zinc-100 px-1.5 py-0.5 text-sm">.md</code> file,
               copy the output, or download it without sending your document to a server.

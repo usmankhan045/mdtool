@@ -124,14 +124,13 @@ export default function WordToMarkdownPage() {
         {/* Hero - title over the live converter */}
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Word to Markdown Converter
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Drag and drop a .docx file and get clean, plain-text GitHub Flavored Markdown back. No upload,
               no watermark.
             </p>
-            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 
@@ -304,7 +303,7 @@ export default function WordToMarkdownPage() {
             <p>
               Scale makes this concrete:{' '}
               <a href="https://github.blog/news-insights/octoverse/" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
-                GitHub&apos;s 2025 Octoverse report
+                GitHub&apos;s Octoverse report
               </a>{' '}
               counted 630 million repositories on the platform, with 230+ new repositories
               created every minute. Every repository that includes documentation files expects
@@ -397,7 +396,7 @@ export default function WordToMarkdownPage() {
               drop the downloaded file onto the converter. Google Docs also has a built-in{' '}
               <strong>File → Download → Markdown (.md)</strong> option,{' '}
               <a href="https://workspaceupdates.googleblog.com/2024/07/import-and-export-markdown-in-google-docs.html" target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900">
-                added in 2024
+                added recently
               </a>
               , which is the quickest route for a simple document. Going through .docx and MDTool gives you
               GitHub Flavored Markdown with pipe tables and dash-style lists, and lets you review and copy

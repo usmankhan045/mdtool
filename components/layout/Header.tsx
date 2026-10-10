@@ -20,9 +20,9 @@ const TOOLS = [
 const HOME = { href: '/', label: 'Home' };
 
 const LINKS = [
-  { href: '/markdown-editor', label: 'Editor' },
-  { href: '/markdown-guide', label: 'Guide' },
-  { href: '/markdown-cheat-sheet', label: 'Cheat Sheet' },
+  { href: '/markdown-editor', label: 'MD Editor' },
+  { href: '/markdown-guide', label: 'MD Guide' },
+  { href: '/markdown-cheat-sheet', label: 'MD Cheat Sheet' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
 ];
@@ -82,7 +82,7 @@ export default function Header() {
 
   useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
 
-  const toolActive = TOOLS.some((t) => pathname === t.href);
+  const toolActive = pathname === '/tools' || TOOLS.some((t) => pathname === t.href);
   const linkClass = (active: boolean) =>
     `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
       active ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
@@ -107,11 +107,9 @@ export default function Header() {
             </Link>
 
             <div ref={toolsRef} className="relative" onPointerEnter={openOnHover} onPointerLeave={closeOnLeave}>
-              <button
-                type="button"
-                aria-expanded={toolsOpen}
-                aria-controls="tools-menu"
-                onClick={() => setToolsOpen((o) => !o)}
+              <Link
+                href="/tools"
+                aria-haspopup="true"
                 className={`inline-flex items-center gap-1 ${linkClass(toolActive || toolsOpen)}`}
               >
                 Tools
@@ -123,7 +121,7 @@ export default function Header() {
                 >
                   <path fillRule="evenodd" d="M5.2 7.2a.75.75 0 0 1 1.06 0L10 10.94l3.74-3.74a.75.75 0 1 1 1.06 1.06l-4.27 4.27a.75.75 0 0 1-1.06 0L5.2 8.26a.75.75 0 0 1 0-1.06z" clipRule="evenodd" />
                 </svg>
-              </button>
+              </Link>
 
               {/* Always in the DOM (crawlable); shown with a quick scale + fade from the trigger. */}
               <div
@@ -165,7 +163,7 @@ export default function Header() {
 
           <div className="flex items-center gap-1">
             <Link
-              href="/markdown-to-pdf"
+              href="/tools"
               className={`hidden rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 sm:inline-flex ${pressable}`}
             >
               Start converting
@@ -223,7 +221,7 @@ export default function Header() {
             ))}
           </div>
           <Link
-            href="/markdown-to-pdf"
+            href="/tools"
             className={`mt-3 flex justify-center rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-800 sm:hidden ${pressable}`}
           >
             Start converting

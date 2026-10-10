@@ -35,8 +35,8 @@ export default function MarkdownOutputPanel({ markdown, filename = 'document.md'
     <div className={`${PANE} h-full`}>
       <div className={PANE_HEAD}>
         <span className={PANE_TITLE}>Markdown Output</span>
-        <div className="flex items-center gap-1.5">
-          <span className={`${META} mr-1.5`}>{charCount} chars</span>
+        <div className="flex flex-wrap items-center justify-end gap-1.5">
+          <span className={`${META} mr-1.5 whitespace-nowrap`}>{charCount} chars</span>
           <button onClick={handleCopy} disabled={!markdown.trim()} className={BTN_OUTLINE}>
             {copied ? 'Copied!' : 'Copy'}
           </button>

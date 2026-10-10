@@ -100,16 +100,15 @@ export default function MarkdownToWordEsPage() {
       <main lang="es" className="min-h-screen bg-page">
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Convertidor de Markdown a Word (MD a DOCX) gratis
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Convierte Markdown en un .docx real y editable que se abre en Word, Google Docs y LibreOffice.
               Sin registro, sin marca de agua y sin límites.
             </p>
             <UiLanguageNote />
             <p className="text-xs text-zinc-500">
-              Actualizado el 1 de octubre de 2026 ·{' '}
               <a href="/markdown-to-word" hrefLang="en" className="underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950 hover:decoration-zinc-500">English version</a>
             </p>
           </div>

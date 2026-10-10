@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_OUTLINE, BTN_GHOST, ICON_UPLOAD } from './ui';
+import { PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_UPLOAD, BTN_GHOST, ICON_UPLOAD } from './ui';
 import { ToolIcon } from './UiParts';
 
 interface Props {
@@ -44,9 +44,9 @@ export default function HtmlEditor({ value, onChange, charCount }: Props) {
       {/* Toolbar */}
       <div className={PANE_HEAD}>
         <span className={PANE_TITLE}>HTML Input</span>
-        <div className="flex items-center gap-1.5">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           <span className={`${META} mr-1.5`}>{charCount} chars</span>
-          <button onClick={() => fileInputRef.current?.click()} className={BTN_OUTLINE}>
+          <button onClick={() => fileInputRef.current?.click()} className={BTN_UPLOAD}>
             <ToolIcon d={ICON_UPLOAD} />
             Upload .html
           </button>

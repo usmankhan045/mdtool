@@ -131,14 +131,13 @@ export default function MarkdownToHtmlPage() {
         {/* Hero - title over the live converter */}
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown to HTML Converter
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Paste or drop a .md file and get clean, semantic HTML, with live preview, code highlighting, and
               one-click copy or download.
             </p>
-            <p className="text-xs text-zinc-500">Updated July 3, 2026 · Built and maintained by MDTool</p>
           </div>
         </section>
 

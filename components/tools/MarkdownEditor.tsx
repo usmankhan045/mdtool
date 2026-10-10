@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_OUTLINE, BTN_GHOST, ICON_UPLOAD } from './ui';
+import { PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_UPLOAD, BTN_GHOST, ICON_UPLOAD } from './ui';
 import { ToolIcon } from './UiParts';
 import { trackToolAction } from '@/lib/analytics';
 
@@ -47,13 +47,13 @@ export default function MarkdownEditor({ value, onChange, wordCount }: Props) {
       {/* Toolbar */}
       <div className={PANE_HEAD}>
         <span className={PANE_TITLE}>Markdown Input</span>
-        <div className="flex items-center gap-1.5">
-          <span className={`${META} mr-1.5`}>{wordCount} words</span>
-          <button onClick={() => fileInputRef.current?.click()} className={BTN_OUTLINE}>
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          <span className={`${META} mr-1.5 whitespace-nowrap`}>{wordCount} words</span>
+          <button onClick={() => fileInputRef.current?.click()} className={BTN_UPLOAD}>
             <ToolIcon d={ICON_UPLOAD} />
             Upload .md
           </button>
-          <button onClick={() => onChange('')} className={BTN_GHOST}>
+          <button onClick={() => onChange('')} disabled={!value} className={BTN_GHOST}>
             Clear
           </button>
         </div>

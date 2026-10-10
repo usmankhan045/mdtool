@@ -5,7 +5,7 @@ import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 import { GUIDE_TOPICS } from '@/lib/cheatsheet';
 
 export const metadata: Metadata = {
-  title: 'Markdown Cheat Sheet with Examples (Copy & Paste, 2026)',
+  title: 'Markdown Cheat Sheet with Examples (Copy & Paste)',
   description:
     'Printable Markdown cheat sheet with copyable examples for headings, bold, links, images, lists, checkboxes, tables, code blocks and GitHub Flavored Markdown.',
   alternates: { canonical: 'https://www.mdtool.dev/markdown-cheat-sheet' },
@@ -83,8 +83,8 @@ export default function MarkdownCheatSheetPage() {
       <main className="min-h-screen bg-page">
         <section className="hero-grid text-zinc-950">
           <div className="max-w-5xl mx-auto px-4 pt-10 pb-12">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Markdown Cheat Sheet with Examples</h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl leading-relaxed">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">Markdown Cheat Sheet with Examples</h1>
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 leading-relaxed">
               This complete Markdown cheat sheet covers headings, emphasis, links, images, lists, tables,
               code blocks, checkboxes, and GitHub Flavored Markdown extensions. Copy the syntax or{' '}
               <Link href="/markdown-guide" className="font-medium text-zinc-900 underline underline-offset-4">
@@ -104,7 +104,6 @@ export default function MarkdownCheatSheetPage() {
                 Open Markdown editor
               </Link>
             </div>
-            <p className="mt-3 text-xs text-zinc-500">Reviewed <time dateTime="2026-10-10">October 10, 2026</time></p>
           </div>
         </section>
 

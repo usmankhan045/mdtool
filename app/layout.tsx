@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ContactLinkTracker from '@/components/analytics/ContactLinkTracker';
 import StructuredData from '@/components/seo/StructuredData';
 import './globals.css';
 
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
+        <ContactLinkTracker />
         <StructuredData type="organization" />
         <Header />
         {children}

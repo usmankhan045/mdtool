@@ -118,14 +118,13 @@ export default function MarkdownToWordPage() {
         {/* Hero - title over the live converter */}
         <section className="hero-grid text-zinc-950">
           <div className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            <h1 className="mx-auto text-center text-3xl md:text-4xl font-bold tracking-tight mb-3">
               Free Online Markdown to Word Converter: Real .docx
             </h1>
-            <p className="text-base md:text-lg text-zinc-600 max-w-2xl mb-3 leading-relaxed">
+            <p className="mx-auto max-w-3xl text-center text-base md:text-lg text-zinc-600 mb-3 leading-relaxed">
               Turn Markdown into a real, editable .docx that opens in Word, Google Docs, and LibreOffice.
               No login, no watermark, no limits.
             </p>
-            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 
