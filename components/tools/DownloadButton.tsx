@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { generatePdf, markdownToPdfHtml, ThemeId, PageSizeId } from '@/lib/pdf';
 import { nextPaint } from './useDebouncedValue';
 import { BTN_MAIN } from './ui';
+import { trackToolAction } from '@/lib/analytics';
 
 interface Props {
   // Raw Markdown, converted at click time so a download right after typing
@@ -24,12 +25,15 @@ export default function DownloadButton({ markdown, theme, filename, size = 'defa
       return;
     }
     setLoading(true);
+    trackToolAction('conversion_started', 'pdf', { page_size: pageSize, theme });
     // Let the spinner paint before the heavy, synchronous PDF build starts.
     await nextPaint();
     try {
       await generatePdf(markdownToPdfHtml(markdown), { theme, pageSize, filename: filename || 'document.pdf' });
+      trackToolAction('conversion_completed', 'pdf', { page_size: pageSize, theme });
     } catch (err) {
       console.error('PDF generation failed:', err);
+      trackToolAction('conversion_failed', 'pdf', { page_size: pageSize, theme });
       const detail = err instanceof Error ? err.message : String(err);
       alert(`PDF generation failed:\n\n${detail}`);
     } finally {

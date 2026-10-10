@@ -20,6 +20,8 @@ const TOOLS = [
 const HOME = { href: '/', label: 'Home' };
 
 const LINKS = [
+  { href: '/markdown-editor', label: 'Editor' },
+  { href: '/markdown-guide', label: 'Guide' },
   { href: '/markdown-cheat-sheet', label: 'Cheat Sheet' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },

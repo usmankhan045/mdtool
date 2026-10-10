@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { PANE, PANE_HEAD, PANE_TITLE, PANE_HEIGHT, BTN_PRIMARY, BTN_GHOST } from './ui';
+import { trackToolAction } from '@/lib/analytics';
 
 interface Props {
   fileName: string | null;
@@ -32,6 +33,7 @@ export default function DocxUploadPanel({ fileName, fileSize, loading, error, on
       alert('Please upload a .docx file (legacy .doc files are not supported).');
       return;
     }
+    trackToolAction('file_selected', 'docx', { file_size_bytes: file.size });
     onFileSelected(file);
   };
 

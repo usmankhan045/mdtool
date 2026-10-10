@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { generateDocx } from '@/lib/docx';
 import { BTN_MAIN } from './ui';
 import { nextPaint } from './useDebouncedValue';
+import { trackToolAction } from '@/lib/analytics';
 
 interface Props {
   markdown: string;
@@ -19,12 +20,15 @@ export default function DownloadWordButton({ markdown, filename }: Props) {
       return;
     }
     setLoading(true);
+    trackToolAction('conversion_started', 'docx');
     // Let the spinner paint before the heavy, synchronous .docx build starts.
     await nextPaint();
     try {
       await generateDocx(markdown, filename || 'document.docx');
+      trackToolAction('conversion_completed', 'docx');
     } catch (err) {
       console.error('Word document generation failed:', err);
+      trackToolAction('conversion_failed', 'docx');
       alert('Word document generation failed. Please try again.');
     } finally {
       setLoading(false);

@@ -8,6 +8,7 @@ import { markdownToText } from '@/lib/markdownToText';
 import { downloadTextFile, copyToClipboard } from '@/lib/download';
 import { WORKSPACE, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_PRIMARY, BTN_OUTLINE, ICON_DOWNLOAD } from './ui';
 import { ToolIcon } from './UiParts';
+import { trackToolAction } from '@/lib/analytics';
 
 export const SAMPLE_MARKDOWN = `# Release Notes
 
@@ -57,6 +58,7 @@ export default function MarkdownToTextClient() {
   const handleCopy = async () => {
     const ok = await copyToClipboard(plainText);
     if (ok) {
+      trackToolAction('copied', 'text');
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     }
@@ -65,6 +67,7 @@ export default function MarkdownToTextClient() {
   const handleDownload = () => {
     if (!plainText.trim()) return;
     downloadTextFile(plainText, 'document.txt', 'text/plain;charset=utf-8');
+    trackToolAction('downloaded', 'text');
   };
 
   const toggles: { label: string; checked: boolean; onChange: (v: boolean) => void; title: string }[] = [

@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_OUTLINE, BTN_GHOST, ICON_UPLOAD } from './ui';
 import { ToolIcon } from './UiParts';
+import { trackToolAction } from '@/lib/analytics';
 
 interface Props {
   value: string;
@@ -22,6 +23,7 @@ export default function MarkdownEditor({ value, onChange, wordCount }: Props) {
       return;
     }
 
+    trackToolAction('file_selected', 'markdown', { file_size_bytes: file.size });
     const reader = new FileReader();
     reader.onload = (event) => {
       onChange(event.target?.result as string);
@@ -33,6 +35,7 @@ export default function MarkdownEditor({ value, onChange, wordCount }: Props) {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (file) {
+      trackToolAction('file_selected', 'markdown', { file_size_bytes: file.size });
       const reader = new FileReader();
       reader.onload = (event) => onChange(event.target?.result as string);
       reader.readAsText(file);

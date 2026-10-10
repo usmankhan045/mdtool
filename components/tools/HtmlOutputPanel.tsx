@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { downloadTextFile, copyToClipboard } from '@/lib/download';
 import { PANE, PANE_HEAD, PANE_HEIGHT, TEXTAREA, BTN_PRIMARY, BTN_OUTLINE, SEG, SEG_ITEM, SEG_ON, SEG_OFF, ICON_DOWNLOAD } from './ui';
 import { ToolIcon } from './UiParts';
+import { trackToolAction } from '@/lib/analytics';
 
 interface Props {
   htmlContent: string;
@@ -48,6 +49,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
   const handleCopy = async () => {
     const ok = await copyToClipboard(outputCode);
     if (ok) {
+      trackToolAction('copied', 'html', { full_document: fullDocument });
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     }
@@ -56,6 +58,7 @@ export default function HtmlOutputPanel({ htmlContent, filename = 'document.html
   const handleDownload = () => {
     if (!htmlContent.trim()) return;
     downloadTextFile(outputCode, filename, 'text/html;charset=utf-8');
+    trackToolAction('downloaded', 'html', { full_document: fullDocument });
   };
 
   return (

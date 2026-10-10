@@ -84,9 +84,25 @@ export default function MarkdownCheatSheetPage() {
           <div className="max-w-5xl mx-auto px-4 pt-10 pb-12">
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Markdown Cheat Sheet with Examples</h1>
             <p className="text-base md:text-lg text-zinc-600 max-w-2xl leading-relaxed">
-              Every Markdown syntax element on one page (core Markdown plus the GitHub Flavored
-              Markdown extensions), with a dedicated deep-dive guide for each element.
+              This complete Markdown cheat sheet covers headings, emphasis, links, images, lists, tables,
+              code blocks, checkboxes, and GitHub Flavored Markdown extensions. Copy the syntax or{' '}
+              <Link href="/markdown-guide" className="font-medium text-zinc-900 underline underline-offset-4">
+                learn Markdown step by step
+              </Link>
+              .
             </p>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href="/downloads/markdown-cheat-sheet.pdf"
+                download
+                className="rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800"
+              >
+                Download PDF cheat sheet
+              </a>
+              <Link href="/markdown-editor" className="rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 hover:border-zinc-500">
+                Open Markdown editor
+              </Link>
+            </div>
             <p className="mt-3 text-xs text-zinc-500">Updated <time dateTime="2026-10-01">October 1, 2026</time></p>
           </div>
         </section>

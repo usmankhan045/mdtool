@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { downloadTextFile, copyToClipboard } from '@/lib/download';
 import { PANE, PANE_HEAD, PANE_TITLE, META, TEXTAREA, BTN_PRIMARY, BTN_OUTLINE, ICON_DOWNLOAD } from './ui';
 import { ToolIcon } from './UiParts';
+import { trackToolAction } from '@/lib/analytics';
 
 interface Props {
   markdown: string;
@@ -18,6 +19,7 @@ export default function MarkdownOutputPanel({ markdown, filename = 'document.md'
   const handleCopy = async () => {
     const ok = await copyToClipboard(markdown);
     if (ok) {
+      trackToolAction('copied', 'markdown');
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     }
@@ -26,6 +28,7 @@ export default function MarkdownOutputPanel({ markdown, filename = 'document.md'
   const handleDownload = () => {
     if (!markdown.trim()) return;
     downloadTextFile(markdown, filename, 'text/markdown;charset=utf-8');
+    trackToolAction('downloaded', 'markdown');
   };
 
   return (

@@ -65,6 +65,8 @@ function routeExists(routeDir: string): boolean {
 // Static routes and the source files whose commits count as a content change.
 const STATIC_ROUTES: { route: string; files: string[] }[] = [
   { route: '', files: ['app/page.tsx'] },
+  { route: '/markdown-editor', files: ['app/markdown-editor/page.tsx'] },
+  { route: '/markdown-guide', files: ['app/markdown-guide/page.tsx', 'lib/cheatsheet.ts'] },
   { route: '/markdown-to-pdf', files: ['app/markdown-to-pdf/page.tsx'] },
   { route: '/markdown-to-html', files: ['app/markdown-to-html/page.tsx'] },
   { route: '/markdown-to-word', files: ['app/markdown-to-word/page.tsx'] },
@@ -76,6 +78,7 @@ const STATIC_ROUTES: { route: string; files: string[] }[] = [
   { route: '/about', files: ['app/about/page.tsx'] },
   { route: '/privacy', files: ['app/privacy/page.tsx'] },
   { route: '/contact', files: ['app/contact/page.tsx'] },
+  { route: '/changelog', files: ['app/changelog/page.tsx'] },
 ];
 
 // Routes still being built; each is listed only once its page.tsx exists.

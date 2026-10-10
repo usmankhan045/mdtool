@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { toMarkdownTable, toHtmlTable, parsePastedData, type ColAlign, type TableData } from '@/lib/tableGenerator';
 import { WORKSPACE, WORKSPACE_BAR, SPLIT, PANE, PANE_HEAD, PANE_TITLE, META, BTN_PRIMARY, BTN_OUTLINE, BTN_GHOST, SEG, SEG_ITEM, SEG_ON, SEG_OFF } from './ui';
+import { trackToolAction } from '@/lib/analytics';
 
 const MAX_DIM = 30;
 
@@ -85,9 +86,14 @@ export default function TableGeneratorClient() {
   };
 
   const copy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    try {
+      await navigator.clipboard.writeText(code);
+      trackToolAction('copied', output === 'markdown' ? 'markdown_table' : 'html_table');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (error) {
+      console.error('Table copy failed:', error);
+    }
   };
 
   const inputClass =
