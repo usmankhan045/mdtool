@@ -60,13 +60,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {adsenseId && <link rel="preconnect" href="https://pagead2.googlesyndication.com" />}
         {gaId && <link rel="preconnect" href="https://www.googletagmanager.com" />}
-        {/* AdSense waits until the browser is idle after load, so it never competes with LCP/INP. */}
+        {/* Keep the loader in the initial document so AdSense can verify the site and serve Auto ads. */}
         {adsenseId && (
           <Script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
             crossOrigin="anonymous"
-            strategy="lazyOnload"
+            strategy="beforeInteractive"
           />
         )}
       </head>
