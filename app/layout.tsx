@@ -23,6 +23,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 const yandexVerification = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION;
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
+const defaultAdsenseId = 'ca-pub-4540961194445082';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mdtool.dev'),
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID || defaultAdsenseId;
   // GA4 measurement ID for mdtool.dev (public by design; env var can override it).
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-N5NLCET100';
 

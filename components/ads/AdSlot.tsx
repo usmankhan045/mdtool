@@ -23,7 +23,7 @@ export default function AdSlot({ slotId, format, className = '', adSlotNumber }:
   const adRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
   const config = SLOT_CONFIG[format];
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID || 'ca-pub-4540961194445082';
 
   const placeholderHeight = format === 'vertical' ? '600px' : format === 'square' ? '250px' : '90px';
 
