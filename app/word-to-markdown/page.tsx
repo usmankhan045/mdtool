@@ -4,10 +4,11 @@ import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 
 export const metadata: Metadata = {
-  title: 'Word to Markdown Converter Online (DOCX to MD), Free',
-  description: 'Convert .docx Word documents to clean Markdown instantly in your browser. Headings, tables, lists, bold, italic, and links convert automatically. Free, no signup, no file size limit.',
+  title: 'Word to Markdown Converter (DOCX to MD), Free',
+  description: 'Convert Word DOCX files to clean Markdown online. Preserve headings, tables, lists and formatting privately in your browser, with no upload.',
   keywords: ['word to markdown', 'docx to markdown', 'docx to md', 'convert word to markdown', 'word markdown converter'],
   openGraph: {
     title: 'Free Word to Markdown Converter | MDTool',
@@ -103,7 +104,7 @@ export default function WordToMarkdownPage() {
         url="/word-to-markdown"
         description="Convert .docx Word documents to clean Markdown instantly in your browser. Headings, tables, lists, bold, italic, and links convert automatically. Free, no signup, no file size limit."
         datePublished="2026-06-25"
-        dateModified="2026-06-25"
+        dateModified="2026-10-10"
         featureList={[
           'Word (.docx) to GitHub Flavored Markdown conversion',
           'Headings (H1 to H6), bold, italic, lists, tables, and links preserved',
@@ -130,7 +131,7 @@ export default function WordToMarkdownPage() {
               Drag and drop a .docx file and get clean, plain-text GitHub Flavored Markdown back. No upload,
               no watermark.
             </p>
-            <p className="text-xs text-zinc-500">Updated June 25, 2026</p>
+            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 
@@ -440,6 +441,7 @@ export default function WordToMarkdownPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/word-to-markdown']} />
     </>
   );
 }

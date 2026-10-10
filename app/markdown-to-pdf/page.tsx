@@ -4,11 +4,12 @@ import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Markdown to PDF Converter (MD to PDF), Free',
-  description: 'Convert MD to PDF in your browser: 4 themes, A4 or Letter, rendered Mermaid diagrams, highlighted code and page breaks. Free, no signup, no watermark.',
+  description: 'Convert Markdown to a polished PDF in your browser with 4 themes, Mermaid diagrams, highlighted code and page breaks. Free and private.',
   keywords: ['markdown to pdf', 'md to pdf', 'convert markdown to pdf', 'markdown pdf converter', 'github readme to pdf'],
   openGraph: {
     title: 'Free Markdown to PDF Converter (MD to PDF)',
@@ -129,7 +130,7 @@ export default function MarkdownToPdfPage() {
         url="/markdown-to-pdf"
         description="Convert Markdown to PDF instantly in your browser. Supports GitHub Flavored Markdown, code blocks with syntax highlighting, tables, images, and Mermaid diagrams."
         datePublished="2026-06-23"
-        dateModified="2026-10-01"
+        dateModified="2026-10-10"
       />
       <StructuredData
         type="breadcrumb"
@@ -150,7 +151,7 @@ export default function MarkdownToPdfPage() {
               Paste or upload Markdown and download a paginated PDF, with code highlighting, tables, and
               Mermaid diagrams included. No login, no watermark.
             </p>
-            <p className="text-xs text-zinc-500">Updated October 1, 2026</p>
+            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 
@@ -393,6 +394,7 @@ export default function MarkdownToPdfPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/markdown-to-pdf']} />
     </>
   );
 }

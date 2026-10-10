@@ -78,6 +78,7 @@ const STATIC_ROUTES: { route: string; files: string[] }[] = [
   { route: '/about', files: ['app/about/page.tsx'] },
   { route: '/privacy', files: ['app/privacy/page.tsx'] },
   { route: '/contact', files: ['app/contact/page.tsx'] },
+  { route: '/support', files: ['app/support/page.tsx'] },
   { route: '/changelog', files: ['app/changelog/page.tsx'] },
 ];
 

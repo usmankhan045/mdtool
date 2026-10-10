@@ -35,6 +35,7 @@ const BOTTOM_LINKS = [
   { href: '/about', label: 'About' },
   { href: '/changelog', label: 'Changelog' },
   { href: '/privacy', label: 'Privacy' },
+  { href: '/support', label: 'Support' },
   { href: '/contact', label: 'Contact' },
 ];
 

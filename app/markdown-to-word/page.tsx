@@ -4,10 +4,11 @@ import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 
 export const metadata: Metadata = {
   title: 'Markdown to Word Converter Online (MD to DOCX), Free',
-  description: 'Convert MD to Word online, free. Headings become real Word heading styles, and tables, lists and code are kept. Editable .docx, no signup, nothing uploaded.',
+  description: 'Convert Markdown to an editable Word DOCX online for free. Preserve headings, tables, lists and code; no signup, watermark or file upload.',
   keywords: ['markdown to word', 'md to word', 'markdown to docx', 'convert markdown to word', 'markdown word converter'],
   openGraph: {
     title: 'Free Markdown to Word Converter: Real .docx, No Signup',
@@ -93,7 +94,7 @@ export default function MarkdownToWordPage() {
       <StructuredData
         type="tool"
         datePublished="2026-06-23"
-        dateModified="2026-07-03"
+        dateModified="2026-10-10"
         name="Markdown to Word Converter"
         url="/markdown-to-word"
         description="Convert Markdown to a real, editable .docx Word document instantly in your browser. Supports headings, tables, lists, and code blocks."
@@ -124,7 +125,7 @@ export default function MarkdownToWordPage() {
               Turn Markdown into a real, editable .docx that opens in Word, Google Docs, and LibreOffice.
               No login, no watermark, no limits.
             </p>
-            <p className="text-xs text-zinc-500">Updated July 3, 2026</p>
+            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 
@@ -320,6 +321,7 @@ export default function MarkdownToWordPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/markdown-to-word']} />
     </>
   );
 }

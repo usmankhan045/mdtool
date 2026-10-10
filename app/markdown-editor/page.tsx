@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import ToolClient from './ToolClient';
 import StructuredData from '@/components/seo/StructuredData';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 
 export const metadata: Metadata = {
   title: 'Online Markdown Editor with Live Preview',
@@ -85,6 +86,7 @@ export default function MarkdownEditorPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/markdown-editor']} />
     </>
   );
 }

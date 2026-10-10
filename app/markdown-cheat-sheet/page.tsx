@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import StructuredData from '@/components/seo/StructuredData';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 import { GUIDE_TOPICS } from '@/lib/cheatsheet';
 
 export const metadata: Metadata = {
   title: 'Markdown Cheat Sheet with Examples (Copy & Paste, 2026)',
   description:
-    'Every Markdown syntax with a copyable example: headings, bold, links, images, lists, checkboxes, tables, code blocks and GitHub Flavored Markdown, on one page.',
+    'Printable Markdown cheat sheet with copyable examples for headings, bold, links, images, lists, checkboxes, tables, code blocks and GitHub Flavored Markdown.',
   alternates: { canonical: 'https://www.mdtool.dev/markdown-cheat-sheet' },
   openGraph: {
     title: 'Markdown Cheat Sheet with Examples',
@@ -68,7 +69,7 @@ export default function MarkdownCheatSheetPage() {
         url="/markdown-cheat-sheet"
         description="The complete Markdown cheat sheet: every syntax element with copyable examples, plus GitHub Flavored Markdown extensions."
         datePublished="2026-06-24"
-        dateModified="2026-10-01"
+        dateModified="2026-10-10"
       />
       <StructuredData
         type="breadcrumb"
@@ -103,7 +104,7 @@ export default function MarkdownCheatSheetPage() {
                 Open Markdown editor
               </Link>
             </div>
-            <p className="mt-3 text-xs text-zinc-500">Updated <time dateTime="2026-10-01">October 1, 2026</time></p>
+            <p className="mt-3 text-xs text-zinc-500">Reviewed <time dateTime="2026-10-10">October 10, 2026</time></p>
           </div>
         </section>
 
@@ -195,7 +196,31 @@ export default function MarkdownCheatSheetPage() {
             </div>
           </div>
         </section>
+        <section className="max-w-5xl mx-auto px-4 py-10">
+          <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Practical Markdown guides</h2>
+          <p className="text-zinc-600 mb-5 max-w-3xl">
+            Go beyond the syntax reference with practical guides for files, GitHub documentation, and printable
+            cheat sheets.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: '/blog/printable-markdown-cheat-sheet', label: 'Print a Markdown cheat sheet', description: 'Make a clean reference you can keep beside your editor.' },
+              { href: '/blog/readme-cheat-sheet', label: 'README Markdown cheat sheet', description: 'Use syntax that works reliably in GitHub README files.' },
+              { href: '/blog/checkbox-em-markdown', label: 'Markdown checkboxes', description: 'Create task lists with GitHub Flavored Markdown.' },
+            ].map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="rounded-xl border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-400"
+              >
+                <span className="font-medium text-zinc-900">{guide.label}</span>
+                <span className="mt-1 block text-sm text-zinc-500">{guide.description}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
+      <ToolCrossLinks exclude={['/markdown-cheat-sheet']} />
     </>
   );
 }

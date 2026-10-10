@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 
 const TOOLS = [
   {
+    href: '/markdown-editor',
+    from: 'MD',
+    to: 'EDIT',
+    title: 'Online Markdown Editor',
+    description: 'Write Markdown with a live preview, then copy or download clean HTML in your browser.',
+    badge: null,
+  },
+  {
     href: '/markdown-to-pdf',
     from: 'MD',
     to: 'PDF',
@@ -76,6 +84,7 @@ const OUTPUTS = [
 
 // Output-format colours, shared by the hero buttons and the output stack.
 const FORMAT_DOT: Record<string, string> = {
+  EDIT: 'bg-blue-400',
   PDF: 'bg-rose-400',
   HTML: 'bg-orange-400',
   DOCX: 'bg-emerald-400',
@@ -91,6 +100,7 @@ const CARD_SPAN: Record<string, string> = {
 
 // A small page with a folded corner, tinted by format.
 const FORMAT_TILE: Record<string, { page: string; fold: string }> = {
+  EDIT: { page: 'bg-blue-50 text-blue-700 ring-blue-600/15', fold: 'bg-blue-200' },
   MD: { page: 'bg-violet-50 text-violet-700 ring-violet-600/15', fold: 'bg-violet-200' },
   PDF: { page: 'bg-rose-50 text-rose-700 ring-rose-600/15', fold: 'bg-rose-200' },
   HTML: { page: 'bg-orange-50 text-orange-700 ring-orange-600/15', fold: 'bg-orange-200' },

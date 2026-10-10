@@ -50,6 +50,19 @@ Plus a complete **[Markdown Cheat Sheet](https://www.mdtool.dev/markdown-cheat-s
 
 > **Naming note:** MDTool (mdtool.dev) is a Markdown document converter. It's unrelated to MonoDevelop's `mdtool` CLI or the SolidWorks "MDTools" add-in.
 
+## Use MDTool in a project
+
+MDTool is useful anywhere a document needs to move between Markdown and a shareable format:
+
+- Publish a GitHub README as a searchable PDF with selectable code and diagrams.
+- Turn technical notes into an editable `.docx` for review in Word or Google Docs.
+- Clean Word or Google Docs exports before committing them to a documentation repository.
+- Generate aligned Markdown tables from Excel, CSV, or pasted spreadsheet data.
+
+The public web app is available at [mdtool.dev](https://www.mdtool.dev), and the conversion
+implementation is inspectable in this repository. If you find a conversion edge case, please
+open a focused issue with a small Markdown or HTML example that does not contain private data.
+
 ## How It Works
 
 Each tool pairs a server-rendered SEO page with a client-only converter. All conversion logic lives in `lib/` as pure, framework-agnostic functions:

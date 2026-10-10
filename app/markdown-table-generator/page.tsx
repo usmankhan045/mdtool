@@ -3,6 +3,7 @@ import Link from 'next/link';
 import TableGeneratorClient from '@/components/tools/TableGeneratorClient';
 import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 import AdSlot from '@/components/ads/AdSlot';
 
 export const metadata: Metadata = {
@@ -184,6 +185,7 @@ export default function MarkdownTableGeneratorPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/markdown-table-generator']} />
     </>
   );
 }

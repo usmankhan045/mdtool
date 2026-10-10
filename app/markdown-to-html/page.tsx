@@ -4,6 +4,7 @@ import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 
 export const metadata: Metadata = {
   title: 'Markdown to HTML Converter: Free Online, No Login',
@@ -343,6 +344,7 @@ export default function MarkdownToHtmlPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/markdown-to-html']} />
     </>
   );
 }

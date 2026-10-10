@@ -5,6 +5,7 @@ import FaqSection from '@/components/seo/FaqSection';
 import StructuredData from '@/components/seo/StructuredData';
 import AdSlot from '@/components/ads/AdSlot';
 import ConversionDiagram from '@/components/ui/ConversionDiagram';
+import ToolCrossLinks from '@/components/seo/ToolCrossLinks';
 
 export const metadata: Metadata = {
   title: 'HTML to Markdown Converter: Free, GFM Output',
@@ -96,7 +97,7 @@ export default function HtmlToMarkdownPage() {
         url="/html-to-markdown"
         description="Convert HTML to clean Markdown instantly in your browser. Paste or upload, with GFM tables, code blocks, links, and lists."
         datePublished="2026-06-24"
-        dateModified="2026-07-03"
+        dateModified="2026-10-10"
         featureList={[
           'HTML to Markdown conversion',
           'GitHub Flavored Markdown (GFM) output',
@@ -124,7 +125,7 @@ export default function HtmlToMarkdownPage() {
               Paste HTML or upload a .html file and get clean GitHub Flavored Markdown, with tables, fenced code
               blocks with language tags, nested lists, links, and images.
             </p>
-            <p className="text-xs text-zinc-500">Updated July 3, 2026</p>
+            <p className="text-xs text-zinc-500">Reviewed October 10, 2026</p>
           </div>
         </section>
 
@@ -320,6 +321,7 @@ export default function HtmlToMarkdownPage() {
           </div>
         </section>
       </main>
+      <ToolCrossLinks exclude={['/html-to-markdown']} />
     </>
   );
 }
